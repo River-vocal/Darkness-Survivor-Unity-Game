@@ -19,24 +19,20 @@ public class GridMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKey(KeyCode.W) && !isMoving)
-        // {
-        //     
-        // }
 
-        if (Input.GetKey(KeyCode.A) && !isMoving)
+        int millSec = GlobalTimer.millSec;
+        bool ableToMove = (millSec<100 || millSec > 900);
+
+        if (Input.GetKey(KeyCode.A) && !isMoving && ableToMove )
         {
             StartCoroutine(MovePlayer(Vector3.left));
+            Debug.Log(millSec);
         }
 
-        // if (Input.GetKey(KeyCode.S) && !isMoving)
-        // {
-        //     
-        // }
-
-        if (Input.GetKey(KeyCode.D) && !isMoving)
+        if (Input.GetKey(KeyCode.D) && !isMoving  && ableToMove)
         { 
             StartCoroutine(MovePlayer(Vector3.right));
+            Debug.Log(millSec);
         }
 
     }
@@ -47,7 +43,7 @@ public class GridMovement : MonoBehaviour
 
         isMoving = true;
 
-        float elapsedTime = 0;
+        float elapsedTime = 0.1f;
         
         originPos = transform.position;
         targetPos = originPos + direction;
