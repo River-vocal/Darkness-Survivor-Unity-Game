@@ -12,12 +12,11 @@ public class PlayerInput : MonoBehaviour
     
     public float moveSpeed = 5;
 
-    public Transform movePoint;
+    // public Transform movePoint;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        movePoint.parent = null;
     }
 
     // Update is called once per frame
@@ -33,23 +32,20 @@ public class PlayerInput : MonoBehaviour
         
         animator.SetBool(PAP.isMoving, isMoving);
 
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+        // if (GlobalTimer.ableToMove){
+        //     transform.position += new Vector3(1, 0, 0);
+        // }
 
-        if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
-        {
-            if (Math.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
-            {
-                movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-            }
-        }
-        
-        
-        
 
     }
 
     private void FixedUpdate()
     {
+        int millSec = GlobalTimer.millSec;
+        bool ableToMove = (millSec<100 || millSec > 900);
+        if(!ableToMove){
+            return;
+        }
         float forceX = animator.GetFloat(PAP.forceX);
         if(forceX != 0) rb.AddForce(new Vector2(forceX, 0));
         
