@@ -25,14 +25,13 @@ public class GridMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A) && !isMoving && ableToMove )
         {
+            
             StartCoroutine(MovePlayer(Vector3.left));
-            Debug.Log(millSec);
         }
 
         if (Input.GetKey(KeyCode.D) && !isMoving  && ableToMove)
         { 
             StartCoroutine(MovePlayer(Vector3.right));
-            Debug.Log(millSec);
         }
 
     }
@@ -43,7 +42,7 @@ public class GridMovement : MonoBehaviour
 
         isMoving = true;
 
-        float elapsedTime = 0.1f;
+        float elapsedTime = 0f;
         
         originPos = transform.position;
         targetPos = originPos + direction;
