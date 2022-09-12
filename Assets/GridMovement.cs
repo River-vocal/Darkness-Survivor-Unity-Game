@@ -8,6 +8,8 @@ public class GridMovement : MonoBehaviour
     
     //https://www.youtube.com/watch?v=AiZ4z4qKy44
 
+    public Attack attack;
+
     private bool isMoving;
     private Vector3 originPos, targetPos;
     private float timeToMove = 0.2f;
@@ -34,6 +36,16 @@ public class GridMovement : MonoBehaviour
             StartCoroutine(MovePlayer(Vector3.right));
         }
 
+        if (Input.GetKey(KeyCode.Space) && !isMoving){
+            StartCoroutine(UseWeapon());
+        }
+
+    }
+
+    private IEnumerator UseWeapon() {
+        attack.AttackRight();
+        yield return new WaitForSeconds(1);
+        attack.StopAttack();
     }
     
 
