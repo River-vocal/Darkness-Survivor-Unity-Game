@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Enemy : MonoBehaviour
 {
+    public Slider slider;
+    public int maxHealth = 10;
     public int status = 0; // 0: normal, 1: on hit
     // Start is called before the first frame update
     void Start()
     {
-        
+        slider.maxValue = maxHealth;
+        slider.value = maxHealth;
     }
 
     // Update is called once per frame
@@ -26,6 +31,11 @@ public class Enemy : MonoBehaviour
 
     public void OnHit() {
         status = 1;
+        slider.value -= 1;
+        if (slider.value == 0){
+            Destroy(gameObject);
+        }
+        TimeCounter.enable = false;
         StartCoroutine("BackToNormal");
     }
 

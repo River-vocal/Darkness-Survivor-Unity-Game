@@ -9,6 +9,7 @@ public class TimeCounter : MonoBehaviour
 {
     public GameObject textDisplay;
     public int secondsLeft = 30;
+    public static bool enable = true;
         
     // Start is called before the first frame update
     void Start()
@@ -27,9 +28,16 @@ public class TimeCounter : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!enable) {
+            return;
+        }
+        
         int timePassed = (int) MathF.Floor(Time.time);
         int curLeftSec = secondsLeft - timePassed;
-        textDisplay.GetComponent<TMP_Text>().text = "Time left:" + curLeftSec;
+
+        if(curLeftSec >= 0){
+            textDisplay.GetComponent<TMP_Text>().text = "Time left:" + curLeftSec;
+        }
     }
 
     // IEnumerator TimerTake()
