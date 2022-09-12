@@ -34,8 +34,8 @@ public class Enemy : MonoBehaviour
         slider.value -= 1;
         if (slider.value == 0){
             Destroy(gameObject);
+            TimeCounter.enable = false;
         }
-        TimeCounter.enable = false;
         StartCoroutine("BackToNormal");
     }
 
