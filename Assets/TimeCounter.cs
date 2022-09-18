@@ -28,16 +28,16 @@ public class TimeCounter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!enable) {
-            return;
-        }
+        // if (!enable) {
+        //     return;
+        // }
         
-        int timePassed = (int) MathF.Floor(Time.time);
-        int curLeftSec = secondsLeft - timePassed;
+        // int timePassed = (int) MathF.Floor(Time.time);
+        // int curLeftSec = secondsLeft - timePassed;
 
-        if(curLeftSec >= 0){
-            textDisplay.GetComponent<TMP_Text>().text = "Time left:" + curLeftSec;
-        }
+        // if(curLeftSec >= 0){
+        //     textDisplay.GetComponent<TMP_Text>().text = "Time left:" + curLeftSec;
+        // }
     }
 
     // IEnumerator TimerTake()

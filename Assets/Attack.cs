@@ -28,7 +28,7 @@ public class Attack : MonoBehaviour
         if(other.tag == "Enemy") {
             // Deal damage to the enemy
             Enemy enemy = other.GetComponent<Enemy>();
-            enemy.OnHit();
+            // enemy.OnHit();
         }
     }
 
