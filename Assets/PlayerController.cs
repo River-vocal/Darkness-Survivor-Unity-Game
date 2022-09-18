@@ -9,8 +9,13 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 10f;
     // public float collisionOffset = 0.05f;
     // public ContactFilter2D movementFilter;
+    public int maxHealth = 20;
+    public HealthBar healthBar;
+    public int currentHealth;
     Vector2 movementInput;
     bool jumpPressed;
+    //todo
+    // bool isJumping = false;
     Rigidbody2D rb;
     CapsuleCollider2D capsuleCollider2D;
     Animator animator;
@@ -22,6 +27,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
+        healthBar.setMaxHealth(maxHealth);
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
@@ -33,11 +40,15 @@ public class PlayerController : MonoBehaviour
     // {
         
     // }
-
+    void takeDamage(int damage) {
+        currentHealth -= damage;
+        healthBar.setHealth(currentHealth);
+    }
     private void FixedUpdate() {
         if (canMove) {
             rb.velocity = new Vector2(movementInput.x * moveSpeed, rb.velocity.y);
             if (jumpPressed) {
+                // isJumping = true;
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 jumpPressed = false;
             }
@@ -99,6 +110,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnFire() {
+        takeDamage(1);
         animator.SetTrigger("swordAttack");
     }
 
@@ -116,12 +128,13 @@ public class PlayerController : MonoBehaviour
         swordAttack.StopAttack();
     }
     public void LockMovement() {
-        Debug.Log("lock move");
+        if (isGrounded()) {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
         canMove = false;
     }
 
     public void UnlockMovement() {
-        Debug.Log("unlock move");
         canMove = true;
     }
     private bool isGrounded() {
