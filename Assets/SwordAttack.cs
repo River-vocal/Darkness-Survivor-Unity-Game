@@ -8,8 +8,7 @@ public class SwordAttack : MonoBehaviour
     public Collider2D swordCollider;
     Vector2 rightAttackOffset;
     public void Start() {
-        swordCollider = GetComponent<Collider2D>();
-        rightAttackOffset = transform.position;
+        rightAttackOffset = transform.localPosition;
     }
     // Start is called before the first frame update
     public void AttackRight() {
