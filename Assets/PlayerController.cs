@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 7f;
     public float jumpSpeed = 10f;
+    [SerializeField] private float leftBoundary;
+    [SerializeField] private float rightBoundary;
     // public float collisionOffset = 0.05f;
     // public ContactFilter2D movementFilter;
     public int maxHealth = 20;
@@ -38,34 +40,47 @@ public class PlayerController : MonoBehaviour
     // // Update is called once per frame
     // void Update()
     // {
-        
+
     // }
-    void takeDamage(int damage) {
+    void takeDamage(int damage)
+    {
         currentHealth -= damage;
         healthBar.setHealth(currentHealth);
     }
-    private void FixedUpdate() {
-        if (canMove) {
+    private void FixedUpdate()
+    {
+        if (canMove)
+        {
             rb.velocity = new Vector2(movementInput.x * moveSpeed, rb.velocity.y);
-            if (jumpPressed) {
+            if (jumpPressed)
+            {
                 // isJumping = true;
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 jumpPressed = false;
             }
-            if (rb.velocity != Vector2.zero) {
+            if (rb.velocity != Vector2.zero)
+            {
                 animator.SetBool("isMoving", true);
             }
-            else {
+            else
+            {
                 animator.SetBool("isMoving", false);
             }
-            if (rb.velocity.x > 0) {
+            if (rb.velocity.x > 0)
+            {
                 sr.flipX = false;
             }
-            else if (rb.velocity.x < 0) {
+            else if (rb.velocity.x < 0)
+            {
                 sr.flipX = true;
             }
-        }
 
+        }
+        float predictX = rb.position.x + rb.velocity.x * Time.fixedDeltaTime;
+        if (predictX < leftBoundary || predictX > rightBoundary)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
         // if (!canMove) return;
         // if (movementInput != Vector2.zero) {
         //     bool success = TryMove(movementInput);
@@ -88,7 +103,7 @@ public class PlayerController : MonoBehaviour
         //     sr.flipX = false;
         // }
     }
-    
+
     // private bool TryMove(Vector2 direction) {
     //     if (direction == Vector2.zero) return false;
     //     int count = rb.Cast(direction, movementFilter, castCollisions, moveSpeed * Time.fixedDeltaTime + collisionOffset);
@@ -99,45 +114,56 @@ public class PlayerController : MonoBehaviour
     //     return false;
     // }
 
-    void OnMove(InputValue movementValue) {
+    void OnMove(InputValue movementValue)
+    {
         movementInput = new Vector2(movementValue.Get<Vector2>().x, 0);
     }
 
-    void OnJump() {
-        if (isGrounded()) {
+    void OnJump()
+    {
+        if (isGrounded())
+        {
             jumpPressed = true;
         }
     }
 
-    void OnFire() {
-        takeDamage(1);
+    void OnFire()
+    {
         animator.SetTrigger("swordAttack");
     }
 
-    public void SwordAttack() {
+    public void SwordAttack()
+    {
         LockMovement();
-        if (sr.flipX) {
+        if (sr.flipX)
+        {
             swordAttack.AttackLeft();
         }
-        else {
+        else
+        {
             swordAttack.AttackRight();
         }
     }
-    public void EndSwordAttack() {
+    public void EndSwordAttack()
+    {
         UnlockMovement();
         swordAttack.StopAttack();
     }
-    public void LockMovement() {
-        if (isGrounded()) {
+    public void LockMovement()
+    {
+        if (isGrounded())
+        {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
         canMove = false;
     }
 
-    public void UnlockMovement() {
+    public void UnlockMovement()
+    {
         canMove = true;
     }
-    private bool isGrounded() {
-        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size,  0, 0, Vector2.down, .1f, jumpableGround);
+    private bool isGrounded()
+    {
+        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, Vector2.down, .1f, jumpableGround);
     }
 }

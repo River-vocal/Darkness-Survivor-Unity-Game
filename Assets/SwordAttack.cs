@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
-    public float damage = 2;
+    [SerializeField] private int damage = 10;
     public Collider2D swordCollider;
     Vector2 rightAttackOffset;
     public void Start() {
@@ -27,10 +27,11 @@ public class SwordAttack : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("collision detected");
         if (other.tag == "Enemy") {
-            var enemy = other.GetComponent<Enemy>();
+            var enemy = other.GetComponent<Boss>();
             if (enemy != null) {
-                enemy.Health -= damage;
+                enemy.TakeDamage(damage);
             }
         }
     }

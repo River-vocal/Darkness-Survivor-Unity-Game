@@ -132,21 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   jumpSpeed: 10
-  collisionOffset: 0.05
-  movementFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 1
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
+  maxHealth: 20
+  healthBar: {fileID: 0}
+  currentHealth: 0
   jumpableGround:
     serializedVersion: 2
     m_Bits: 0
