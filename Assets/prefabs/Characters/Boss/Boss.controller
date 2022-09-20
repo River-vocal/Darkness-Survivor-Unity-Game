@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   attackRange: 2.5
-  bossIsFlipped: 0
 --- !u!1101 &-7718676560206097134
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
