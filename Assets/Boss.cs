@@ -21,13 +21,19 @@ public class Boss : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(int damage)
+    {
         curHealth -= damage;
         healthBar.setHealth(curHealth);
 
         if (curHealth <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Invoke("Restart", 1f);
         }
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
