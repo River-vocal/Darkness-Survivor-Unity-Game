@@ -26,12 +26,12 @@ public class LightBeats : MonoBehaviour
             if (spotLight.color == Color.white) {
                 spotLight.color = Color.red;
                 time = 1.0f;
-                swordAttack.damage = 100;
+                swordAttack.damage = 40;
             }
             else {
                 spotLight.color = Color.white;
                 time = 3f;
-                swordAttack.damage = -50;
+                swordAttack.damage = 10;
             }
         }
     }

@@ -6,19 +6,23 @@ public class SwordAttack : MonoBehaviour
 {
     public int damage = 10;
     public Collider2D swordCollider;
-    Vector2 rightAttackOffset;
+    Vector2 swordHitBoxOffset;
+    Vector2 swordColliderOffset;
     public void Start() {
-        rightAttackOffset = transform.localPosition;
+        swordHitBoxOffset = transform.localPosition;
+        swordColliderOffset = swordCollider.offset;
     }
     // Start is called before the first frame update
     public void AttackRight() {
+        transform.localPosition = swordHitBoxOffset;
+        swordCollider.offset = swordColliderOffset;
         swordCollider.enabled = true;
-        transform.localPosition = rightAttackOffset;
     }
 
     public void AttackLeft() {
+        transform.localPosition = new Vector2(-swordHitBoxOffset.x, swordHitBoxOffset.y);
+        swordCollider.offset = new Vector2(-swordColliderOffset.x, swordColliderOffset.y);
         swordCollider.enabled = true;
-        transform.localPosition = new Vector2(-rightAttackOffset.x, rightAttackOffset.y);
     }
 
     public void StopAttack() {

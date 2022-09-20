@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
@@ -20,8 +21,19 @@ public class Boss : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(int damage)
+    {
         curHealth -= damage;
         healthBar.setHealth(curHealth);
+
+        if (curHealth <= 0)
+        {
+            Invoke("Restart", 1f);
+        }
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
