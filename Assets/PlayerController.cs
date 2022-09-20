@@ -132,6 +132,16 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("swordAttack");
     }
 
+    public void TakeDamage(int damage) {
+        currentHealth -= damage;
+        healthBar.setHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Invoke("Restart", 1f);
+        }
+    }
+
     public void SwordAttack()
     {
         LockMovement();

@@ -9,30 +9,31 @@ public class BossRun : StateMachineBehaviour
     Rigidbody2D rb2;
     [SerializeField] private float speed = 10f;
     [SerializeField] private float attackRange = 2.5f;
-    public bool bossIsFlipped = false;
+    private Boss boss;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         bossTransform = animator.GetComponent<Transform>();
         rb2 = animator.GetComponent<Rigidbody2D>();
+        boss = animator.GetComponent<Boss>();
     }
 
     private void lookAtPlayer()
     {
         Vector3 flipped = bossTransform.localScale;
         flipped.z *= -1;
-        if (bossTransform.position.x > playerTransform.position.x && bossIsFlipped)
+        if (bossTransform.position.x > playerTransform.position.x && boss.bossIsFlipped)
         {
             bossTransform.localScale = flipped;
             bossTransform.Rotate(0, 180, 0);
-            bossIsFlipped = false;
+            boss.bossIsFlipped = false;
         }
-        else if (bossTransform.position.x < playerTransform.position.x && !bossIsFlipped)
+        else if (bossTransform.position.x < playerTransform.position.x && !boss.bossIsFlipped)
         {
             bossTransform.localScale = flipped;
             bossTransform.Rotate(0, 180, 0);
-            bossIsFlipped = true;
+            boss.bossIsFlipped = true;
         }
     }
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

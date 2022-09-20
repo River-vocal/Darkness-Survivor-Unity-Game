@@ -30,11 +30,17 @@ public class SwordAttack : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("collision detected");
+        Debug.Log("attack detected");
         if (other.tag == "Enemy") {
             var enemy = other.GetComponent<Boss>();
             if (enemy != null) {
                 enemy.TakeDamage(damage);
+            }
+        }
+        else if (other.tag == "Player") {
+            var player = other.GetComponent<PlayerController>();
+            if (player != null) {
+                player.TakeDamage(damage);
             }
         }
     }

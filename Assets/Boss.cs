@@ -8,11 +8,25 @@ public class Boss : MonoBehaviour
     [SerializeField] private int maxHealth = 200;
     private int curHealth;
     [SerializeField] private HealthBar healthBar;
+    public bool bossIsFlipped;
     // Start is called before the first frame update
+    [SerializeField] private SwordAttack swordAttack;
+
+    void attack() {
+        if (bossIsFlipped) {
+            swordAttack.AttackLeft();
+        }
+        else swordAttack.AttackRight();
+    }
+
+    void stopAttack() {
+        swordAttack.StopAttack();
+    }
     void Start()
     {
         curHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
+        bossIsFlipped = false;
     }
 
     // Update is called once per frame
