@@ -4,33 +4,37 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int status = 0; // 0: normal, 1: on hit
+    Animator animator;
+    public float health = 5;
+    public float Health {
+        set {
+            health = value;
+            TakeDamage();
+            if (health <= 0) Defeated();
+        }
+        get {
+            return health;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (status) {
-            case 0:
-                gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 255, 100);
-                break;
-            case 1:
-                gameObject.GetComponent<Renderer>().material.color = new Color(255, 0, 0, 100);
-                break;
-        }
+        
     }
 
-    public void OnHit() {
-        status = 1;
-        StartCoroutine("BackToNormal");
+    public void TakeDamage() {
+        animator.SetTrigger("Damaged");
     }
-
-    IEnumerator BackToNormal () {
-        yield return new WaitForSeconds(1);
-        status = 0;
+    public void Defeated() {
+        animator.SetTrigger("Defeated");
+    }
+    public void RemoveEnemy() {
+        Destroy(gameObject);
     }
 }
