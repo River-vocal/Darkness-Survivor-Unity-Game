@@ -10,8 +10,4 @@ public class LevelMenu : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
     }
 
-    public void Back()
-    {
-
-    }
 }
