@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        healthBar.setMaxHealth(health);
+        healthBar.setHealth(health);
     }
 
     public void TakeDamage(int damage)
