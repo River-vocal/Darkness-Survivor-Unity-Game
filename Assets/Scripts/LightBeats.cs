@@ -1,22 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class LightBeats : MonoBehaviour
+public class LightBeats : AudioEffector
 {
     public Light2D spotLight;
     public SwordAttack swordAttack;
     public AudioSource audioSource;
-    private float time = 3f;
-    // Start is called before the first frame update
-    void Start()
-    {
+    // private float time = 3f;
+    public float effectorMultiplier = 200f;
 
+    private int minDamage = 10;
+
+
+    private double volumeIntensity;
+    
+    // Start is called before the first frame update
+    public override void Start()
+    {
+        base.Start();
+        if (!audioSource.isPlaying) {
+            audioSource.Play();
+        }
+    }
+    
+    public override void Update()
+    {
+        base.Update();
+                    
+        volumeIntensity = effectorValue * effectorMultiplier;
+        // Debug.Log(effectorValue + ",  " + effectorMultiplier + ";  " + volumeIntensity);
+        if (volumeIntensity > 30f)
+        {
+            spotLight.color = Color.red;
+        }
+        else if (volumeIntensity > 10f)
+        {
+            spotLight.color = Color.blue;
+        }
+        else
+        {
+            spotLight.color = Color.white;
+        }
+        swordAttack.damage = Math.Max((int)Math.Round(volumeIntensity), minDamage) ;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         if (!audioSource.isPlaying) {
             audioSource.Play();
@@ -34,5 +66,5 @@ public class LightBeats : MonoBehaviour
                 swordAttack.damage = 10;
             }
         }
-    }
+    }*/
 }

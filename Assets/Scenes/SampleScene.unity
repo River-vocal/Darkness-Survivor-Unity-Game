@@ -2206,6 +2206,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1224525546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224525530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e690ca5917d696846b04002bf83dce23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  broadcasterData: {fileID: 0}
+  updateStep: 0.1
+  sampleDataLength: 1024
+  clipLoudness: 0
 --- !u!1 &1242965840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,6 +2308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1307866758}
   - component: {fileID: 1307866757}
+  - component: {fileID: 1307866759}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
@@ -2393,6 +2410,23 @@ Transform:
   m_Father: {fileID: 1224525537}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1307866759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307866756}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbd7248236400248b86d3a9ac3fe8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioInfoBroadcaster: {fileID: 1224525546}
+  effectorType: 1
+  effectorValue: 0
+  effectorMultiplier: 1
+  minLightIntensity: 1
 --- !u!1 &1351340956
 GameObject:
   m_ObjectHideFlags: 0
@@ -2841,6 +2875,18 @@ PrefabInstance:
       propertyPath: swordAttack
       value: 
       objectReference: {fileID: 1174056965}
+    - target: {fileID: 2376159128122296471, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: effectorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2376159128122296471, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: effectorMultiplier
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2376159128122296471, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: audioInfoBroadcaster
+      value: 
+      objectReference: {fileID: 1224525546}
     - target: {fileID: 2914276711498453643, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: m_BodyType
       value: 0

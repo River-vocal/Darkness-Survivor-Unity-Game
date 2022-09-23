@@ -60,3 +60,5 @@ crashlytics-build.properties
 
 # Editor setting files
 .vscode/settings.json
+
+.idea/
