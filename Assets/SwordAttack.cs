@@ -32,6 +32,11 @@ public class SwordAttack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log("attack detected");
         if (other.tag == "Enemy") {
+            var enemy = other.GetComponent<Enemy>();
+            if (enemy != null) {
+                enemy.TakeDamage(damage);
+            }
+        }else if(other.tag == "Boss"){
             var enemy = other.GetComponent<Boss>();
             if (enemy != null) {
                 enemy.TakeDamage(damage);

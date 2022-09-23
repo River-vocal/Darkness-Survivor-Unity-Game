@@ -138,7 +138,9 @@ public class PlayerController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Invoke("Restart", 1f);
+            animator.SetTrigger("Kill");
+            canMove = false;
+            // Invoke("Restart", 1f);
         }
     }
 
