@@ -914,7 +914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1103574635752463268, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 92.732
       objectReference: {fileID: 0}
     - target: {fileID: 1103574635752463268, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_SizeDelta.y
@@ -950,7 +950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1103574635752463268, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 100
+      value: 121.366
       objectReference: {fileID: 0}
     - target: {fileID: 1103574635752463268, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1002,7 +1002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6792793094378168524, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_text
-      value: 1
+      value: Level 1
       objectReference: {fileID: 0}
     - target: {fileID: 6806139312398832953, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_Name
@@ -2144,7 +2144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1103574635752463268, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 100.0574
       objectReference: {fileID: 0}
     - target: {fileID: 1103574635752463268, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2180,7 +2180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1103574635752463268, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -100
+      value: -123.8078
       objectReference: {fileID: 0}
     - target: {fileID: 1103574635752463268, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2224,11 +2224,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5911386225206431151, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5911386225206431151, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792793094378168524, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
+      propertyPath: m_text
+      value: Tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 6806139312398832953, guid: 1977c0e26b2c6a1409a38efc5b137a45, type: 3}
       propertyPath: m_Name
