@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2376159128122296471}
   - component: {fileID: 2205743214194233402}
   - component: {fileID: 7647230707044662591}
+  - component: {fileID: 2038086598015160817}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -143,7 +144,9 @@ MonoBehaviour:
     m_Bits: 0
   maxHealth: 20
   healthBar: {fileID: 0}
-  swordAttack: {fileID: 0}
+  attackRange: 0.5
+  attackDamage: 10
+  isFaceRight: 1
 --- !u!50 &2914276711498453643
 Rigidbody2D:
   serializedVersion: 4
@@ -181,7 +184,7 @@ MonoBehaviour:
   effectorType: 0
   effectorValue: 0
   spotLight: {fileID: 0}
-  swordAttack: {fileID: 0}
+  player: {fileID: 0}
   audioSource: {fileID: 0}
   effectorMultiplier: 200
 --- !u!95 &2205743214194233402
@@ -220,3 +223,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0.004469554, y: -0.076621376}
   m_Size: {x: 0.15435919, y: 0.19650094}
   m_Direction: 0
+--- !u!114 &2038086598015160817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6148238373419825213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc294e28ff6d94a5a98f74c63c603f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 0
+  attackOffset: {x: 0.5, y: -0.22, z: 0}
+  attackRange: 0.6
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  player: {fileID: -1468622818487770582}

@@ -2379,36 +2379,6 @@ MonoBehaviour:
   updateStep: 0.1
   sampleDataLength: 1024
   clipLoudness: 0
---- !u!114 &1224525551 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -1468622818487770582, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
-  m_PrefabInstance: {fileID: 2117075683}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224525530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 732716d1495358d46b221b7ad119bdae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1224525554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224525530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc294e28ff6d94a5a98f74c63c603f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDamage: 0
-  attackOffset: {x: 0.5, y: -0.22, z: 0}
-  attackRange: 0.6
-  attackMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  player: {fileID: 1224525551}
 --- !u!1 &1242965840
 GameObject:
   m_ObjectHideFlags: 0

@@ -3519,79 +3519,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110861450}
   m_CullTransparentMesh: 1
---- !u!1 &1174056964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1174056967}
-  - component: {fileID: 1174056966}
-  - component: {fileID: 1174056965}
-  m_Layer: 7
-  m_Name: SwordHitBox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1174056965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174056964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cc6b0462567b7b4ba5041dae8a08d10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
-  swordCollider: {fileID: 1174056966}
---- !u!61 &1174056966
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174056964}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08735466, y: -0.095822945}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.18, y: 0.21084228}
-  m_EdgeRadius: 0
---- !u!4 &1174056967
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174056964}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.011, y: 0.023, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1224525537}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1224525530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6148238373419825213, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
@@ -4140,6 +4067,10 @@ PrefabInstance:
     - target: {fileID: 1196203580797528, guid: e45c9aed6bafa964782c6325956f228f, type: 3}
       propertyPath: m_Name
       value: Nature_props_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196203580797528, guid: e45c9aed6bafa964782c6325956f228f, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4314117109928712, guid: e45c9aed6bafa964782c6325956f228f, type: 3}
       propertyPath: m_RootOrder
@@ -4724,7 +4655,7 @@ PrefabInstance:
     - target: {fileID: -1468622818487770582, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: swordAttack
       value: 
-      objectReference: {fileID: 1174056965}
+      objectReference: {fileID: 0}
     - target: {fileID: -1468622818487770582, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: leftBoundary
       value: -9.52
@@ -4768,7 +4699,7 @@ PrefabInstance:
     - target: {fileID: 2376159128122296471, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: swordAttack
       value: 
-      objectReference: {fileID: 1174056965}
+      objectReference: {fileID: 0}
     - target: {fileID: 2376159128122296471, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: effectorType
       value: 1
@@ -5066,7 +4997,8 @@ MonoBehaviour:
   maxHealth: 200
   healthBar: {fileID: 141207313}
   bossIsFlipped: 0
-  swordAttack: {fileID: 1912457780}
+  attackDamage: 10
+  playerTransform: {fileID: 1224525537}
 --- !u!4 &8655523655119045464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8651535806358070144, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
