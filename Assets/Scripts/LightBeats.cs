@@ -32,6 +32,10 @@ public class LightBeats : AudioEffector
                     
         volumeIntensity = effectorValue * effectorMultiplier;
         // Debug.Log(effectorValue + ",  " + effectorMultiplier + ";  " + volumeIntensity);
+        spotLight.color = new Color(0.45f + effectorValue * 4f, 1, 0.5f + effectorValue * 5f, 0.3f + effectorValue * 5f);
+
+        // Debug.Log(volumeIntensity * 0.5f + ",  " + volumeIntensity * 1f + ";  " + volumeIntensity * 1.5f);
+        /*Debug.Log(effectorValue);
         if (volumeIntensity > 30f)
         {
             spotLight.color = Color.red;
@@ -43,7 +47,7 @@ public class LightBeats : AudioEffector
         else
         {
             spotLight.color = Color.white;
-        }
+        }*/
         swordAttack.damage = Math.Max((int)Math.Round(volumeIntensity), minDamage) ;
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class AudioEffectorLights2D : AudioEffector
 {
     public float effectorMultiplier = 1;
 
-    public float minLightIntensity = 1;
+    public float minLightIntensity = 0.2f;
 
     private Light2D light2D;
 
@@ -24,13 +25,14 @@ public class AudioEffectorLights2D : AudioEffector
     public override void Update()
     {
         base.Update();
-        lightIntensity = effectorValue * effectorMultiplier;
-
+        lightIntensity = effectorValue * effectorMultiplier * 3f;
+        // Debug.Log(lightIntensity);
         if (lightIntensity < minLightIntensity)
         {
             lightIntensity = minLightIntensity;
         }
 
-        light2D.intensity = lightIntensity;
+        light2D.intensity = Math.Min(0.5f, lightIntensity);
+        light2D.color = new Color(1, 0.3f + effectorValue * 5f, 0.4f + effectorValue * 5f, 0.2f + effectorValue * 3f);
     }
 }
