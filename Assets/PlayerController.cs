@@ -5,114 +5,107 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 7f;
-    public float jumpSpeed = 10f;
-    [SerializeField] private float leftBoundary;
-    [SerializeField] private float rightBoundary;
-    // public float collisionOffset = 0.05f;
-    // public ContactFilter2D movementFilter;
-    public int maxHealth = 20;
-    public HealthBar healthBar;
-    public int currentHealth;
-    Vector2 movementInput;
-    bool jumpPressed;
+    [SerializeField] private float groundMoveSpeed = 7f;
+    [SerializeField] private float airMoveSpeed;
+    [SerializeField] private float jumpSpeed = 10f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask wallLayer;
+    private Vector2 movementInput;
+    private bool canMove = true;
+    private bool jumpPressed;
+
+
+    //plan to move out of controller
+    [SerializeField] private int maxHealth = 20;
+    private int currentHealth;
+    [SerializeField] private HealthBar healthBar;
+
     //todo
     // bool isJumping = false;
-    Rigidbody2D rb;
-    CapsuleCollider2D capsuleCollider2D;
-    Animator animator;
-    SpriteRenderer sr;
-    [SerializeField] private LayerMask jumpableGround;
-    // List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-    public SwordAttack swordAttack;
-    bool canMove = true;
+    private Rigidbody2D body;
+    private Vector3 originalLocalScale;
+    private CapsuleCollider2D capsuleCollider2D;
+    private Animator animator;
+    [SerializeField] private SwordAttack swordAttack;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
-        rb = GetComponent<Rigidbody2D>();
+
+        //currently not working
+        airMoveSpeed = groundMoveSpeed / 5;
+        originalLocalScale = transform.localScale;
+        body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
-    // // Update is called once per frame
-    // void Update()
-    // {
 
-    // }
-    void takeDamage(int damage)
-    {
-        currentHealth -= damage;
-        healthBar.setHealth(currentHealth);
-    }
     private void FixedUpdate()
     {
+        float xSpeed = body.velocity.x;
+        float ySpeed = body.velocity.y;
+
         if (canMove)
         {
-            rb.velocity = new Vector2(movementInput.x * moveSpeed, rb.velocity.y);
-            if (jumpPressed)
+            bool grounded = isGrounded();
+            bool onWall = isOnWall();
+
+            //player on ground
+            if (grounded)
             {
-                // isJumping = true;
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-                jumpPressed = false;
+                xSpeed = groundMoveSpeed * movementInput.x;
+                if (jumpPressed)
+                {
+                    ySpeed = jumpSpeed;
+                }
             }
-            if (rb.velocity != Vector2.zero)
+            //player not on ground but attaching to wall
+            else if (onWall)
             {
-                animator.SetBool("isMoving", true);
+                xSpeed = 0f;
             }
+            //player not on ground and not attaching to wall
             else
             {
-                animator.SetBool("isMoving", false);
+                if (Mathf.Sign(xSpeed) == movementInput.x)
+                {
+                    // Debug.Log("moving at ground speed in air");
+                    xSpeed = groundMoveSpeed * movementInput.x;
+                }
+                else
+                {
+                    // Debug.Log("moving at air speed in air");
+                    xSpeed = airMoveSpeed * movementInput.x;
+                }
             }
-            if (rb.velocity.x > 0)
-            {
-                sr.flipX = false;
-            }
-            else if (rb.velocity.x < 0)
-            {
-                sr.flipX = true;
-            }
-
         }
-        float predictX = rb.position.x + rb.velocity.x * Time.fixedDeltaTime;
-        if (predictX < leftBoundary || predictX > rightBoundary)
+
+        //whenever jumpPressed is set to true, it's always consumed, whenever consumed, set to false. So we can always set it to false
+        jumpPressed = false;
+        body.velocity = new Vector2(xSpeed, ySpeed);
+        if (body.velocity != Vector2.zero)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            animator.SetBool("isMoving", true);
         }
-        // if (!canMove) return;
-        // if (movementInput != Vector2.zero) {
-        //     bool success = TryMove(movementInput);
-        //     if (!success) {
-        //         success = TryMove(new Vector2(movementInput.x, 0));
-        //     }
-        //     if (!success) {
-        //         success = TryMove(new Vector2(0, movementInput.y));
-        //     }
-        //     animator.SetBool("isMoving", success);
-        // }
-        // else {
-        //     animator.SetBool("isMoving", false);
-        // }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
 
-        // if (movementInput.x < 0) {
-        //     sr.flipX = true;
-        // }
-        // else if (movementInput.x > 0) {
-        //     sr.flipX = false;
-        // }
+        //not a good idea to use spriteRenderer.flipX to flip, see https://forum.unity.com/threads/flip-x-or-scale-x.1042324/
+        if (movementInput.x > 0)
+        {
+            transform.localScale = originalLocalScale;
+        }
+        else if (movementInput.x < 0)
+        {
+            var tmp = originalLocalScale;
+            tmp.x *= -1;
+            transform.localScale = tmp;
+        }
     }
-
-    // private bool TryMove(Vector2 direction) {
-    //     if (direction == Vector2.zero) return false;
-    //     int count = rb.Cast(direction, movementFilter, castCollisions, moveSpeed * Time.fixedDeltaTime + collisionOffset);
-    //     if (count == 0) {
-    //         rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-    //         return true;
-    //     }
-    //     return false;
-    // }
 
     void OnMove(InputValue movementValue)
     {
@@ -121,10 +114,8 @@ public class PlayerController : MonoBehaviour
 
     void OnJump()
     {
-        if (isGrounded())
-        {
-            jumpPressed = true;
-        }
+        Debug.Log("fauisdhgnilaushfiwef");
+        jumpPressed = true;
     }
 
     void OnFire()
@@ -132,7 +123,8 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("swordAttack");
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(int damage)
+    {
         currentHealth -= damage;
         healthBar.setHealth(currentHealth);
 
@@ -147,7 +139,7 @@ public class PlayerController : MonoBehaviour
     public void SwordAttack()
     {
         LockMovement();
-        if (sr.flipX)
+        if (transform.localScale.x < 0)
         {
             swordAttack.AttackLeft();
         }
@@ -165,7 +157,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded())
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            body.velocity = new Vector2(0, body.velocity.y);
         }
         canMove = false;
     }
@@ -176,6 +168,17 @@ public class PlayerController : MonoBehaviour
     }
     private bool isGrounded()
     {
-        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, Vector2.down, .1f, jumpableGround);
+        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, Vector2.down, .1f, groundLayer);
+    }
+
+    private bool isOnWall()
+    {
+        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
+    }
+
+    void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.setHealth(currentHealth);
     }
 }
