@@ -19,27 +19,11 @@ public class BossRun : StateMachineBehaviour
         boss = animator.GetComponent<Boss>();
     }
 
-    private void lookAtPlayer()
-    {
-        Vector3 flipped = bossTransform.localScale;
-        flipped.z *= -1;
-        if (bossTransform.position.x > playerTransform.position.x && boss.bossIsFlipped)
-        {
-            bossTransform.localScale = flipped;
-            bossTransform.Rotate(0, 180, 0);
-            boss.bossIsFlipped = false;
-        }
-        else if (bossTransform.position.x < playerTransform.position.x && !boss.bossIsFlipped)
-        {
-            bossTransform.localScale = flipped;
-            bossTransform.Rotate(0, 180, 0);
-            boss.bossIsFlipped = true;
-        }
-    }
+    
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        lookAtPlayer();
+        boss.lookAtPlayer();
         if (Vector2.Distance(playerTransform.position, rb2.position) <= attackRange)
         {
             animator.SetTrigger("Attack");
@@ -51,11 +35,10 @@ public class BossRun : StateMachineBehaviour
 
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.ResetTrigger("Attack");
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class LightBeats : AudioEffector
 {
     public Light2D spotLight;
-    public SwordAttack swordAttack;
+    public PlayerController player;
     public AudioSource audioSource;
     // private float time = 3f;
     public float effectorMultiplier = 200f;
@@ -20,6 +20,7 @@ public class LightBeats : AudioEffector
     // Start is called before the first frame update
     public override void Start()
     {
+        player = GetComponent<PlayerController>();
         base.Start();
         if (!audioSource.isPlaying) {
             audioSource.Play();
@@ -48,7 +49,7 @@ public class LightBeats : AudioEffector
         {
             spotLight.color = Color.white;
         }*/
-        swordAttack.damage = Math.Max((int)Math.Round(volumeIntensity), minDamage) ;
+        player.attackDamage = Math.Max((int)Math.Round(volumeIntensity), minDamage) ;
     }
 
     // Update is called once per frame

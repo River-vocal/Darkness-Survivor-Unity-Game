@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,7 +27,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 originalLocalScale;
     private CapsuleCollider2D capsuleCollider2D;
     private Animator animator;
-    [SerializeField] private SwordAttack swordAttack;
+    
+    public float attackRange = 0.5f;
+    public int attackDamage = 10;
+    public bool isFaceRight = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -98,12 +102,14 @@ public class PlayerController : MonoBehaviour
         if (movementInput.x > 0)
         {
             transform.localScale = originalLocalScale;
+            isFaceRight = true;
         }
         else if (movementInput.x < 0)
         {
             var tmp = originalLocalScale;
             tmp.x *= -1;
             transform.localScale = tmp;
+            isFaceRight = false;
         }
     }
 
@@ -120,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
     void OnFire()
     {
-        animator.SetTrigger("swordAttack");
+        animator.SetTrigger("attack");
     }
 
     public void TakeDamage(int damage)
@@ -136,23 +142,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SwordAttack()
+    public void PlayerDeath()
     {
-        LockMovement();
-        if (transform.localScale.x < 0)
-        {
-            swordAttack.AttackLeft();
-        }
-        else
-        {
-            swordAttack.AttackRight();
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    public void EndSwordAttack()
-    {
-        UnlockMovement();
-        swordAttack.StopAttack();
-    }
+
+    
     public void LockMovement()
     {
         if (isGrounded())

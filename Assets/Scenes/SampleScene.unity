@@ -2179,7 +2179,7 @@ GameObject:
   - component: {fileID: 1174056967}
   - component: {fileID: 1174056966}
   - component: {fileID: 1174056965}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: SwordHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2379,6 +2379,36 @@ MonoBehaviour:
   updateStep: 0.1
   sampleDataLength: 1024
   clipLoudness: 0
+--- !u!114 &1224525551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1468622818487770582, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+  m_PrefabInstance: {fileID: 2117075683}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224525530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732716d1495358d46b221b7ad119bdae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1224525554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224525530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc294e28ff6d94a5a98f74c63c603f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 0
+  attackOffset: {x: 0.5, y: -0.22, z: 0}
+  attackRange: 0.6
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  player: {fileID: 1224525551}
 --- !u!1 &1242965840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3027,7 +3057,7 @@ GameObject:
   - component: {fileID: 1307866758}
   - component: {fileID: 1307866757}
   - component: {fileID: 1307866759}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3624,7 +3654,7 @@ GameObject:
   - component: {fileID: 1912457782}
   - component: {fileID: 1912457781}
   - component: {fileID: 1912457780}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BossSwordHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4147,6 +4177,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6148238373419825213, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
 --- !u!1001 &8655523655119045455
@@ -4204,13 +4238,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8653912949148771492, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654111283201226952, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8654243936099035694, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 8654243936099035694, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654243936099035694, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654287130346990842, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654452635826833040, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654531387072958108, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654775546297137288, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655130444271191288, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8857035658443695180, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: m_Color.b
@@ -4392,9 +4458,29 @@ MonoBehaviour:
   maxHealth: 200
   healthBar: {fileID: 141207313}
   bossIsFlipped: 0
-  swordAttack: {fileID: 1912457780}
+  attackDamage: 10
+  playerTransform: {fileID: 1224525537}
 --- !u!4 &8655523655119045464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8651535806358070144, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
   m_PrefabInstance: {fileID: 8655523655119045455}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8655523655119045466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655523655119045456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fb9833ee7d6124bb340ac76b6e56ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 0
+  attackOffset: {x: 0, y: 0, z: 0}
+  attackRange: 2
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  boss: {fileID: 8655523655119045462}
