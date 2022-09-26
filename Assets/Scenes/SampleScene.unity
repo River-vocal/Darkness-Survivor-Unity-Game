@@ -4428,7 +4428,7 @@ MonoBehaviour:
   maxHealth: 200
   healthBar: {fileID: 141207313}
   bossIsFlipped: 0
-  attackDamage: 10
+  attackDamage: 2
   playerTransform: {fileID: 1224525537}
 --- !u!4 &8655523655119045464 stripped
 Transform:
