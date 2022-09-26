@@ -2613,6 +2613,20 @@ PolygonCollider2D:
       - {x: 0.31969616, y: 0.40151918}
       - {x: 0.1281532, y: 0.4040021}
       - {x: 0.125, y: 0.5208334}
+--- !u!114 &1553739194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553739190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca6772d13e624fa09a833b845db5391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  healthBar: {fileID: 141207313}
 --- !u!1 &1763852688
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,6 +3130,10 @@ PrefabInstance:
     - target: {fileID: 8654243936099035694, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654243936099035694, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8654243936099035694, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: m_TagString
