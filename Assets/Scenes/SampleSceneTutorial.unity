@@ -1412,8 +1412,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tutorial Level: \nPress A & D for horizontal moving\nF or left mouse button
-    for fight\nSpace for jumping"
+  m_text: "Tutorial Level: \nPress A & D for horizontal moving\nW for jumping\nSpace
+    or left mouse button for fight\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
