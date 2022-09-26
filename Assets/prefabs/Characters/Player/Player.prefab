@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2914276711498453643}
   - component: {fileID: 2376159128122296471}
   - component: {fileID: 2205743214194233402}
+  - component: {fileID: 7647230707044662591}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -131,16 +132,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732716d1495358d46b221b7ad119bdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  groundMoveSpeed: 7
+  airMoveSpeed: 0
   jumpSpeed: 10
-  leftBoundary: 0
-  rightBoundary: 0
-  maxHealth: 20
-  healthBar: {fileID: 0}
-  currentHealth: 0
-  jumpableGround:
+  groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxHealth: 20
+  healthBar: {fileID: 0}
   swordAttack: {fileID: 0}
 --- !u!50 &2914276711498453643
 Rigidbody2D:
@@ -175,6 +177,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f09d43d83a629b40b323cc8fa1ef23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioInfoBroadcaster: {fileID: 0}
+  effectorType: 0
+  effectorValue: 0
+  spotLight: {fileID: 0}
+  swordAttack: {fileID: 0}
+  audioSource: {fileID: 0}
+  effectorMultiplier: 200
 --- !u!95 &2205743214194233402
 Animator:
   serializedVersion: 4
@@ -195,3 +204,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &7647230707044662591
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6148238373419825213}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 7f23cb59d98368d489e083cd3988eae4, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.004469554, y: -0.076621376}
+  m_Size: {x: 0.15435919, y: 0.19650094}
+  m_Direction: 0
