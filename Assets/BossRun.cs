@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BossRun : StateMachineBehaviour
 {
@@ -24,7 +25,7 @@ public class BossRun : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         boss.lookAtPlayer();
-        if (Vector2.Distance(playerTransform.position, rb2.position) <= attackRange)
+        if (Math.Abs(playerTransform.position.x - rb2.position.x) <= attackRange)
         {
             animator.SetTrigger("Attack");
             return;
@@ -32,7 +33,6 @@ public class BossRun : StateMachineBehaviour
         Vector2 targetPosition = new Vector2(playerTransform.position.x, rb2.position.y);
         Vector2 newPosition = Vector2.MoveTowards(rb2.position, targetPosition, speed * Time.deltaTime);
         rb2.MovePosition(newPosition);
-
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
