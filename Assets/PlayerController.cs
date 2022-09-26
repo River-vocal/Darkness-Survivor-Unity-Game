@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Kill");
             canMove = false;
-            // Invoke("Restart", 1f);
+            Invoke("PlayerDeath", 1f);
         }
     }
 
