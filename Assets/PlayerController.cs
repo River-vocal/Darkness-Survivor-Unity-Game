@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         
         //Initial states
         GlobalAnalysis.player_remaining_healthpoints = currentHealth;
-        playerdata.level = "1";
+        playerdata.level = "player_1";
         playerdata.num_players = 1;
         playerdata.num_bosses = 1;
         playerdata.state = "start";
