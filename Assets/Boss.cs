@@ -13,11 +13,28 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     public Transform playerTransform;
 
+    public Datas bossdata = new Datas();
+
     void Start()
     {
         curHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
         bossIsFlipped = false;
+
+        //Track data of bossdata
+        
+        //Initial states
+        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
+        bossdata.level = "1";
+        bossdata.num_players = 1;
+        bossdata.num_bosses = 1;
+        bossdata.state = "start";
+        bossdata.timestamp = GlobalAnalysis.getTimeStamp();
+        bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
+        bossdata.boss_remaining_healthpoints = curHealth;
+        string json = JsonUtility.ToJson(bossdata);
+
+        StartCoroutine(GlobalAnalysis.postRequest("test", json));
     }
 
     // Update is called once per frame
@@ -30,9 +47,21 @@ public class Boss : MonoBehaviour
     {
         curHealth -= damage;
         healthBar.setHealth(curHealth);
+        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
 
         if (curHealth <= 0)
         {
+            
+            bossdata.level = "1";
+            bossdata.num_players = 1;
+            bossdata.num_bosses = 1;
+            bossdata.state = "end";
+            bossdata.timestamp = GlobalAnalysis.getTimeStamp();
+            bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
+            bossdata.boss_remaining_healthpoints = curHealth;
+            string json = JsonUtility.ToJson(bossdata);
+
+            StartCoroutine(GlobalAnalysis.postRequest("test", json));
             Invoke("Restart", 1f);
         }
     }

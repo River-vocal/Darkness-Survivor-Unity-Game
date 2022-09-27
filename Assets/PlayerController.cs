@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public float attackRange = 0.5f;
     public int attackDamage = 10;
     public bool isFaceRight = true;
+
+    public Datas playerdata = new Datas();
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,20 @@ public class PlayerController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        //Track data of playerdata
+        
+        //Initial states
+        GlobalAnalysis.player_remaining_healthpoints = currentHealth;
+        playerdata.level = "1";
+        playerdata.num_players = 1;
+        playerdata.num_bosses = 1;
+        playerdata.state = "start";
+        playerdata.timestamp = GlobalAnalysis.getTimeStamp();
+        playerdata.player_remaining_healthpoints = currentHealth;
+        playerdata.boss_remaining_healthpoints = GlobalAnalysis.boss_remaining_healthpoints;
+        string json = JsonUtility.ToJson(playerdata);
+
+        StartCoroutine(GlobalAnalysis.postRequest("test", json));
     }
 
 
@@ -133,12 +149,25 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.setHealth(currentHealth);
+        GlobalAnalysis.player_remaining_healthpoints = currentHealth;
 
         if (currentHealth <= 0)
         {
             animator.SetTrigger("Kill");
             canMove = false;
             Invoke("PlayerDeath", 1f);
+
+            
+            playerdata.level = "1";
+            playerdata.num_players = 1;
+            playerdata.num_bosses = 1;
+            playerdata.state = "end";
+            playerdata.timestamp = GlobalAnalysis.getTimeStamp();
+            playerdata.player_remaining_healthpoints = currentHealth;
+            playerdata.boss_remaining_healthpoints = GlobalAnalysis.boss_remaining_healthpoints;
+            string json = JsonUtility.ToJson(playerdata);
+
+            StartCoroutine(GlobalAnalysis.postRequest("test", json));
         }
     }
 

@@ -26,10 +26,27 @@ public class EnemyWood : MonoBehaviour
     }
     */
 
+    public Datas tutorialdata = new Datas();
     void Start()
     {
         curHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
+
+        //Track data of tutorialdata
+        
+        //Initial states
+        
+        tutorialdata.level = "Tutorial";
+        tutorialdata.num_players = 1;
+        tutorialdata.num_bosses = 1;
+        tutorialdata.state = "start";
+        tutorialdata.timestamp = GlobalAnalysis.getTimeStamp();
+        tutorialdata.player_remaining_healthpoints = curHealth;
+        tutorialdata.boss_remaining_healthpoints = curHealth;
+        string json = JsonUtility.ToJson(tutorialdata);
+
+        StartCoroutine(GlobalAnalysis.postRequest("test", json));
+
         // bossIsFlipped = false;
     }
 
@@ -46,6 +63,22 @@ public class EnemyWood : MonoBehaviour
 
         if (curHealth <= 0)
         {
+            // enemywood.state = "End";
+            // enemywood.num_players = 1;
+            // enemywood.timestamp = GlobalAnalysis.getTimeStamp();
+            // enemywood.remaining_healthpoints = curHealth;
+            // string json = JsonUtility.ToJson(enemywood);
+            // StartCoroutine(GlobalAnalysis.postRequest("test", json));
+            tutorialdata.level = "Tutorial";
+            tutorialdata.num_players = 1;
+            tutorialdata.num_bosses = 1;
+            tutorialdata.state = "end";
+            tutorialdata.timestamp = GlobalAnalysis.getTimeStamp();
+            tutorialdata.player_remaining_healthpoints = 20;
+            tutorialdata.boss_remaining_healthpoints = curHealth;
+            string json = JsonUtility.ToJson(tutorialdata);
+
+            StartCoroutine(GlobalAnalysis.postRequest("test", json));
             Invoke("LoadLevel1", 1f);
         }
     }
