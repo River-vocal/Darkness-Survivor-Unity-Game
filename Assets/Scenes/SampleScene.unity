@@ -4449,7 +4449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 0
   attackOffset: {x: 0, y: 0, z: 0}
-  attackRange: 2
+  attackRange: 2.1
   attackMask:
     serializedVersion: 2
     m_Bits: 1024
