@@ -3638,8 +3638,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   broadcasterData: {fileID: 0}
-  updateStep: 0.1
-  sampleDataLength: 1024
+  updateStep: 0.01
+  sampleDataLength: 128
   clipLoudness: 0
 --- !u!1 &1242965840
 GameObject:
