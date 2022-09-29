@@ -85,6 +85,6 @@ public class EnemyWood : MonoBehaviour
 
     void LoadLevel1()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }
