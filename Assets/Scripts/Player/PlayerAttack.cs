@@ -15,6 +15,8 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask attackMask;
     public PlayerController player;
     
+    public GameObject bulletPrefab;
+    public Transform firePoint;
     
 
     // Animation Event
@@ -35,20 +37,30 @@ public class PlayerAttack : MonoBehaviour
             pos -= transform.right * attackOffset.x;
         }
         pos += transform.up * attackOffset.y;
-
-        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
-        if (colInfo != null)
+        
+        // if heavy beats detected
+        if (true)
         {
-            if (colInfo.name == "Boss")
+            // attack with bullet
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        }
+        else
+        {
+            // normal attack
+            Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
+            if (colInfo != null)
             {
-                colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
-            }
+                if (colInfo.name == "Boss")
+                {
+                    colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
+                }
 
-            if (colInfo.name == "Nature_props_01")
-            {
-                colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
+                if (colInfo.name == "Nature_props_01")
+                {
+                    colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
+                }
+                Debug.Log("Player Attack");
             }
-            Debug.Log("Player Attack");
         }
     }
     // Animation Event
