@@ -2203,8 +2203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc6b0462567b7b4ba5041dae8a08d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
-  swordCollider: {fileID: 1174056966}
 --- !u!61 &1174056966
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3648,8 +3646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc6b0462567b7b4ba5041dae8a08d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
-  swordCollider: {fileID: 1912457781}
 --- !u!61 &1912457781
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4068,6 +4064,14 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 1539632861300792, guid: 96ae8f9dd8fd89941bc4d858375f035b, type: 3}
+    - target: {fileID: 2038086598015160817, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: effectorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038086598015160817, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: audioInfoBroadcaster
+      value: 
+      objectReference: {fileID: 1224525546}
     - target: {fileID: 2205743214194233402, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: m_Enabled
       value: 1

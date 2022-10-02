@@ -18,6 +18,11 @@ public class PlayerAttack : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     
+    [SerializeField] protected AudioInfoBroadcaster audioInfoBroadcaster;
+
+    [SerializeField] protected AudioInfoBroadcaster.AudioBroadcastValueType effectorType;
+
+    [SerializeField] protected float effectorValue;
 
     // Animation Event
     public void Attack()
@@ -37,9 +42,9 @@ public class PlayerAttack : MonoBehaviour
             pos -= transform.right * attackOffset.x;
         }
         pos += transform.up * attackOffset.y;
-        
+        effectorValue = audioInfoBroadcaster.GetEffectorValue(effectorType);
         // if heavy beats detected
-        if (true)
+        if (effectorValue > 0.2f)
         {
             
             //Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
