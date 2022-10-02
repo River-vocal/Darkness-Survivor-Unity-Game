@@ -21,6 +21,14 @@ public class Bullet : MonoBehaviour {
         {
             enemy.TakeDamage(damage);
         }
+        else
+        {
+            EnemyWood woodEnemy = hitInfo.GetComponent<EnemyWood>();
+            if (woodEnemy != null)
+            {
+                woodEnemy.TakeDamage(damage);
+            }
+        }
 
         Instantiate(impactEffect, transform.position, transform.rotation);
 
