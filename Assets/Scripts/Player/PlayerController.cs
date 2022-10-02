@@ -115,19 +115,32 @@ public class PlayerController : MonoBehaviour
         }
 
         //not a good idea to use spriteRenderer.flipX to flip, see https://forum.unity.com/threads/flip-x-or-scale-x.1042324/
-        if (movementInput.x > 0)
+        if (movementInput.x > 0 && !isFaceRight)
         {
-            transform.localScale = originalLocalScale;
-            isFaceRight = true;
+            FlipPlayer();
+            // transform.localScale = originalLocalScale;
+            // isFaceRight = true;
         }
-        else if (movementInput.x < 0)
+        else if (movementInput.x < 0 && isFaceRight)
         {
-            var tmp = originalLocalScale;
-            tmp.x *= -1;
-            transform.localScale = tmp;
-            isFaceRight = false;
+            FlipPlayer();
+            // var tmp = originalLocalScale;
+            // tmp.x *= -1;
+            // transform.localScale = tmp;
+            // isFaceRight = false;
         }
     }
+
+    private void FlipPlayer()
+    {
+        isFaceRight = !isFaceRight;
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1f;
+        transform.localScale = flipped;
+
+        transform.Rotate(0f, 180f, 0f);
+    }
+
 
     void OnMove(InputValue movementValue)
     {
