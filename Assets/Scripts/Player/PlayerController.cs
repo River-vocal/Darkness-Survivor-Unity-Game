@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private float accelerationForceFactor;
     private float decelerationForceFactor;
     private bool onGround;
-
+    private int velocityDirectionAtJump = 0;
     //plan to move out of controller
     [SerializeField] private int maxHealth;
     private int currentHealth;
@@ -108,7 +108,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
-        Debug.Log("y:" + transform.position.y);
         onGround = isGrounded();
         if (body.velocity != Vector2.zero)
         {
@@ -129,7 +128,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
-            Run(onGround ? 1 : airMaxSpeedFactor);
+            Run();
             Jump();
             if (body.velocity.y < 0) {
                 SetGravityScale(gravityScale * (movementInput.y < 0 ? fastFallGravityMult : fallGravityMult));
@@ -145,12 +144,19 @@ public class PlayerController : MonoBehaviour
         @paramter lerpFactor: used to control the target speed, for ground movement, set to 1. 
                         Reserved for future possible circumstances when we want target speed to be a portion of max speed
     */                  
-    private void Run(float lerpFactor) {
+    private void Run() {
+        if (velocityDirectionAtJump == 0 && movementInput.x != 0) {
+            velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
+        }
+        bool sameDirection = velocityDirectionAtJump == Mathf.Sign(movementInput.x);
+        float lerpFactor = onGround || sameDirection ? 1 : airMaxSpeedFactor;
         float targetSpeed = movementInput.x * maxRunSpeedOnGround;
         targetSpeed = Mathf.Lerp(body.velocity.x, targetSpeed, lerpFactor);
         float speedDiff = targetSpeed - body.velocity.x;
         float forceFactor = ((speedDiff < 0 && body.velocity.x <= 0) || (speedDiff > 0 && body.velocity.x >= 0)) ? 
-                                accelerationForceFactor * (onGround ? 1 : airAccelerationFactor) : decelerationForceFactor * (onGround ? 1 : airDecelerationFactor);
+                                accelerationForceFactor * (onGround || sameDirection ? 1 : airAccelerationFactor) : 
+                                decelerationForceFactor * (onGround || sameDirection ? 1 : airDecelerationFactor);
+
         //Todo:if in air, would multiply forceFactor by a airfactor
         float force = forceFactor * speedDiff;
         body.AddForce(force * Vector2.right, ForceMode2D.Force);
@@ -162,7 +168,7 @@ public class PlayerController : MonoBehaviour
     private void Jump() {
         if (jumpPressed && onGround) {
             body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
-            onGround = false;
+            velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
         }
     }
 
