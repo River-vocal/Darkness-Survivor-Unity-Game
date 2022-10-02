@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float timeToJumpToHeighest;
     [SerializeField] [Range(0f, 1)] private float airAccelerationFactor;
     [SerializeField] [Range(0f, 1)] private float airDecelerationFactor;
+    [SerializeField] private float fallGravityMult;
+    [SerializeField] private float fastFallGravityMult;
 
     public bool isFacingRight;
 
@@ -64,11 +66,13 @@ public class PlayerController : MonoBehaviour
         velocityDecelerationPerFixedUpdate = 20;
         airAccelerationFactor = 0.2f;
         airDecelerationFactor = 0.2f;
-        jumpHeight = 10;
-        timeToJumpToHeighest = 1f;
+        jumpHeight = 5f;
+        timeToJumpToHeighest = 0.4f;
         jumpPressed = false;
         onGround = true;
         airMaxSpeedFactor = 0.2f;
+        fallGravityMult = 1.2f;
+        fastFallGravityMult = 1.3f;
 
         velocityAccelerationPerFixedUpdate = Mathf.Clamp(velocityAccelerationPerFixedUpdate, 0.01f, maxRunSpeedOnGround);
         velocityDecelerationPerFixedUpdate = Mathf.Clamp(velocityDecelerationPerFixedUpdate, 0.01f, maxRunSpeedOnGround);
@@ -86,7 +90,7 @@ public class PlayerController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-
+        SetGravityScale(gravityScale);
 
         //Track data of playerdata
         //Initial states
@@ -104,6 +108,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
+        Debug.Log("y:" + transform.position.y);
         onGround = isGrounded();
         if (body.velocity != Vector2.zero)
         {
@@ -126,6 +131,12 @@ public class PlayerController : MonoBehaviour
         {
             Run(onGround ? 1 : airMaxSpeedFactor);
             Jump();
+            if (body.velocity.y < 0) {
+                SetGravityScale(gravityScale * (movementInput.y < 0 ? fastFallGravityMult : fallGravityMult));
+            }
+            else {
+                SetGravityScale(gravityScale);
+            }
         }
         jumpPressed = false;
     }
@@ -145,6 +156,9 @@ public class PlayerController : MonoBehaviour
         body.AddForce(force * Vector2.right, ForceMode2D.Force);
     }
 
+    private void SetGravityScale(float scale) {
+        body.gravityScale = scale;
+    }
     private void Jump() {
         if (jumpPressed && onGround) {
             body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
@@ -160,7 +174,7 @@ public class PlayerController : MonoBehaviour
     }
     void OnMove(InputValue movementValue)
     {
-        movementInput = new Vector2(movementValue.Get<Vector2>().x, 0);
+        movementInput = movementValue.Get<Vector2>();
     }
 
     void OnJump()
