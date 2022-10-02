@@ -26,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
         Vector3 pos = transform.position;
         
         // Make sure the attack circle is in front of the player
-        if (player.isFaceRight)
+        if (player.isFacingRight)
         {
             pos += transform.right * attackOffset.x;
         }
@@ -63,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Vector3 pos = transform.position;
-        if (player.isFaceRight)
+        if (player.isFacingRight)
         {
             pos += transform.right * attackOffset.x;
         }

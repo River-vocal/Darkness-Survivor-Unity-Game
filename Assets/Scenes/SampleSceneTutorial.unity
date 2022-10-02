@@ -4588,6 +4588,10 @@ PrefabInstance:
       value: -9.52
       objectReference: {fileID: 0}
     - target: {fileID: -1468622818487770582, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: isFacingRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1468622818487770582, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: rightBoundary
       value: 9.52
       objectReference: {fileID: 0}
@@ -4642,6 +4646,22 @@ PrefabInstance:
     - target: {fileID: 2914276711498453643, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: m_BodyType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914276711498453643, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914276711498453643, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914276711498453643, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914276711498453643, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5839209534106962198, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: m_RootOrder
