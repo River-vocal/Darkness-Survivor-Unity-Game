@@ -44,8 +44,8 @@ public class PlayerAttack : MonoBehaviour
         pos += transform.up * attackOffset.y;
         effectorValue = audioInfoBroadcaster.GetEffectorValue(effectorType);
         // if heavy beats detected
-        // if (effectorValue > 0.2f)
-        if (true)
+        if (effectorValue > 0.2f)
+        // if (true)
         {
             
             // attack with bullet
