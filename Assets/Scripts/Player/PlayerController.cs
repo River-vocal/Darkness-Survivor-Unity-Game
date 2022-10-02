@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         playerdata.boss_remaining_healthpoints = GlobalAnalysis.boss_remaining_healthpoints;
         string json = JsonUtility.ToJson(playerdata);
 
-        StartCoroutine(GlobalAnalysis.postRequest("test", json));
+        // StartCoroutine(GlobalAnalysis.postRequest("test", json));
     }
 
 
