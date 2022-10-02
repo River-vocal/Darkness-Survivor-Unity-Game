@@ -240,4 +240,9 @@ public class PlayerController : MonoBehaviour
         currentHealth -= damage;
         healthBar.setHealth(currentHealth);
     }
+
+    public int getBulletCount()
+    {
+        return BulletCount;
+    }
 }
