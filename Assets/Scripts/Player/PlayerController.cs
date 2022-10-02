@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxRunSpeedOnGround;
+    [SerializeField] private float airMaxSpeedFactor;
 
     //velocity change per fixedUpdate timeInterval
     [SerializeField] private float velocityAccelerationPerFixedUpdate;
@@ -15,6 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velocityDecelerationPerFixedUpdate;
     [SerializeField] private float jumpHeight;
     [SerializeField] private float timeToJumpToHeighest;
+    [SerializeField] [Range(0f, 1)] private float airAccelerationFactor;
+    [SerializeField] [Range(0f, 1)] private float airDecelerationFactor;
+
     public bool isFacingRight;
 
 
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private float jumpImpulse;
     private float accelerationForceFactor;
     private float decelerationForceFactor;
+    private bool onGround;
 
     //plan to move out of controller
     [SerializeField] private int maxHealth;
@@ -57,9 +62,13 @@ public class PlayerController : MonoBehaviour
         maxRunSpeedOnGround = 10;
         velocityAccelerationPerFixedUpdate = 10;
         velocityDecelerationPerFixedUpdate = 20;
+        airAccelerationFactor = 0.2f;
+        airDecelerationFactor = 0.2f;
         jumpHeight = 10;
         timeToJumpToHeighest = 1f;
         jumpPressed = false;
+        onGround = true;
+        airMaxSpeedFactor = 0.2f;
 
         velocityAccelerationPerFixedUpdate = Mathf.Clamp(velocityAccelerationPerFixedUpdate, 0.01f, maxRunSpeedOnGround);
         velocityDecelerationPerFixedUpdate = Mathf.Clamp(velocityDecelerationPerFixedUpdate, 0.01f, maxRunSpeedOnGround);
@@ -95,6 +104,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
+        onGround = isGrounded();
         if (body.velocity != Vector2.zero)
         {
             animator.SetBool("isMoving", true);
@@ -114,7 +124,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
-            Run(1);
+            Run(onGround ? 1 : airMaxSpeedFactor);
             Jump();
         }
         jumpPressed = false;
@@ -128,15 +138,17 @@ public class PlayerController : MonoBehaviour
         float targetSpeed = movementInput.x * maxRunSpeedOnGround;
         targetSpeed = Mathf.Lerp(body.velocity.x, targetSpeed, lerpFactor);
         float speedDiff = targetSpeed - body.velocity.x;
-        float forceFactor = ((speedDiff < 0 && body.velocity.x <= 0) || (speedDiff > 0 && body.velocity.x >= 0)) ? accelerationForceFactor : decelerationForceFactor;
+        float forceFactor = ((speedDiff < 0 && body.velocity.x <= 0) || (speedDiff > 0 && body.velocity.x >= 0)) ? 
+                                accelerationForceFactor * (onGround ? 1 : airAccelerationFactor) : decelerationForceFactor * (onGround ? 1 : airDecelerationFactor);
         //Todo:if in air, would multiply forceFactor by a airfactor
         float force = forceFactor * speedDiff;
         body.AddForce(force * Vector2.right, ForceMode2D.Force);
     }
 
     private void Jump() {
-        if (jumpPressed && isGrounded()) {
+        if (jumpPressed && onGround) {
             body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
+            onGround = false;
         }
     }
 
