@@ -41,8 +41,15 @@ public class PlayerAttack : MonoBehaviour
         // if heavy beats detected
         if (true)
         {
-            // attack with bullet
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            
+            //Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
+            //if (colInfo == null)
+            //{
+                // attack with bullet
+                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            //}
+
+
         }
         else
         {
