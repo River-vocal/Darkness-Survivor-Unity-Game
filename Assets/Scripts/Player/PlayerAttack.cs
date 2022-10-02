@@ -44,17 +44,21 @@ public class PlayerAttack : MonoBehaviour
         pos += transform.up * attackOffset.y;
         effectorValue = audioInfoBroadcaster.GetEffectorValue(effectorType);
         // if heavy beats detected
-        if (effectorValue > 0.2f)
+        // if (effectorValue > 0.2f)
+        if (true)
         {
             
-            //Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
-            //if (colInfo == null)
-            //{
-                // attack with bullet
+            // attack with bullet
+            if (player.GetBulletCount() > 0)
+            {
+                Debug.Log("Fire bullets !!!!!!!!");
                 Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            //}
-
-
+                player.DecreaseBullet();
+            }
+            else
+            {
+                Debug.Log("BulletCount == 0 !!!!!!!!");
+            }
         }
         else
         {

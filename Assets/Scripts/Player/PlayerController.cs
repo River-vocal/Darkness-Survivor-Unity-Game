@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     public bool isFaceRight = true;
 
     public Datas playerdata = new Datas();
+
+    public int BulletCount = 3;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        BulletCount = 3;
         //Track data of playerdata
         
         //Initial states
@@ -156,6 +160,24 @@ public class PlayerController : MonoBehaviour
     void OnFire()
     {
         animator.SetTrigger("attack");
+    }
+
+    public void IncreaseBullet()
+    {
+        BulletCount++;
+    }
+
+    public void DecreaseBullet()
+    {
+        if (BulletCount > 0)
+        {
+            BulletCount--;
+        }
+    }
+
+    public int GetBulletCount()
+    {
+        return BulletCount;
     }
 
     public void TakeDamage(int damage)
