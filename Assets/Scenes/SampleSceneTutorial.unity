@@ -4839,6 +4839,14 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 1539632861300792, guid: 96ae8f9dd8fd89941bc4d858375f035b, type: 3}
+    - target: {fileID: 2038086598015160817, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: effectorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038086598015160817, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
+      propertyPath: audioInfoBroadcaster
+      value: 
+      objectReference: {fileID: 1224525546}
     - target: {fileID: 2205743214194233402, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: m_Enabled
       value: 1
