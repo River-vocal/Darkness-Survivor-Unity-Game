@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ResourceBullets : MonoBehaviour {
 
-    public float speed = 10f;
+    
     public int damage = 40;
     public Rigidbody2D rb;
     public GameObject impactEffect;
+    private float speed = 5f;
 
     // Use this for initialization
     void Start () {
