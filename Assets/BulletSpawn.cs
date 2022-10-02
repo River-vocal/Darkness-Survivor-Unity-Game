@@ -24,7 +24,7 @@ public class BulletSpawn : MonoBehaviour
             var position = new Vector3(wanted, 3.96f);
             GameObject gameObject = Instantiate(ResourceBulletPrefab, position, Quaternion.identity);
             yield return new WaitForSeconds(SecondSpawn);
-            // Destroy(gameObject, 5f);
+            Destroy(gameObject, 5f);
         }
     }
 
