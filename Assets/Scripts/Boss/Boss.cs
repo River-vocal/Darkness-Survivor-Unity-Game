@@ -83,6 +83,24 @@ public class Boss : MonoBehaviour
             bossIsFlipped = true;
         }
     }
+    
+    public void DirectionChange()
+    {
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1;
+        if (bossIsFlipped)
+        {
+            transform.localScale = flipped;
+            transform.Rotate(0, 180, 0);
+            bossIsFlipped = false;
+        }
+        else if (!bossIsFlipped)
+        {
+            transform.localScale = flipped;
+            transform.Rotate(0, 180, 0);
+            bossIsFlipped = true;
+        }
+    }
 
     void Restart()
     {
