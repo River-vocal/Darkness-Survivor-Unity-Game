@@ -6,30 +6,43 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float maxRunSpeedOnGround;
-    [SerializeField] private float airMaxSpeedFactor;
+    [Header("Movement Settings")]
+    [SerializeField] private float maxRunSpeedOnGround = 10f;
+    [SerializeField] private float airMaxSpeedFactor = 0.2f;
 
     //velocity change per fixedUpdate timeInterval
-    [SerializeField] private float velocityAccelerationPerFixedUpdate;
+    [SerializeField] private float velocityAccelerationPerFixedUpdate = 10f;
 
     //currently set to the same as runAccelerationPerFixedUpdate, reserved for further possible change
-    [SerializeField] private float velocityDecelerationPerFixedUpdate;
-    [SerializeField] private float jumpHeight;
-    [SerializeField] private float timeToJumpToHeighest;
-    [SerializeField] [Range(0f, 1)] private float airAccelerationFactor;
-    [SerializeField] [Range(0f, 1)] private float airDecelerationFactor;
-    [SerializeField] private float fallGravityMult;
-    [SerializeField] private float fastFallGravityMult;
+    [SerializeField] private float velocityDecelerationPerFixedUpdate = 20f;
+    [SerializeField] private float jumpHeight = 5f;
+    [SerializeField] private float timeToJumpToHeighest = 0.4f;
+    [SerializeField][Range(0f, 1)] private float airAccelerationFactor = 0.2f;
+    [SerializeField][Range(0f, 1)] private float airDecelerationFactor = 0.2f;
+    [SerializeField] private float fallGravityMult = 1.2f;
+    [SerializeField] private float fastFallGravityMult = 1.3f;
 
-    public bool isFacingRight;
+    public bool isFacingRight = true;
 
 
-    // [SerializeField] private float airMoveSpeed;
+    [Header("Layer Settings")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
+
+    [Header("Health Settings")]
+    //plan to move out of controller
+    [SerializeField] private int maxHealth = 20;
+    private int currentHealth;
+    [SerializeField] private HealthBar healthBar;
+
+    //runtime variables
+    private Rigidbody2D body;
+    private CapsuleCollider2D capsuleCollider2D;
+    private Animator animator;
+
     private Vector2 movementInput;
-    private bool canMove;
-    private bool jumpPressed;
+    private bool canMove = false;
+    private bool jumpPressed = false;
     private float gravityStrength;
     private float gravityScale;
     private float jumpImpulse;
@@ -37,42 +50,20 @@ public class PlayerController : MonoBehaviour
     private float decelerationForceFactor;
     private bool onGround;
     private int velocityDirectionAtJump = 0;
-    //plan to move out of controller
-    [SerializeField] private int maxHealth;
-    private int currentHealth;
-    [SerializeField] private HealthBar healthBar;
 
-    //todo
-    // bool isJumping = false;
-    private Rigidbody2D body;
-    private CapsuleCollider2D capsuleCollider2D;
-    private Animator animator;
-    
-    public float attackRange;
-    public int attackDamage;
+    //attack related
+    public float attackRange = 0.5f;
+    public int attackDamage = 10;
 
+    //analytics related
     public Datas playerdata = new Datas();
 
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = 20;
-        attackRange = 0.5f;
-        attackDamage = 10;
-        canMove = true;
-        isFacingRight = true;
-        maxRunSpeedOnGround = 10;
-        velocityAccelerationPerFixedUpdate = 10;
-        velocityDecelerationPerFixedUpdate = 20;
-        airAccelerationFactor = 0.2f;
-        airDecelerationFactor = 0.2f;
-        jumpHeight = 5f;
-        timeToJumpToHeighest = 0.4f;
-        jumpPressed = false;
-        onGround = true;
-        airMaxSpeedFactor = 0.2f;
-        fallGravityMult = 1.2f;
-        fastFallGravityMult = 1.3f;
+        body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
 
         velocityAccelerationPerFixedUpdate = Mathf.Clamp(velocityAccelerationPerFixedUpdate, 0.01f, maxRunSpeedOnGround);
         velocityDecelerationPerFixedUpdate = Mathf.Clamp(velocityDecelerationPerFixedUpdate, 0.01f, maxRunSpeedOnGround);
@@ -81,16 +72,11 @@ public class PlayerController : MonoBehaviour
         gravityScale = gravityStrength / Physics2D.gravity.y;
         accelerationForceFactor = velocityAccelerationPerFixedUpdate / Time.fixedDeltaTime / maxRunSpeedOnGround;
         decelerationForceFactor = velocityDecelerationPerFixedUpdate / Time.fixedDeltaTime / maxRunSpeedOnGround;
+        SetGravityScale(gravityScale);
 
-        
         //Todo: plan to move
         currentHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
-
-        body = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        SetGravityScale(gravityScale);
 
         //Track data of playerdata
         //Initial states
@@ -107,7 +93,8 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(GlobalAnalysis.postRequest("test", json));
     }
 
-    private void Update() {
+    private void Update()
+    {
         onGround = isGrounded();
         if (body.velocity != Vector2.zero)
         {
@@ -118,8 +105,10 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isMoving", false);
         }
         //not a good idea to use spriteRenderer.flipX to flip, see https://forum.unity.com/threads/flip-x-or-scale-x.1042324/
-        if (movementInput.x != 0) {
-            if ((movementInput.x > 0) != isFacingRight) {
+        if (movementInput.x != 0)
+        {
+            if ((movementInput.x > 0) != isFacingRight)
+            {
                 Turn();
             }
         }
@@ -130,10 +119,12 @@ public class PlayerController : MonoBehaviour
         {
             Run();
             Jump();
-            if (body.velocity.y < 0) {
+            if (body.velocity.y < 0)
+            {
                 SetGravityScale(gravityScale * (movementInput.y < 0 ? fastFallGravityMult : fallGravityMult));
             }
-            else {
+            else
+            {
                 SetGravityScale(gravityScale);
             }
         }
@@ -143,9 +134,11 @@ public class PlayerController : MonoBehaviour
     /*Funuction used to handle movement in x axis
         @paramter lerpFactor: used to control the target speed, for ground movement, set to 1. 
                         Reserved for future possible circumstances when we want target speed to be a portion of max speed
-    */                  
-    private void Run() {
-        if (velocityDirectionAtJump == 0 && movementInput.x != 0) {
+    */
+    private void Run()
+    {
+        if (velocityDirectionAtJump == 0 && movementInput.x != 0)
+        {
             velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
         }
         bool sameDirection = velocityDirectionAtJump == Mathf.Sign(movementInput.x);
@@ -153,8 +146,8 @@ public class PlayerController : MonoBehaviour
         float targetSpeed = movementInput.x * maxRunSpeedOnGround;
         targetSpeed = Mathf.Lerp(body.velocity.x, targetSpeed, lerpFactor);
         float speedDiff = targetSpeed - body.velocity.x;
-        float forceFactor = ((speedDiff < 0 && body.velocity.x <= 0) || (speedDiff > 0 && body.velocity.x >= 0)) ? 
-                                accelerationForceFactor * (onGround || sameDirection ? 1 : airAccelerationFactor) : 
+        float forceFactor = ((speedDiff < 0 && body.velocity.x <= 0) || (speedDiff > 0 && body.velocity.x >= 0)) ?
+                                accelerationForceFactor * (onGround || sameDirection ? 1 : airAccelerationFactor) :
                                 decelerationForceFactor * (onGround || sameDirection ? 1 : airDecelerationFactor);
 
         //Todo:if in air, would multiply forceFactor by a airfactor
@@ -162,17 +155,21 @@ public class PlayerController : MonoBehaviour
         body.AddForce(force * Vector2.right, ForceMode2D.Force);
     }
 
-    private void SetGravityScale(float scale) {
+    private void SetGravityScale(float scale)
+    {
         body.gravityScale = scale;
     }
-    private void Jump() {
-        if (jumpPressed && onGround) {
+    private void Jump()
+    {
+        if (jumpPressed && onGround)
+        {
             body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
             velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
         }
     }
 
-    private void Turn() {
+    private void Turn()
+    {
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
@@ -183,6 +180,15 @@ public class PlayerController : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
     }
 
+    private bool isGrounded()
+    {
+        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, Vector2.down, .1f, groundLayer);
+    }
+
+    private bool isFacingWall()
+    {
+        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
+    }
     void OnJump()
     {
         jumpPressed = true;
@@ -205,7 +211,7 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             Invoke("PlayerDeath", 1f);
 
-            
+
             playerdata.level = "1";
             playerdata.num_players = 1;
             playerdata.num_bosses = 1;
@@ -224,7 +230,7 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    
+
     public void LockMovement()
     {
         if (isGrounded())
@@ -237,15 +243,6 @@ public class PlayerController : MonoBehaviour
     public void UnlockMovement()
     {
         canMove = true;
-    }
-    private bool isGrounded()
-    {
-        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, Vector2.down, .1f, groundLayer);
-    }
-
-    private bool isFacingWall()
-    {
-        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
     }
 
     void takeDamage(int damage)
