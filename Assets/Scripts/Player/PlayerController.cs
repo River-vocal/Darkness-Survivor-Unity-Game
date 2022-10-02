@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     public bool isFaceRight = true;
 
     public Datas playerdata = new Datas();
+
+    public int BulletCount = 3;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        BulletCount = 3;
         //Track data of playerdata
         
         //Initial states
@@ -58,7 +62,7 @@ public class PlayerController : MonoBehaviour
         playerdata.boss_remaining_healthpoints = GlobalAnalysis.boss_remaining_healthpoints;
         string json = JsonUtility.ToJson(playerdata);
 
-        StartCoroutine(GlobalAnalysis.postRequest("test", json));
+        // StartCoroutine(GlobalAnalysis.postRequest("test", json));
     }
 
 
@@ -115,19 +119,32 @@ public class PlayerController : MonoBehaviour
         }
 
         //not a good idea to use spriteRenderer.flipX to flip, see https://forum.unity.com/threads/flip-x-or-scale-x.1042324/
-        if (movementInput.x > 0)
+        if (movementInput.x > 0 && !isFaceRight)
         {
-            transform.localScale = originalLocalScale;
-            isFaceRight = true;
+            FlipPlayer();
+            // transform.localScale = originalLocalScale;
+            // isFaceRight = true;
         }
-        else if (movementInput.x < 0)
+        else if (movementInput.x < 0 && isFaceRight)
         {
-            var tmp = originalLocalScale;
-            tmp.x *= -1;
-            transform.localScale = tmp;
-            isFaceRight = false;
+            FlipPlayer();
+            // var tmp = originalLocalScale;
+            // tmp.x *= -1;
+            // transform.localScale = tmp;
+            // isFaceRight = false;
         }
     }
+
+    private void FlipPlayer()
+    {
+        isFaceRight = !isFaceRight;
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1f;
+        transform.localScale = flipped;
+
+        transform.Rotate(0f, 180f, 0f);
+    }
+
 
     void OnMove(InputValue movementValue)
     {
@@ -143,6 +160,24 @@ public class PlayerController : MonoBehaviour
     void OnFire()
     {
         animator.SetTrigger("attack");
+    }
+
+    public void IncreaseBullet()
+    {
+        BulletCount++;
+    }
+
+    public void DecreaseBullet()
+    {
+        if (BulletCount > 0)
+        {
+            BulletCount--;
+        }
+    }
+
+    public int GetBulletCount()
+    {
+        return BulletCount;
     }
 
     public void TakeDamage(int damage)
@@ -204,5 +239,10 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.setHealth(currentHealth);
+    }
+
+    public int getBulletCount()
+    {
+        return BulletCount;
     }
 }

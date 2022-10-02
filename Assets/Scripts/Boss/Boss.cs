@@ -34,7 +34,7 @@ public class Boss : MonoBehaviour
         bossdata.boss_remaining_healthpoints = curHealth;
         string json = JsonUtility.ToJson(bossdata);
 
-        StartCoroutine(GlobalAnalysis.postRequest("test", json));
+        // StartCoroutine(GlobalAnalysis.postRequest("test", json));
     }
 
     // Update is called once per frame
@@ -61,7 +61,7 @@ public class Boss : MonoBehaviour
             bossdata.boss_remaining_healthpoints = curHealth;
             string json = JsonUtility.ToJson(bossdata);
 
-            StartCoroutine(GlobalAnalysis.postRequest("test", json));
+            // StartCoroutine(GlobalAnalysis.postRequest("test", json));
             Invoke("Restart", 1f);
         }
     }

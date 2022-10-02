@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 50231956401082150}
   - component: {fileID: 58637012837825420}
   - component: {fileID: 4379087076741164223}
-  - component: {fileID: 88009245372755402}
+  - component: {fileID: 4846534032011768481}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: ResourceBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &88009245372755402
+--- !u!114 &4846534032011768481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,10 +154,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1539632861300792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bccff4e88a47ae41abe36f223f2f6a5, type: 3}
+  m_Script: {fileID: 11500000, guid: cc4f83e461042244fb93da1c4ccaab65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 10
   damage: 40
   rb: {fileID: 50231956401082150}
   impactEffect: {fileID: 1473625048454486, guid: 284f05ab582ef494a9ab1dd8bc1e76ae, type: 3}

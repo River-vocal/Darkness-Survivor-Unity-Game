@@ -15,7 +15,14 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask attackMask;
     public PlayerController player;
     
+    public GameObject bulletPrefab;
+    public Transform firePoint;
     
+    [SerializeField] protected AudioInfoBroadcaster audioInfoBroadcaster;
+
+    [SerializeField] protected AudioInfoBroadcaster.AudioBroadcastValueType effectorType;
+
+    [SerializeField] protected float effectorValue;
 
     // Animation Event
     public void Attack()
@@ -35,20 +42,41 @@ public class PlayerAttack : MonoBehaviour
             pos -= transform.right * attackOffset.x;
         }
         pos += transform.up * attackOffset.y;
-
-        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
-        if (colInfo != null)
+        effectorValue = audioInfoBroadcaster.GetEffectorValue(effectorType);
+        // if heavy beats detected
+        if (effectorValue > 0.2f)
+        // if (true)
         {
-            if (colInfo.name == "Boss")
+            
+            // attack with bullet
+            if (player.GetBulletCount() > 0)
             {
-                colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
+                Debug.Log("Fire bullets !!!!!!!!");
+                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                player.DecreaseBullet();
             }
+            else
+            {
+                Debug.Log("BulletCount == 0 !!!!!!!!");
+            }
+        }
+        else
+        {
+            // normal attack
+            Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
+            if (colInfo != null)
+            {
+                if (colInfo.name == "Boss")
+                {
+                    colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
+                }
 
-            if (colInfo.name == "Nature_props_01")
-            {
-                colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
+                if (colInfo.name == "Nature_props_01")
+                {
+                    colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
+                }
+                Debug.Log("Player Attack");
             }
-            Debug.Log("Player Attack");
         }
     }
     // Animation Event
