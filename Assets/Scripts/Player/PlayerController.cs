@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     private Vector2 movementInput;
-    private bool canMove = false;
+    private bool canMove = true;
     private bool jumpPressed = false;
     private float gravityStrength;
     private float gravityScale;
