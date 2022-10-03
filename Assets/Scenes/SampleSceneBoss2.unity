@@ -1730,7 +1730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 3}
       propertyPath: m_LocalScale.y
@@ -2581,25 +2581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732716d1495358d46b221b7ad119bdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1224525555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224525530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 570779418cadb4f9eacd704b1bedd763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDamage: 0
-  attackOffset: {x: 0.5, y: -0.22, z: 0}
-  attackRange: 0.6
-  attackMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  player: {fileID: 1224525552}
 --- !u!1 &1242965840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3621,7 +3602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 2
   attackOffset: {x: 0, y: 0, z: 0}
-  attackRange: 0
+  attackRange: 2.1
   attackMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -3639,7 +3620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 200
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 141207313}
   bossIsFlipped: 1
   attackDamage: 2
   playerTransform: {fileID: 1224525537}
@@ -4307,7 +4288,7 @@ PrefabInstance:
     - target: {fileID: 2038086598015160817, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1224525552}
     - target: {fileID: 2038086598015160817, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: attackRange
       value: 2
@@ -4322,7 +4303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2038086598015160817, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: attackMask.m_Bits
-      value: 1024
+      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 2205743214194233402, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: m_Enabled
