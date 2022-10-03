@@ -64,6 +64,11 @@ public class Boss : MonoBehaviour
             // StartCoroutine(GlobalAnalysis.postRequest("test", json));
             Invoke("Restart", 1f);
         }
+        if(damage>10){
+            DamagePopupManager.Create(damage, transform.position, 3);
+        }else{
+            DamagePopupManager.Create(damage, transform.position, 2);
+        }
     }
     
     public void lookAtPlayer()

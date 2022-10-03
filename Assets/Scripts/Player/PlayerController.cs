@@ -272,6 +272,9 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(GlobalAnalysis.postRequest("test", json));
         }
+
+        DamagePopupManager.Create(damage, transform.position, 0);
+        
     }
 
     public void PlayerDeath()
