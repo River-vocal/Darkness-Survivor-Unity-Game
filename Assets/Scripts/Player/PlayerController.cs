@@ -167,12 +167,11 @@ public class PlayerController : MonoBehaviour
             playerdata.boss_remaining_healthpoints = GlobalAnalysis.boss_remaining_healthpoints;
             string json = JsonUtility.ToJson(playerdata);
 
-            
-
             StartCoroutine(GlobalAnalysis.postRequest("test", json));
         }
+
+        DamagePopupManager.Create(damage, transform.position, 0);
         
-        GetComponent<DamageDisplay>().CreateDamagePopup(damage, transform);
     }
 
     public void PlayerDeath()

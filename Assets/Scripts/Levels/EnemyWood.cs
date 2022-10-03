@@ -81,6 +81,12 @@ public class EnemyWood : MonoBehaviour
             StartCoroutine(GlobalAnalysis.postRequest("test", json));
             Invoke("LoadLevel1", 1f);
         }
+
+        if(damage>10){
+            DamagePopupManager.Create(damage, transform.position, 3);
+        }else{
+            DamagePopupManager.Create(damage, transform.position, 2);
+        }
     }
 
     void LoadLevel1()
