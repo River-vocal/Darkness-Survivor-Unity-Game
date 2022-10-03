@@ -41,7 +41,7 @@ public class EnemyWood : MonoBehaviour
         tutorialdata.num_bosses = 1;
         tutorialdata.state = "start";
         tutorialdata.timestamp = GlobalAnalysis.getTimeStamp();
-        tutorialdata.player_remaining_healthpoints = curHealth;
+        tutorialdata.player_remaining_healthpoints = 20;
         tutorialdata.boss_remaining_healthpoints = curHealth;
         string json = JsonUtility.ToJson(tutorialdata);
 
