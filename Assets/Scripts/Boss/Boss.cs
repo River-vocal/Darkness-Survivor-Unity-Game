@@ -13,8 +13,6 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     public Transform playerTransform;
 
-    public Datas bossdata = new Datas();
-
     void Start()
     {
         curHealth = maxHealth;
@@ -24,17 +22,10 @@ public class Boss : MonoBehaviour
         //Track data of bossdata
         
         //Initial states
-        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
-        bossdata.level = "1";
-        bossdata.num_players = 1;
-        bossdata.num_bosses = 1;
-        bossdata.state = "start";
-        bossdata.timestamp = GlobalAnalysis.getTimeStamp();
-        bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
-        bossdata.boss_remaining_healthpoints = curHealth;
-        string json = JsonUtility.ToJson(bossdata);
-
-        // StartCoroutine(GlobalAnalysis.postRequest("test", json));
+        GlobalAnalysis.boss_initail_healthpoints = curHealth;
+        GlobalAnalysis.level = "1";
+        StartInfo si = new StartInfo("1", GlobalAnalysis.getTimeStamp());
+        AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 
     // Update is called once per frame
@@ -51,17 +42,10 @@ public class Boss : MonoBehaviour
 
         if (curHealth <= 0)
         {
-            
-            bossdata.level = "1";
-            bossdata.num_players = 1;
-            bossdata.num_bosses = 1;
-            bossdata.state = "end";
-            bossdata.timestamp = GlobalAnalysis.getTimeStamp();
-            bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
-            bossdata.boss_remaining_healthpoints = curHealth;
-            string json = JsonUtility.ToJson(bossdata);
-
-            // StartCoroutine(GlobalAnalysis.postRequest("test", json));
+            //Analysis Data
+            GlobalAnalysis.state = "boss_dead";
+            AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+            GlobalAnalysis.cleanData();
             Invoke("Restart", 1f);
         }
         if(damage>10){

@@ -5,54 +5,77 @@ using UnityEngine.Networking;
 using System;
 
 public static class GlobalAnalysis {
-    // public const Int32 BUFFER_SIZE = 512; // Unmodifiable
-    // public static String FILE_NAME = "Output.txt"; // Modifiable
-    // public static readonly String CODE_PREFIX = "US-"; // Unmodifiable
-    public static int num_players;
-    public static int num_bosses;
+    public static string level;
+    public static string state;
+    public static string timestamp;
+    public static int player_initail_healthpoints;
+    public static int boss_initail_healthpoints;
     public static int player_remaining_healthpoints;
-
     public static int boss_remaining_healthpoints;
-
+    public static int accack_numher;
+    public static int critical_attack_numher;
+    public static int bullet_attack_number;
     private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw1/";
 
-
-
-
+    public static string buildPlayInfoData() {
+        PlayInfo pi = new PlayInfo(level, 
+        state, 
+        getTimeStamp(), 
+        player_initail_healthpoints, 
+        boss_initail_healthpoints, 
+        player_remaining_healthpoints, 
+        boss_remaining_healthpoints,
+        accack_numher,
+        critical_attack_numher,
+        bullet_attack_number);
+        string json = JsonUtility.ToJson(pi);
+        return json;
+    }
+    public static void cleanData() {
+        level = "N/A";
+        state = "N/A";
+        timestamp = "N/A";
+        player_initail_healthpoints = -1;
+        boss_initail_healthpoints = -1;
+        player_remaining_healthpoints = -1;
+        player_remaining_healthpoints = -1;
+        accack_numher = 0;
+        critical_attack_numher = 0;
+    }
     public static string getTimeStamp()
     {
         return System.DateTime.Now.ToString();
     }
 
-    public static IEnumerator postRequest(string key, string json)
-    {
-        var uwr = new UnityWebRequest(URL + key + ".json", "POST");
-        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
-        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
+    // public static IEnumerator postRequest(string key, string json)
+    // {
+    //     var uwr = new UnityWebRequest(URL + key + ".json", "POST");
+    //     byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+    //     uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+    //     uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+    //     uwr.SetRequestHeader("Content-Type", "application/json");
 
-        //Send the request then wait here until it returns
-        yield return uwr.SendWebRequest();
+    //     //Send the request then wait here until it returns
+    //     yield return uwr.SendWebRequest();
 
-        string timestamp = getTimeStamp();
+    //     string timestamp = getTimeStamp();
 
-        if (uwr.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log("Error While Sending: " + uwr.error + " TimeStamp: " + timestamp);
-        }
-        else
-        {
-            Debug.Log("Received: " + uwr.downloadHandler.text + " TimeStamp: " + timestamp);
-        }
+    //     if (uwr.result != UnityWebRequest.Result.Success)
+    //     {
+    //         Debug.Log("Error While Sending: " + uwr.error + " TimeStamp: " + timestamp);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Received: " + uwr.downloadHandler.text + " TimeStamp: " + timestamp);
+    //     }
 
-        // if (uwr.isNetworkError)
-        // {
-        //     Debug.Log("Error While Sending: " + uwr.error);
-        // }
-        // else
-        // {
-        //     Debug.Log("Received: " + uwr.downloadHandler.text);
-        // }
-    }
+    //     // if (uwr.isNetworkError)
+    //     // {
+    //     //     Debug.Log("Error While Sending: " + uwr.error);
+    //     // }
+    //     // else
+    //     // {
+    //     //     Debug.Log("Received: " + uwr.downloadHandler.text);
+    //     // }
+    // }
 }
