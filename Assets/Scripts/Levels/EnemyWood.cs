@@ -26,7 +26,6 @@ public class EnemyWood : MonoBehaviour
     }
     */
 
-    public Datas tutorialdata = new Datas();
     void Start()
     {
         curHealth = maxHealth;
@@ -35,17 +34,11 @@ public class EnemyWood : MonoBehaviour
         //Track data of tutorialdata
         
         //Initial states
-        
-        tutorialdata.level = "Tutorial";
-        tutorialdata.num_players = 1;
-        tutorialdata.num_bosses = 1;
-        tutorialdata.state = "start";
-        tutorialdata.timestamp = GlobalAnalysis.getTimeStamp();
-        tutorialdata.player_remaining_healthpoints = 20;
-        tutorialdata.boss_remaining_healthpoints = curHealth;
-        string json = JsonUtility.ToJson(tutorialdata);
 
-        StartCoroutine(GlobalAnalysis.postRequest("test", json));
+        GlobalAnalysis.level = "0";
+        GlobalAnalysis.boss_initail_healthpoints = curHealth;
+        StartInfo si = new StartInfo("0", GlobalAnalysis.getTimeStamp());
+        AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
 
         // bossIsFlipped = false;
     }
@@ -60,25 +53,12 @@ public class EnemyWood : MonoBehaviour
     {
         curHealth -= damage;
         healthBar.setHealth(curHealth);
-
+        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
         if (curHealth <= 0)
         {
-            // enemywood.state = "End";
-            // enemywood.num_players = 1;
-            // enemywood.timestamp = GlobalAnalysis.getTimeStamp();
-            // enemywood.remaining_healthpoints = curHealth;
-            // string json = JsonUtility.ToJson(enemywood);
-            // StartCoroutine(GlobalAnalysis.postRequest("test", json));
-            tutorialdata.level = "Tutorial";
-            tutorialdata.num_players = 1;
-            tutorialdata.num_bosses = 1;
-            tutorialdata.state = "end";
-            tutorialdata.timestamp = GlobalAnalysis.getTimeStamp();
-            tutorialdata.player_remaining_healthpoints = 20;
-            tutorialdata.boss_remaining_healthpoints = curHealth;
-            string json = JsonUtility.ToJson(tutorialdata);
-
-            StartCoroutine(GlobalAnalysis.postRequest("test", json));
+            GlobalAnalysis.state = "boss_dead";
+            AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+            GlobalAnalysis.cleanData();
             Invoke("LoadLevel1", 1f);
         }
 
