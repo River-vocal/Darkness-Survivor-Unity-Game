@@ -30,6 +30,13 @@ public class PlayerAttack : MonoBehaviour
         
         player.LockMovement();
         attackDamage = player.attackDamage;
+
+        //Analysis
+        GlobalAnalysis.accack_numher++;
+        if (attackDamage > 10) {
+            GlobalAnalysis.critical_attack_numher++;
+        }
+
         Vector3 pos = transform.position;
         
         // Make sure the attack circle is in front of the player
@@ -51,6 +58,7 @@ public class PlayerAttack : MonoBehaviour
             // attack with bullet
             if (player.GetBulletCount() > 0)
             {
+                GlobalAnalysis.bullet_attack_number++;
                 Debug.Log("Fire bullets !!!!!!!!");
                 Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 player.DecreaseBullet();
