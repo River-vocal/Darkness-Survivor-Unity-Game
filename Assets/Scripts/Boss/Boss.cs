@@ -46,7 +46,16 @@ public class Boss : MonoBehaviour
             GlobalAnalysis.state = "boss_dead";
             AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
             GlobalAnalysis.cleanData();
-            Invoke("Restart", 1f);
+
+            int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
+            if (currLevelIndex == 4)
+            {
+                Invoke("restart", 1f);
+            }
+            else
+            {
+                Invoke("goNextLevel", 1f);
+            }
         }
         if(damage>10){
             DamagePopupManager.Create(damage, transform.position, 3);
@@ -91,8 +100,14 @@ public class Boss : MonoBehaviour
         }
     }
 
-    void Restart()
+    void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    void goNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }
