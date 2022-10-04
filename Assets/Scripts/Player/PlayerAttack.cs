@@ -32,9 +32,9 @@ public class PlayerAttack : MonoBehaviour
         attackDamage = player.attackDamage;
 
         //Analysis
-        GlobalAnalysis.accack_numher++;
+        GlobalAnalysis.attack_number++;
         if (attackDamage > 10) {
-            GlobalAnalysis.critical_attack_numher++;
+            GlobalAnalysis.critical_attack_number++;
         }
 
         Vector3 pos = transform.position;

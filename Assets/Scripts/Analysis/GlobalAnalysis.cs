@@ -12,8 +12,8 @@ public static class GlobalAnalysis {
     public static int boss_initail_healthpoints;
     public static int player_remaining_healthpoints;
     public static int boss_remaining_healthpoints;
-    public static int accack_numher;
-    public static int critical_attack_numher;
+    public static int attack_number;
+    public static int critical_attack_number;
     public static int bullet_attack_number;
     private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw1/";
 
@@ -25,8 +25,8 @@ public static class GlobalAnalysis {
         boss_initail_healthpoints, 
         player_remaining_healthpoints, 
         boss_remaining_healthpoints,
-        accack_numher,
-        critical_attack_numher,
+        attack_number,
+        critical_attack_number,
         bullet_attack_number);
         string json = JsonUtility.ToJson(pi);
         return json;
@@ -39,8 +39,8 @@ public static class GlobalAnalysis {
         boss_initail_healthpoints = -1;
         player_remaining_healthpoints = -1;
         player_remaining_healthpoints = -1;
-        accack_numher = 0;
-        critical_attack_numher = 0;
+        attack_number = 0;
+        critical_attack_number = 0;
     }
     public static string getTimeStamp()
     {
