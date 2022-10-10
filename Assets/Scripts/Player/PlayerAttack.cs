@@ -75,6 +75,12 @@ public class PlayerAttack : MonoBehaviour
                 {
                     colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
                 }
+
+                if (colInfo.name == "Boss1" || colInfo.name == "Boss2")
+                {
+                    colInfo.GetComponent<TwoBoss>().TakeDamage(attackDamage);
+                }
+                
                 Debug.Log("Player Attack");
             }
         }
