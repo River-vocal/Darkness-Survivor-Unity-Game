@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TwoBoss : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 200;
     private int curHealth;
     [SerializeField] private HealthBar healthBar;
+    private GameObject healthBar1;
+    private GameObject healthBar2;
+    private GameObject boss1;
+    private GameObject boss2;
 
     public bool bossIsFlipped;
     public int attackDamage = 10;
@@ -18,6 +23,10 @@ public class TwoBoss : MonoBehaviour
 
     void Start()
     {
+        healthBar1 = GameObject.Find("Boss Health Bar");
+        healthBar2 = GameObject.Find("Boss Health Bar 2");
+        boss1 = GameObject.Find("Boss1");
+        boss2 = GameObject.Find("Boss2");
 
         curHealth = maxHealth;
         healthBar.setMaxHealth(maxHealth);
@@ -53,18 +62,42 @@ public class TwoBoss : MonoBehaviour
 
         if (curHealth <= 0)
         {
-            bossdata.level = "1";
-            bossdata.num_players = 1;
-            bossdata.num_bosses = 1;
-            bossdata.state = "end";
-            bossdata.timestamp = GlobalAnalysis.getTimeStamp();
-            bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
-            bossdata.boss_remaining_healthpoints = curHealth;
-            string json = JsonUtility.ToJson(bossdata);
+            if (name == "Boss1") {
+                boss1.SetActive(false);
+                healthBar1.SetActive(false);
+                if (healthBar2.GetComponent<Slider>().value <= 0) {
+                    bossdata.level = "1";
+                    bossdata.num_players = 1;
+                    bossdata.num_bosses = 1;
+                    bossdata.state = "end";
+                    bossdata.timestamp = GlobalAnalysis.getTimeStamp();
+                    bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
+                    bossdata.boss_remaining_healthpoints = curHealth;
+                    string json = JsonUtility.ToJson(bossdata);
 
-            // StartCoroutine(GlobalAnalysis.postRequest("test", json));
-            Invoke("Restart", 1f);
+                    // StartCoroutine(GlobalAnalysis.postRequest("test", json));
+                    Invoke("Restart", 1f);
+                }
+            }
+            else if (name == "Boss2") {
+                boss2.SetActive(false);
+                healthBar2.SetActive(false);
+                if (healthBar1.GetComponent<Slider>().value <= 0) {
+                    bossdata.level = "1";
+                    bossdata.num_players = 1;
+                    bossdata.num_bosses = 1;
+                    bossdata.state = "end";
+                    bossdata.timestamp = GlobalAnalysis.getTimeStamp();
+                    bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
+                    bossdata.boss_remaining_healthpoints = curHealth;
+                    string json = JsonUtility.ToJson(bossdata);
+
+                    // StartCoroutine(GlobalAnalysis.postRequest("test", json));
+                    Invoke("Restart", 1f);
+                }
+            }
         }
+
         if(damage>10){
             DamagePopupManager.Create(damage, transform.position, 3);
         }else{
