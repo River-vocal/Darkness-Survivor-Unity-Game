@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
+    [SerializeField] private GameObject allPassMenu;
     [SerializeField] private GameObject wonMenu;
     
     [SerializeField] private int maxHealth = 200;
@@ -52,7 +53,8 @@ public class Boss : MonoBehaviour
             int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
             if (currLevelIndex == 5)
             {
-                Invoke("restart", 1f);
+                gameObject.SetActive(false);
+                Invoke("GotoAllPassMenu", 1.5f);
             }
             else
             {
@@ -103,9 +105,11 @@ public class Boss : MonoBehaviour
         }
     }
 
-    void restart()
+    void GotoAllPassMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        allPassMenu.SetActive(true);
+        Time.timeScale = 0f;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void GotoWonMenu()
