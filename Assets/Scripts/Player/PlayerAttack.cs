@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -63,31 +64,31 @@ public class PlayerAttack : MonoBehaviour
             {
                 GlobalAnalysis.bullet_attack_number++;
                 Debug.Log("Fire bullets !!!!!!!!");
+                TriggerScreenShake();
                 Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 player.DecreaseBullet();
+                return;
             }
-            else
-            {
-                Debug.Log("BulletCount == 0 !!!!!!!!");
-            }
-        }
-        else
-        {
-            // normal attack
-            Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
-            if (colInfo != null)
-            {
-                if (colInfo.name == "Boss")
-                {
-                    colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
-                }
 
-                if (colInfo.name == "Nature_props_01")
-                {
-                    colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
-                }
-                Debug.Log("Player Attack");
+            Debug.Log("BulletCount == 0 !!!!!!!!");
+        }
+
+        // normal attack
+        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
+        if (colInfo != null)
+        {
+            if (colInfo.name == "Boss")
+            {
+                TriggerScreenShake();
+                colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
             }
+
+            if (colInfo.name == "Nature_props_01")
+            {
+                TriggerScreenShake();
+                colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
+            }
+            Debug.Log("Player Attack");
         }
     }
     // Animation Event
@@ -115,4 +116,17 @@ public class PlayerAttack : MonoBehaviour
 
         Gizmos.DrawWireSphere(pos, attackRange);
     }
+    
+    private CinemachineImpulseSource cinemachineImpulseSource;
+    
+    private void Start()
+    {
+        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+
+    private void TriggerScreenShake()
+    {
+        cinemachineImpulseSource.GenerateImpulse();
+    }
+    
 }
