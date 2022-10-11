@@ -48,7 +48,7 @@ public class Boss : MonoBehaviour
             GlobalAnalysis.cleanData();
 
             int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
-            if (currLevelIndex == 4)
+            if (currLevelIndex == 5)
             {
                 Invoke("restart", 1f);
             }

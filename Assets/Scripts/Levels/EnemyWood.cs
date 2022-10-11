@@ -59,7 +59,7 @@ public class EnemyWood : MonoBehaviour
             GlobalAnalysis.state = "boss_dead";
             AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
             GlobalAnalysis.cleanData();
-            Invoke("LoadLevel1", 1f);
+            Invoke("LoadNextLevel", 1f);
         }
 
         if(damage>10){
@@ -69,8 +69,8 @@ public class EnemyWood : MonoBehaviour
         }
     }
 
-    void LoadLevel1()
+    void LoadNextLevel()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

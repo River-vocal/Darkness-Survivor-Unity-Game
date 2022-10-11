@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NewBossScene.unity
     guid: 7c25e58cde2284fbe9cd91b33e25ddf1
   - enabled: 1
+    path: Assets/Scenes/SampleSceneTutorial_2.unity
+    guid: 5db89f0c23bdca34799c5a11ac137f27
+  - enabled: 1
     path: Assets/Scenes/SampleSceneBoss2.unity
     guid: 595ce58f9d77748e9abe8fd89491f64a
   m_configObjects: {}
