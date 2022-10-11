@@ -21,6 +21,7 @@ public class BossAttack : MonoBehaviour
         if (colInfo != null)
         {
             colInfo.GetComponent<Health>().CurHealth -= attackDamage;
+            colInfo.GetComponent<KnockBack>().Trigger(gameObject);
             Debug.Log("Boss Attack");
         }
     }

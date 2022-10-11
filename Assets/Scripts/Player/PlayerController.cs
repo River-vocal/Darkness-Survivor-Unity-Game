@@ -86,44 +86,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         onGround = isGrounded();
-        if (body.velocity != Vector2.zero)
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
-        //not a good idea to use spriteRenderer.flipX to flip, see https://forum.unity.com/threads/flip-x-or-scale-x.1042324/
-        // <<<<<<< HEAD
-        //         if (movementInput.x > 0 && !isFaceRight)
-        //         {
-        //             FlipPlayer();
-        //             // transform.localScale = originalLocalScale;
-        //             // isFaceRight = true;
-        //         }
-        //         else if (movementInput.x < 0 && isFaceRight)
-        //         {
-        //             FlipPlayer();
-        //             // var tmp = originalLocalScale;
-        //             // tmp.x *= -1;
-        //             // transform.localScale = tmp;
-        //             // isFaceRight = false;
-        //         }
-        //     }
-
-        //     private void FlipPlayer()
-        //     {
-        //         isFaceRight = !isFaceRight;
-        //         Vector3 flipped = transform.localScale;
-        //         flipped.z *= -1f;
-        //         transform.localScale = flipped;
-
-        //         transform.Rotate(0f, 180f, 0f);
-        //     }
-
-
-        // =======
+        animator.SetBool("isMoving", body.velocity != Vector2.zero);
         if (movementInput.x != 0)
         {
             if ((movementInput.x > 0) != isFacingRight)
