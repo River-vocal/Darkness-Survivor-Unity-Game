@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
+    [SerializeField] private GameObject wonMenu;
+    
     [SerializeField] private int maxHealth = 200;
     private int curHealth;
     [SerializeField] private HealthBar healthBar;
@@ -54,7 +56,8 @@ public class Boss : MonoBehaviour
             }
             else
             {
-                Invoke("goNextLevel", 1f);
+                gameObject.SetActive(false);
+                Invoke("GotoWonMenu", 1.5f);
             }
         }
         if(damage>10){
@@ -105,9 +108,11 @@ public class Boss : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void goNextLevel()
+    void GotoWonMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        wonMenu.SetActive(true);
+        Time.timeScale = 0f;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
