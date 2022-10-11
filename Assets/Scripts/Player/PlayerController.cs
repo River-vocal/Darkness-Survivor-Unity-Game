@@ -29,11 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
-    [Header("Health Settings")]
-    //plan to move out of controller
-    [SerializeField] private int maxHealth = 20;
-    private int currentHealth;
-    [SerializeField] private HealthBar healthBar;
+    private Health health;
 
     //runtime variables
     private Rigidbody2D body;
@@ -55,11 +51,15 @@ public class PlayerController : MonoBehaviour
     public float attackRange = 0.5f;
     public int attackDamage = 10;
 
-    //analytics related
-    public Datas playerdata = new Datas();
-
     public int BulletCount = 3;
-    
+
+    private void Awake()
+    {
+        health = GetComponent<Health>();
+        health.OnDamaged += health_OnDamaged;
+        health.OnDead += health_OnDead;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,66 +77,17 @@ public class PlayerController : MonoBehaviour
         decelerationForceFactor = velocityDecelerationPerFixedUpdate / Time.fixedDeltaTime / maxRunSpeedOnGround;
         SetGravityScale(gravityScale);
 
-        //Todo: plan to move
-        currentHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
-
         //Track data of playerdata
         //Initial states
-        GlobalAnalysis.player_remaining_healthpoints = currentHealth;
-        playerdata.level = "player_1";
-        playerdata.num_players = 1;
-        playerdata.num_bosses = 1;
-        playerdata.state = "start";
-        playerdata.timestamp = GlobalAnalysis.getTimeStamp();
-        playerdata.player_remaining_healthpoints = currentHealth;
-        playerdata.boss_remaining_healthpoints = GlobalAnalysis.boss_remaining_healthpoints;
-        string json = JsonUtility.ToJson(playerdata);
+        GlobalAnalysis.cleanData();
+        GlobalAnalysis.player_initail_healthpoints = health.CurHealth;
 
-        // StartCoroutine(GlobalAnalysis.postRequest("test", json));
     }
 
     private void Update()
     {
         onGround = isGrounded();
-        if (body.velocity != Vector2.zero)
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
-        //not a good idea to use spriteRenderer.flipX to flip, see https://forum.unity.com/threads/flip-x-or-scale-x.1042324/
-// <<<<<<< HEAD
-//         if (movementInput.x > 0 && !isFaceRight)
-//         {
-//             FlipPlayer();
-//             // transform.localScale = originalLocalScale;
-//             // isFaceRight = true;
-//         }
-//         else if (movementInput.x < 0 && isFaceRight)
-//         {
-//             FlipPlayer();
-//             // var tmp = originalLocalScale;
-//             // tmp.x *= -1;
-//             // transform.localScale = tmp;
-//             // isFaceRight = false;
-//         }
-//     }
-
-//     private void FlipPlayer()
-//     {
-//         isFaceRight = !isFaceRight;
-//         Vector3 flipped = transform.localScale;
-//         flipped.z *= -1f;
-//         transform.localScale = flipped;
-
-//         transform.Rotate(0f, 180f, 0f);
-//     }
-
-
-// =======
+        animator.SetBool("isMoving", body.velocity != Vector2.zero);
         if (movementInput.x != 0)
         {
             if ((movementInput.x > 0) != isFacingRight)
@@ -248,33 +199,20 @@ public class PlayerController : MonoBehaviour
         return BulletCount;
     }
 
-    public void TakeDamage(int damage)
+    private void health_OnDamaged(object sender, System.EventArgs e)
     {
-        currentHealth -= damage;
-        healthBar.setHealth(currentHealth);
-        GlobalAnalysis.player_remaining_healthpoints = currentHealth;
+        GlobalAnalysis.player_remaining_healthpoints = health.CurHealth;
+    }
+    private void health_OnDead(object sender, System.EventArgs e)
+    {
+        animator.SetTrigger("Kill");
+        canMove = false;
+        Invoke("PlayerDeath", 1f);
 
-        if (currentHealth <= 0)
-        {
-            animator.SetTrigger("Kill");
-            canMove = false;
-            Invoke("PlayerDeath", 1f);
+        GlobalAnalysis.state = "player_dead";
+        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        GlobalAnalysis.cleanData();
 
-
-            playerdata.level = "1";
-            playerdata.num_players = 1;
-            playerdata.num_bosses = 1;
-            playerdata.state = "end";
-            playerdata.timestamp = GlobalAnalysis.getTimeStamp();
-            playerdata.player_remaining_healthpoints = currentHealth;
-            playerdata.boss_remaining_healthpoints = GlobalAnalysis.boss_remaining_healthpoints;
-            string json = JsonUtility.ToJson(playerdata);
-
-            StartCoroutine(GlobalAnalysis.postRequest("test", json));
-        }
-
-        DamagePopupManager.Create(damage, transform.position, 0);
-        
     }
 
     public void PlayerDeath()
@@ -295,12 +233,6 @@ public class PlayerController : MonoBehaviour
     public void UnlockMovement()
     {
         canMove = true;
-    }
-
-    void takeDamage(int damage)
-    {
-        currentHealth -= damage;
-        healthBar.setHealth(currentHealth);
     }
 
     public int getBulletCount()

@@ -16,19 +16,8 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter2D (Collider2D hitInfo)
     {
-        Boss enemy = hitInfo.GetComponent<Boss>();
-        if (enemy != null)
-        {
-            enemy.TakeDamage(damage);
-        }
-        else
-        {
-            EnemyWood woodEnemy = hitInfo.GetComponent<EnemyWood>();
-            if (woodEnemy != null)
-            {
-                woodEnemy.TakeDamage(damage);
-            }
-        }
+        Health health = hitInfo.GetComponent<Health>();
+        if(health != null) health.CurHealth -= damage;
 
         Instantiate(impactEffect, transform.position, transform.rotation);
 

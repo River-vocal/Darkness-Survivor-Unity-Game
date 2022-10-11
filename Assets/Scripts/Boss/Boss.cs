@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
+    [SerializeField] private GameObject allPassMenu;
+    [SerializeField] private GameObject wonMenu;
+    
     [SerializeField] private int maxHealth = 200;
     private int curHealth;
     [SerializeField] private HealthBar healthBar;
@@ -13,61 +16,51 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     public Transform playerTransform;
 
-    public Datas bossdata = new Datas();
+    private Health health;
+
+    private void Awake() {
+        health = GetComponent<Health>();
+        health.OnDamaged += health_OnDamaged;
+        health.OnDead += health_OnDead;
+    }
 
     void Start()
     {
-        curHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
         bossIsFlipped = false;
 
         //Track data of bossdata
         
         //Initial states
-        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
-        bossdata.level = "1";
-        bossdata.num_players = 1;
-        bossdata.num_bosses = 1;
-        bossdata.state = "start";
-        bossdata.timestamp = GlobalAnalysis.getTimeStamp();
-        bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
-        bossdata.boss_remaining_healthpoints = curHealth;
-        string json = JsonUtility.ToJson(bossdata);
-
-        // StartCoroutine(GlobalAnalysis.postRequest("test", json));
+        GlobalAnalysis.cleanData();
+        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
+        GlobalAnalysis.boss_initail_healthpoints = curHealth;
+        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
+        AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void health_OnDamaged(object sender, System.EventArgs e)
     {
+        int damage = ((IntegerEventArg) e).Value;
+        GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth; 
 
     }
-
-    public void TakeDamage(int damage)
+    private void health_OnDead(object sender, System.EventArgs e)
     {
-        curHealth -= damage;
-        healthBar.setHealth(curHealth);
-        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
+        //Analysis Data
+        GlobalAnalysis.state = "boss_dead";
+        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        GlobalAnalysis.cleanData();
 
-        if (curHealth <= 0)
+        int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currLevelIndex == 5)
         {
-            
-            bossdata.level = "1";
-            bossdata.num_players = 1;
-            bossdata.num_bosses = 1;
-            bossdata.state = "end";
-            bossdata.timestamp = GlobalAnalysis.getTimeStamp();
-            bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
-            bossdata.boss_remaining_healthpoints = curHealth;
-            string json = JsonUtility.ToJson(bossdata);
-
-            // StartCoroutine(GlobalAnalysis.postRequest("test", json));
-            Invoke("Restart", 1f);
+                gameObject.SetActive(false);
+            Invoke("GotoAllPassMenu", 1.5f);
         }
-        if(damage>10){
-            DamagePopupManager.Create(damage, transform.position, 3);
-        }else{
-            DamagePopupManager.Create(damage, transform.position, 2);
+        else
+        {
+                gameObject.SetActive(false);
+            Invoke("GotoWonMenu", 1.5f);
         }
     }
     
@@ -107,8 +100,18 @@ public class Boss : MonoBehaviour
         }
     }
 
-    void Restart()
+    void GotoAllPassMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        allPassMenu.SetActive(true);
+        Time.timeScale = 0f;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    void GotoWonMenu()
+    {
+        wonMenu.SetActive(true);
+        Time.timeScale = 0f;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }
