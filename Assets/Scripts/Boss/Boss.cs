@@ -12,6 +12,12 @@ public class Boss : MonoBehaviour
 
     private Health health;
 
+    private void Awake() {
+        health = GetComponent<Health>();
+        health.OnDamaged += health_OnDamaged;
+        health.OnDead += health_OnDead;
+    }
+
     void Start()
     {
         bossIsFlipped = false;
