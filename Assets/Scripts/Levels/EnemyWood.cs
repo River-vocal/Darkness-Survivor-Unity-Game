@@ -26,7 +26,7 @@ public class EnemyWood : MonoBehaviour
 
         //Initial states
 
-        GlobalAnalysis.level = "0";
+        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
         GlobalAnalysis.scene = SceneManager.GetActiveScene().buildIndex.ToString();
         GlobalAnalysis.boss_initail_healthpoints = curHealth;
         GlobalAnalysis.start_time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds(); 

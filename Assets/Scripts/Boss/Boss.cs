@@ -34,7 +34,6 @@ public class Boss : MonoBehaviour
         //Initial states
         GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
         GlobalAnalysis.boss_initail_healthpoints = curHealth;
-        GlobalAnalysis.level = "1";
         GlobalAnalysis.start_time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds(); 
         GlobalAnalysis.scene = SceneManager.GetActiveScene().buildIndex.ToString();
         Debug.Log("Scene: "+ GlobalAnalysis.scene);
