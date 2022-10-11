@@ -24,8 +24,9 @@ public class EnemyWood : MonoBehaviour
         //Track data of tutorialdata
 
         //Initial states
+        GlobalAnalysis.cleanData();
 
-        // GlobalAnalysis.level = "0";
+        // Tutorial level starts at "1";
         GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
         GlobalAnalysis.boss_initail_healthpoints = curHealth;
         StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());

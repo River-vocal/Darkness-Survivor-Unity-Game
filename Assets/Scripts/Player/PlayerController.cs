@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
         //Track data of playerdata
         //Initial states
+        GlobalAnalysis.cleanData();
         GlobalAnalysis.player_initail_healthpoints = health.CurHealth;
 
     }
