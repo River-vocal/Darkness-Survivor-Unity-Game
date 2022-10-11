@@ -24,9 +24,9 @@ public class Boss : MonoBehaviour
         //Track data of bossdata
         
         //Initial states
+        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
         GlobalAnalysis.boss_initail_healthpoints = curHealth;
-        GlobalAnalysis.level = "1";
-        StartInfo si = new StartInfo("1", GlobalAnalysis.getTimeStamp());
+        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
         AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 

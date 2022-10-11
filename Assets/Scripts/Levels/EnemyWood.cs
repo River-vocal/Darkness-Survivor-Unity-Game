@@ -35,9 +35,10 @@ public class EnemyWood : MonoBehaviour
         
         //Initial states
 
-        GlobalAnalysis.level = "0";
+        // GlobalAnalysis.level = "0";
+        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
         GlobalAnalysis.boss_initail_healthpoints = curHealth;
-        StartInfo si = new StartInfo("0", GlobalAnalysis.getTimeStamp());
+        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
         AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
 
         // bossIsFlipped = false;
