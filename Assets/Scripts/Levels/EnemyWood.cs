@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,10 +26,11 @@ public class EnemyWood : MonoBehaviour
 
         //Initial states
 
-        // GlobalAnalysis.level = "0";
-        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
+        GlobalAnalysis.level = "0";
+        GlobalAnalysis.scene = SceneManager.GetActiveScene().buildIndex.ToString();
         GlobalAnalysis.boss_initail_healthpoints = curHealth;
-        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
+        GlobalAnalysis.start_time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds(); 
+        StartInfo si = new StartInfo("0", GlobalAnalysis.getTimeStamp());
         AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
 
         // bossIsFlipped = false;
@@ -42,7 +44,9 @@ public class EnemyWood : MonoBehaviour
     private void health_OnDead(object sender, System.EventArgs e)
     {
         GlobalAnalysis.state = "boss_dead";
-        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        if (!GlobalAnalysis.level.Equals("N/A")) {
+            AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        }
         GlobalAnalysis.cleanData();
         Invoke("LoadNextLevel", 1f);
     }

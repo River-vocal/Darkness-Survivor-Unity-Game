@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +34,11 @@ public class Boss : MonoBehaviour
         //Initial states
         GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
         GlobalAnalysis.boss_initail_healthpoints = curHealth;
-        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
+        GlobalAnalysis.level = "1";
+        GlobalAnalysis.start_time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds(); 
+        GlobalAnalysis.scene = SceneManager.GetActiveScene().buildIndex.ToString();
+        Debug.Log("Scene: "+ GlobalAnalysis.scene);
+        StartInfo si = new StartInfo("1", GlobalAnalysis.getTimeStamp());
         AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 

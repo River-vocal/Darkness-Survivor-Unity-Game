@@ -6,7 +6,7 @@ using System;
 
 public class AnalysisSender : Singleton<AnalysisSender>
 {
-    private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw2/";
+    private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw3/";
 
     public void postRequest(string key, string json) {
         Debug.Log("Store data into: " + key);

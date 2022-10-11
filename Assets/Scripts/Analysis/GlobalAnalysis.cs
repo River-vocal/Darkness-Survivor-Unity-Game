@@ -6,6 +6,7 @@ using System;
 
 public static class GlobalAnalysis {
     public static string level;
+    public static string scene;
     public static string state;
     public static string timestamp;
     public static int player_initail_healthpoints;
@@ -15,12 +16,14 @@ public static class GlobalAnalysis {
     public static int attack_number;
     public static int critical_attack_number;
     public static int bullet_attack_number;
-    // private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw1/";
+    public static long start_time;
 
     public static string buildPlayInfoData() {
         PlayInfo pi = new PlayInfo(level, 
+        scene,
         state, 
         getTimeStamp(), 
+        (new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds() - start_time).ToString(),
         player_initail_healthpoints, 
         boss_initail_healthpoints, 
         player_remaining_healthpoints, 
@@ -35,6 +38,7 @@ public static class GlobalAnalysis {
         level = "N/A";
         state = "N/A";
         timestamp = "N/A";
+        scene = "N/A";
         player_initail_healthpoints = -1;
         boss_initail_healthpoints = -1;
         player_remaining_healthpoints = -1;
