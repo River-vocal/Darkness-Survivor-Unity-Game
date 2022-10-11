@@ -55,7 +55,8 @@ public class PlayerAttack : MonoBehaviour
         // if heavy beats detected
         // Player can only fire bullet start from the second tutorial
         int tutorial2LevelIndex = 4;
-        if (SceneManager.GetActiveScene().buildIndex >= tutorial2LevelIndex && effectorValue > 0.2f)
+        bool inHeavyNotes = effectorValue > 0.2f;
+        if (SceneManager.GetActiveScene().buildIndex >= tutorial2LevelIndex && inHeavyNotes)
         // if (true)
         {
             
@@ -79,13 +80,19 @@ public class PlayerAttack : MonoBehaviour
         {
             if (colInfo.name == "Boss")
             {
-                TriggerScreenShake();
+                if (inHeavyNotes)
+                {
+                    TriggerScreenShake();
+                }
                 colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
             }
 
             if (colInfo.name == "Nature_props_01")
             {
-                TriggerScreenShake();
+                if (inHeavyNotes)
+                {
+                    TriggerScreenShake();
+                }
                 colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
             }
             Debug.Log("Player Attack");
