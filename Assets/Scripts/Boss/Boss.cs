@@ -37,7 +37,7 @@ public class Boss : MonoBehaviour
         GlobalAnalysis.start_time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds(); 
         GlobalAnalysis.scene = SceneManager.GetActiveScene().buildIndex.ToString();
         Debug.Log("Scene: "+ GlobalAnalysis.scene);
-        StartInfo si = new StartInfo("1", GlobalAnalysis.getTimeStamp());
+        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
         AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 
