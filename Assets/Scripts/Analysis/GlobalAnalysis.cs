@@ -15,7 +15,7 @@ public static class GlobalAnalysis {
     public static int attack_number;
     public static int critical_attack_number;
     public static int bullet_attack_number;
-    private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw1/";
+    // private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw1/";
 
     public static string buildPlayInfoData() {
         PlayInfo pi = new PlayInfo(level, 
