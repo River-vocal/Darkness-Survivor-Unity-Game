@@ -5,62 +5,59 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 200;
-    private int curHealth;
-    [SerializeField] private HealthBar healthBar;
     public bool bossIsFlipped;
     public int attackDamage = 10;
     // Start is called before the first frame update
     public Transform playerTransform;
 
+    private Health health;
+
+    private void Awake() {
+        health = GetComponent<Health>();
+        health.OnDamaged += health_OnDamaged;
+        health.OnDead += health_OnDead;
+    }
+
     void Start()
     {
-        curHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
         bossIsFlipped = false;
 
         //Track data of bossdata
         
         //Initial states
-        GlobalAnalysis.boss_initail_healthpoints = curHealth;
+        GlobalAnalysis.boss_initail_healthpoints = health.CurHealth;
         GlobalAnalysis.level = "1";
         StartInfo si = new StartInfo("1", GlobalAnalysis.getTimeStamp());
         AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void health_OnDamaged(object sender, System.EventArgs e)
     {
+        int damage = ((IntegerEventArg) e).Value;
+        GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth;
 
-    }
-
-    public void TakeDamage(int damage)
-    {
-        curHealth -= damage;
-        healthBar.setHealth(curHealth);
-        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
-
-        if (curHealth <= 0)
-        {
-            //Analysis Data
-            GlobalAnalysis.state = "boss_dead";
-            AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-            GlobalAnalysis.cleanData();
-
-            int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
-            if (currLevelIndex == 4)
-            {
-                Invoke("restart", 1f);
-            }
-            else
-            {
-                Invoke("goNextLevel", 1f);
-            }
-        }
         if(damage>10){
             DamagePopupManager.Create(damage, transform.position, 3);
         }else{
             DamagePopupManager.Create(damage, transform.position, 2);
+        }
+
+    }
+    private void health_OnDead(object sender, System.EventArgs e)
+    {
+        //Analysis Data
+        GlobalAnalysis.state = "boss_dead";
+        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        GlobalAnalysis.cleanData();
+
+        int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currLevelIndex == 4)
+        {
+            Invoke("restart", 1f);
+        }
+        else
+        {
+            Invoke("goNextLevel", 1f);
         }
     }
     

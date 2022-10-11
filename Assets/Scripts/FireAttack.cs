@@ -50,7 +50,7 @@ public class FireAttack : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            col.GetComponent<PlayerController>().TakeDamage(damage);
+            col.GetComponent<Health>().CurHealth -= damage;
         }
     }
 }

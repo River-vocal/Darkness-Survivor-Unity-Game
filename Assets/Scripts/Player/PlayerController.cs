@@ -29,11 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
-    [Header("Health Settings")]
-    //plan to move out of controller
-    [SerializeField] private int maxHealth = 20;
-    private int currentHealth;
-    [SerializeField] private HealthBar healthBar;
+    private Health health;
 
     //runtime variables
     private Rigidbody2D body;
@@ -56,7 +52,14 @@ public class PlayerController : MonoBehaviour
     public int attackDamage = 10;
 
     public int BulletCount = 3;
-    
+
+    private void Awake()
+    {
+        health = GetComponent<Health>();
+        health.OnDamaged += health_OnDamaged;
+        health.OnDead += health_OnDead;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,13 +77,9 @@ public class PlayerController : MonoBehaviour
         decelerationForceFactor = velocityDecelerationPerFixedUpdate / Time.fixedDeltaTime / maxRunSpeedOnGround;
         SetGravityScale(gravityScale);
 
-        //Todo: plan to move
-        currentHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
-
         //Track data of playerdata
         //Initial states
-        GlobalAnalysis.player_initail_healthpoints = currentHealth;
+        GlobalAnalysis.player_initail_healthpoints = health.CurHealth;
 
     }
 
@@ -96,35 +95,35 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isMoving", false);
         }
         //not a good idea to use spriteRenderer.flipX to flip, see https://forum.unity.com/threads/flip-x-or-scale-x.1042324/
-// <<<<<<< HEAD
-//         if (movementInput.x > 0 && !isFaceRight)
-//         {
-//             FlipPlayer();
-//             // transform.localScale = originalLocalScale;
-//             // isFaceRight = true;
-//         }
-//         else if (movementInput.x < 0 && isFaceRight)
-//         {
-//             FlipPlayer();
-//             // var tmp = originalLocalScale;
-//             // tmp.x *= -1;
-//             // transform.localScale = tmp;
-//             // isFaceRight = false;
-//         }
-//     }
+        // <<<<<<< HEAD
+        //         if (movementInput.x > 0 && !isFaceRight)
+        //         {
+        //             FlipPlayer();
+        //             // transform.localScale = originalLocalScale;
+        //             // isFaceRight = true;
+        //         }
+        //         else if (movementInput.x < 0 && isFaceRight)
+        //         {
+        //             FlipPlayer();
+        //             // var tmp = originalLocalScale;
+        //             // tmp.x *= -1;
+        //             // transform.localScale = tmp;
+        //             // isFaceRight = false;
+        //         }
+        //     }
 
-//     private void FlipPlayer()
-//     {
-//         isFaceRight = !isFaceRight;
-//         Vector3 flipped = transform.localScale;
-//         flipped.z *= -1f;
-//         transform.localScale = flipped;
+        //     private void FlipPlayer()
+        //     {
+        //         isFaceRight = !isFaceRight;
+        //         Vector3 flipped = transform.localScale;
+        //         flipped.z *= -1f;
+        //         transform.localScale = flipped;
 
-//         transform.Rotate(0f, 180f, 0f);
-//     }
+        //         transform.Rotate(0f, 180f, 0f);
+        //     }
 
 
-// =======
+        // =======
         if (movementInput.x != 0)
         {
             if ((movementInput.x > 0) != isFacingRight)
@@ -236,31 +235,28 @@ public class PlayerController : MonoBehaviour
         return BulletCount;
     }
 
-    public void TakeDamage(int damage)
+    private void health_OnDamaged(object sender, System.EventArgs e)
     {
-        currentHealth -= damage;
-        healthBar.setHealth(currentHealth);
-        GlobalAnalysis.player_remaining_healthpoints = currentHealth;
+        GlobalAnalysis.player_remaining_healthpoints = health.CurHealth;
+    }
+    private void health_OnDead(object sender, System.EventArgs e)
+    {
+        int damage = ((IntegerEventArg) e).Value;
+        
+        animator.SetTrigger("Kill");
+        canMove = false;
+        Invoke("PlayerDeath", 1f);
 
-        if (currentHealth <= 0)
-        {
-            animator.SetTrigger("Kill");
-            canMove = false;
-            Invoke("PlayerDeath", 1f);
-
-            //Analysis Data
-            GlobalAnalysis.state = "player_dead";
-            AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-            GlobalAnalysis.cleanData();
-        }
+        GlobalAnalysis.state = "player_dead";
+        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        GlobalAnalysis.cleanData();
 
         DamagePopupManager.Create(damage, transform.position, 0);
-        
     }
 
-    public void PlayerDeath()
+    void BackToMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 
 
@@ -276,12 +272,6 @@ public class PlayerController : MonoBehaviour
     public void UnlockMovement()
     {
         canMove = true;
-    }
-
-    void takeDamage(int damage)
-    {
-        currentHealth -= damage;
-        healthBar.setHealth(currentHealth);
     }
 
     public int getBulletCount()

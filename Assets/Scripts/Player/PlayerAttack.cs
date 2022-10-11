@@ -74,16 +74,20 @@ public class PlayerAttack : MonoBehaviour
             Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
             if (colInfo != null)
             {
-                if (colInfo.name == "Boss")
-                {
-                    colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
+                Health health = colInfo.GetComponent<Health>();
+                if(health != null){
+                    health.CurHealth -= attackDamage;
+                    Debug.Log("Player attack");
                 }
+                // if (colInfo.name == "Boss")
+                // {
+                //     colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
+                // }
 
-                if (colInfo.name == "Nature_props_01")
-                {
-                    colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
-                }
-                Debug.Log("Player Attack");
+                // if (colInfo.name == "Nature_props_01")
+                // {
+                //     colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
+                // }
             }
         }
     }
