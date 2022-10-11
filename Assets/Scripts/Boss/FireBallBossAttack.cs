@@ -51,12 +51,6 @@ public class FireBallBossAttack : MonoBehaviour
         Gizmos.DrawWireSphere(pos, attackRange);
     }
 
-    public void FireBallAttack()
-    {
-        cooldownTimer = 0;
-
-    }
-    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

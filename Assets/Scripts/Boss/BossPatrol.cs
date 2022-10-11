@@ -39,10 +39,12 @@ public class BossPatrol : StateMachineBehaviour
             movingLeft = !boss.bossIsFlipped;
             if (movingLeft)
             {
+                animator.ResetTrigger("FireballAttack");
                 animator.SetTrigger("RegularAttack");
             }
             else
             {
+                animator.ResetTrigger("RegularAttack");
                 animator.SetTrigger("FireballAttack");
             }
             
