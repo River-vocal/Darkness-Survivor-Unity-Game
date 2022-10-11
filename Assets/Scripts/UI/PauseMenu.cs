@@ -6,17 +6,20 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-
+    
+    [SerializeField] protected AudioInfoBroadcaster audioInfoBroadcaster;
     public void Pause()
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
+        audioInfoBroadcaster.PauseMusic();
     }
 
     public void Resume()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+        audioInfoBroadcaster.ResumeMusic();
     }
 
     public void Replay()

@@ -182,6 +182,16 @@ public class AudioInfoBroadcaster : MonoBehaviour
         broadcasterData.trackLength = audioSource.clip.length;
         broadcasterData.fileSize = fileSize;
     }
+
+    public void PauseMusic()
+    {
+        audioSource.Pause();
+    }
+
+    public void ResumeMusic()
+    {
+        audioSource.Play();
+    }
     
     // No "AudioClipLoader" class instruction in the original tutorial
     // https://www.youtube.com/watch?v=BTAD1-zSYO4
