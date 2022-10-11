@@ -41,7 +41,7 @@ public class EnemyProjectile : MonoBehaviour
         hit = true;
         if (collision.tag == "Player")
         {
-            collision.GetComponent<PlayerController>().TakeDamage(damage);
+            collision.GetComponent<Health>().CurHealth -= damage;
         }
             
         coll.enabled = false;

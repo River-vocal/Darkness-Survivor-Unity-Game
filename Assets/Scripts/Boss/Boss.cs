@@ -16,10 +16,16 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     public Transform playerTransform;
 
+    private Health health;
+
+    private void Awake() {
+        health = GetComponent<Health>();
+        health.OnDamaged += health_OnDamaged;
+        health.OnDead += health_OnDead;
+    }
+
     void Start()
     {
-        curHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
         bossIsFlipped = false;
 
         //Track data of bossdata
@@ -31,41 +37,29 @@ public class Boss : MonoBehaviour
         AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void health_OnDamaged(object sender, System.EventArgs e)
     {
+        int damage = ((IntegerEventArg) e).Value;
+        GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth; 
 
     }
-
-    public void TakeDamage(int damage)
+    private void health_OnDead(object sender, System.EventArgs e)
     {
-        curHealth -= damage;
-        healthBar.setHealth(curHealth);
-        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
+        //Analysis Data
+        GlobalAnalysis.state = "boss_dead";
+        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        GlobalAnalysis.cleanData();
 
-        if (curHealth <= 0)
+        int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currLevelIndex == 5)
         {
-            //Analysis Data
-            GlobalAnalysis.state = "boss_dead";
-            AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-            GlobalAnalysis.cleanData();
-
-            int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
-            if (currLevelIndex == 5)
-            {
                 gameObject.SetActive(false);
-                Invoke("GotoAllPassMenu", 1.5f);
-            }
-            else
-            {
-                gameObject.SetActive(false);
-                Invoke("GotoWonMenu", 1.5f);
-            }
+            Invoke("GotoAllPassMenu", 1.5f);
         }
-        if(damage>10){
-            DamagePopupManager.Create(damage, transform.position, 3);
-        }else{
-            DamagePopupManager.Create(damage, transform.position, 2);
+        else
+        {
+                gameObject.SetActive(false);
+            Invoke("GotoWonMenu", 1.5f);
         }
     }
     

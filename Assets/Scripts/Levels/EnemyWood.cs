@@ -5,34 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class EnemyWood : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 200;
-    private int curHealth;
-    [SerializeField] private HealthBar healthBar;
-    // public bool bossIsFlipped;
-    // Start is called before the first frame update
+    private Health health;
 
-    /*
-    [SerializeField] private SwordAttack swordAttack;
-
-    void attack() {
-        if (bossIsFlipped) {
-            swordAttack.AttackLeft();
-        }
-        else swordAttack.AttackRight();
+    private void Awake()
+    {
+        health = GetComponent<Health>();
+        health.OnDamaged += health_OnDamaged;
+        health.OnDead += health_OnDead;
     }
-
-    void stopAttack() {
-        swordAttack.StopAttack();
-    }
-    */
 
     void Start()
     {
-        curHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
-
         //Track data of tutorialdata
-        
+
         //Initial states
 
         // GlobalAnalysis.level = "0";
@@ -44,10 +29,9 @@ public class EnemyWood : MonoBehaviour
         // bossIsFlipped = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void health_OnDamaged(object sender, System.EventArgs e)
     {
-
+        GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth;
     }
 
     public void TakeDamage(int damage)
