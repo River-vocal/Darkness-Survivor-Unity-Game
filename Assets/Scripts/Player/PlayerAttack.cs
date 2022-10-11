@@ -61,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 GlobalAnalysis.bullet_attack_number++;
                 Debug.Log("Fire bullets !!!!!!!!");
-                TriggerScreenShakeOnFiringBullets();
+                TriggerScreenShake();
                 Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 player.DecreaseBullet();
                 return;
@@ -72,6 +72,7 @@ public class PlayerAttack : MonoBehaviour
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if (colInfo != null)
         {
+            TriggerScreenShake();
             if (colInfo.name == "Boss")
             {
                 colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
@@ -118,7 +119,7 @@ public class PlayerAttack : MonoBehaviour
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
-    private void TriggerScreenShakeOnFiringBullets()
+    private void TriggerScreenShake()
     {
         cinemachineImpulseSource.GenerateImpulse();
     }
