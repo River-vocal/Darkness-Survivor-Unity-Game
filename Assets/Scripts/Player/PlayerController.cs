@@ -251,7 +251,6 @@ public class PlayerController : MonoBehaviour
         AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
         GlobalAnalysis.cleanData();
 
-        DamagePopupManager.Create(damage, transform.position, 0);
     }
 
     void BackToMenu()

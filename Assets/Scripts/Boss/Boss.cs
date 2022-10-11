@@ -12,12 +12,6 @@ public class Boss : MonoBehaviour
 
     private Health health;
 
-    private void Awake() {
-        health = GetComponent<Health>();
-        health.OnDamaged += health_OnDamaged;
-        health.OnDead += health_OnDead;
-    }
-
     void Start()
     {
         bossIsFlipped = false;
@@ -34,13 +28,7 @@ public class Boss : MonoBehaviour
     private void health_OnDamaged(object sender, System.EventArgs e)
     {
         int damage = ((IntegerEventArg) e).Value;
-        GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth;
-
-        if(damage>10){
-            DamagePopupManager.Create(damage, transform.position, 3);
-        }else{
-            DamagePopupManager.Create(damage, transform.position, 2);
-        }
+        GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth; 
 
     }
     private void health_OnDead(object sender, System.EventArgs e)

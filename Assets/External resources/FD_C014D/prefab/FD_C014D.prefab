@@ -776,6 +776,7 @@ GameObject:
   - component: {fileID: 95507663102493002}
   - component: {fileID: 1196790043573291607}
   - component: {fileID: 7160784768565324209}
+  - component: {fileID: 1157441597001640148}
   m_Layer: 0
   m_Name: FD_C014D
   m_TagString: Untagged
@@ -852,6 +853,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
+--- !u!114 &1157441597001640148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833075456448242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626944dc8201ae74397f41e7f0b95a26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PopupOffset: {x: 0, y: 2, z: 0}
+  normalDamageColor: {r: 0.888, g: 0.3, b: 0.1, a: 1}
+  criticalDamageColor: {r: 0.8, g: 0.1, b: 0.1, a: 1}
+  healingColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1503279204506708597
 GameObject:
   m_ObjectHideFlags: 0

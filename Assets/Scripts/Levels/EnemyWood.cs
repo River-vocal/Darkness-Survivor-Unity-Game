@@ -31,16 +31,6 @@ public class EnemyWood : MonoBehaviour
     private void health_OnDamaged(object sender, System.EventArgs e)
     {
         GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth;
-        int damage = ((IntegerEventArg) e).Value;
-        if (damage > 10)
-        {
-            DamagePopupManager.Create(damage, transform.position, 3);
-        }
-        else
-        {
-            DamagePopupManager.Create(damage, transform.position, 2);
-        }
-
     }
     private void health_OnDead(object sender, System.EventArgs e)
     {
