@@ -7,19 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class PlayerAttack : MonoBehaviour
 {
-    
+
     public int attackDamage;
-    
-    
+
+
     public Vector3 attackOffset;   // Adjust and set offset in Unity
     // It could avoid boss damaged when play stands on the head of the boss. 
     public float attackRange = 2f;
     public LayerMask attackMask;
     public PlayerController player;
-    
+
     public GameObject bulletPrefab;
     public Transform firePoint;
-    
+
     [SerializeField] protected AudioInfoBroadcaster audioInfoBroadcaster;
 
     [SerializeField] protected AudioInfoBroadcaster.AudioBroadcastValueType effectorType;
@@ -29,18 +29,19 @@ public class PlayerAttack : MonoBehaviour
     // Animation Event
     public void Attack()
     {
-        
+
         player.LockMovement();
         attackDamage = player.attackDamage;
 
         //Analysis
         GlobalAnalysis.attack_number++;
-        if (attackDamage > 10) {
+        if (attackDamage > 10)
+        {
             GlobalAnalysis.critical_attack_number++;
         }
 
         Vector3 pos = transform.position;
-        
+
         // Make sure the attack circle is in front of the player
 
         pos += transform.right * attackOffset.x;
@@ -53,7 +54,7 @@ public class PlayerAttack : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex >= tutorial2LevelIndex && inHeavyNotes)
         // if (true)
         {
-            
+
             // attack with bullet
             if (player.GetBulletCount() > 0)
             {
@@ -72,23 +73,12 @@ public class PlayerAttack : MonoBehaviour
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if (colInfo != null)
         {
-            if (colInfo.name == "Boss")
+            if (inHeavyNotes)
             {
-                if (inHeavyNotes)
-                {
-                    TriggerScreenShake();
-                }
-                colInfo.GetComponent<Boss>().TakeDamage(attackDamage);
+                TriggerScreenShake();
             }
+            colInfo.GetComponent<Health>().CurHealth -= attackDamage;
 
-            if (colInfo.name == "Nature_props_01")
-            {
-                if (inHeavyNotes)
-                {
-                    TriggerScreenShake();
-                }
-                colInfo.GetComponent<EnemyWood>().TakeDamage(attackDamage);
-            }
             Debug.Log("Player Attack");
         }
     }
@@ -97,8 +87,8 @@ public class PlayerAttack : MonoBehaviour
     {
         player.UnlockMovement();
     }
-    
-    
+
+
     // help to see the attack circle range
     // The white circle of the object
     void OnDrawGizmosSelected()
@@ -108,9 +98,9 @@ public class PlayerAttack : MonoBehaviour
         pos += transform.up * attackOffset.y;
         Gizmos.DrawWireSphere(pos, attackRange);
     }
-    
+
     private CinemachineImpulseSource cinemachineImpulseSource;
-    
+
     private void Start()
     {
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
@@ -120,5 +110,5 @@ public class PlayerAttack : MonoBehaviour
     {
         cinemachineImpulseSource.GenerateImpulse();
     }
-    
+
 }

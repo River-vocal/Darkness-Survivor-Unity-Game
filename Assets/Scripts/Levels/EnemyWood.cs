@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class EnemyWood : MonoBehaviour
 {
     private Health health;
+    private int curHealth{
+        get{
+            return health.CurHealth;
+        }
+    }
 
     private void Awake()
     {
@@ -34,24 +39,12 @@ public class EnemyWood : MonoBehaviour
         GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth;
     }
 
-    public void TakeDamage(int damage)
+    private void health_OnDead(object sender, System.EventArgs e)
     {
-        curHealth -= damage;
-        healthBar.setHealth(curHealth);
-        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
-        if (curHealth <= 0)
-        {
-            GlobalAnalysis.state = "boss_dead";
-            AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-            GlobalAnalysis.cleanData();
-            Invoke("LoadNextLevel", 1f);
-        }
-
-        if(damage>10){
-            DamagePopupManager.Create(damage, transform.position, 3);
-        }else{
-            DamagePopupManager.Create(damage, transform.position, 2);
-        }
+        GlobalAnalysis.state = "boss_dead";
+        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        GlobalAnalysis.cleanData();
+        Invoke("LoadNextLevel", 1f);
     }
 
     void LoadNextLevel()

@@ -241,8 +241,6 @@ public class PlayerController : MonoBehaviour
     }
     private void health_OnDead(object sender, System.EventArgs e)
     {
-        int damage = ((IntegerEventArg) e).Value;
-        
         animator.SetTrigger("Kill");
         canMove = false;
         Invoke("PlayerDeath", 1f);
@@ -253,9 +251,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void BackToMenu()
+    public void PlayerDeath()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
