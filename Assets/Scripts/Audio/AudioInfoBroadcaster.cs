@@ -185,7 +185,7 @@ public class AudioInfoBroadcaster : MonoBehaviour
 
     public void PauseMusic()
     {
-        audioSource.Pause();
+        audioSource.Stop();
     }
 
     public void ResumeMusic()
