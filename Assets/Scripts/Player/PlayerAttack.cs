@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -51,7 +52,9 @@ public class PlayerAttack : MonoBehaviour
         pos += transform.up * attackOffset.y;
         effectorValue = audioInfoBroadcaster.GetEffectorValue(effectorType);
         // if heavy beats detected
-        if (effectorValue > 0.2f)
+        // Player can only fire bullet start from the second tutorial
+        int tutorial2LevelIndex = 4;
+        if (SceneManager.GetActiveScene().buildIndex >= tutorial2LevelIndex && effectorValue > 0.2f)
         // if (true)
         {
             
