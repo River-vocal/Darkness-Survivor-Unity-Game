@@ -42,14 +42,8 @@ public class PlayerAttack : MonoBehaviour
         Vector3 pos = transform.position;
         
         // Make sure the attack circle is in front of the player
-        if (player.isFacingRight)
-        {
-            pos += transform.right * attackOffset.x;
-        }
-        else
-        {
-            pos -= transform.right * attackOffset.x;
-        }
+
+        pos += transform.right * attackOffset.x;
         pos += transform.up * attackOffset.y;
         effectorValue = audioInfoBroadcaster.GetEffectorValue(effectorType);
         // if heavy beats detected
@@ -110,17 +104,8 @@ public class PlayerAttack : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Vector3 pos = transform.position;
-        if (player.isFacingRight)
-        {
-            pos += transform.right * attackOffset.x;
-        }
-        else
-        {
-            pos -= transform.right * attackOffset.x;
-        }
-        
+        pos += transform.right * attackOffset.x;
         pos += transform.up * attackOffset.y;
-
         Gizmos.DrawWireSphere(pos, attackRange);
     }
     
