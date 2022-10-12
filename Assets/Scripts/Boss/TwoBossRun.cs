@@ -10,7 +10,7 @@ public class TwoBossRun : StateMachineBehaviour
     Rigidbody2D rb2;
     [SerializeField] private float speed = 10f;
     [SerializeField] private float attackRange = 1.8f;
-    private float bossMoveRange = 1.5f;
+    private float bossMoveRange = 1.8f;
     private TwoBoss boss;
     private GameObject healthBar;
     private GameObject healthBar1;
@@ -67,13 +67,13 @@ public class TwoBossRun : StateMachineBehaviour
         }
 
 
-        Vector3 pos = bossTransform.position;
-        if (boss.name == "Boss1") {
-            pos.y += 2.0f;
-        } else if (boss.name == "Boss2") {
-            pos.y += 3.0f;
-        }
-        healthBar.transform.position = pos;
+        // Vector3 pos = bossTransform.position;
+        // if (boss.name == "Boss1") {
+        //     pos.y += 2.0f;
+        // } else if (boss.name == "Boss2") {
+        //     pos.y += 3.0f;
+        // }
+        // healthBar.transform.position = pos;
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
