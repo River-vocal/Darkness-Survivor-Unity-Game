@@ -61,9 +61,6 @@ public class PlayerController : MonoBehaviour
     private int velocityDirectionAtJump = 0;
     private bool isRunning = false;
     private bool canJump = true;
-    
-    //health related    
-    private Health health;
 
     //attack related
     public float attackRange = 0.5f;
@@ -71,13 +68,6 @@ public class PlayerController : MonoBehaviour
 
     public int BulletCount = 3;
     private static readonly int IsMoving = Animator.StringToHash("isMoving");
-
-    private void Awake()
-    {
-        health = GetComponent<Health>();
-        health.OnDamaged += health_OnDamaged;
-        health.OnDead += health_OnDead;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -104,7 +94,6 @@ public class PlayerController : MonoBehaviour
         //Track data of playerdata
         //Initial states
         GlobalAnalysis.cleanData();
-        GlobalAnalysis.player_initail_healthpoints = health.CurHealth;
     }
 
     private void Update()
@@ -340,21 +329,21 @@ public class PlayerController : MonoBehaviour
         return BulletCount;
     }
 
-    private void health_OnDamaged(object sender, System.EventArgs e)
-    {
-        GlobalAnalysis.player_remaining_healthpoints = health.CurHealth;
-    }
-    private void health_OnDead(object sender, System.EventArgs e)
-    {
-        animator.SetTrigger("Kill");
-        canMove = false;
-        Invoke("PlayerDeath", 1f);
+    // private void health_OnDamaged(object sender, System.EventArgs e)
+    // {
+    //     GlobalAnalysis.player_remaining_healthpoints = health.CurHealth;
+    // }
+    // private void health_OnDead(object sender, System.EventArgs e)
+    // {
+    //     animator.SetTrigger("Kill");
+    //     canMove = false;
+    //     Invoke("PlayerDeath", 1f);
 
-        GlobalAnalysis.state = "player_dead";
-        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-        GlobalAnalysis.cleanData();
+    //     GlobalAnalysis.state = "player_dead";
+    //     AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+    //     GlobalAnalysis.cleanData();
 
-    }
+    // }
 
     public void PlayerDeath()
     {
