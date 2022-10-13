@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,7 +47,11 @@ public class PlayerController : MonoBehaviour
     private float jumpImpulse;
     private float accelerationForceFactor;
     private float decelerationForceFactor;
-    private bool onGround;
+    [SerializeField] bool onGround;
+    [SerializeField] private bool isTouchingWall;
+    [SerializeField] private bool isWallSliding;
+    [SerializeField] private float wallSlideSpeed = 2f;
+    [SerializeField] private float variableJumpHeightMultiplier = 0.5f;
     private int velocityDirectionAtJump = 0;
 
     //attack related
@@ -90,6 +95,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isTouchingWall)
+        {
+            Debug.Log("y speed " + body.velocity.y);
+        }
         CheckDirection();
         UpdateAnimation();
         CheckSurroundings();
@@ -100,14 +109,19 @@ public class PlayerController : MonoBehaviour
         {
             Run();
             Jump();
-            if (body.velocity.y < 0)
+            if (!isWallSliding)
             {
-                SetGravityScale(gravityScale * (movementInput.y < 0 ? fastFallGravityMult : fallGravityMult));
+                if (body.velocity.y < 0)
+                {
+                    SetGravityScale(gravityScale * (movementInput.y < 0 ? fastFallGravityMult : fallGravityMult));
+                }
+                else
+                {
+                    SetGravityScale(gravityScale);
+                }
             }
-            else
-            {
-                SetGravityScale(gravityScale);
-            }
+            
+            ApplyMovement();
         }
         jumpPressed = false;
     }
@@ -134,7 +148,18 @@ public class PlayerController : MonoBehaviour
         float force = forceFactor * speedDiff;
         body.AddForce(force * Vector2.right, ForceMode2D.Force);
     }
-    
+
+    private void ApplyMovement() 
+    {
+        if (isWallSliding)
+        {
+            if (body.velocity.y < -wallSlideSpeed)
+            {
+                body.velocity = new Vector2(body.velocity.x, -wallSlideSpeed);
+            }
+        }    
+    }
+
     private void Jump()
     {
         if (jumpPressed && remainingJumpChances > 0)
@@ -144,6 +169,11 @@ public class PlayerController : MonoBehaviour
             --remainingJumpChances;
             body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
             velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
+        }
+
+        if (jumpReleased && body.velocity.y > 0)
+        {
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y * variableJumpHeightMultiplier);
         }
     }
     private void SetGravityScale(float scale)
@@ -173,6 +203,10 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
+    private void IsWallSliding()
+    {
+        isWallSliding = (isTouchingWall && !onGround && body.velocity.y <= 0);
+    }
     private void CheckSurroundings()
     {
         onGround = IsGrounded();
@@ -180,6 +214,9 @@ public class PlayerController : MonoBehaviour
         {
             remainingJumpChances = jumpChances;
         }
+
+        isTouchingWall = IsTouchingWall();
+        IsWallSliding();
     }
     public void OnMove(InputAction.CallbackContext ctx)
     {
@@ -203,10 +240,10 @@ public class PlayerController : MonoBehaviour
         return Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, Vector2.down, .1f, groundLayer);
     }
 
-    private bool IsFacingWall()
+    private bool IsTouchingWall()
     {
         var bounds = capsuleCollider2D.bounds;
-        return Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
+        return Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, transform.right, 0.1f, wallLayer);
     }
 
     public void LockMovement()
