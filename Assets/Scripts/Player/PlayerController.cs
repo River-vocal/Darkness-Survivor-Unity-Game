@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
+    [Header("Movement Settings")] 
+    [SerializeField] private int jumpChances = 3;
     [SerializeField] private float maxRunSpeedOnGround = 10f;
     [SerializeField] private float airMaxSpeedFactor = 0.2f;
 
     //velocity change per fixedUpdate timeInterval
     [SerializeField] private float velocityAccelerationPerFixedUpdate = 10f;
 
-    //currently set to the same as runAccelerationPerFixedUpdate, reserved for further possible change
     [SerializeField] private float velocityDecelerationPerFixedUpdate = 20f;
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float timeToJumpToHeighest = 0.4f;
@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementInput;
     private bool canMove = true;
     private bool jumpPressed = false;
+    private bool jumpReleased = true;
+    private int remainingJumpChances;
     private float gravityStrength;
     private float gravityScale;
     private float jumpImpulse;
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
     public int attackDamage = 10;
 
     public int BulletCount = 3;
+    private static readonly int IsMoving = Animator.StringToHash("isMoving");
 
     private void Awake()
     {
@@ -75,6 +78,7 @@ public class PlayerController : MonoBehaviour
         gravityScale = gravityStrength / Physics2D.gravity.y;
         accelerationForceFactor = velocityAccelerationPerFixedUpdate / Time.fixedDeltaTime / maxRunSpeedOnGround;
         decelerationForceFactor = velocityDecelerationPerFixedUpdate / Time.fixedDeltaTime / maxRunSpeedOnGround;
+        remainingJumpChances = jumpChances;
         SetGravityScale(gravityScale);
 
         //Track data of playerdata
@@ -86,15 +90,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        onGround = isGrounded();
-        animator.SetBool("isMoving", body.velocity != Vector2.zero);
-        if (movementInput.x != 0)
-        {
-            if ((movementInput.x > 0) != isFacingRight)
-            {
-                Turn();
-            }
-        }
+        CheckDirection();
+        UpdateAnimation();
+        CheckSurroundings();
     }
     private void FixedUpdate()
     {
@@ -133,53 +131,103 @@ public class PlayerController : MonoBehaviour
                                 accelerationForceFactor * (onGround || sameDirection ? 1 : airAccelerationFactor) :
                                 decelerationForceFactor * (onGround || sameDirection ? 1 : airDecelerationFactor);
 
-        //Todo:if in air, would multiply forceFactor by a airfactor
         float force = forceFactor * speedDiff;
         body.AddForce(force * Vector2.right, ForceMode2D.Force);
     }
-
-    private void SetGravityScale(float scale)
-    {
-        body.gravityScale = scale;
-    }
+    
     private void Jump()
     {
-        if (jumpPressed && onGround)
+        if (jumpPressed && remainingJumpChances > 0)
         {
+            body.velocity = new Vector2(body.velocity.x, 0);
+
+            --remainingJumpChances;
             body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
             velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
         }
     }
+    private void SetGravityScale(float scale)
+    {
+        body.gravityScale = scale;
+    }
 
+    private void CheckDirection()
+    {
+        if (movementInput.x != 0)
+        {
+            if ((movementInput.x > 0) != isFacingRight)
+            {
+                Turn();
+            }
+        }
+    }
+
+    private void UpdateAnimation()
+    {
+        animator.SetBool(IsMoving, body.velocity != Vector2.zero);
+    }
+    
     private void Turn()
     {
         isFacingRight = !isFacingRight;
         transform.Rotate(0f, 180f, 0f);
     }
 
-    void OnMove(InputValue movementValue)
+    private void CheckSurroundings()
     {
-        movementInput = movementValue.Get<Vector2>();
+        onGround = IsGrounded();
+        if (onGround)
+        {
+            remainingJumpChances = jumpChances;
+        }
+    }
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        movementInput = ctx.ReadValue<Vector2>();
     }
 
-    private bool isGrounded()
+    public void OnJump(InputAction.CallbackContext ctx)
     {
-        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, Vector2.down, .1f, groundLayer);
+        jumpReleased = ctx.canceled;
+        jumpPressed = ctx.performed;
     }
-
-    private bool isFacingWall()
-    {
-        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
-    }
-    void OnJump()
-    {
-        jumpPressed = true;
-    }
-
-    void OnFire()
+    
+    public void OnFire(InputAction.CallbackContext ctx)
     {
         animator.SetTrigger("attack");
     }
+    
+    private bool IsGrounded()
+    {
+        var bounds = capsuleCollider2D.bounds;
+        return Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, Vector2.down, .1f, groundLayer);
+    }
+
+    private bool IsFacingWall()
+    {
+        var bounds = capsuleCollider2D.bounds;
+        return Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
+    }
+
+    public void LockMovement()
+    {
+        if (IsGrounded())
+        {
+            body.velocity = new Vector2(0, body.velocity.y);
+        }
+        canMove = false;
+    }
+
+    public void UnlockMovement()
+    {
+        canMove = true;
+    }
+
+
+    
+    
+    
+    
 
     public void IncreaseBullet()
     {
@@ -221,19 +269,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void LockMovement()
-    {
-        if (isGrounded())
-        {
-            body.velocity = new Vector2(0, body.velocity.y);
-        }
-        canMove = false;
-    }
 
-    public void UnlockMovement()
-    {
-        canMove = true;
-    }
 
     public int getBulletCount()
     {
