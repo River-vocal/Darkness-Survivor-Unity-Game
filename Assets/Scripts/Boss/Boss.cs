@@ -52,7 +52,7 @@ public class Boss : MonoBehaviour
         GlobalAnalysis.cleanData();
 
         int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
-        if (currLevelIndex == 5)
+        if (currLevelIndex == 6)
         {
                 gameObject.SetActive(false);
             Invoke("GotoAllPassMenu", 1.5f);

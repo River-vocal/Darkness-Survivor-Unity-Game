@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class TwoBoss : MonoBehaviour
 {
+    [SerializeField] private GameObject allPassMenu;
+    [SerializeField] private GameObject wonMenu;
+
     [SerializeField] private int maxHealth = 200;
     private int curHealth;
     [SerializeField] private HealthBar healthBar;
@@ -33,19 +36,6 @@ public class TwoBoss : MonoBehaviour
         bossIsFlipped = false;
 
         //Track data of bossdata
-        
-        //Initial states
-        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
-        // bossdata.level = "1";
-        // bossdata.num_players = 1;
-        // bossdata.num_bosses = 1;
-        // bossdata.state = "start";
-        // bossdata.timestamp = GlobalAnalysis.getTimeStamp();
-        // bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
-        // bossdata.boss_remaining_healthpoints = curHealth;
-        // string json = JsonUtility.ToJson(bossdata);
-
-        // StartCoroutine(GlobalAnalysis.postRequest("test", json));
     }
 
     // Update is called once per frame
@@ -55,66 +45,19 @@ public class TwoBoss : MonoBehaviour
     		if (GetComponent<Health>().CurHealth <= 0) {
     			boss1.SetActive(false);
     			if (boss2 == null || !boss2.activeSelf) {
-    				Invoke("Restart", 1f);
+    				gameObject.SetActive(false);
+                    Invoke("GotoAllPassMenu", 1f);
     			}
     		}
     	} else if (name == "Boss2") {
     		if (GetComponent<Health>().CurHealth <= 0) {
     			boss2.SetActive(false);
     			if (boss1 == null || !boss1.activeSelf) {
-    				Invoke("Restart", 1f);
+    				gameObject.SetActive(false);
+                    Invoke("GotoAllPassMenu", 1f);
     			}
     		}
     	}
-    }
-
-    public void TakeDamage(int damage)
-    {
-        curHealth -= damage;
-        // healthBar.setHealth(curHealth);
-        GlobalAnalysis.boss_remaining_healthpoints = curHealth;
-
-        if (curHealth <= 0)
-        {
-            if (name == "Boss1") {
-                boss1.SetActive(false);
-                if (healthBar2.GetComponent<Slider>().value <= 0) {
-                    // bossdata.level = "1";
-                    // bossdata.num_players = 1;
-                    // bossdata.num_bosses = 1;
-                    // bossdata.state = "end";
-                    // bossdata.timestamp = GlobalAnalysis.getTimeStamp();
-                    // bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
-                    // bossdata.boss_remaining_healthpoints = curHealth;
-                    // string json = JsonUtility.ToJson(bossdata);
-
-                    // StartCoroutine(GlobalAnalysis.postRequest("test", json));
-                    Invoke("Restart", 1f);
-                }
-            }
-            else if (name == "Boss2") {
-                boss2.SetActive(false);
-                if (healthBar1.GetComponent<Slider>().value <= 0) {
-                    // bossdata.level = "1";
-                    // bossdata.num_players = 1;
-                    // bossdata.num_bosses = 1;
-                    // bossdata.state = "end";
-                    // bossdata.timestamp = GlobalAnalysis.getTimeStamp();
-                    // bossdata.player_remaining_healthpoints = GlobalAnalysis.player_remaining_healthpoints;
-                    // bossdata.boss_remaining_healthpoints = curHealth;
-                    // string json = JsonUtility.ToJson(bossdata);
-
-                    // StartCoroutine(GlobalAnalysis.postRequest("test", json));
-                    Invoke("Restart", 1f);
-                }
-            }
-        }
-
-        // if(damage>10){
-        //     DamagePopupManager.Create(damage, transform.position, 3);
-        // }else{
-        //     DamagePopupManager.Create(damage, transform.position, 2);
-        // }
     }
     
     public void lookAtPlayer()
@@ -156,5 +99,19 @@ public class TwoBoss : MonoBehaviour
     void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void GotoAllPassMenu()
+    {
+        allPassMenu.SetActive(true);
+        Time.timeScale = 0f;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void GotoWonMenu()
+    {
+        wonMenu.SetActive(true);
+        Time.timeScale = 0f;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
