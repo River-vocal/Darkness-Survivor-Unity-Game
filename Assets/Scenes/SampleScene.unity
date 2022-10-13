@@ -5854,7 +5854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2914276711498453643, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: m_Interpolate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2914276711498453643, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
       propertyPath: m_SleepingMode
@@ -6267,6 +6267,10 @@ PrefabInstance:
     - target: {fileID: 8654243936099035694, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654243936099035694, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8654243936099035694, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: m_TagString

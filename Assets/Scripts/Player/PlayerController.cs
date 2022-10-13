@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
@@ -108,6 +109,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(body.velocity);
         //update player runtime status variables, should always be called first
         UpdatePlayerStatus();
 
@@ -128,8 +130,8 @@ public class PlayerController : MonoBehaviour
         //don't alter the execution sequence!
         CheckSurroundings();
 
-        //check if player needs flip, when player is sliding on the wall, refuse flip
-        if (movementInput.x != 0 && !isWallSliding)
+        //check if player needs flip
+        if (movementInput.x != 0)
         {
             if ((movementInput.x > 0) != isFacingRight)
             {
@@ -151,11 +153,16 @@ public class PlayerController : MonoBehaviour
     private void CheckSurroundings()
     {
         var bounds = capsuleCollider2D.bounds;
-        isGrounded = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, Vector2.down, .1f, groundLayer);
-        isFacingWall = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, transform.right, 0.1f, wallLayer);
+        isGrounded = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, Vector2.down, .2f, groundLayer);
+        isFacingWall = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, transform.right, 0.2f, wallLayer);
 
         //when player is facing the wall but still has y speed >0, we don't want to label this as player is sliding down the wall
         isWallSliding = (isFacingWall && !isGrounded && body.velocity.y < 0);
+        if (isWallSliding)
+        {
+            //confused, if not cap x to 0, when player bumps into wall, x speed is always not 0, and is leaving the wall
+            body.velocity = new Vector2(0, body.velocity.y);
+        }
     }
 
     private void Flip()
@@ -174,7 +181,10 @@ public class PlayerController : MonoBehaviour
     private void Run()
     {
         //when player in sliding on wall or canMove is locked manually, don't interfere
-        if (isWallSliding || !canMove) return;
+        if (isWallSliding || !canMove)
+        {
+            return;
+        }
         if (velocityDirectionAtJump == 0 && movementInput.x != 0)
         {
             velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
@@ -250,13 +260,18 @@ public class PlayerController : MonoBehaviour
                 //wall hop
                 if (movementInput.x == 0)
                 {
-                    body.AddForce(new Vector2(wallHopForce * wallHopDirection.x * (isFacingRight ? -1 : 1), wallHopForce * wallHopDirection.y));
+                    var force = new Vector2(wallHopForce * wallHopDirection.x * (isFacingRight ? -1 : 1),
+                        wallHopForce * wallHopDirection.y);
+                    body.AddForce(force, ForceMode2D.Impulse);
                 }
                 //wall sliding
                 else
                 {
-                    body.AddForce(new Vector2(wallJumpForce * wallJumpDirection.x * movementInput.x, wallJumpForce * wallJumpDirection.y));
+                    var force = new Vector2(wallJumpForce * wallJumpDirection.x * movementInput.x,
+                        wallJumpForce * wallJumpDirection.y);
+                    body.AddForce(force, ForceMode2D.Impulse);
                 }
+                Flip();
                 isWallSliding = false;
             }
         }
