@@ -15,7 +15,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnergyBar : MonoBehaviour {
+public class EnergyBar : MonoBehaviour
+{
 
     [SerializeField] private Energy energy;
     private float barMaskWidth;
@@ -23,7 +24,8 @@ public class EnergyBar : MonoBehaviour {
     private RectTransform edgeRectTransform;
     private RawImage barRawImage;
 
-    private void Awake() {
+    private void Awake()
+    {
         barMaskRectTransform = transform.Find("barMask").GetComponent<RectTransform>();
         barRawImage = transform.Find("barMask").Find("bar").GetComponent<RawImage>();
         edgeRectTransform = transform.Find("edge").GetComponent<RectTransform>();
@@ -31,19 +33,22 @@ public class EnergyBar : MonoBehaviour {
         barMaskWidth = barMaskRectTransform.sizeDelta.x;
     }
 
-    private void Update() {
+    private void Update()
+    {
+        if (energy)
+        {
+            Rect uvRect = barRawImage.uvRect;
+            uvRect.x += .2f * Time.deltaTime;
+            barRawImage.uvRect = uvRect;
 
-        Rect uvRect = barRawImage.uvRect;
-        uvRect.x += .2f * Time.deltaTime;
-        barRawImage.uvRect = uvRect;
+            Vector2 barMaskSizeDelta = barMaskRectTransform.sizeDelta;
+            barMaskSizeDelta.x = energy.CurEnergyNormalized * barMaskWidth;
+            barMaskRectTransform.sizeDelta = barMaskSizeDelta;
 
-        Vector2 barMaskSizeDelta = barMaskRectTransform.sizeDelta;
-        barMaskSizeDelta.x = energy.CurEnergyNormalized * barMaskWidth;
-        barMaskRectTransform.sizeDelta = barMaskSizeDelta;
+            edgeRectTransform.anchoredPosition = new Vector2(energy.CurEnergyNormalized * barMaskWidth, 0);
 
-        edgeRectTransform.anchoredPosition = new Vector2(energy.CurEnergyNormalized * barMaskWidth, 0);
-
-        edgeRectTransform.gameObject.SetActive(energy.CurEnergyNormalized < 1f);
+            edgeRectTransform.gameObject.SetActive(energy.CurEnergyNormalized < 1f);
+        }
     }
 
 }
