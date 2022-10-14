@@ -581,6 +581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4445887525328412744}
   - component: {fileID: 4445887525328412750}
+  - component: {fileID: 59618710211536701}
   m_Layer: 10
   m_Name: SwordHitBox
   m_TagString: Untagged
@@ -610,7 +611,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4445887525328412747}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -629,6 +630,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18, y: 0.21084228}
   m_EdgeRadius: 0
+--- !u!114 &59618710211536701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445887525328412747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511b8f98768344e4e949425875bf9ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 0
+  attackOffset: {x: 0, y: 0, z: 0}
+  attackRange: 2
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 0
+  player: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  audioInfoBroadcaster: {fileID: 0}
+  effectorType: 0
+  effectorValue: 0
 --- !u!1 &4445887525739542516
 GameObject:
   m_ObjectHideFlags: 0
