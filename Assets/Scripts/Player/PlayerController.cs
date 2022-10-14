@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(body.velocity);
         //update player runtime status variables, should always be called first
         UpdatePlayerStatus();
 
