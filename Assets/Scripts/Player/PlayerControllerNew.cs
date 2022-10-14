@@ -68,6 +68,12 @@ public class PlayerControllerNew : MonoBehaviour
 
     public int BulletCount = 3;
     private static readonly int IsMoving = Animator.StringToHash("isMoving");
+    
+    private static readonly int YVelocity = Animator.StringToHash("yVelocity");
+
+    private static readonly int IsGrounded = Animator.StringToHash("isGrounded");
+    
+    private static readonly int IsWallSliding = Animator.StringToHash("isWallSliding");
 
     // Start is called before the first frame update
     void Start()
@@ -283,6 +289,9 @@ public class PlayerControllerNew : MonoBehaviour
     private void UpdateAnimations()
     {
         animator.SetBool(IsMoving, body.velocity != Vector2.zero);
+        // animator.SetBool(IsJumping, body.velocity.y != 0);
+        animator.SetBool(IsGrounded, isGrounded);
+        animator.SetFloat(YVelocity, body.velocity.y);
     }
     
 
