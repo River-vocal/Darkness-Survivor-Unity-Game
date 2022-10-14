@@ -11,7 +11,8 @@ public class SmoothCamera2D : MonoBehaviour
     // Set x != 0 to offset the camera in front of the player
     [SerializeField] public Vector3 ForwardOffset = new Vector3(2, 1, -10);
 
-    [SerializeField] public float SmoothFactor = 0.15f;
+    // Time limit to reach target position
+    [SerializeField] public float SmoothTime = 0.15f;
 
     private Vector3 velocity = Vector3.zero;
     private Vector3 flipedOffset;
@@ -45,7 +46,7 @@ public class SmoothCamera2D : MonoBehaviour
         if (Target)
         {
             Vector3 targetPosition = Target.position + offset;
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, SmoothFactor);
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, SmoothTime);
         }
     }
 }
