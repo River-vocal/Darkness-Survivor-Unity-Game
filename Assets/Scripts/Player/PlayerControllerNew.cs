@@ -61,6 +61,7 @@ public class PlayerControllerNew : MonoBehaviour
     private int velocityDirectionAtJump = 0;
     private bool isRunning = false;
     private bool canJump = true;
+    private bool inAttackPeriod = false;
 
     //attack related
     public float attackRange = 0.5f;
@@ -289,7 +290,6 @@ public class PlayerControllerNew : MonoBehaviour
     private void UpdateAnimations()
     {
         animator.SetBool(IsMoving, body.velocity != Vector2.zero);
-        // animator.SetBool(IsJumping, body.velocity.y != 0);
         animator.SetBool(IsGrounded, isGrounded);
         animator.SetFloat(YVelocity, body.velocity.y);
         animator.SetBool(IsWallSliding, isWallSliding);
@@ -309,17 +309,14 @@ public class PlayerControllerNew : MonoBehaviour
     
     public void OnFire(InputAction.CallbackContext ctx)
     {
-        animator.SetTrigger("attack");
+        if (ctx.phase == InputActionPhase.Started)
+        {
+            animator.SetTrigger("attack");
+        }
+        
+        
     }
     
-
-
-
-    
-    
-    
-    
-
     public void IncreaseBullet()
     {
         BulletCount++;

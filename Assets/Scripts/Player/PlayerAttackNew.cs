@@ -21,7 +21,6 @@ public class PlayerAttackNew : MonoBehaviour
     // Animation Event
     public void Attack()
     {
-        // Debug.Log("Player Attackkkkkkkkkkkkkkkkkkkk");
         animator = GetComponent<Animator>();
         animator.ResetTrigger(Attack1);
         player.LockMovement();
