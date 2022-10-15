@@ -13,21 +13,21 @@ public class BossLimitedMove : StateMachineBehaviour
 
 
     
-    [SerializeField] private float
-        groundCheckDistance,
-        wallCheckDistance;
+    // [SerializeField] private float
+        // groundCheckDistance,
+        // wallCheckDistance;
 
-    [SerializeField]
-    private Transform
-        groundCheck, wallCheck;
+    // [SerializeField]
+    // private Transform
+        // groundCheck, wallCheck;
 
-    [SerializeField]
-    private LayerMask whatIsGround;
+    // [SerializeField]
+    // private LayerMask whatIsGround;
 
-    private Vector2 movement;
+    // private Vector2 movement;
 
-    private bool groundDetected;
-    private bool wallDetected;
+    // private bool groundDetected;
+    // private bool wallDetected;
     
     
     Transform leftEdge;
@@ -60,9 +60,9 @@ public class BossLimitedMove : StateMachineBehaviour
             
             animator.SetTrigger("Attack");
             
-            Vector2 targetPosition = new Vector2(playerTransform.position.x, rb2.position.y);
-            Vector2 newPosition = Vector2.MoveTowards(rb2.position, targetPosition, speed * Time.deltaTime);
-            rb2.MovePosition(newPosition);
+            // Vector2 targetPosition = new Vector2(playerTransform.position.x, rb2.position.y);
+            // Vector2 newPosition = Vector2.MoveTowards(rb2.position, targetPosition, speed * Time.deltaTime);
+            // rb2.MovePosition(newPosition);
 
             return;
         }
