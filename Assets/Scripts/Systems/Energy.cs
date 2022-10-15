@@ -29,7 +29,7 @@ public class Energy : MonoBehaviour
     private void setEnergy(float value)
     {
         curEnergy = value;
-        if (curEnergy == 0)
+        if (curEnergy <= 0.0001f)
         {
             if (OnEmpty != null) OnEmpty(this, EventArgs.Empty);
         }
@@ -38,14 +38,7 @@ public class Energy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (damage > curEnergy)
-        {
-            curEnergy = 0;
-        }
-        else
-        {
-            curEnergy -= damage;
-        }
+        CurEnergy -= damage;
     }
 
 
@@ -69,5 +62,4 @@ public class Energy : MonoBehaviour
             CurEnergy -= ConsumeSpeed * Time.deltaTime;
         }
     }
-
 }
