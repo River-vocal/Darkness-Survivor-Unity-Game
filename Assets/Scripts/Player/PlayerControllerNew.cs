@@ -292,6 +292,7 @@ public class PlayerControllerNew : MonoBehaviour
         // animator.SetBool(IsJumping, body.velocity.y != 0);
         animator.SetBool(IsGrounded, isGrounded);
         animator.SetFloat(YVelocity, body.velocity.y);
+        animator.SetBool(IsWallSliding, isWallSliding);
     }
     
 
