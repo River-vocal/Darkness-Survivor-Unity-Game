@@ -35,6 +35,20 @@ public class Energy : MonoBehaviour
         }
     }
 
+
+    public void TakeDamage(float damage)
+    {
+        if (damage > curEnergy)
+        {
+            curEnergy = 0;
+        }
+        else
+        {
+            curEnergy -= damage;
+        }
+    }
+
+
     public float CurEnergyNormalized
     {
         get
