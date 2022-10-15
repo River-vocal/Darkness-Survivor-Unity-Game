@@ -30,9 +30,9 @@ public class PlayerControllerNew : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
-    public bool isFacingRight { get; private set; } = true;
-
+    
     [Header("Temporarily serialized")]
+    [SerializeField] public bool isFacingRight = true;
     [SerializeField] private bool isGrounded;
     [SerializeField] private bool isFacingWall;
     [SerializeField] private bool isWallSliding;
@@ -252,20 +252,25 @@ public class PlayerControllerNew : MonoBehaviour
             }
             else
             {
-                //wall hop
-                if (movementInput.x == 0)
-                {
-                    var force = new Vector2(wallHopForce * wallHopDirection.x * (isFacingRight ? -1 : 1),
-                        wallHopForce * wallHopDirection.y);
-                    body.AddForce(force, ForceMode2D.Impulse);
-                }
-                //wall sliding
-                else
-                {
-                    var force = new Vector2(wallJumpForce * wallJumpDirection.x * movementInput.x,
-                        wallJumpForce * wallJumpDirection.y);
-                    body.AddForce(force, ForceMode2D.Impulse);
-                }
+                var force = new Vector2(isFacingRight ? -wallJumpForce : wallJumpForce,
+                    wallJumpForce * wallJumpDirection.y);
+                body.AddForce(force, ForceMode2D.Impulse);
+                
+                // //wall hop
+                // if (movementInput.x == 0)
+                // {
+                //     var force = new Vector2(wallHopForce * wallHopDirection.x * (isFacingRight ? -1 : 1),
+                //         wallHopForce * wallHopDirection.y);
+                //     body.AddForce(force, ForceMode2D.Impulse);
+                // }
+                // //wall sliding
+                // else
+                // {
+                //     
+                //     var force = new Vector2(isFacingRight ? wallJumpForce * wallJumpDirection.x : -wallJumpForce * wallJumpDirection.x,
+                //         wallJumpForce * wallJumpDirection.y);
+                //     body.AddForce(force, ForceMode2D.Impulse);
+                // }
                 Flip();
                 isWallSliding = false;
             }
