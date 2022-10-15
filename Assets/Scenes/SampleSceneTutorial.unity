@@ -1636,8 +1636,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1465, y: -775}
-  m_SizeDelta: {x: 1496.43, y: 84.67}
+  m_AnchoredPosition: {x: 400, y: -618}
+  m_SizeDelta: {x: 1341.48, y: 84.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624653667
 MonoBehaviour:
@@ -1659,7 +1659,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Defeat tree to continue
+  m_text: "Practice an attack \nDefeat tree to continue"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1722,7 +1722,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 115.06415, w: -14.284149}
+  m_margin: {x: 0, y: -5.342972, z: 115.06415, w: -14.284149}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2134,7 +2134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: -6.4600067}
   m_SizeDelta: {x: 0, y: 12.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674020898
@@ -4132,7 +4132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 177.17, y: -293}
+  m_AnchoredPosition: {x: 760, y: -99.56}
   m_SizeDelta: {x: 354.34, y: 199.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351340958
