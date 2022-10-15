@@ -7,11 +7,12 @@ TagManager:
   - Enemy
   - Boss
   - Boost
+  - Missile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hint
   - Water
   - UI
   - Ground
