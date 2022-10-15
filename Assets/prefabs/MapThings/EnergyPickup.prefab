@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8926005618839941311}
   - component: {fileID: 8926005618839941310}
-  - component: {fileID: 8926005618839941305}
   - component: {fileID: 8865832855131744905}
   - component: {fileID: 7489147913393295793}
   - component: {fileID: 6044576187460901718}
+  - component: {fileID: 170816407039708216}
   m_Layer: 0
   m_Name: FloatingIcon
   m_TagString: Boost
@@ -88,26 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8926005618839941305
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8926005618839941308}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c880507dcee30804d8ae5d5b5fcbd0e0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 1
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8865832855131744905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +138,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2692088a299ae4982cbea72832214f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &170816407039708216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8926005618839941308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a75d9d481a9c01499aa171c48cc216e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingHieght: 1
+  rotatingSpeed: 60
 --- !u!1 &8926005618843707431
 GameObject:
   m_ObjectHideFlags: 0
