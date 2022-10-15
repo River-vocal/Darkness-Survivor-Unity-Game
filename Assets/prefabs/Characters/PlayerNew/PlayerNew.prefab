@@ -14,12 +14,11 @@ GameObject:
   - component: {fileID: 2058700098826649274}
   - component: {fileID: 9025602967131022459}
   - component: {fileID: 5303351210728928663}
+  - component: {fileID: 8010855727294679668}
   - component: {fileID: 5452921175104022218}
   - component: {fileID: 2700043537676428458}
   - component: {fileID: 4544306713311464399}
-  - component: {fileID: 5294062557352224513}
   - component: {fileID: 8314140487565119185}
-  - component: {fileID: 6131321976773325335}
   - component: {fileID: 7608246599739381015}
   - component: {fileID: 109463030837848796}
   m_Layer: 10
@@ -160,7 +159,19 @@ MonoBehaviour:
     m_ActionId: 1b5169a5-5129-4620-a8bc-f12753fa1928
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5303351210728928663}
+        m_TargetAssemblyTypeName: PlayerControllerNew, Assembly-CSharp
+        m_MethodName: OnFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 923d84ac-2fe2-4f83-ac0c-5f4b1ed3369b
     m_ActionName: Player/Fire[/Mouse/leftButton,/Keyboard/space]
   - m_PersistentCalls:
@@ -286,6 +297,25 @@ MonoBehaviour:
   attackRange: 0.5
   attackDamage: 10
   BulletCount: 3
+--- !u!114 &8010855727294679668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27614335054139085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511b8f98768344e4e949425875bf9ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 0
+  attackOffset: {x: 0.35, y: 0.7, z: 0}
+  attackRange: 0.5
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  player: {fileID: 5303351210728928663}
 --- !u!95 &5452921175104022218
 Animator:
   serializedVersion: 4
@@ -337,30 +367,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.004469554, y: -0.076621376}
   m_Size: {x: 0.15435919, y: 0.19650094}
   m_Direction: 0
---- !u!114 &5294062557352224513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 27614335054139085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc294e28ff6d94a5a98f74c63c603f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDamage: 0
-  attackOffset: {x: 0.5, y: -0.22, z: 0}
-  attackRange: 0.6
-  attackMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  player: {fileID: 0}
-  bulletPrefab: {fileID: 1539632861300792, guid: 96ae8f9dd8fd89941bc4d858375f035b, type: 3}
-  firePoint: {fileID: 1537325464779777279}
-  audioInfoBroadcaster: {fileID: 6131321976773325335}
-  effectorType: 1
-  effectorValue: 0
 --- !u!82 &8314140487565119185
 AudioSource:
   m_ObjectHideFlags: 0
@@ -457,22 +463,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6131321976773325335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 27614335054139085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e690ca5917d696846b04002bf83dce23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  broadcasterData: {fileID: 0}
-  updateStep: 0.1
-  sampleDataLength: 1024
-  clipLoudness: 0
 --- !u!114 &7608246599739381015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,7 +571,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4445887525328412744}
   - component: {fileID: 4445887525328412750}
-  - component: {fileID: 59618710211536701}
   m_Layer: 10
   m_Name: SwordHitBox
   m_TagString: Untagged
@@ -611,7 +600,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4445887525328412747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -630,30 +619,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18, y: 0.21084228}
   m_EdgeRadius: 0
---- !u!114 &59618710211536701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4445887525328412747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511b8f98768344e4e949425875bf9ce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDamage: 0
-  attackOffset: {x: 0, y: 0, z: 0}
-  attackRange: 2
-  attackMask:
-    serializedVersion: 2
-    m_Bits: 0
-  player: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  audioInfoBroadcaster: {fileID: 0}
-  effectorType: 0
-  effectorValue: 0
 --- !u!1 &4445887525739542516
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,7 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbd7248236400248b86d3a9ac3fe8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioInfoBroadcaster: {fileID: 6131321976773325335}
+  audioInfoBroadcaster: {fileID: 0}
   effectorType: 1
   effectorValue: 0
   effectorMultiplier: 1

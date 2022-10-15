@@ -16,12 +16,14 @@ public class PlayerAttackNew : MonoBehaviour
     public float attackRange = 0.8f;
     public LayerMask attackMask;
     public PlayerControllerNew player;
-
+    private Animator animator;
 
     // Animation Event
     public void Attack()
     {
-
+        // Debug.Log("Player Attackkkkkkkkkkkkkkkkkkkk");
+        animator = GetComponent<Animator>();
+        animator.ResetTrigger(Attack1);
         player.LockMovement();
         attackDamage = player.attackDamage;
 
@@ -72,6 +74,7 @@ public class PlayerAttackNew : MonoBehaviour
     }
 
     private CinemachineImpulseSource cinemachineImpulseSource;
+    private static readonly int Attack1 = Animator.StringToHash("attack");
 
     private void Start()
     {
