@@ -2911,7 +2911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 527726834}
   ForwardOffset: {x: 2, y: 1, z: -10}
-  SmoothTime: 0.3
+  SmoothTime: 0.2
 --- !u!1 &961808097
 GameObject:
   m_ObjectHideFlags: 0
