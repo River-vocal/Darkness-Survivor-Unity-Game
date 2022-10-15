@@ -17,37 +17,39 @@ using UnityEngine.UI;
 
 public class EnergyBar : MonoBehaviour
 {
-
     [SerializeField] private Energy energy;
-    private float barMaskWidth;
+    [SerializeField] public float AnimationSpeed = 0.2f;
+
+    private RawImage barRawImage;
+    private float barMaskWidth => rectTransform.rect.width;
+    private RectTransform rectTransform;
     private RectTransform barMaskRectTransform;
     private RectTransform edgeRectTransform;
-    private RawImage barRawImage;
-
+    
     private void Awake()
     {
+        rectTransform = (RectTransform) transform;
         barMaskRectTransform = transform.Find("barMask").GetComponent<RectTransform>();
         barRawImage = transform.Find("barMask").Find("bar").GetComponent<RawImage>();
         edgeRectTransform = transform.Find("edge").GetComponent<RectTransform>();
-
-        barMaskWidth = barMaskRectTransform.sizeDelta.x;
     }
 
     private void Update()
     {
         if (energy)
         {
+            // Animation
             Rect uvRect = barRawImage.uvRect;
-            uvRect.x += .2f * Time.deltaTime;
+            uvRect.x += AnimationSpeed * Time.deltaTime;
             barRawImage.uvRect = uvRect;
 
-            Vector2 barMaskSizeDelta = barMaskRectTransform.sizeDelta;
-            barMaskSizeDelta.x = energy.CurEnergyNormalized * barMaskWidth;
-            barMaskRectTransform.sizeDelta = barMaskSizeDelta;
+            // Bar length
+            Vector2 offsetMax = barMaskRectTransform.offsetMax;
+            offsetMax.x = -((1f - energy.CurEnergyNormalized) * barMaskWidth);
+            barMaskRectTransform.offsetMax = offsetMax;
 
+            // Edge position
             edgeRectTransform.anchoredPosition = new Vector2(energy.CurEnergyNormalized * barMaskWidth, 0);
-
-            edgeRectTransform.gameObject.SetActive(energy.CurEnergyNormalized < 1f);
         }
     }
 
