@@ -2216,8 +2216,13 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
+<<<<<<< Updated upstream
   m_AnchoredPosition: {x: -14.812012, y: -6.4599915}
   m_SizeDelta: {x: -29.625, y: 12.92}
+=======
+  m_AnchoredPosition: {x: 19.79, y: -12.919998}
+  m_SizeDelta: {x: -39.59, y: 25.84}
+>>>>>>> Stashed changes
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674020898
 MonoBehaviour:
@@ -2239,8 +2244,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< Updated upstream
   m_text: "You can now launch fireballs! \nPress space to attack\nCollect more from
     the sky!\n"
+=======
+  m_text: 'Now you launch fireballs!
+
+    Press space to attack
+
+    Collect more
+    fireballs from the sky!'
+>>>>>>> Stashed changes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2249,8 +2263,13 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
+<<<<<<< Updated upstream
     rgba: 4282992969
   m_fontColor: {r: 0.28627452, g: 0.28627452, b: 0.28627452, a: 1}
+=======
+    rgba: 4282399163
+  m_fontColor: {r: 0.73333335, g: 0.22352938, b: 0.24926326, a: 1}
+>>>>>>> Stashed changes
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2262,7 +2281,11 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
+<<<<<<< Updated upstream
   m_TextStyleHashCode: 97690656
+=======
+  m_TextStyleHashCode: 2426
+>>>>>>> Stashed changes
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -4523,8 +4546,13 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
+<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 203.6, y: -309.21}
   m_SizeDelta: {x: 299.27, y: 236.78}
+=======
+  m_AnchoredPosition: {x: 214.67, y: -252.96}
+  m_SizeDelta: {x: 321.39, y: 236.02}
+>>>>>>> Stashed changes
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351340958
 MonoBehaviour:
