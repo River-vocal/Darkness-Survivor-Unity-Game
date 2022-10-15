@@ -9,7 +9,7 @@ public class FloorDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Health>().CurHealth -= 100;
+            collision.gameObject.GetComponent<Energy>().CurEnergy -= 10f;
         }
     }
 }
