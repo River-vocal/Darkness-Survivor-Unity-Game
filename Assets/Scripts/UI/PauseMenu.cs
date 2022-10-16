@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenu;
-
+    private GameObject pauseMenu;
     public static bool GameIsPaused = false;
+
+    private void Awake() {
+        pauseMenu = transform.Find("pauseMenu").gameObject;
+    }
 
     void Update()
     {
@@ -45,19 +48,6 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void GoNextLevel()
-    {
-        Time.timeScale = 1f;
-
-        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex;
-        if (nextLevelIndex < 5)
-        {
-            nextLevelIndex += 1;
-        }
-
-        SceneManager.LoadScene(nextLevelIndex);
     }
 
     public void GoLevelSelectionLevel()

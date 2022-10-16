@@ -5,18 +5,11 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
-    [SerializeField] private GameObject wonMenu;
+    public event EventHandler OnPlayerReachExit;
     
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("Play reach finish point");
-        GotoWonMenu();
-    }
-    
-    void GotoWonMenu()
-    {
-        wonMenu.SetActive(true);
-        Time.timeScale = 0f;
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(OnPlayerReachExit!=null) OnPlayerReachExit(this, EventArgs.Empty);
     }
 }
