@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
-    [SerializeField] private GameObject allPassMenu;
-    [SerializeField] private GameObject wonMenu;
+    // [SerializeField] private GameObject allPassMenu;
+    // [SerializeField] private GameObject wonMenu;
+
+    [SerializeField] private GameObject bossTreasure;
     
     [SerializeField] private int maxHealth = 200;
     private int curHealth;
@@ -59,8 +61,7 @@ public class Boss : MonoBehaviour
         }
         else
         {
-                gameObject.SetActive(false);
-            Invoke("GotoWonMenu", 1.5f);
+            Invoke("beatBoss", 0.5f);
         }
     }
     
@@ -102,15 +103,18 @@ public class Boss : MonoBehaviour
 
     void GotoAllPassMenu()
     {
-        allPassMenu.SetActive(true);
+        // allPassMenu.SetActive(true);
         Time.timeScale = 0f;
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void GotoWonMenu()
+    void beatBoss()
     {
-        wonMenu.SetActive(true);
-        Time.timeScale = 0f;
+        Instantiate(bossTreasure, transform.position, transform.rotation);
+        gameObject.SetActive(false);
+
+        // wonMenu.SetActive(true);
+        // Time.timeScale = 0f;
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
