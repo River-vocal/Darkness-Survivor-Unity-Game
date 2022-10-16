@@ -7,6 +7,8 @@ public class Energy : MonoBehaviour
 {
     [SerializeField] public float MaxEnergy = 100f;
     [SerializeField] public float ConsumeSpeed = 1f;
+    [SerializeField] public float SlowDownFactor = 0.5f;
+    [SerializeField] public float SlowDownThreshold = 0.2f;
 
     public event EventHandler OnEmpty;
 
@@ -57,9 +59,11 @@ public class Energy : MonoBehaviour
 
     private void Update()
     {
-        if (curEnergy > 0)
+        if (CurEnergyNormalized > SlowDownThreshold)
         {
             CurEnergy -= ConsumeSpeed * Time.deltaTime;
+        }else{
+            CurEnergy -= ConsumeSpeed * SlowDownFactor * Time.deltaTime;
         }
     }
 }

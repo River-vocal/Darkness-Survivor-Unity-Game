@@ -497,8 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4ba41f93050774aa8129abf86b4435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allPassMenu: {fileID: 0}
-  wonMenu: {fileID: 0}
+  bossTreasure: {fileID: 0}
   maxHealth: 200
   healthBar: {fileID: 0}
   bossIsFlipped: 0
@@ -38956,6 +38955,14 @@ PrefabInstance:
     - target: {fileID: 1288091212520849516, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
       propertyPath: MaxEnergy
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288091212520849516, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
+      propertyPath: ConsumeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288091212520849516, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
+      propertyPath: SlowDownFactor
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2058700098826649274, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
       propertyPath: m_Enabled
