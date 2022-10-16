@@ -41,7 +41,7 @@ public class EnemyProjectile : MonoBehaviour
         if (collision.name == "Ground")
         {
             hit = true;
-            Deactivate();
+            anim.SetTrigger("explode");
             coll.enabled = false;
         }
 
@@ -49,7 +49,7 @@ public class EnemyProjectile : MonoBehaviour
         {
             hit = true;
             collision.GetComponent<Energy>().CurEnergy -= damage;
-            Deactivate();
+            anim.SetTrigger("explode");
             coll.enabled = false;
         }
         
@@ -66,8 +66,8 @@ public class EnemyProjectile : MonoBehaviour
     }
     private void Deactivate()
     {
-        gameObject.SetActive(false);
         gameObject.transform.rotation = Quaternion.identity;
+        gameObject.SetActive(false);
     }
 
     private void Activate(bool isFaceLeft)
