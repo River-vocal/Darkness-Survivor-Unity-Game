@@ -33,7 +33,7 @@ public class BossPatrol : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Math.Abs(playerTransform.position.x - rb2.position.x) <= attackRange)
+        if (Math.Abs(playerTransform.position.y - rb2.position.y) <= 3 && Math.Abs(playerTransform.position.x - rb2.position.x) <= attackRange)
         {
             boss.lookAtPlayer();
             movingLeft = !boss.bossIsFlipped;

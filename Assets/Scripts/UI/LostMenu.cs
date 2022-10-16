@@ -9,17 +9,17 @@ public class LostMenu : MonoBehaviour
     private Energy energy;
     private GameObject lostMenu;
 
-    private void Start()
-    {
+    private void Awake() {
         energy = GameObject.FindWithTag("Player").GetComponent<Energy>();
         energy.OnEmpty += energy_OnEmpty;
         lostMenu = transform.Find("lostMenu").gameObject;
+        Time.timeScale = 1f;
     }
 
     private void energy_OnEmpty(object sender, System.EventArgs e)
     {
         lostMenu.SetActive(true);
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
     }
 
     public void GoLevelSelectionLevel()

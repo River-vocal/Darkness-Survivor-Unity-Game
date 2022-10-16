@@ -17,6 +17,7 @@ public class MapLightController : MonoBehaviour
     protected bool playerIsIn = false;
     protected Energy playerEnergy;
     protected PlayerLightController playerLightController;
+    protected float tmpSpeed;
     
     protected virtual void Start()
     {
@@ -30,8 +31,9 @@ public class MapLightController : MonoBehaviour
         {
             playerEnergy = col.gameObject.GetComponent<Energy>();
             playerLightController = col.gameObject.GetComponent<PlayerLightController>();
-            originalConsumeSpeed = playerEnergy.ConsumeSpeed;
+            originalConsumeSpeed = playerEnergy.GetOriginalConsumeSpeed();
             OnTriggerEnterHelper(playerEnergy, playerLightController);
+            Debug.Log("Enter light" + playerEnergy.ConsumeSpeed);
         }
     }
 
@@ -39,9 +41,14 @@ public class MapLightController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Energy>().ConsumeSpeed = originalConsumeSpeed;
+            other.gameObject.GetComponent<Energy>().ConsumeSpeed += tmpSpeed * typeOfLight;
+            if (tmpSpeed == 0)
+            {
+                other.gameObject.GetComponent<Energy>().ConsumeSpeed += originalConsumeSpeed;
+            }
             other.gameObject.GetComponent<PlayerLightController>().LeaveLight();
             playerIsIn = false;
+            Debug.Log("Leave light" + playerEnergy.ConsumeSpeed);
         }
     }
 
@@ -63,8 +70,17 @@ public class MapLightController : MonoBehaviour
 
     protected void OnTriggerEnterHelper(Energy tmpEnergy, PlayerLightController tmpLightController)
     {
-        float tmpSpeed = Math.Max(Math.Abs(15f * typeOfLight), Math.Abs(originalConsumeSpeed * 2 * typeOfLight));
-        tmpEnergy.ConsumeSpeed = -tmpSpeed * typeOfLight;
+        tmpSpeed = Math.Max(Math.Abs(15f * typeOfLight), Math.Abs(originalConsumeSpeed * 2 * typeOfLight));
+        if (typeOfLight == HEALING_LIGHT)
+        {
+            tmpSpeed *= 2;
+        }
+        
+        tmpEnergy.ConsumeSpeed -= tmpSpeed * typeOfLight;
+        if (tmpSpeed == 0)
+        {
+            tmpEnergy.ConsumeSpeed -= originalConsumeSpeed;
+        }
         EnterLightHelper(tmpLightController);
         playerIsIn = true;
     }

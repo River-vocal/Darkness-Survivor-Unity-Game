@@ -17,7 +17,7 @@ using UnityEngine.UI;
 
 public class EnergyBar : MonoBehaviour
 {
-    [SerializeField] private Energy energy;
+    private Energy energy;
     [SerializeField] public float AnimationSpeed = 0.2f;
 
     private RawImage barRawImage;
@@ -28,6 +28,7 @@ public class EnergyBar : MonoBehaviour
     
     private void Awake()
     {
+        energy = GameObject.FindWithTag("Player").GetComponent<Energy>();
         rectTransform = (RectTransform) transform;
         barMaskRectTransform = transform.Find("barMask").GetComponent<RectTransform>();
         barRawImage = transform.Find("barMask").Find("bar").GetComponent<RawImage>();
