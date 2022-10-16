@@ -1,13 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class PlayerControllerNew : MonoBehaviour
 {
@@ -25,11 +18,16 @@ public class PlayerControllerNew : MonoBehaviour
     [SerializeField][Range(0f, 1)] private float airDecelerationFactor = 0.2f;
     [SerializeField] private float fallGravityMult = 1.2f;
     [SerializeField] private float fastFallGravityMult = 1.3f;
+    [SerializeField] private float jumpBufferTime = 0.1f;
+    [SerializeField] private float coyoteTime = 0.2f;
     
     [Header("Layer Settings")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
+    [Header("Check Settings")] 
+    [SerializeField] private float wallCheckDistance = 0.2f;
+    [SerializeField] private float groundCheckDistance = 0.2f;
     
     [Header("Temporarily serialized")]
     [SerializeField] public bool isFacingRight = true;
@@ -48,7 +46,7 @@ public class PlayerControllerNew : MonoBehaviour
     private CapsuleCollider2D capsuleCollider2D;
     private Animator animator;
     private Vector2 movementInput;
-    //canMove is a lock key altered manually by code, not by status update
+    //canMove is a lock key altered manually by code from other well, like when you attack, attack code may lock the canMove key
     private bool canMove = true;
     private bool jumpPressed = false;
     private bool jumpReleased = true;
@@ -58,10 +56,12 @@ public class PlayerControllerNew : MonoBehaviour
     private float jumpImpulse;
     private float accelerationForceFactor;
     private float decelerationForceFactor;
-    private int velocityDirectionAtJump = 0;
+    private int xVelocityDirectionAtJump = 0;
     private bool isRunning = false;
     private bool canJump = true;
     private bool inAttackPeriod = false;
+    private float jumpButtonPressedTime;
+    private float coyoteTimeCounter;
 
     //attack related
     public float attackRange = 0.5f;
@@ -107,7 +107,6 @@ public class PlayerControllerNew : MonoBehaviour
     {
         //update player runtime status variables, should always be called first
         UpdatePlayerStatus();
-
         
         //animation related
         UpdateAnimations();
@@ -115,8 +114,17 @@ public class PlayerControllerNew : MonoBehaviour
         //if jump pressed
         if (jumpPressed)
         {
-            Jump();
-            jumpPressed = false;
+            if (!Jump())
+            {
+                if (Time.time >= jumpButtonPressedTime + jumpBufferTime)
+                {
+                    jumpPressed = false;
+                }
+            }
+            else
+            {
+                jumpPressed = false;
+            }
         }
     }
 
@@ -124,7 +132,17 @@ public class PlayerControllerNew : MonoBehaviour
     {
         //don't alter the execution sequence!
         CheckSurroundings();
-
+        
+        //reset coyoteTime
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        
         //check if player needs flip
         if (movementInput.x != 0)
         {
@@ -148,8 +166,8 @@ public class PlayerControllerNew : MonoBehaviour
     private void CheckSurroundings()
     {
         var bounds = capsuleCollider2D.bounds;
-        isGrounded = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, Vector2.down, .2f, groundLayer);
-        isFacingWall = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, transform.right, 0.2f, wallLayer);
+        isGrounded = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, Vector2.down, groundCheckDistance, groundLayer);
+        isFacingWall = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, transform.right, wallCheckDistance, wallLayer);
 
         //when player is facing the wall but still has y speed >0, we don't want to label this as player is sliding down the wall
         isWallSliding = (isFacingWall && !isGrounded && body.velocity.y < 0);
@@ -180,11 +198,11 @@ public class PlayerControllerNew : MonoBehaviour
         {
             return;
         }
-        if (velocityDirectionAtJump == 0 && movementInput.x != 0)
+        if (xVelocityDirectionAtJump == 0 && movementInput.x != 0)
         {
-            velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
+            xVelocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
         }
-        bool sameDirection = (velocityDirectionAtJump == (int)Mathf.Sign(movementInput.x));
+        bool sameDirection = (xVelocityDirectionAtJump == (int)Mathf.Sign(movementInput.x));
         float lerpFactor = isGrounded || sameDirection ? 1 : airMaxSpeedFactor;
         float targetSpeed = movementInput.x * maxRunSpeedOnGround;
         targetSpeed = Mathf.Lerp(body.velocity.x, targetSpeed, lerpFactor);
@@ -210,6 +228,7 @@ public class PlayerControllerNew : MonoBehaviour
         {
             if (body.velocity.y < -wallSlideSpeed)
             {
+                // Debug.Log(body.velocity.y);
                 body.velocity = new Vector2(body.velocity.x, -wallSlideSpeed);
             }
         }
@@ -219,7 +238,7 @@ public class PlayerControllerNew : MonoBehaviour
             //moving up
             if (body.velocity.y > 0)
             {
-                //set gravity scale to normal
+                //reset gravityScale
                 body.gravityScale = gravityScale;
                 //variable jump height
                 if (jumpReleased)
@@ -237,7 +256,7 @@ public class PlayerControllerNew : MonoBehaviour
     }
 
     //jump is now called by update
-    private void Jump()
+    private bool Jump()
     {
         if (canJump && canMove)
         {
@@ -248,11 +267,12 @@ public class PlayerControllerNew : MonoBehaviour
             {
                 body.velocity = new Vector2(body.velocity.x, 0);
                 body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
-                velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
+                xVelocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
             }
             else
             {
-                var force = new Vector2(isFacingRight ? -wallJumpForce : wallJumpForce,
+                Debug.Log("aiusdhfiausdhf");
+                var force = new Vector2((isFacingRight ? -wallJumpForce : wallJumpForce) * wallJumpDirection.x,
                     wallJumpForce * wallJumpDirection.y);
                 body.AddForce(force, ForceMode2D.Impulse);
                 
@@ -272,12 +292,17 @@ public class PlayerControllerNew : MonoBehaviour
                 //     body.AddForce(force, ForceMode2D.Impulse);
                 // }
                 Flip();
+                xVelocityDirectionAtJump = isFacingRight ? 1 : -1;
                 isWallSliding = false;
             }
+
+            return true;
         }
+
+        return false;
     }
 
-    //reserved for attack system to lock movement
+    //reserved for other system to lock movement, only lock movement in x axis
     public void LockMovement()
     {
         if (isGrounded)
@@ -316,6 +341,7 @@ public class PlayerControllerNew : MonoBehaviour
     {
         jumpReleased = ctx.canceled;
         jumpPressed = ctx.performed;
+        jumpButtonPressedTime = Time.time;
     }
     
     public void OnFire(InputAction.CallbackContext ctx)
