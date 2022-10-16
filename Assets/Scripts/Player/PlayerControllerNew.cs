@@ -299,7 +299,13 @@ public class PlayerControllerNew : MonoBehaviour
         animator.SetFloat(YVelocity, body.velocity.y);
         animator.SetBool(IsWallSliding, isWallSliding);
     }
+
+    public bool usePressed;
     
+    public void OnUse(InputAction.CallbackContext ctx)
+    {
+        usePressed = ctx.performed && !ctx.canceled;
+    }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
