@@ -6,18 +6,47 @@ using UnityEngine.Rendering.Universal;
 public class MapLightController : MonoBehaviour
 {
     [Header("Light type Setting")] 
-    [SerializeField] private int typeOfLight;
+    [SerializeField][Range(-1,1)] protected int typeOfLight;
     // 1: healing light, 0: neutral light, -1: damaging Light
 
-    private Light2D curLight;
-    private readonly int HEALING_LIGHT = 1;
-    private readonly int NEUTRAL_LIGHT = 0;
-    private readonly int DAMAGING_LIGHT = -1;
-    private float originalConsumeSpeed = 1f;
+    protected Light2D curLight;
+    protected readonly int HEALING_LIGHT = 1;
+    protected readonly int NEUTRAL_LIGHT = 0;
+    protected readonly int DAMAGING_LIGHT = -1;
+    protected float originalConsumeSpeed = 1f;
+    protected bool playerIsIn = false;
+    protected Energy playerEnergy;
+    protected PlayerLightController playerLightController;
     
-    private void Start()
+    protected virtual void Start()
     {
         curLight = GetComponent<Light2D>();
+        SetLightColor();
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            playerEnergy = col.gameObject.GetComponent<Energy>();
+            playerLightController = col.gameObject.GetComponent<PlayerLightController>();
+            originalConsumeSpeed = playerEnergy.ConsumeSpeed;
+            OnTriggerEnterHelper(playerEnergy, playerLightController);
+        }
+    }
+
+    protected void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<Energy>().ConsumeSpeed = originalConsumeSpeed;
+            other.gameObject.GetComponent<PlayerLightController>().LeaveLight();
+            playerIsIn = false;
+        }
+    }
+
+    protected void SetLightColor()
+    {
         if (typeOfLight == HEALING_LIGHT)
         {
             curLight.color = Color.green;
@@ -32,27 +61,15 @@ public class MapLightController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    protected void OnTriggerEnterHelper(Energy tmpEnergy, PlayerLightController tmpLightController)
     {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            originalConsumeSpeed = col.gameObject.GetComponent<Energy>().ConsumeSpeed;
-            float tmpSpeed = Math.Max(Math.Abs(15f * typeOfLight), Math.Abs(originalConsumeSpeed * 2 * typeOfLight));
-            col.gameObject.GetComponent<Energy>().ConsumeSpeed = -tmpSpeed * typeOfLight;
-            EnterLightHelper(col.gameObject.GetComponent<PlayerLightController>());
-        }
+        float tmpSpeed = Math.Max(Math.Abs(15f * typeOfLight), Math.Abs(originalConsumeSpeed * 2 * typeOfLight));
+        tmpEnergy.ConsumeSpeed = -tmpSpeed * typeOfLight;
+        EnterLightHelper(tmpLightController);
+        playerIsIn = true;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.gameObject.GetComponent<Energy>().ConsumeSpeed = originalConsumeSpeed;
-            other.gameObject.GetComponent<PlayerLightController>().LeaveLight();
-        }
-    }
-
-    private void EnterLightHelper(PlayerLightController con)
+    protected void EnterLightHelper(PlayerLightController con)
     {
         if (typeOfLight == HEALING_LIGHT)
         {
