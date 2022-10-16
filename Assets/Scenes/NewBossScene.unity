@@ -1724,6 +1724,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 192089445}
     m_Modifications:
+    - target: {fileID: 10668932940573635, guid: a983824365ded4c92b0f5ce1d1c988b7, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 889200168}
     - target: {fileID: 7315421656832031109, guid: a983824365ded4c92b0f5ce1d1c988b7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2142,7 +2146,7 @@ PrefabInstance:
       objectReference: {fileID: 889200168}
     - target: {fileID: 1196790043573291607, guid: 1713af3811cfb9d4d82968643d5b8586, type: 3}
       propertyPath: attackRange
-      value: 5
+      value: 1.55
       objectReference: {fileID: 0}
     - target: {fileID: 1196790043573291607, guid: 1713af3811cfb9d4d82968643d5b8586, type: 3}
       propertyPath: attackOffset.y
