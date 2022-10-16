@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100228932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 81.83, y: -10, z: 1.1016027}
+  m_LocalPosition: {x: 73.8, y: -10, z: 1.1016027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1326,7 +1326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008826172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.9, y: -1.02, z: 0}
+  m_LocalPosition: {x: -6.92, y: -1.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58403,7 +58403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773932319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.84, y: -1.02, z: 0}
+  m_LocalPosition: {x: 12.29, y: -1.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58912,10 +58912,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossTreasure: {fileID: 1350749148}
   obstacle: {fileID: 1711540691}
+  bossFinalTransform: {fileID: 100228933}
   maxHealth: 200
   healthBar: {fileID: 0}
   bossIsFlipped: 0
-  attackDamage: 20
+  attackDamage: 16
   playerTransform: {fileID: 1722052696}
 --- !u!114 &1835547116
 MonoBehaviour:
@@ -58931,7 +58932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 0
   attackOffset: {x: 0, y: 0, z: 0}
-  attackRange: 2.1
+  attackRange: 2.2
   attackMask:
     serializedVersion: 2
     m_Bits: 1024
