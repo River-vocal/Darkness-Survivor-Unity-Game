@@ -9,10 +9,16 @@ public class Energy : MonoBehaviour
     [SerializeField] public float ConsumeSpeed = 1f;
     [SerializeField] public float SlowDownFactor = 0.5f;
     [SerializeField] public float SlowDownThreshold = 0.2f;
+    [SerializeField] private float originalConsumeSpeed;
 
     public event EventHandler OnEmpty;
 
     private float curEnergy;
+
+    private void Start()
+    {
+        originalConsumeSpeed = ConsumeSpeed;
+    }
 
     public float CurEnergy
     {
@@ -65,5 +71,10 @@ public class Energy : MonoBehaviour
         }else{
             CurEnergy -= ConsumeSpeed * SlowDownFactor * Time.deltaTime;
         }
+    }
+
+    public float GetOriginalConsumeSpeed()
+    {
+        return originalConsumeSpeed;
     }
 }

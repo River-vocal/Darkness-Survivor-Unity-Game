@@ -25,6 +25,15 @@ public class DynamicLightController : MapLightController
         while (true)
         {
             yield return new WaitForSeconds(lightSwitchIntervalTime);
+            if (playerIsIn)
+            {
+                playerEnergy.ConsumeSpeed += tmpSpeed * typeOfLight;
+                if (tmpSpeed == 0)
+                {
+                    playerEnergy.ConsumeSpeed += originalConsumeSpeed;
+                }
+                playerLightController.LeaveLight();
+            }
             curTypeIdx = (curTypeIdx + 1) % 3;
             typeOfLight = curTypeIdx - 1;
             if (playerIsIn)
