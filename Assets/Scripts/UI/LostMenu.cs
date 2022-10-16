@@ -19,7 +19,7 @@ public class LostMenu : MonoBehaviour
     private void energy_OnEmpty(object sender, System.EventArgs e)
     {
         lostMenu.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
 
     public void GoLevelSelectionLevel()
