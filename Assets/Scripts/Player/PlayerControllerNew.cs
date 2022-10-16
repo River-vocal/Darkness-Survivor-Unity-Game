@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -127,23 +128,21 @@ public class PlayerControllerNew : MonoBehaviour
                 jumpPressed = false;
             }
         }
+        else if (!isGrounded && remainingJumpChances == jumpChances)
+        {
+            coyoteTimer -= Time.deltaTime;
+            if (coyoteTimer <= 0)
+            {
+                --remainingJumpChances;
+            }
+        }
     }
 
     private void UpdatePlayerStatus()
     {
         //don't alter the execution sequence!
         CheckSurroundings();
-        
-        //reset coyoteTime
-        if (isGrounded)
-        {
-            coyoteTimer = coyoteTime;
-        }
-        else
-        {
-            coyoteTimer -= Time.deltaTime;
-        }
-        
+
         //check if player needs flip
         if (movementInput.x != 0)
         {
@@ -151,6 +150,12 @@ public class PlayerControllerNew : MonoBehaviour
             {
                 Flip();
             }
+        }
+        
+        //reset coyoteTimer
+        if (isGrounded)
+        {
+            coyoteTimer = coyoteTime;
         }
         
         //check if player is running
