@@ -60,8 +60,8 @@ public class PlayerControllerNew : MonoBehaviour
     private bool isRunning = false;
     private bool canJump = true;
     private bool inAttackPeriod = false;
-    private float jumpButtonPressedTime;
-    private float coyoteTimeCounter;
+    private float jumpBufferTimer;
+    private float coyoteTimer;
 
     //attack related
     public float attackRange = 0.5f;
@@ -111,12 +111,13 @@ public class PlayerControllerNew : MonoBehaviour
         //animation related
         UpdateAnimations();
         
-        //if jump pressed
+        //if jump pressed within jump buffer time
         if (jumpPressed)
         {
             if (!Jump())
             {
-                if (Time.time >= jumpButtonPressedTime + jumpBufferTime)
+                jumpBufferTimer -= Time.deltaTime;
+                if (jumpBufferTimer <= 0)
                 {
                     jumpPressed = false;
                 }
@@ -136,11 +137,11 @@ public class PlayerControllerNew : MonoBehaviour
         //reset coyoteTime
         if (isGrounded)
         {
-            coyoteTimeCounter = coyoteTime;
+            coyoteTimer = coyoteTime;
         }
         else
         {
-            coyoteTimeCounter -= Time.deltaTime;
+            coyoteTimer -= Time.deltaTime;
         }
         
         //check if player needs flip
@@ -341,7 +342,7 @@ public class PlayerControllerNew : MonoBehaviour
     {
         jumpReleased = ctx.canceled;
         jumpPressed = ctx.performed;
-        jumpButtonPressedTime = Time.time;
+        jumpBufferTimer = jumpBufferTime;
     }
     
     public void OnFire(InputAction.CallbackContext ctx)
