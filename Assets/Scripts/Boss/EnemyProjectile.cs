@@ -40,7 +40,7 @@ public class EnemyProjectile : MonoBehaviour
         if (collision.name == "Wall")
         {
             hit = true;
-            Deactivate();
+            anim.SetTrigger("explode");
             coll.enabled = false;
         }
 
@@ -48,7 +48,7 @@ public class EnemyProjectile : MonoBehaviour
         {
             hit = true;
             collision.GetComponent<Health>().CurHealth -= damage;
-            Deactivate();
+            anim.SetTrigger("explode");
             coll.enabled = false;
         }
         
