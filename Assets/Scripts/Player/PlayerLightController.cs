@@ -36,7 +36,7 @@ public class PlayerLightController : MonoBehaviour
     {
         curStatus = UNDER_HEALING_LIGHT;
         spotLight.color = Color.green;
-        spotLight.intensity = BASIC_STATUS;
+        spotLight.intensity = BASIC_STATUS + 0.5f;
     }
 
     public void EnterNeutralLight()
@@ -50,7 +50,7 @@ public class PlayerLightController : MonoBehaviour
     {
         curStatus = UNDER_DAMAGING_LIGHT;
         spotLight.color = Color.red;
-        spotLight.intensity = BOOST_STATUS;
+        spotLight.intensity = BOOST_STATUS + 0.2f;
     }
 
     public void LeaveLight()
