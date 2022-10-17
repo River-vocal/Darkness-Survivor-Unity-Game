@@ -1,13 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class PlayerControllerNew : MonoBehaviour
 {
@@ -25,17 +19,24 @@ public class PlayerControllerNew : MonoBehaviour
     [SerializeField][Range(0f, 1)] private float airDecelerationFactor = 0.2f;
     [SerializeField] private float fallGravityMult = 1.2f;
     [SerializeField] private float fastFallGravityMult = 1.3f;
+    [SerializeField] private float jumpBufferTime = 0.1f;
+    [SerializeField] private float coyoteTime = 0.2f;
     
     [Header("Layer Settings")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
+    [Header("Check Settings")] 
+    [SerializeField] private float wallCheckDistance = 0.2f;
+    [SerializeField] private float groundCheckDistance = 0.2f;
     
     [Header("Temporarily serialized")]
     [SerializeField] public bool isFacingRight = true;
     [SerializeField] private bool isGrounded;
     [SerializeField] private bool isFacingWall;
     [SerializeField] private bool isWallSliding;
+    [SerializeField] private bool rightBeforeWallSliding;
+    [SerializeField] private bool isWallJumping = false;
     [SerializeField] private float wallSlideSpeed = 2f;
     [SerializeField] private float variableJumpHeightMultiplier = 0.5f;
     [SerializeField] private Vector2 wallJumpDirection = new Vector2(1, 2);
@@ -48,7 +49,7 @@ public class PlayerControllerNew : MonoBehaviour
     private CapsuleCollider2D capsuleCollider2D;
     private Animator animator;
     private Vector2 movementInput;
-    //canMove is a lock key altered manually by code, not by status update
+    //canMove is a lock key altered manually by code from other well, like when you attack, attack code may lock the canMove key
     private bool canMove = true;
     private bool jumpPressed = false;
     private bool jumpReleased = true;
@@ -58,10 +59,11 @@ public class PlayerControllerNew : MonoBehaviour
     private float jumpImpulse;
     private float accelerationForceFactor;
     private float decelerationForceFactor;
-    private int velocityDirectionAtJump = 0;
-    private bool isRunning = false;
+    private int xVelocityDirectionAtJump = 0;
     private bool canJump = true;
     private bool inAttackPeriod = false;
+    private float jumpBufferTimer;
+    private float coyoteTimer;
 
     //attack related
     public float attackRange = 0.5f;
@@ -75,6 +77,8 @@ public class PlayerControllerNew : MonoBehaviour
     private static readonly int IsGrounded = Animator.StringToHash("isGrounded");
     
     private static readonly int IsWallSliding = Animator.StringToHash("isWallSliding");
+
+    private static readonly int IsWallJumping = Animator.StringToHash("isWallJumping");
 
     // Start is called before the first frame update
     void Start()
@@ -106,24 +110,63 @@ public class PlayerControllerNew : MonoBehaviour
     private void Update()
     {
         //update player runtime status variables, should always be called first
-        UpdatePlayerStatus();
-
+        
+        //if jump pressed within jump buffer time
+        if (jumpPressed)
+        {
+            if (!Jump())
+            {
+                jumpBufferTimer -= Time.deltaTime;
+                if (jumpBufferTimer <= 0)
+                {
+                    jumpPressed = false;
+                }
+            }
+            else
+            {
+                jumpPressed = false;
+            }
+        }
+        else if (!isGrounded && remainingJumpChances == jumpChances)
+        {
+            coyoteTimer -= Time.deltaTime;
+            if (coyoteTimer <= 0)
+            {
+                --remainingJumpChances;
+            }
+        }
         
         //animation related
         UpdateAnimations();
-        
-        //if jump pressed
-        if (jumpPressed)
-        {
-            Jump();
-            jumpPressed = false;
-        }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
+    }
+
+    public Transform groundCheck;
     private void UpdatePlayerStatus()
     {
         //don't alter the execution sequence!
-        CheckSurroundings();
+        var bounds = capsuleCollider2D.bounds;
+        // isGrounded = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, Vector2.down, groundCheckDistance, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckDistance, groundLayer);
+        isFacingWall = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, transform.right, wallCheckDistance, wallLayer);
+        // if (isWallJumping && isGrounded)
+        // {
+        //     Debug.Log("error! " + transform.position);
+        // }
+        //when player is facing the wall but still has y speed >0, we don't want to label this as player is sliding down the wall
+        var velocity = body.velocity;
+        isWallSliding = (isFacingWall && !isGrounded && velocity.y < 0);
+        rightBeforeWallSliding = (isFacingWall && !isGrounded && velocity.y >= 0);
+        
+        if (isWallSliding)
+        {
+            //confused, if not cap x to 0, when player bumps into wall, x speed is always not 0, and is leaving the wall
+            body.velocity = new Vector2(0, body.velocity.y);
+        }
 
         //check if player needs flip
         if (movementInput.x != 0)
@@ -134,29 +177,34 @@ public class PlayerControllerNew : MonoBehaviour
             }
         }
         
-        //check if player is running
-        isRunning = (body.velocity.x != 0);
-        
+        //reset coyoteTimer
+        if (isGrounded)
+        {
+            coyoteTimer = coyoteTime;
+        }
+
         //check if can jump
         if ((isGrounded && body.velocity.y <= 0) || isWallSliding)
         {
             remainingJumpChances = jumpChances;
         }
         canJump = (remainingJumpChances > 0);
-    }
-    
-    private void CheckSurroundings()
-    {
-        var bounds = capsuleCollider2D.bounds;
-        isGrounded = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, Vector2.down, .2f, groundLayer);
-        isFacingWall = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, transform.right, 0.2f, wallLayer);
 
-        //when player is facing the wall but still has y speed >0, we don't want to label this as player is sliding down the wall
-        isWallSliding = (isFacingWall && !isGrounded && body.velocity.y < 0);
-        if (isWallSliding)
+        if (isGrounded || isWallSliding)
         {
-            //confused, if not cap x to 0, when player bumps into wall, x speed is always not 0, and is leaving the wall
-            body.velocity = new Vector2(0, body.velocity.y);
+            if (isWallJumping)
+            {
+                // if (isGrounded)
+                // {
+                //     Debug.Log("set walljumping to false, isGrounded");
+                //
+                // }
+                // else if (isWallSliding)
+                // {
+                //     Debug.Log("set walljumping to false, isWallSliding");
+                // }
+                isWallJumping = false;
+            }
         }
     }
 
@@ -168,6 +216,8 @@ public class PlayerControllerNew : MonoBehaviour
     
     private void FixedUpdate()
     {
+        UpdatePlayerStatus();
+
         InterfereWithMovement();
     }
 
@@ -180,13 +230,44 @@ public class PlayerControllerNew : MonoBehaviour
         {
             return;
         }
-        if (velocityDirectionAtJump == 0 && movementInput.x != 0)
+        if (xVelocityDirectionAtJump == 0 && movementInput.x != 0)
         {
-            velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
+            xVelocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
         }
-        bool sameDirection = (velocityDirectionAtJump == (int)Mathf.Sign(movementInput.x));
+
+        bool sameDirection;
+        if (isWallJumping)
+        {
+            if ((int)movementInput.x == 0)
+            {
+                // Debug.Log("wall jumping, input x = 0");
+                sameDirection = true;
+            }
+            else if (xVelocityDirectionAtJump == (int)Mathf.Sign(movementInput.x))
+            {
+                // Debug.Log("wall jumping, input x the same");
+                sameDirection = true;
+            }
+            else
+            {
+                // Debug.Log("wall jumping, input x the opposite");
+                sameDirection = false;
+            }
+        }
+        else
+        {
+            if (xVelocityDirectionAtJump == (int)Mathf.Sign(movementInput.x))
+            {
+                sameDirection = true;
+            }
+            else
+            {
+                sameDirection = false;
+            }
+        }
+         // = isWallJumping ? ((int)movementInput.x == 0 || () : (xVelocityDirectionAtJump == (int)Mathf.Sign(movementInput.x));
         float lerpFactor = isGrounded || sameDirection ? 1 : airMaxSpeedFactor;
-        float targetSpeed = movementInput.x * maxRunSpeedOnGround;
+        float targetSpeed = isWallJumping ? (isFacingRight ? maxRunSpeedOnGround : -maxRunSpeedOnGround) : movementInput.x * maxRunSpeedOnGround;
         targetSpeed = Mathf.Lerp(body.velocity.x, targetSpeed, lerpFactor);
         var velocity = body.velocity;
         float speedDiff = targetSpeed - velocity.x;
@@ -210,6 +291,7 @@ public class PlayerControllerNew : MonoBehaviour
         {
             if (body.velocity.y < -wallSlideSpeed)
             {
+                // Debug.Log(body.velocity.y);
                 body.velocity = new Vector2(body.velocity.x, -wallSlideSpeed);
             }
         }
@@ -219,7 +301,7 @@ public class PlayerControllerNew : MonoBehaviour
             //moving up
             if (body.velocity.y > 0)
             {
-                //set gravity scale to normal
+                //reset gravityScale
                 body.gravityScale = gravityScale;
                 //variable jump height
                 if (jumpReleased)
@@ -236,48 +318,42 @@ public class PlayerControllerNew : MonoBehaviour
         }
     }
 
-    //jump is now called by update
-    private void Jump()
+    //jump is now called by update cause it is triggered by user input, no need to put it in fixedUpdate
+    private bool Jump()
     {
         if (canJump && canMove)
         {
             --remainingJumpChances;
 
             //normal jump
-            if (!isWallSliding)
+            if (!isWallSliding && !rightBeforeWallSliding)
             {
                 body.velocity = new Vector2(body.velocity.x, 0);
                 body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
-                velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
+                xVelocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
             }
             else
             {
-                var force = new Vector2(isFacingRight ? -wallJumpForce : wallJumpForce,
-                    wallJumpForce * wallJumpDirection.y);
-                body.AddForce(force, ForceMode2D.Impulse);
-                
-                // //wall hop
-                // if (movementInput.x == 0)
-                // {
-                //     var force = new Vector2(wallHopForce * wallHopDirection.x * (isFacingRight ? -1 : 1),
-                //         wallHopForce * wallHopDirection.y);
-                //     body.AddForce(force, ForceMode2D.Impulse);
-                // }
-                // //wall sliding
-                // else
-                // {
-                //     
-                //     var force = new Vector2(isFacingRight ? wallJumpForce * wallJumpDirection.x : -wallJumpForce * wallJumpDirection.x,
-                //         wallJumpForce * wallJumpDirection.y);
-                //     body.AddForce(force, ForceMode2D.Impulse);
-                // }
+                Debug.Log("wall jump triggered");
                 Flip();
+                var impulse = new Vector2((isFacingRight ? wallJumpForce : -wallJumpForce) * wallJumpDirection.x,
+                    wallJumpForce * wallJumpDirection.y);
+                Debug.Log("force: " + impulse);
+                body.AddForce(impulse, ForceMode2D.Impulse);
+                xVelocityDirectionAtJump = isFacingRight ? 1 : -1;
+                isWallJumping = true;
                 isWallSliding = false;
+                rightBeforeWallSliding = false;
+                isGrounded = false;
             }
+
+            return true;
         }
+
+        return false;
     }
 
-    //reserved for attack system to lock movement
+    //reserved for other system to lock movement, only lock movement in x axis
     public void LockMovement()
     {
         if (isGrounded)
@@ -316,6 +392,7 @@ public class PlayerControllerNew : MonoBehaviour
     {
         jumpReleased = ctx.canceled;
         jumpPressed = ctx.performed;
+        jumpBufferTimer = jumpBufferTime;
     }
     
     public void OnFire(InputAction.CallbackContext ctx)
