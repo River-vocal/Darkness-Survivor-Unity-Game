@@ -302,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
       propertyPath: wallJumpForce
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6220862066610302536, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
       propertyPath: m_SortingOrder
@@ -2603,7 +2603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224210996049472394, guid: 4275f0f6f5639a2438a8dfc1ef334c79, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224210996049472394, guid: 4275f0f6f5639a2438a8dfc1ef334c79, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2717,7 +2717,7 @@ RectTransform:
   m_Children:
   - {fileID: 872701091}
   m_Father: {fileID: 1222717407}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4238,9 +4238,9 @@ RectTransform:
   - {fileID: 961808098}
   - {fileID: 1850349813}
   - {fileID: 538010020}
+  - {fileID: 618661972}
   - {fileID: 1567415214}
   - {fileID: 1700960792}
-  - {fileID: 618661972}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
