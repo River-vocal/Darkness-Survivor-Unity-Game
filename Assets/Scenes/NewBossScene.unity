@@ -1970,8 +1970,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d8dd602e241324082756c9cda7790d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 447415730}
-  audioInfoBroadcaster: {fileID: 1224525548}
 --- !u!1 &692426534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2695,8 +2693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4ba41f93050774aa8129abf86b4435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allPassMenu: {fileID: 0}
-  wonMenu: {fileID: 1550711100}
+  bossTreasure: {fileID: 0}
+  obstacle: {fileID: 0}
   maxHealth: 200
   healthBar: {fileID: 0}
   bossIsFlipped: 0
@@ -3526,17 +3524,6 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 2761049170709215265, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
   m_PrefabInstance: {fileID: 2117075683}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1224525550 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4898402453313026441, guid: 5a32376bd0a04e84a8eddc7d96289007, type: 3}
-  m_PrefabInstance: {fileID: 2117075683}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224525530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d2c3a6c45ea49428156d3f0f100eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1242965843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5963,7 +5950,7 @@ PrefabInstance:
     - target: {fileID: 4107462459152764003, guid: 59d2b7753440f444e90c5cb381070bd3, type: 3}
       propertyPath: health
       value: 
-      objectReference: {fileID: 1224525550}
+      objectReference: {fileID: 0}
     - target: {fileID: 6445533797365046290, guid: 59d2b7753440f444e90c5cb381070bd3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

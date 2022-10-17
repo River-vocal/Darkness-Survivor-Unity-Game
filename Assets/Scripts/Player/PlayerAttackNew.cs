@@ -47,10 +47,17 @@ public class PlayerAttackNew : MonoBehaviour
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if (colInfo != null)
         {
-            
-            TriggerScreenShake();
-            
-            colInfo.GetComponent<Health>().CurHealth -= attackDamage;
+            if (colInfo.tag == "Drop")
+            {
+                colInfo.GetComponent<EnemyDrops>().dropDeath();
+            }
+            else
+            {
+                TriggerScreenShake();
+
+                colInfo.GetComponent<Health>().CurHealth -= attackDamage;
+            }
+
 
             Debug.Log("Player Attack");
         }
