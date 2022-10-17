@@ -60030,7 +60030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 1722052696}
   ForwardOffset: {x: 2, y: 1, z: -10}
-  SmoothTime: 0.2
+  SmoothTime: 0.3
 --- !u!114 &1937536999
 MonoBehaviour:
   m_ObjectHideFlags: 0
