@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class PlayerLightController : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class PlayerLightController : MonoBehaviour
 
     private readonly float BASIC_STATUS = 0.2f;
     private readonly float BOOST_STATUS = 0.8f;
+
+    private readonly float INTENSITY_UNDER_DARKNESS = 1.2f;
+
+    private float originalIntensity;
+    private bool isInDarkLevel;
     
     void Start()
     {
@@ -21,6 +27,16 @@ public class PlayerLightController : MonoBehaviour
         spotLight.color = Color.white;
         spotLight.intensity = BASIC_STATUS;
         curStatus = NO_LIGHT;
+        isInDarkLevel = SceneManager.GetActiveScene().name.Equals("DarkLevel1");
+        // SceneManager.GetActiveScene().buildIndex
+        if (isInDarkLevel)
+        {
+            spotLight.intensity = 0.4f;
+            spotLight.pointLightOuterRadius = 6.5f;
+            spotLight.pointLightInnerRadius = 1.5f;
+        }
+
+        originalIntensity = spotLight.intensity;
     }
     
     void Update()
@@ -36,7 +52,8 @@ public class PlayerLightController : MonoBehaviour
     {
         curStatus = UNDER_HEALING_LIGHT;
         spotLight.color = Color.green;
-        spotLight.intensity = BASIC_STATUS + 0.5f;
+        spotLight.intensity = BOOST_STATUS + 0.5f;
+        EnterHelperInDark();
     }
 
     public void EnterNeutralLight()
@@ -44,6 +61,7 @@ public class PlayerLightController : MonoBehaviour
         curStatus = UNDER_NEUTRAL_LIGHT;
         spotLight.color = Color.white;
         spotLight.intensity = BOOST_STATUS;
+        EnterHelperInDark();
     }
 
     public void EnterDamagingLight()
@@ -51,12 +69,25 @@ public class PlayerLightController : MonoBehaviour
         curStatus = UNDER_DAMAGING_LIGHT;
         spotLight.color = Color.red;
         spotLight.intensity = BOOST_STATUS + 0.2f;
+        EnterHelperInDark();
+    }
+
+    private void EnterHelperInDark()
+    {
+        if (isInDarkLevel)
+        {
+            spotLight.pointLightOuterRadius += 3f;
+        }
     }
 
     public void LeaveLight()
     {
         curStatus = NO_LIGHT;
         spotLight.color = Color.white;
-        spotLight.intensity = BASIC_STATUS;
+        spotLight.intensity = originalIntensity;
+        if (isInDarkLevel)
+        {
+            spotLight.pointLightOuterRadius -= 3f;
+        }
     }
 }
