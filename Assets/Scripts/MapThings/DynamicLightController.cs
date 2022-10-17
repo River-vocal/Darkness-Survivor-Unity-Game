@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DynamicLightController : MapLightController
 {
-    [SerializeField] private float lightSwitchIntervalTime = 3f;
+    [SerializeField] public float lightSwitchIntervalTime = 3f;
     [SerializeField][Range(-1,1)] private int initialType;
     private float lightIntensityDecreasePerSecond;
+    protected float originalIntensity;
 
     private int curTypeIdx;
     // 0, 1, 2 red white green
@@ -18,6 +20,11 @@ public class DynamicLightController : MapLightController
         typeOfLight = initialType;
         curTypeIdx = initialType + 1;
         base.Start();
+        if (SceneManager.GetActiveScene().name.Equals("DarkLevel1"))
+        {
+            curLight.intensity = 1.0f;
+        }
+        originalIntensity = curLight.intensity;
         lightIntensityDecreasePerSecond = originalIntensity * 0.75f / lightSwitchIntervalTime;
         IEnumerator coroutine = UpdateColor();
         StartCoroutine(coroutine);

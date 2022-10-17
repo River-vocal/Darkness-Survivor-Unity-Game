@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Light2D))]
 public class MapLightController : MonoBehaviour
@@ -18,13 +19,11 @@ public class MapLightController : MonoBehaviour
     protected Energy playerEnergy;
     protected PlayerLightController playerLightController;
     protected float tmpSpeed;
-    protected float originalIntensity;
     
     protected virtual void Start()
     {
         curLight = GetComponent<Light2D>();
         SetLightColor();
-        originalIntensity = curLight.intensity;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D col)
