@@ -110776,7 +110776,7 @@ PrefabInstance:
       objectReference: {fileID: 1299654546}
     - target: {fileID: 1196790043573291607, guid: 1713af3811cfb9d4d82968643d5b8586, type: 3}
       propertyPath: attackRange
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1196790043573291607, guid: 1713af3811cfb9d4d82968643d5b8586, type: 3}
       propertyPath: attackOffset.y
@@ -110834,9 +110834,9 @@ MonoBehaviour:
   boss: {fileID: 1299654546}
   cooldownTimer: Infinity
   attackCooldown: 1
-  attackDamage: 5
+  attackDamage: 20
   attackOffset: {x: 0, y: 0, z: 0}
-  attackRange: 5
+  attackRange: 10
   attackMask:
     serializedVersion: 2
     m_Bits: 1024
