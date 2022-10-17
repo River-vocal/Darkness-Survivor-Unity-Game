@@ -73,12 +73,21 @@ public class PlayerAttack : MonoBehaviour
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if (colInfo != null)
         {
-            if (inHeavyNotes)
+            if (colInfo.tag == "Drop")
             {
-                TriggerScreenShake();
+                colInfo.GetComponent<DropController>().dropDeath();
             }
-            colInfo.GetComponent<Health>().CurHealth -= attackDamage;
+            else
+            {
+                if (inHeavyNotes)
+                {
+                    TriggerScreenShake();
+                }
 
+                colInfo.GetComponent<Health>().CurHealth -= attackDamage;
+
+               
+            }
             Debug.Log("Player Attack");
         }
     }
