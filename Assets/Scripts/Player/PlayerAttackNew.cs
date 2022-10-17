@@ -23,7 +23,7 @@ public class PlayerAttackNew : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         animator.ResetTrigger(Attack1);
-        player.LockMovement();
+        // player.LockMovement();
         attackDamage = player.attackDamage;
 
         //Analysis
@@ -58,7 +58,7 @@ public class PlayerAttackNew : MonoBehaviour
     // Animation Event
     public void EndAttack()
     {
-        player.UnlockMovement();
+        // player.UnlockMovement();
     }
 
 
