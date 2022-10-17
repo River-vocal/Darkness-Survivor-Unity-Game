@@ -23,8 +23,11 @@ public class AnalysisSender : Singleton<AnalysisSender>
 
         using (var uwr = new UnityWebRequest(URL + key + ".json", "POST")) {
             byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
-            uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-            uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+            using UploadHandlerRaw uploadHandler = new UploadHandlerRaw(jsonToSend);
+            uwr.uploadHandler = uploadHandler;
+            uwr.downloadHandler = new DownloadHandlerBuffer();
+            uwr.disposeUploadHandlerOnDispose = true;
+            uwr.disposeDownloadHandlerOnDispose = true;
             uwr.SetRequestHeader("Content-Type", "application/json");
             uwr.timeout = 5;
             //Send the request then wait here until it returns
