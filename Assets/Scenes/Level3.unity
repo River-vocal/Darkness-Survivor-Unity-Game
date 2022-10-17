@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 2
   initialType: 0
 --- !u!60 &95523984
 PolygonCollider2D:
@@ -1247,7 +1247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 2
   initialType: 0
 --- !u!60 &264679748
 PolygonCollider2D:
@@ -2939,7 +2939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 2
   initialType: 1
 --- !u!60 &527325304
 PolygonCollider2D:
@@ -3207,7 +3207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 1
   initialType: 0
 --- !u!60 &540951269
 PolygonCollider2D:
@@ -4127,7 +4127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 2
   initialType: -1
 --- !u!60 &634942502
 PolygonCollider2D:
@@ -4662,7 +4662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 1
   initialType: -1
 --- !u!60 &657951955
 PolygonCollider2D:
@@ -4935,7 +4935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 1
   initialType: 1
 --- !u!60 &708515283
 PolygonCollider2D:
@@ -5260,7 +5260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 1
   initialType: 1
 --- !u!60 &810810724
 PolygonCollider2D:
@@ -5562,7 +5562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 2
   initialType: 0
 --- !u!60 &819742930
 PolygonCollider2D:
@@ -110149,7 +110149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 2
   initialType: -1
 --- !u!60 &1199262997
 PolygonCollider2D:
@@ -112386,7 +112386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfLight: 0
-  lightSwitchIntervalTime: 3
+  lightSwitchIntervalTime: 1
   initialType: -1
 --- !u!60 &1572716873
 PolygonCollider2D:
