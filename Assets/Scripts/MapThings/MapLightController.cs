@@ -33,7 +33,6 @@ public class MapLightController : MonoBehaviour
             playerLightController = col.gameObject.GetComponent<PlayerLightController>();
             originalConsumeSpeed = playerEnergy.GetOriginalConsumeSpeed();
             OnTriggerEnterHelper(playerEnergy, playerLightController);
-            Debug.Log("Enter light" + playerEnergy.ConsumeSpeed);
         }
     }
 
@@ -48,7 +47,6 @@ public class MapLightController : MonoBehaviour
             }
             other.gameObject.GetComponent<PlayerLightController>().LeaveLight();
             playerIsIn = false;
-            Debug.Log("Leave light" + playerEnergy.ConsumeSpeed);
         }
     }
 
