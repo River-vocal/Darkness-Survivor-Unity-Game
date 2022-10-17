@@ -10,7 +10,7 @@ public class Boss : MonoBehaviour
 
     [SerializeField] private GameObject bossTreasure;
     [SerializeField] private GameObject obstacle;
-    [SerializeField] private Transform bossFinalTransform;
+    // [SerializeField] private Transform bossFinalTransform;
     
     [SerializeField] private int maxHealth = 200;
     private int curHealth;
@@ -112,9 +112,9 @@ public class Boss : MonoBehaviour
 
     void beatBoss()
     {
-        Instantiate(bossTreasure, bossFinalTransform.position, bossFinalTransform.rotation);
+        // Instantiate(bossTreasure, bossFinalTransform.position, bossFinalTransform.rotation);
         gameObject.SetActive(false);
-
+        bossTreasure.SetActive(true);
         // GameObject obstacle = GameObject.Find("Obstacle");
         if (obstacle != null)
         {
