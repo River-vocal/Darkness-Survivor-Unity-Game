@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (GameIsPaused)
@@ -25,6 +26,7 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+        */
     }
 
     // [SerializeField] protected AudioInfoBroadcaster audioInfoBroadcaster;
