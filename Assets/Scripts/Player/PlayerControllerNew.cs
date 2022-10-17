@@ -334,11 +334,11 @@ public class PlayerControllerNew : MonoBehaviour
             }
             else
             {
-                Debug.Log("wall jump triggered");
+                // Debug.Log("wall jump triggered");
                 Flip();
                 var impulse = new Vector2((isFacingRight ? wallJumpForce : -wallJumpForce) * wallJumpDirection.x,
                     wallJumpForce * wallJumpDirection.y);
-                Debug.Log("force: " + impulse);
+                // Debug.Log("force: " + impulse);
                 body.AddForce(impulse, ForceMode2D.Impulse);
                 xVelocityDirectionAtJump = isFacingRight ? 1 : -1;
                 isWallJumping = true;

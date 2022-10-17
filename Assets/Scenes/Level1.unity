@@ -110083,22 +110083,6 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.63526654
       objectReference: {fileID: 0}
-    - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
-      propertyPath: wallHopForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
-      propertyPath: wallJumpForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
-      propertyPath: wallLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 16448
-      objectReference: {fileID: 0}
     - target: {fileID: 6220862066610302536, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
       propertyPath: m_SortingLayer
       value: 0

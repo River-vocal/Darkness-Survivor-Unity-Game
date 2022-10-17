@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39657cfb4e55ef408c6f99aa4ff04f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfLight: 0
 --- !u!60 &199309987
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -656,11 +657,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &403772199 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8538232040549862762, guid: 9648292b4c77dcf4f94adb328dfa3e0e, type: 3}
-  m_PrefabInstance: {fileID: 8538232040682970701}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &454104104
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +984,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 403772199}
+  - {fileID: 8538232040682970702}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1099,8 +1095,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4ba41f93050774aa8129abf86b4435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allPassMenu: {fileID: 0}
-  wonMenu: {fileID: 0}
+  bossTreasure: {fileID: 0}
+  obstacle: {fileID: 0}
+  bossFinalTransform: {fileID: 0}
   maxHealth: 200
   healthBar: {fileID: 0}
   bossIsFlipped: 0
@@ -83903,6 +83900,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerNew
       objectReference: {fileID: 0}
+    - target: {fileID: 223371206328453977, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 304554880922845158, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -84019,22 +84020,6 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.63526654
       objectReference: {fileID: 0}
-    - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
-      propertyPath: wallHopForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
-      propertyPath: wallJumpForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
-      propertyPath: wallLayer.m_Bits
-      value: 576
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 576
-      objectReference: {fileID: 0}
     - target: {fileID: 8314140487565119185, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
       propertyPath: MinDistance
       value: 0.8044231
@@ -84092,6 +84077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39657cfb4e55ef408c6f99aa4ff04f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfLight: 0
 --- !u!60 &1679589012
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -85456,6 +85442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39657cfb4e55ef408c6f99aa4ff04f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfLight: 0
 --- !u!60 &1852629900
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -87630,3 +87617,8 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8538232040549862757, guid: 9648292b4c77dcf4f94adb328dfa3e0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9648292b4c77dcf4f94adb328dfa3e0e, type: 3}
+--- !u!224 &8538232040682970702 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 156696390780729237, guid: 9648292b4c77dcf4f94adb328dfa3e0e, type: 3}
+  m_PrefabInstance: {fileID: 8538232040682970701}
+  m_PrefabAsset: {fileID: 0}

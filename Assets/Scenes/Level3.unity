@@ -112403,7 +112403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
       propertyPath: wallJumpForce
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5303351210728928663, guid: 965a3af9354308546929757fd6a4b19b, type: 3}
       propertyPath: wallLayer.m_Bits
