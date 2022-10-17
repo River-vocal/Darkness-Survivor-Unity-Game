@@ -23,7 +23,7 @@ public class WonMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         int nextLevelIndex = SceneManager.GetActiveScene().buildIndex;
-        if (nextLevelIndex < 4)
+        if (nextLevelIndex < 5)
         {
             nextLevelIndex += 1;
         }
