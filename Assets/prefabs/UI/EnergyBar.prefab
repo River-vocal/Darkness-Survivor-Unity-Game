@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0105736941f639e4f91ec5ffcce41fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energy: {fileID: 0}
   AnimationSpeed: 0.2
 --- !u!114 &156696390780729239
 MonoBehaviour:
@@ -141,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f02dedac8b5d44abd243cdabfca656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResizeSmoothTime: 1
-  ResizeStressScale: 1.5
+  ResizeSmoothTime: 1.5
+  ResizeStressScale: 2.5
   ResizeThreshold: 2
 --- !u!1 &156696390962861146
 GameObject:
