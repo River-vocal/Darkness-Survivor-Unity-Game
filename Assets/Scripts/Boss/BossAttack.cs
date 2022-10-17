@@ -21,6 +21,11 @@ public class BossAttack : MonoBehaviour
         if (colInfo != null)
         {
             // colInfo.GetComponent<Health>().CurHealth -= attackDamage;
+            GlobalAnalysis.boss_damage += attackDamage;
+            if  (colInfo.GetComponent<Energy>().CurEnergy < attackDamage) {
+                GlobalAnalysis.player_status = "boss_attack_dead";
+                Debug.Log("lose by: boss");
+            }
             colInfo.GetComponent<Energy>().CurEnergy -= attackDamage;
             colInfo.GetComponent<KnockBack>().Trigger(gameObject);
             Debug.Log("Boss Attack");

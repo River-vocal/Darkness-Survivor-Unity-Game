@@ -31,29 +31,17 @@ public class Boss : MonoBehaviour
     void Start()
     {
         bossIsFlipped = false;
-
-        //Track data of bossdata
-        
-        //Initial states
-        GlobalAnalysis.cleanData();
-        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
-        GlobalAnalysis.boss_initail_healthpoints = curHealth;
-        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
-        AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 
     private void health_OnDamaged(object sender, System.EventArgs e)
     {
         int damage = ((IntegerEventArg) e).Value;
-        GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth; 
 
     }
     private void health_OnDead(object sender, System.EventArgs e)
     {
         //Analysis Data
-        GlobalAnalysis.state = "boss_dead";
-        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-        GlobalAnalysis.cleanData();
+        GlobalAnalysis.is_boss_killed = true;
 
         int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
         if (currLevelIndex == 5)

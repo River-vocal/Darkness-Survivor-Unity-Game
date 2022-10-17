@@ -65,12 +65,27 @@ public class Energy : MonoBehaviour
 
     private void Update()
     {
+        if (CurEnergy == 0) return;
+        float speedDiff = ConsumeSpeed - originalConsumeSpeed;
+        float prevEnergy = CurEnergy;
         if (CurEnergyNormalized > SlowDownThreshold)
         {
             CurEnergy -= ConsumeSpeed * Time.deltaTime;
         }else{
             CurEnergy -= ConsumeSpeed * SlowDownFactor * Time.deltaTime;
         }
+
+        if (speedDiff > 0) 
+        {
+            GlobalAnalysis.light_damage += prevEnergy - CurEnergy;
+            if (curEnergy <= 0.0001f) {
+                GlobalAnalysis.player_status = "red_light_dead";
+                Debug.Log("lose by: red light");
+            }
+        } else if (ConsumeSpeed < 0) {
+            GlobalAnalysis.healing_energy += CurEnergy - prevEnergy;
+        }
+        
     }
 
     public float GetOriginalConsumeSpeed()

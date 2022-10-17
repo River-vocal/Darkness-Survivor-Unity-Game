@@ -21,30 +21,17 @@ public class EnemyWood : MonoBehaviour
 
     void Start()
     {
-        //Track data of tutorialdata
-
-        //Initial states
-        GlobalAnalysis.cleanData();
-
-        // Tutorial level starts at "1";
-        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
-        GlobalAnalysis.boss_initail_healthpoints = curHealth;
-        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
-        AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
-
         // bossIsFlipped = false;
     }
 
     private void health_OnDamaged(object sender, System.EventArgs e)
     {
-        GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth;
+        
     }
 
     private void health_OnDead(object sender, System.EventArgs e)
     {
-        GlobalAnalysis.state = "boss_dead";
-        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-        GlobalAnalysis.cleanData();
+        GlobalAnalysis.is_boss_killed = true;
         Invoke("LoadNextLevel", 1f);
     }
 

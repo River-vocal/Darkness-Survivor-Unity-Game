@@ -102,9 +102,12 @@ public class PlayerControllerNew : MonoBehaviour
         //attack related, should remove
         BulletCount = 3;
 
-        //Track data of playerdata
-        //Initial states
-        GlobalAnalysis.cleanData();
+        //Track data of player data
+        GlobalAnalysis.init();
+        GlobalAnalysis.start_time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds(); 
+        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
+        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
+        AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 
     private void Update()

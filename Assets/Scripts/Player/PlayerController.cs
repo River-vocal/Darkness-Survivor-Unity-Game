@@ -90,10 +90,6 @@ public class PlayerController : MonoBehaviour
         
         //attack related, should remove
         BulletCount = 3;
-
-        //Track data of playerdata
-        //Initial states
-        GlobalAnalysis.cleanData();
     }
 
     private void Update()

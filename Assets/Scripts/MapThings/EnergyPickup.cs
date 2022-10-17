@@ -9,7 +9,8 @@ public class EnergyPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Player"){
             Energy energy = other.gameObject.GetComponent<Energy>();
-            energy.CurEnergy+=boostValue;
+            energy.CurEnergy += boostValue;
+            GlobalAnalysis.healing_energy += boostValue;
             Destroy(transform.parent.gameObject);
         }
     }

@@ -47,6 +47,11 @@ public class EnemyProjectile : MonoBehaviour
 
         else if (collision.tag == "Player")
         {
+            GlobalAnalysis.boss_damage += damage;
+            if  (collision.GetComponent<Energy>().CurEnergy < damage) {
+                GlobalAnalysis.player_status = "boss_attack_dead";
+                Debug.Log("lose by: boss");
+            }
             hit = true;
             collision.GetComponent<Energy>().CurEnergy -= damage;
             anim.SetTrigger("explode");

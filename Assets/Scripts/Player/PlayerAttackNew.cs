@@ -26,13 +26,6 @@ public class PlayerAttackNew : MonoBehaviour
         // player.LockMovement();
         attackDamage = player.attackDamage;
 
-        //Analysis
-        GlobalAnalysis.attack_number++;
-        if (attackDamage > 10)
-        {
-            GlobalAnalysis.critical_attack_number++;
-        }
-
         Vector3 pos = transform.position;
 
         // Make sure the attack circle is in front of the player
