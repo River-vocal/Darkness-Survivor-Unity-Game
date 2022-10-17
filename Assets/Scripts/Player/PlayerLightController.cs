@@ -53,6 +53,10 @@ public class PlayerLightController : MonoBehaviour
         curStatus = UNDER_HEALING_LIGHT;
         spotLight.color = Color.green;
         spotLight.intensity = BOOST_STATUS + 0.5f;
+        if (isInDarkLevel)
+        {
+            spotLight.intensity -= 0.5f;
+        }
         EnterHelperInDark();
     }
 
@@ -76,7 +80,7 @@ public class PlayerLightController : MonoBehaviour
     {
         if (isInDarkLevel)
         {
-            spotLight.pointLightOuterRadius += 3f;
+            spotLight.pointLightOuterRadius += 4f;
         }
     }
 
@@ -87,7 +91,7 @@ public class PlayerLightController : MonoBehaviour
         spotLight.intensity = originalIntensity;
         if (isInDarkLevel)
         {
-            spotLight.pointLightOuterRadius -= 3f;
+            spotLight.pointLightOuterRadius -= 4f;
         }
     }
 }

@@ -9,19 +9,19 @@ public class PlatformDisappearController : MonoBehaviour
     private float switchCycle;
 
     [SerializeField] private DynamicLightController dc;
+
+    [SerializeField] private bool initialActive;
     // Start is called before the first frame update
     void Start()
     {
         // dc = GetComponent<DynamicLightController>();
         switchCycle = dc.lightSwitchIntervalTime;
+        if (!initialActive)
+        {
+            platform.SetActive(false);
+        }
         StartCoroutine(WaitToStart());
         StartCoroutine(UpdatePlatform());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator UpdatePlatform()
@@ -29,14 +29,7 @@ public class PlatformDisappearController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(switchCycle);
-            if (platform.activeInHierarchy)
-            {
-                platform.SetActive(false);
-            }
-            else
-            {
-                platform.SetActive(true);
-            }
+            platform.SetActive(!platform.activeInHierarchy);
         }
     }
 
