@@ -48,9 +48,15 @@ public class FireAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Player")
+        if(col.gameObject.CompareTag("Player"))
         {
-            col.GetComponent<Energy>().CurEnergy -= damage;
+            Energy energy = col.gameObject.GetComponent<Energy>();
+            if  (energy.CurEnergy < damage) {
+                GlobalAnalysis.player_status = "trap_dead";
+                Debug.Log("lose by: trap");
+            }
+            GlobalAnalysis.trap_damage += damage;
+            energy.CurEnergy -= damage;
         }
     }
 }

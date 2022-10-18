@@ -24,9 +24,9 @@ public class FloorDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if  (collision.gameObject.GetComponent<Energy>().CurEnergy < 10f) {
+            if  (collision.gameObject.GetComponent<Energy>().CurEnergy < damageValue) {
                 GlobalAnalysis.player_status = "trap_dead";
-                Debug.Log("lose by: floor");
+                Debug.Log("lose by: trap");
             }
 
             
