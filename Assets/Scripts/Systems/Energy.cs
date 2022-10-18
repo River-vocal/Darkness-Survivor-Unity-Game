@@ -67,28 +67,26 @@ public class Energy : MonoBehaviour
     {
         if (CurEnergy == 0) return;
         float speedDiff = ConsumeSpeed - originalConsumeSpeed;
-        float prevEnergy = CurEnergy;
+        float energyDiff = 0;
         if (CurEnergyNormalized > SlowDownThreshold)
         {
-            CurEnergy -= ConsumeSpeed * Time.deltaTime;
+            energyDiff = ConsumeSpeed * Time.deltaTime;
         }else{
-            CurEnergy -= ConsumeSpeed * SlowDownFactor * Time.deltaTime;
+            energyDiff = ConsumeSpeed * SlowDownFactor * Time.deltaTime;
         }
 
-        if (ConsumeSpeed < 0) 
+        if (energyDiff < 0) 
         {
-            GlobalAnalysis.healing_energy += CurEnergy - prevEnergy;
-        } else if (speedDiff > 0) 
-        {
-            GlobalAnalysis.light_damage += prevEnergy - CurEnergy;
-            if (curEnergy <= 0.0001f) {
+            GlobalAnalysis.healing_energy -= energyDiff;
+        } else if (speedDiff > 0) {
+            GlobalAnalysis.light_damage += energyDiff;
+            //predict the dead cause before CurEnergy changed
+            if (CurEnergy - energyDiff <= 0.0001f) {
                 GlobalAnalysis.player_status = "red_light_dead";
                 Debug.Log("lose by: red light");
             }
         } 
-
-
-        
+        CurEnergy -= energyDiff;
     }
 
     public float GetOriginalConsumeSpeed()
