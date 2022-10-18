@@ -163,6 +163,7 @@ MonoBehaviour:
   typeOfLight: 0
   lightSwitchIntervalTime: 3
   initialType: 0
+  pdc: {fileID: 9054223886497551441}
 --- !u!1 &9054223886048043552
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,3 +385,4 @@ MonoBehaviour:
   startTime: 0
   platform: {fileID: 9054223886048043552}
   dc: {fileID: 9054223885418278838}
+  initialActive: 0

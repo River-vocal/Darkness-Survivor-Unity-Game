@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Light2D))]
 public class MapLightController : MonoBehaviour

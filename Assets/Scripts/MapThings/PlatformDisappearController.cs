@@ -21,7 +21,6 @@ public class PlatformDisappearController : MonoBehaviour
             platform.SetActive(false);
         }
         StartCoroutine(WaitToStart());
-        StartCoroutine(UpdatePlatform());
     }
 
     IEnumerator UpdatePlatform()
@@ -36,5 +35,6 @@ public class PlatformDisappearController : MonoBehaviour
     IEnumerator WaitToStart()
     {
         yield return new WaitForSeconds(startTime);
+        StartCoroutine(UpdatePlatform());
     }
 }

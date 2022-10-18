@@ -10,6 +10,7 @@ public class DynamicLightController : MapLightController
     [SerializeField][Range(-1,1)] private int initialType;
     private float lightIntensityDecreasePerSecond;
     protected float originalIntensity;
+    [SerializeField] protected PlatformDisappearController pdc;
 
     private int curTypeIdx;
     // 0, 1, 2 red white green
@@ -40,6 +41,10 @@ public class DynamicLightController : MapLightController
 
     IEnumerator UpdateColor()
     {
+        if (pdc != null)
+        {
+            yield return new WaitForSeconds(pdc.startTime);
+        }
         while (true)
         {
             yield return new WaitForSeconds(lightSwitchIntervalTime);
