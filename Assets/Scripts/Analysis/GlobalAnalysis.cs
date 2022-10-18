@@ -12,6 +12,7 @@ public static class GlobalAnalysis {
     public static double trap_damage;
     public static double boss_damage;
     public static double light_damage;
+    public static int energy_extender;
     public static bool is_boss_killed;
     public static string timestamp;
     public static long start_time;
@@ -26,6 +27,7 @@ public static class GlobalAnalysis {
             trap_damage,
             boss_damage,
             light_damage,
+            energy_extender,
             is_boss_killed,
             getTimeStamp(), 
             (new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds() - start_time).ToString());
@@ -41,6 +43,7 @@ public static class GlobalAnalysis {
         trap_damage = 0;
         boss_damage = 0;
         light_damage = 0;
+        energy_extender = 0;
         is_boss_killed = false;
     }
 
