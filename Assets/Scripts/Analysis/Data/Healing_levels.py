@@ -6,7 +6,7 @@ from collections import defaultdict
 # create data
 url = "https://cs526-fc451-default-rtdb.firebaseio.com/raw4/play_info.json"
 
-levels = [1, 2, 3, 4, 5, 6]
+levels = [1, 2, 3, 4, 5]
 
 raw_data = requests.get(url).json().values()
 

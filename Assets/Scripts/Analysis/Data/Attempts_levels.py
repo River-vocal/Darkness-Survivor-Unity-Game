@@ -13,7 +13,7 @@ num_lose = defaultdict(int)
 
 raw_data = requests.get(url).json().values()
 # print(raw_data)
-levels = [1, 2, 3, 4, 5, 6]
+levels = [1, 2, 3, 4, 5]
 
 for data in raw_data:
     # print(data)
