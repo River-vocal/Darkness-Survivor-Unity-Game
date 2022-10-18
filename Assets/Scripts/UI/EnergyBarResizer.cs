@@ -24,6 +24,7 @@ public class EnergyBarResizer : MonoBehaviour
 
     public void Enlarge(float enlargeWidth)
     {
+        GlobalAnalysis.energy_extender += 1;
         float newWidth = enlargeWidth + rectTransform.rect.width;
         Resize(newWidth);
     }
