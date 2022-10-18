@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 5
   speed: 5
-  damage: 5
+  damage: 10
   color: red
 --- !u!95 &4275260439964926029
 Animator:

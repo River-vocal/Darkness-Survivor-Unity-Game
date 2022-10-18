@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 2
   speed: 4
-  damage: 5
+  damage: 10
 --- !u!1 &6841946511329610577
 GameObject:
   m_ObjectHideFlags: 0

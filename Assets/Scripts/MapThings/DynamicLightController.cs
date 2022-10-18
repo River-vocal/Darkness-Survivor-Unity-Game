@@ -25,7 +25,7 @@ public class DynamicLightController : MapLightController
             curLight.intensity = 1.0f;
         }
         originalIntensity = curLight.intensity;
-        lightIntensityDecreasePerSecond = originalIntensity * 0.75f / lightSwitchIntervalTime;
+        lightIntensityDecreasePerSecond = originalIntensity * 0.95f / lightSwitchIntervalTime;
         IEnumerator coroutine = UpdateColor();
         StartCoroutine(coroutine);
     }
