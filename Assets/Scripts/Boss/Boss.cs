@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
-    [SerializeField] private GameObject allPassMenu;
-    [SerializeField] private GameObject wonMenu;
+    // [SerializeField] private GameObject allPassMenu;
+    // [SerializeField] private GameObject wonMenu;
+
+    [SerializeField] private GameObject bossTreasure;
+    [SerializeField] private GameObject obstacle;
+    // [SerializeField] private Transform bossFinalTransform;
     
     [SerializeField] private int maxHealth = 200;
     private int curHealth;
@@ -27,29 +31,17 @@ public class Boss : MonoBehaviour
     void Start()
     {
         bossIsFlipped = false;
-
-        //Track data of bossdata
-        
-        //Initial states
-        GlobalAnalysis.cleanData();
-        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
-        GlobalAnalysis.boss_initail_healthpoints = curHealth;
-        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
-        AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 
     private void health_OnDamaged(object sender, System.EventArgs e)
     {
         int damage = ((IntegerEventArg) e).Value;
-        GlobalAnalysis.boss_remaining_healthpoints = health.CurHealth; 
 
     }
     private void health_OnDead(object sender, System.EventArgs e)
     {
         //Analysis Data
-        GlobalAnalysis.state = "boss_dead";
-        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-        GlobalAnalysis.cleanData();
+        GlobalAnalysis.is_boss_killed = true;
 
         int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
         if (currLevelIndex == 6)
@@ -59,8 +51,7 @@ public class Boss : MonoBehaviour
         }
         else
         {
-                gameObject.SetActive(false);
-            Invoke("GotoWonMenu", 1.5f);
+            Invoke("beatBoss", 0.5f);
         }
     }
     
@@ -102,15 +93,24 @@ public class Boss : MonoBehaviour
 
     void GotoAllPassMenu()
     {
-        allPassMenu.SetActive(true);
+        // allPassMenu.SetActive(true);
         Time.timeScale = 0f;
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void GotoWonMenu()
+    void beatBoss()
     {
-        wonMenu.SetActive(true);
-        Time.timeScale = 0f;
+        // Instantiate(bossTreasure, bossFinalTransform.position, bossFinalTransform.rotation);
+        gameObject.SetActive(false);
+        bossTreasure.SetActive(true);
+        // GameObject obstacle = GameObject.Find("Obstacle");
+        if (obstacle != null)
+        {
+            obstacle.SetActive(false);
+        }
+
+        // wonMenu.SetActive(true);
+        // Time.timeScale = 0f;
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

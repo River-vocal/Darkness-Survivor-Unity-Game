@@ -7,40 +7,49 @@ using System;
 public static class GlobalAnalysis {
     public static string level;
     public static string state;
+    public static string player_status;
+    public static double healing_energy;
+    public static double trap_damage;
+    public static double boss_damage;
+    public static double light_damage;
+    public static int energy_extender;
+    public static bool is_boss_killed;
     public static string timestamp;
-    public static int player_initail_healthpoints;
-    public static int boss_initail_healthpoints;
-    public static int player_remaining_healthpoints;
-    public static int boss_remaining_healthpoints;
-    public static int attack_number;
-    public static int critical_attack_number;
-    public static int bullet_attack_number;
-    // private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw1/";
+    public static long start_time;
+    public static string time_diff;
 
     public static string buildPlayInfoData() {
-        PlayInfo pi = new PlayInfo(level, 
-        state, 
-        getTimeStamp(), 
-        player_initail_healthpoints, 
-        boss_initail_healthpoints, 
-        player_remaining_healthpoints, 
-        boss_remaining_healthpoints,
-        attack_number,
-        critical_attack_number,
-        bullet_attack_number);
+        PlayInfo pi = new PlayInfo(
+            level,
+            state,
+            player_status,
+            healing_energy,
+            trap_damage,
+            boss_damage,
+            light_damage,
+            energy_extender,
+            is_boss_killed,
+            getTimeStamp(), 
+            (new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds() - start_time).ToString());
         string json = JsonUtility.ToJson(pi);
         return json;
     }
     public static void cleanData() {
         level = "N/A";
         state = "N/A";
+        player_status = "N/A";
         timestamp = "N/A";
-        player_initail_healthpoints = -1;
-        boss_initail_healthpoints = -1;
-        player_remaining_healthpoints = -1;
-        player_remaining_healthpoints = -1;
-        attack_number = 0;
-        critical_attack_number = 0;
+        healing_energy = 0;
+        trap_damage = 0;
+        boss_damage = 0;
+        light_damage = 0;
+        energy_extender = 0;
+        is_boss_killed = false;
+    }
+
+    public static void init() {
+        start_time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds(); 
+        player_status = "default";
     }
     public static string getTimeStamp()
     {

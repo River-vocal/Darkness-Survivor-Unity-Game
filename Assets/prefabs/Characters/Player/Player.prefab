@@ -141,7 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5839209534106962198}
   - component: {fileID: 244324925740095672}
-  - component: {fileID: 4898402453313026441}
+  - component: {fileID: 4958688644062443164}
   - component: {fileID: 5305537210594805834}
   - component: {fileID: -1468622818487770582}
   - component: {fileID: 2914276711498453643}
@@ -229,7 +229,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4898402453313026441
+--- !u!114 &4958688644062443164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,18 +238,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6148238373419825213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d2c3a6c45ea49428156d3f0f100eb4, type: 3}
+  m_Script: {fileID: 11500000, guid: e02e4bc148616784990051e0f79205bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
-  popupEnable: 1
-  PopupOffset: {x: 0, y: 2, z: 0}
-  normalDamageColor: {r: 0.4, g: 0.3, b: 0.1, a: 1}
-  criticalDamageColor: {r: 0.8, g: 0.1, b: 0.1, a: 1}
-  healingColor: {r: 0, g: 1, b: 0, a: 1}
-  normalFontSize: 12
-  healingFontSize: 12
-  criticalFontSize: 16
+  MaxEnergy: 100
+  ConsumeSpeed: 1
 --- !u!114 &5305537210594805834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732716d1495358d46b221b7ad119bdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpChances: 2
   maxRunSpeedOnGround: 10
   airMaxSpeedFactor: 0.2
   velocityAccelerationPerFixedUpdate: 10
@@ -302,13 +296,21 @@ MonoBehaviour:
   airDecelerationFactor: 0.2
   fallGravityMult: 1.2
   fastFallGravityMult: 1.3
-  isFacingRight: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
+  isGrounded: 0
+  isFacingWall: 0
+  isWallSliding: 0
+  wallSlideSpeed: 2
+  variableJumpHeightMultiplier: 0.5
+  wallJumpDirection: {x: 1, y: 2}
+  wallHopDirection: {x: 1, y: 0.5}
+  wallJumpForce: 10
+  wallHopForce: 6
   attackRange: 0.5
   attackDamage: 10
   BulletCount: 3

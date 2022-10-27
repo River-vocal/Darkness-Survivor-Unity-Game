@@ -1,19 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
+    [Header("Movement Settings")] 
+    [SerializeField] private int jumpChances = 2;
     [SerializeField] private float maxRunSpeedOnGround = 10f;
     [SerializeField] private float airMaxSpeedFactor = 0.2f;
 
     //velocity change per fixedUpdate timeInterval
     [SerializeField] private float velocityAccelerationPerFixedUpdate = 10f;
-
-    //currently set to the same as runAccelerationPerFixedUpdate, reserved for further possible change
     [SerializeField] private float velocityDecelerationPerFixedUpdate = 20f;
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float timeToJumpToHeighest = 0.4f;
@@ -21,44 +25,49 @@ public class PlayerController : MonoBehaviour
     [SerializeField][Range(0f, 1)] private float airDecelerationFactor = 0.2f;
     [SerializeField] private float fallGravityMult = 1.2f;
     [SerializeField] private float fastFallGravityMult = 1.3f;
-
-    public bool isFacingRight = true;
-
-
+    
     [Header("Layer Settings")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
-    private Health health;
+    public bool isFacingRight { get; private set; } = true;
+
+    [Header("Temporarily serialized")]
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private bool isFacingWall;
+    [SerializeField] private bool isWallSliding;
+    [SerializeField] private float wallSlideSpeed = 2f;
+    [SerializeField] private float variableJumpHeightMultiplier = 0.5f;
+    [SerializeField] private Vector2 wallJumpDirection = new Vector2(1, 2);
+    [SerializeField] private Vector2 wallHopDirection = new Vector2(1, 0.5f);
+    [SerializeField] private float wallJumpForce = 10f;
+    [SerializeField] private float wallHopForce = 6f;
 
     //runtime variables
     private Rigidbody2D body;
     private CapsuleCollider2D capsuleCollider2D;
     private Animator animator;
-
     private Vector2 movementInput;
+    //canMove is a lock key altered manually by code, not by status update
     private bool canMove = true;
     private bool jumpPressed = false;
+    private bool jumpReleased = true;
+    private int remainingJumpChances;
     private float gravityStrength;
     private float gravityScale;
     private float jumpImpulse;
     private float accelerationForceFactor;
     private float decelerationForceFactor;
-    private bool onGround;
     private int velocityDirectionAtJump = 0;
+    private bool isRunning = false;
+    private bool canJump = true;
 
     //attack related
     public float attackRange = 0.5f;
     public int attackDamage = 10;
 
     public int BulletCount = 3;
-
-    private void Awake()
-    {
-        health = GetComponent<Health>();
-        health.OnDamaged += health_OnDamaged;
-        health.OnDead += health_OnDead;
-    }
+    private static readonly int IsMoving = Animator.StringToHash("isMoving");
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +75,6 @@ public class PlayerController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        BulletCount = 3;
 
         velocityAccelerationPerFixedUpdate = Mathf.Clamp(velocityAccelerationPerFixedUpdate, 0.01f, maxRunSpeedOnGround);
         velocityDecelerationPerFixedUpdate = Mathf.Clamp(velocityDecelerationPerFixedUpdate, 0.01f, maxRunSpeedOnGround);
@@ -75,111 +83,228 @@ public class PlayerController : MonoBehaviour
         gravityScale = gravityStrength / Physics2D.gravity.y;
         accelerationForceFactor = velocityAccelerationPerFixedUpdate / Time.fixedDeltaTime / maxRunSpeedOnGround;
         decelerationForceFactor = velocityDecelerationPerFixedUpdate / Time.fixedDeltaTime / maxRunSpeedOnGround;
-        SetGravityScale(gravityScale);
-
-        //Track data of playerdata
-        //Initial states
-        GlobalAnalysis.cleanData();
-        GlobalAnalysis.player_initail_healthpoints = health.CurHealth;
-
+        remainingJumpChances = jumpChances;
+        body.gravityScale = gravityScale;
+        wallJumpDirection.Normalize();
+        wallHopDirection.Normalize();
+        
+        //attack related, should remove
+        BulletCount = 3;
     }
 
     private void Update()
     {
-        onGround = isGrounded();
-        animator.SetBool("isMoving", body.velocity != Vector2.zero);
+        //update player runtime status variables, should always be called first
+        UpdatePlayerStatus();
+
+        
+        //animation related
+        UpdateAnimations();
+        
+        //if jump pressed
+        if (jumpPressed)
+        {
+            Jump();
+            jumpPressed = false;
+        }
+    }
+
+    private void UpdatePlayerStatus()
+    {
+        //don't alter the execution sequence!
+        CheckSurroundings();
+
+        //check if player needs flip
         if (movementInput.x != 0)
         {
             if ((movementInput.x > 0) != isFacingRight)
             {
-                Turn();
+                Flip();
             }
         }
-    }
-    private void FixedUpdate()
-    {
-        if (canMove)
+        
+        //check if player is running
+        isRunning = (body.velocity.x != 0);
+        
+        //check if can jump
+        if ((isGrounded && body.velocity.y <= 0) || isWallSliding)
         {
-            Run();
-            Jump();
-            if (body.velocity.y < 0)
-            {
-                SetGravityScale(gravityScale * (movementInput.y < 0 ? fastFallGravityMult : fallGravityMult));
-            }
-            else
-            {
-                SetGravityScale(gravityScale);
-            }
+            remainingJumpChances = jumpChances;
         }
-        jumpPressed = false;
+        canJump = (remainingJumpChances > 0);
     }
-
-    /*Funuction used to handle movement in x axis
-        @paramter lerpFactor: used to control the target speed, for ground movement, set to 1. 
-                        Reserved for future possible circumstances when we want target speed to be a portion of max speed
-    */
-    private void Run()
+    
+    private void CheckSurroundings()
     {
-        if (velocityDirectionAtJump == 0 && movementInput.x != 0)
+        var bounds = capsuleCollider2D.bounds;
+        isGrounded = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, Vector2.down, .2f, groundLayer);
+        isFacingWall = Physics2D.CapsuleCast(bounds.center, bounds.size, 0, 0, transform.right, 0.2f, wallLayer);
+
+        //when player is facing the wall but still has y speed >0, we don't want to label this as player is sliding down the wall
+        isWallSliding = (isFacingWall && !isGrounded && body.velocity.y < 0);
+        if (isWallSliding)
         {
-            velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
-        }
-        bool sameDirection = velocityDirectionAtJump == Mathf.Sign(movementInput.x);
-        float lerpFactor = onGround || sameDirection ? 1 : airMaxSpeedFactor;
-        float targetSpeed = movementInput.x * maxRunSpeedOnGround;
-        targetSpeed = Mathf.Lerp(body.velocity.x, targetSpeed, lerpFactor);
-        float speedDiff = targetSpeed - body.velocity.x;
-        float forceFactor = ((speedDiff < 0 && body.velocity.x <= 0) || (speedDiff > 0 && body.velocity.x >= 0)) ?
-                                accelerationForceFactor * (onGround || sameDirection ? 1 : airAccelerationFactor) :
-                                decelerationForceFactor * (onGround || sameDirection ? 1 : airDecelerationFactor);
-
-        //Todo:if in air, would multiply forceFactor by a airfactor
-        float force = forceFactor * speedDiff;
-        body.AddForce(force * Vector2.right, ForceMode2D.Force);
-    }
-
-    private void SetGravityScale(float scale)
-    {
-        body.gravityScale = scale;
-    }
-    private void Jump()
-    {
-        if (jumpPressed && onGround)
-        {
-            body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
-            velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
+            //confused, if not cap x to 0, when player bumps into wall, x speed is always not 0, and is leaving the wall
+            body.velocity = new Vector2(0, body.velocity.y);
         }
     }
 
-    private void Turn()
+    private void Flip()
     {
         isFacingRight = !isFacingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-
-    void OnMove(InputValue movementValue)
+    
+    private void FixedUpdate()
     {
-        movementInput = movementValue.Get<Vector2>();
+        InterfereWithMovement();
     }
 
-    private bool isGrounded()
+    //interfere with x axis movement, both in air and on ground, should be called by fixedUpdate
+    //this function enables adaptive x axis acceleration and deceleration
+    private void Run()
     {
-        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, Vector2.down, .1f, groundLayer);
+        //when player in sliding on wall or canMove is locked manually, don't interfere
+        if (isWallSliding || !canMove)
+        {
+            return;
+        }
+        if (velocityDirectionAtJump == 0 && movementInput.x != 0)
+        {
+            velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
+        }
+        bool sameDirection = (velocityDirectionAtJump == (int)Mathf.Sign(movementInput.x));
+        float lerpFactor = isGrounded || sameDirection ? 1 : airMaxSpeedFactor;
+        float targetSpeed = movementInput.x * maxRunSpeedOnGround;
+        targetSpeed = Mathf.Lerp(body.velocity.x, targetSpeed, lerpFactor);
+        var velocity = body.velocity;
+        float speedDiff = targetSpeed - velocity.x;
+        float forceFactor = ((speedDiff < 0 && velocity.x <= 0) || (speedDiff > 0 && velocity.x >= 0)) ?
+                                accelerationForceFactor * (isGrounded || sameDirection ? 1 : airAccelerationFactor) :
+                                decelerationForceFactor * (isGrounded || sameDirection ? 1 : airDecelerationFactor);
+
+        float force = forceFactor * speedDiff;
+        body.AddForce(force * Vector2.right, ForceMode2D.Force);
     }
 
-    private bool isFacingWall()
+    private void InterfereWithMovement() 
     {
-        return Physics2D.CapsuleCast(capsuleCollider2D.bounds.center, capsuleCollider2D.bounds.size, 0, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
-    }
-    void OnJump()
-    {
-        jumpPressed = true;
+        //interfere with x axis
+        Run();
+        
+        //interfere with y axis when player is not grounded, notice that y axis interfere is not locked by canMove 
+        if (isGrounded) return;
+        //if sliding on wall, cap wall sliding speed
+        if (isWallSliding)
+        {
+            if (body.velocity.y < -wallSlideSpeed)
+            {
+                body.velocity = new Vector2(body.velocity.x, -wallSlideSpeed);
+            }
+        }
+        //in air
+        else
+        {
+            //moving up
+            if (body.velocity.y > 0)
+            {
+                //set gravity scale to normal
+                body.gravityScale = gravityScale;
+                //variable jump height
+                if (jumpReleased)
+                {
+                    body.velocity = new Vector2(body.velocity.x, body.velocity.y * variableJumpHeightMultiplier);
+                }
+            }
+            //moving down
+            else
+            {
+                //if user press down button when falling, make the player fall faster
+                body.gravityScale = gravityScale * (movementInput.y < 0 ? fastFallGravityMult : fallGravityMult);
+            }
+        }
     }
 
-    void OnFire()
+    //jump is now called by update
+    private void Jump()
+    {
+        if (canJump && canMove)
+        {
+            --remainingJumpChances;
+
+            //normal jump
+            if (!isWallSliding)
+            {
+                body.velocity = new Vector2(body.velocity.x, 0);
+                body.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
+                velocityDirectionAtJump = body.velocity.x != 0 ? (int)Mathf.Sign(body.velocity.x) : 0;
+            }
+            else
+            {
+                //wall hop
+                if (movementInput.x == 0)
+                {
+                    var force = new Vector2(wallHopForce * wallHopDirection.x * (isFacingRight ? -1 : 1),
+                        wallHopForce * wallHopDirection.y);
+                    body.AddForce(force, ForceMode2D.Impulse);
+                }
+                //wall sliding
+                else
+                {
+                    var force = new Vector2(wallJumpForce * wallJumpDirection.x * movementInput.x,
+                        wallJumpForce * wallJumpDirection.y);
+                    body.AddForce(force, ForceMode2D.Impulse);
+                }
+                Flip();
+                isWallSliding = false;
+            }
+        }
+    }
+
+    //reserved for attack system to lock movement
+    public void LockMovement()
+    {
+        if (isGrounded)
+        {
+            body.velocity = new Vector2(0, body.velocity.y);
+        }
+        canMove = false;
+    }
+
+    public void UnlockMovement()
+    {
+        canMove = true;
+    }
+
+    private void UpdateAnimations()
+    {
+        animator.SetBool(IsMoving, body.velocity != Vector2.zero);
+    }
+    
+
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        movementInput = ctx.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext ctx)
+    {
+        jumpReleased = ctx.canceled;
+        jumpPressed = ctx.performed;
+    }
+    
+    public void OnFire(InputAction.CallbackContext ctx)
     {
         animator.SetTrigger("attack");
     }
+    
+
+
+
+    
+    
+    
+    
 
     public void IncreaseBullet()
     {
@@ -199,21 +324,21 @@ public class PlayerController : MonoBehaviour
         return BulletCount;
     }
 
-    private void health_OnDamaged(object sender, System.EventArgs e)
-    {
-        GlobalAnalysis.player_remaining_healthpoints = health.CurHealth;
-    }
-    private void health_OnDead(object sender, System.EventArgs e)
-    {
-        animator.SetTrigger("Kill");
-        canMove = false;
-        Invoke("PlayerDeath", 1f);
+    // private void health_OnDamaged(object sender, System.EventArgs e)
+    // {
+    //     GlobalAnalysis.player_remaining_healthpoints = health.CurHealth;
+    // }
+    // private void health_OnDead(object sender, System.EventArgs e)
+    // {
+    //     animator.SetTrigger("Kill");
+    //     canMove = false;
+    //     Invoke("PlayerDeath", 1f);
 
-        GlobalAnalysis.state = "player_dead";
-        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-        GlobalAnalysis.cleanData();
+    //     GlobalAnalysis.state = "player_dead";
+    //     AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+    //     GlobalAnalysis.cleanData();
 
-    }
+    // }
 
     public void PlayerDeath()
     {
@@ -221,19 +346,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void LockMovement()
-    {
-        if (isGrounded())
-        {
-            body.velocity = new Vector2(0, body.velocity.y);
-        }
-        canMove = false;
-    }
 
-    public void UnlockMovement()
-    {
-        canMove = true;
-    }
 
     public int getBulletCount()
     {

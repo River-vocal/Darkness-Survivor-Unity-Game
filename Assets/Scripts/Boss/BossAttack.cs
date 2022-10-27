@@ -20,7 +20,13 @@ public class BossAttack : MonoBehaviour
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if (colInfo != null)
         {
-            colInfo.GetComponent<Health>().CurHealth -= attackDamage;
+            // colInfo.GetComponent<Health>().CurHealth -= attackDamage;
+            GlobalAnalysis.boss_damage += attackDamage;
+            if  (colInfo.GetComponent<Energy>().CurEnergy < attackDamage) {
+                GlobalAnalysis.player_status = "boss_attack_dead";
+                Debug.Log("lose by: boss");
+            }
+            colInfo.GetComponent<Energy>().CurEnergy -= attackDamage;
             colInfo.GetComponent<KnockBack>().Trigger(gameObject);
             Debug.Log("Boss Attack");
         }

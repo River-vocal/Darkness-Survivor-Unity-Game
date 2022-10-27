@@ -33,21 +33,11 @@ public class BossPatrol : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Math.Abs(playerTransform.position.x - rb2.position.x) <= attackRange)
+        if (Math.Abs(playerTransform.position.y - rb2.position.y) <= 3 && Math.Abs(playerTransform.position.x - rb2.position.x) <= attackRange)
         {
             boss.lookAtPlayer();
             movingLeft = !boss.bossIsFlipped;
-            if (movingLeft)
-            {
-                animator.ResetTrigger("FireballAttack");
-                animator.SetTrigger("RegularAttack");
-            }
-            else
-            {
-                animator.ResetTrigger("RegularAttack");
-                animator.SetTrigger("FireballAttack");
-            }
-            
+            animator.SetTrigger("FireballAttack");
             return;
         }
 
@@ -58,8 +48,6 @@ public class BossPatrol : StateMachineBehaviour
             if (Mathf.Approximately(bossTransform.position.x, leftEdge.position.x))
             {
                 boss.DirectionChange();
-                animator.ResetTrigger("FireballAttack");
-                animator.ResetTrigger("RegularAttack");
                 movingLeft = false;
             }
             else
@@ -74,8 +62,6 @@ public class BossPatrol : StateMachineBehaviour
             if (Mathf.Approximately(bossTransform.position.x, rightEdge.position.x))
             {
                 boss.DirectionChange();
-                animator.ResetTrigger("FireballAttack");
-                animator.ResetTrigger("RegularAttack");
                 movingLeft = true;
             }
             else
@@ -89,8 +75,7 @@ public class BossPatrol : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("FireballAttack");
-        animator.ResetTrigger("RegularAttack");
+        //animator.ResetTrigger("FireballAttack");
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FireBallBossAttack : MonoBehaviour
 {
-    
-    
+
     public Boss boss;
+    
     [Header("Attack Parameters")]
     [SerializeField] private float cooldownTimer = Mathf.Infinity;
     [SerializeField] private  float attackCooldown;
@@ -14,6 +15,7 @@ public class FireBallBossAttack : MonoBehaviour
     [SerializeField] private Vector3 attackOffset;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private LayerMask attackMask;
+    
     [Header("Fire Ball Attack")] 
     [SerializeField] private Transform firepoint;
     [SerializeField] private GameObject[] fireballs;
@@ -21,21 +23,27 @@ public class FireBallBossAttack : MonoBehaviour
     [Header("Collider Parameters")]
     [SerializeField] private float colliderDistance;
     [SerializeField] private CapsuleCollider2D capsuleCollider;
+
     public void FireballAttack()
     {
-
-        fireballs[FindFireball()].transform.position = firepoint.position;
-        fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile(attackDamage);
+        
+        fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile(attackDamage, boss.bossIsFlipped);
         
     }
 
     private int FindFireball()
     {
+        // bossIsFlipped: boss face left
+        // !bossIsFlipped: boss face right
 
         for (int i = 0; i < fireballs.Length; i++)
         {
             if (!fireballs[i].activeInHierarchy)
+            {
+                fireballs[i].transform.position = firepoint.position;
                 return i;
+                
+            }
         }
 
         return 0;

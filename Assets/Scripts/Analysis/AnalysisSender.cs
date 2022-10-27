@@ -6,7 +6,7 @@ using System;
 
 public class AnalysisSender : Singleton<AnalysisSender>
 {
-    private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw2/";
+    private static String URL = "https://cs526-fc451-default-rtdb.firebaseio.com/raw4/";
 
     public void postRequest(string key, string json) {
         Debug.Log("Store data into: " + key);
@@ -15,13 +15,21 @@ public class AnalysisSender : Singleton<AnalysisSender>
     private IEnumerator _postRequest(string key, string json)
     {
         
-        var uwr = new UnityWebRequest(URL + key + ".json", "POST");
-        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
-        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
+        // var uwr = new UnityWebRequest(URL + key + ".json", "POST");
+        // byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+        // uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+        // uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        // uwr.SetRequestHeader("Content-Type", "application/json");
 
-        using (uwr) {
+        using (var uwr = new UnityWebRequest(URL + key + ".json", "POST")) {
+            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+            using UploadHandlerRaw uploadHandler = new UploadHandlerRaw(jsonToSend);
+            uwr.uploadHandler = uploadHandler;
+            uwr.downloadHandler = new DownloadHandlerBuffer();
+            uwr.disposeUploadHandlerOnDispose = true;
+            uwr.disposeDownloadHandlerOnDispose = true;
+            uwr.SetRequestHeader("Content-Type", "application/json");
+            uwr.timeout = 5;
             //Send the request then wait here until it returns
             yield return uwr.SendWebRequest();
 
@@ -33,7 +41,7 @@ public class AnalysisSender : Singleton<AnalysisSender>
             }
             else
             {
-                Debug.Log("Received: " + uwr.downloadHandler.text + " TimeStamp: " + timestamp);
+                Debug.Log("Data Received: " + uwr.downloadHandler.text + " TimeStamp: " + timestamp);
             }
         }
 

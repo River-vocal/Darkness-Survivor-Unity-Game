@@ -6,11 +6,14 @@ TagManager:
   tags:
   - Enemy
   - Boss
+  - Boost
+  - Missile
+  - Drop
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hint
   - Water
   - UI
   - Ground
@@ -20,8 +23,8 @@ TagManager:
   - Player
   - Enemy
   - PauseMenu
-  - 
-  - 
+  - FatalSurrounding
+  - DamageSurrounding
   - 
   - 
   - 
