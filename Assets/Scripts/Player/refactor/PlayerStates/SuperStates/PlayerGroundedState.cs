@@ -6,6 +6,7 @@ public class PlayerGroundedState : PlayerState
 {
     protected Vector2 movementInput;
     protected bool jumpInput;
+    
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter) : base(player, stateMachine, playerData, animationTriggerParameter)
     {
     }
@@ -24,17 +25,12 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
         jumpInput = player.InputHandler.JumpInput;
-        if (jumpInput)
-        {
-            player.InputHandler.ConsumeJumpInput();
-            stateMachine.ChangeState(player.JumpState);
-        }
+        movementInput = player.InputHandler.MovementInput;
     }
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        movementInput = player.InputHandler.MovementInput;
     }
 
     public override void Check()

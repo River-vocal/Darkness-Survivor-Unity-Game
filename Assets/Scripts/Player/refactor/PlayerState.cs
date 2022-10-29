@@ -9,7 +9,8 @@ public class PlayerState
     protected PlayerData playerData;
 
     protected float startTime;
-    
+
+    protected bool animationFinished;
     private string animationTriggerParameter;
     
     public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter)
@@ -25,7 +26,8 @@ public class PlayerState
         Check();
         player.Animator.SetBool(animationTriggerParameter, true);
         startTime = Time.time;
-        Debug.Log(animationTriggerParameter);
+        animationFinished = false;
+        Debug.Log("entering " + animationTriggerParameter);
     }
 
     public virtual void Exit()
@@ -47,5 +49,16 @@ public class PlayerState
     public virtual void Check()
     {
         
+    }
+
+    //call backs for animator to use
+    public virtual void startAnimation()
+    {
+        
+    }
+
+    public virtual void AnimationFinished()
+    {
+        animationFinished = true;
     }
 }

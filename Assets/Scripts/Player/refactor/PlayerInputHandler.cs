@@ -7,7 +7,18 @@ public class PlayerInputHandler : MonoBehaviour
 {
     public Vector2 MovementInput { get; private set; }
     public bool JumpInput { get; private set; }
-    
+
+    [SerializeField] private float jumpBufferTime = 0.1f;
+
+    private float jumpBufferStartTime;
+
+    public void Update()
+    {
+        if (Time.time > jumpBufferStartTime + jumpBufferTime)
+        {
+            JumpInput = false;
+        }
+    }
     public void OnMoveInput(InputAction.CallbackContext ctx)
     {
         MovementInput = ctx.ReadValue<Vector2>();
@@ -18,6 +29,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (ctx.performed)
         {
             JumpInput = true;
+            jumpBufferStartTime = Time.time;
         }
     }
 

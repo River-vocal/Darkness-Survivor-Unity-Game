@@ -30,7 +30,6 @@ public class PlayerInAirState : PlayerState
         
         if (isGrounded && player.CurVelocity.y <= 0)
         {
-            player.Animator.SetBool(InAir, false);
             stateMachine.ChangeState(player.LandState);
         }
         else
@@ -38,7 +37,6 @@ public class PlayerInAirState : PlayerState
             player.CheckIfShouldFlip((int)xInput);
             player.SetXVelocity(xInput * playerData.movementVelocity);
             player.Animator.SetFloat(YVelocity, player.CurVelocity.y);
-            player.Animator.SetBool(InAir, true);
         }
     }
 

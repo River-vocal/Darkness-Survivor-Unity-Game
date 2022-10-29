@@ -23,10 +23,16 @@ public class PlayerMoveState : PlayerGroundedState
         base.Update();
         player.CheckIfShouldFlip((int)movementInput.x);
         player.SetXVelocity(playerData.movementVelocity * movementInput.x);
-        
-        if (movementInput.x == 0)
+
+        if (movementInput.x == 0f)
         {
             player.StateMachine.ChangeState(player.IdleState);
+        }
+        
+        if (jumpInput)
+        {
+            player.InputHandler.ConsumeJumpInput();
+            stateMachine.ChangeState(player.JumpState);
         }
     }
 

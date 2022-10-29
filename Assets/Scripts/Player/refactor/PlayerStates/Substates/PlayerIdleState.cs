@@ -22,9 +22,16 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Update()
     {
         base.Update();
-        if (movementInput.x != 0)
+
+        if (movementInput.x != 0f)
         {
             stateMachine.ChangeState(player.MoveState);
+        }
+        
+        if (jumpInput)
+        {
+            player.InputHandler.ConsumeJumpInput();
+            stateMachine.ChangeState(player.JumpState);
         }
     }
 
