@@ -34,6 +34,9 @@ public class LostMenu : MonoBehaviour
     public void Replay()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Respawn respawn = GameObject.FindGameObjectWithTag("Player").GetComponent<Respawn>();
+        respawn.Remake();
+        
+        lostMenu.SetActive(false);
     }
 }
