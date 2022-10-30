@@ -62,16 +62,16 @@ public class EnemyDrops : MonoBehaviour
             switch (color) {
              
                 case "red":    
-                    if  (col.GetComponent<Energy>().CurEnergy < damage) {
-                        GlobalAnalysis.player_status = "trap_dead";
-                        Debug.Log("lose by: trap");
-                    }
-                    GlobalAnalysis.trap_damage += damage;
+                    // if  (col.GetComponent<Energy>().CurEnergy < damage) {
+                    //     GlobalAnalysis.player_status = "trap_dead";
+                    //     Debug.Log("lose by: trap");
+                    // }
+                    // GlobalAnalysis.trap_damage += damage;
                     col.GetComponent<Energy>().CurEnergy -= damage;
                     break;
  
                 case "green":
-                    GlobalAnalysis.healing_energy += damage;
+                    // GlobalAnalysis.healing_energy += damage;
                     col.GetComponent<Energy>().CurEnergy += damage;
                     break;
 

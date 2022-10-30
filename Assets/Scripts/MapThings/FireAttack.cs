@@ -51,11 +51,11 @@ public class FireAttack : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
             Energy energy = col.gameObject.GetComponent<Energy>();
-            if  (energy.CurEnergy < damage) {
-                GlobalAnalysis.player_status = "trap_dead";
-                Debug.Log("lose by: trap");
-            }
-            GlobalAnalysis.trap_damage += damage;
+            // if  (energy.CurEnergy < damage) {
+            //     GlobalAnalysis.player_status = "trap_dead";
+            //     Debug.Log("lose by: trap");
+            // }
+            // GlobalAnalysis.trap_damage += damage;
             energy.CurEnergy -= damage;
         }
     }

@@ -103,11 +103,11 @@ public class PlayerControllerNew : MonoBehaviour
         BulletCount = 3;
 
         //Track data of player data
-        GlobalAnalysis.init();
-        GlobalAnalysis.start_time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds(); 
-        GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
-        StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
-        AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
+        // GlobalAnalysis.init();
+        // GlobalAnalysis.start_time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds(); 
+        // GlobalAnalysis.level = SceneManager.GetActiveScene().buildIndex.ToString();
+        // StartInfo si = new StartInfo(GlobalAnalysis.level, GlobalAnalysis.getTimeStamp());
+        // AnalysisSender.Instance.postRequest("start", JsonUtility.ToJson(si));
     }
 
     private void Update()
