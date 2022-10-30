@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
     public PlayerWallSlideState WallSlideState { get; private set; }
-    
+    public PlayerWallJumpState WallJumpState { get; private set; }
     #endregion
 
     #region Components
@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
+        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "wallJump");
     }
 
     private void Start()
@@ -87,6 +88,14 @@ public class Player : MonoBehaviour
     public void SetYVelocity(float v)
     {
         velocityHolder.Set(CurVelocity.x, v);
+        rb.velocity = velocityHolder;
+        CurVelocity = velocityHolder;
+    }
+
+    public void SetVelocity(float v, Vector2 direction)
+    {
+        direction.Normalize();
+        velocityHolder.Set(v * direction.x, v * direction.y);
         rb.velocity = velocityHolder;
         CurVelocity = velocityHolder;
     }

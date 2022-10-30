@@ -27,12 +27,11 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-        JumpInput = Player.InputHandler.JumpInput;
+        JumpInput = Player.InputHandler.JumpPressed;
         MovementInput = Player.InputHandler.MovementInput;
         
         if (JumpInput && Player.JumpState.CanJump())
         {
-            Player.InputHandler.ConsumeJumpInput();
             StateMachine.ChangeState(Player.JumpState);
         }
         else if (!isGrounded)

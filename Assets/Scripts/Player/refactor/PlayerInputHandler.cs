@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     public Vector2 MovementInput { get; private set; }
-    public bool JumpInput { get; private set; }
+    public bool JumpPressed { get; private set; }
     public bool JumpReleased { get; private set; }
     
     [SerializeField] private float jumpBufferTime = 0.1f;
@@ -17,7 +17,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (Time.time > jumpBufferStartTime + jumpBufferTime)
         {
-            JumpInput = false;
+            JumpPressed = false;
         }
     }
     public void OnMoveInput(InputAction.CallbackContext ctx)
@@ -29,7 +29,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (ctx.started)
         {
-            JumpInput = true;
+            JumpPressed = true;
             JumpReleased = false;
             jumpBufferStartTime = Time.time;
         }
@@ -42,6 +42,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void ConsumeJumpInput()
     {
-        JumpInput = false;
+        JumpPressed = false;
     }
 }

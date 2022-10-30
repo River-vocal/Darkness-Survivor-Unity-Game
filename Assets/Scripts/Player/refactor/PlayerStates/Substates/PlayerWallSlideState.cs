@@ -11,7 +11,11 @@ public class PlayerWallSlideState : PlayerTouchingWallState
     public override void Update()
     {
         base.Update();
-        Player.SetXVelocity(0f);
-        Player.SetYVelocity(-PlayerData.wallSlideVelocity);
+
+        if (StateMachine.CurState == this)
+        {
+            Player.SetXVelocity(0f);
+            Player.SetYVelocity(-PlayerData.wallSlideVelocity);
+        }
     }
 }

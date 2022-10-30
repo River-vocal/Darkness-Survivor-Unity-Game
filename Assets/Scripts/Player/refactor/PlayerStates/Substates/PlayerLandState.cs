@@ -12,14 +12,16 @@ public class PlayerLandState : PlayerGroundedState
     {
         base.Update();
 
-        if ((int)MovementInput.x != 0)
+        if (StateMachine.CurState == this)
         {
-            StateMachine.ChangeState(Player.MoveState);
-        }
-        else if (animationFinished)
-        {
-            Debug.Log("land to idle!");
-            StateMachine.ChangeState(Player.IdleState);
+            if ((int)MovementInput.x != 0)
+            {
+                StateMachine.ChangeState(Player.MoveState);
+            }
+            else if (animationFinished)
+            {
+                StateMachine.ChangeState(Player.IdleState);
+            }
         }
     }
 }
