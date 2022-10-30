@@ -26,13 +26,13 @@ public class PlayerUseAbilityState : PlayerState
         base.Update();
         if (isAbilityDone)
         {
-            if (isGrounded && player.CurVelocity.y <= 0)
+            if (isGrounded && Player.CurVelocity.y <= 0)
             {
-                stateMachine.ChangeState(player.IdleState);
+                StateMachine.ChangeState(Player.IdleState);
             }
             else
             {
-                stateMachine.ChangeState(player.InAirState);
+                StateMachine.ChangeState(Player.InAirState);
             }
         }
     }
@@ -45,6 +45,6 @@ public class PlayerUseAbilityState : PlayerState
     public override void Check()
     {
         base.Check();
-        isGrounded = player.CheckIfGrounded();
+        isGrounded = Player.CheckIfGrounded();
     }
 }

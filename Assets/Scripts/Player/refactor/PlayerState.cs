@@ -4,35 +4,35 @@ using UnityEngine;
 
 public class PlayerState
 {
-    protected Player player;
-    protected PlayerStateMachine stateMachine;
-    protected PlayerData playerData;
+    protected Player Player;
+    protected PlayerStateMachine StateMachine;
+    protected PlayerData PlayerData;
 
-    protected float startTime;
+    protected float StateStartTime;
 
     protected bool animationFinished;
     private string animationTriggerParameter;
     
-    public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter)
+    protected PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter)
     {
-        this.player = player;
-        this.stateMachine = stateMachine;
-        this.playerData = playerData;
+        this.Player = player;
+        this.StateMachine = stateMachine;
+        this.PlayerData = playerData;
         this.animationTriggerParameter = animationTriggerParameter;
     }
 
     public virtual void Enter()
     {
         Check();
-        player.Animator.SetBool(animationTriggerParameter, true);
-        startTime = Time.time;
+        Player.Animator.SetBool(animationTriggerParameter, true);
+        StateStartTime = Time.time;
         animationFinished = false;
         Debug.Log("entering " + animationTriggerParameter);
     }
 
     public virtual void Exit()
     {
-        player.Animator.SetBool(animationTriggerParameter, false);
+        Player.Animator.SetBool(animationTriggerParameter, false);
     }
 
     public virtual void Update()
@@ -52,7 +52,7 @@ public class PlayerState
     }
 
     //call backs for animator to use
-    public virtual void startAnimation()
+    public virtual void StartAnimation()
     {
         
     }

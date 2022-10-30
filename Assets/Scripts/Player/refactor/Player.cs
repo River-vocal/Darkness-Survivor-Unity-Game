@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
+    public PlayerWallSlideState WallSlideState { get; private set; }
     
     #endregion
 
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
     
     private Vector2 velocityHolder;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform wallCheck;
 
     #endregion
 
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
     }
 
     private void Start()
@@ -93,7 +96,7 @@ public class Player : MonoBehaviour
         transform.Rotate(0, 180, 0);
     }
 
-    private void StartAnimation() => StateMachine.CurState.startAnimation();
+    private void StartAnimation() => StateMachine.CurState.StartAnimation();
 
     private void AnimationFinished() => StateMachine.CurState.AnimationFinished();
     
@@ -114,6 +117,10 @@ public class Player : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckDistance, playerData.groundLayer);
     }
 
+    public bool CheckIfTouchingWall()
+    {
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.wallLayer);
+    }
     #endregion
 
     #region Gizmos
@@ -121,7 +128,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, playerData.groundCheckDistance);
+        Gizmos.DrawWireSphere(wallCheck.position, playerData.wallCheckDistance);
     }
-
     #endregion
 }

@@ -11,7 +11,7 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        player.SetXVelocity(0);
+        Player.SetXVelocity(0);
     }
 
     public override void Exit()
@@ -23,15 +23,13 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Update();
 
-        if (movementInput.x != 0f)
+        if (Player.StateMachine.CurState == this)
         {
-            stateMachine.ChangeState(player.MoveState);
-        }
-        
-        if (jumpInput)
-        {
-            player.InputHandler.ConsumeJumpInput();
-            stateMachine.ChangeState(player.JumpState);
+            Player.SetXVelocity(0);
+            if (MovementInput.x != 0f)
+            {
+                StateMachine.ChangeState(Player.MoveState);
+            }
         }
     }
 

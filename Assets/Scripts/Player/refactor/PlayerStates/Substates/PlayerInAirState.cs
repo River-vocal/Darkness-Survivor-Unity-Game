@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
     private bool isGrounded;
+    private bool isTouchingWall;
     private float xInput;
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
     private static readonly int InAir = Animator.StringToHash("inAir");
-
+    private bool coyoteTime;
+    private bool isRising;
+    
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter) : base(player, stateMachine, playerData, animationTriggerParameter)
     {
     }
@@ -26,17 +30,27 @@ public class PlayerInAirState : PlayerState
     public override void Update()
     {
         base.Update();
-        xInput = player.InputHandler.MovementInput.x;
+        CheckCoyoteTime();
+        ApplyVariableJumpHeight();
+        xInput = Player.InputHandler.MovementInput.x;
         
-        if (isGrounded && player.CurVelocity.y <= 0)
+        if (isGrounded && Player.CurVelocity.y <= 0)
         {
-            stateMachine.ChangeState(player.LandState);
+            StateMachine.ChangeState(Player.LandState);
+        }
+        else if (Player.InputHandler.JumpInput && Player.JumpState.CanJump())
+        {
+            StateMachine.ChangeState(Player.JumpState);
+        }
+        else if (isTouchingWall && (int)xInput == Player.FacingDirection && Player.CurVelocity.y <= 0)
+        {
+            StateMachine.ChangeState(Player.WallSlideState);
         }
         else
         {
-            player.CheckIfShouldFlip((int)xInput);
-            player.SetXVelocity(xInput * playerData.movementVelocity);
-            player.Animator.SetFloat(YVelocity, player.CurVelocity.y);
+            Player.CheckIfShouldFlip((int)xInput);
+            Player.SetXVelocity(xInput * PlayerData.movementVelocity);
+            Player.Animator.SetFloat(YVelocity, Player.CurVelocity.y);
         }
     }
 
@@ -48,6 +62,42 @@ public class PlayerInAirState : PlayerState
     public override void Check()
     {
         base.Check();
-        isGrounded = player.CheckIfGrounded();
+        isGrounded = Player.CheckIfGrounded();
+        isTouchingWall = Player.CheckIfTouchingWall();
+    }
+
+    public void StartCoyoteTime()
+    {
+        coyoteTime = true;
+    }
+
+    public void SetIsRising()
+    {
+        isRising = true;
+    }
+    
+    private void CheckCoyoteTime()
+    {
+        if (coyoteTime && Time.time > StateStartTime + PlayerData.coyoteTime)
+        {
+            coyoteTime = false;
+            Player.JumpState.DecreaseJumpTimesLeft();
+        }
+    }
+
+    private void ApplyVariableJumpHeight()
+    {
+        if (isRising)
+        {
+            if (Player.CurVelocity.y <= 0)
+            {
+                isRising = false;
+            }
+            else if (Player.InputHandler.JumpReleased)
+            {
+                Player.SetYVelocity(Player.CurVelocity.y * PlayerData.variableJumpHeightMultiplier);
+            }
+        }
+
     }
 }

@@ -21,18 +21,12 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Update()
     {
         base.Update();
-        player.CheckIfShouldFlip((int)movementInput.x);
-        player.SetXVelocity(playerData.movementVelocity * movementInput.x);
+        Player.CheckIfShouldFlip((int)MovementInput.x);
+        Player.SetXVelocity(PlayerData.movementVelocity * MovementInput.x);
 
-        if (movementInput.x == 0f)
+        if (Player.StateMachine.CurState == this && MovementInput.x == 0f)
         {
-            player.StateMachine.ChangeState(player.IdleState);
-        }
-        
-        if (jumpInput)
-        {
-            player.InputHandler.ConsumeJumpInput();
-            stateMachine.ChangeState(player.JumpState);
+            Player.StateMachine.ChangeState(Player.IdleState);
         }
     }
 
