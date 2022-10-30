@@ -29,6 +29,7 @@ public class PlayerTouchingWallState : PlayerState
         }
         else if (!IsTouchingWall || (int)Player.InputHandler.MovementInput.x == -Player.FacingDirection)
         {
+            Player.CheckIfShouldFlip((int)Player.InputHandler.MovementInput.x);
             StateMachine.ChangeState(Player.InAirState);
         }
     }

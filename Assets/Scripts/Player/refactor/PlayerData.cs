@@ -28,6 +28,7 @@ public class PlayerData : ScriptableObject
    [Header("Check Variables")] 
    public float groundCheckDistance = 0.15f;
    public float wallCheckDistance = 0.3f;
+   public float backWallCheckDistance = 1f;
    public LayerMask groundLayer;
    public LayerMask wallLayer;
 }

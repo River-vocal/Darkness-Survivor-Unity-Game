@@ -20,7 +20,7 @@ MonoBehaviour:
   wallSlideVelocity: 5
   wallJumpVelocity: 20
   wallJumpTime: 0.4
-  wallJumpDirection: {x: 1, y: 2}
+  wallJumpAngle: {x: 1, y: 2}
   groundCheckDistance: 0.15
   wallCheckDistance: 0.3
   groundLayer:

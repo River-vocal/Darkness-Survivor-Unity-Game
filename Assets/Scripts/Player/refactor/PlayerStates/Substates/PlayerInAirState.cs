@@ -48,7 +48,7 @@ public class PlayerInAirState : PlayerState
         {
             StateMachine.ChangeState(Player.JumpState);
         }
-        else if (isTouchingWall && (int)xInput == Player.FacingDirection && Player.CurVelocity.y <= 0)
+        else if (isTouchingWall && Player.CurVelocity.y <= 0)
         {
             StateMachine.ChangeState(Player.WallSlideState);
         }
