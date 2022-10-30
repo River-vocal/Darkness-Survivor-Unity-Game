@@ -14,9 +14,9 @@ public class WonMenu : MonoBehaviour
     }
 
     private void exit_OnPlayerReachExit(object sender, System.EventArgs e){
-        GlobalAnalysis.state = "win";
-        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-        GlobalAnalysis.cleanData();
+        // GlobalAnalysis.state = "win";
+        // AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        // GlobalAnalysis.cleanData();
         
         wonMenu.SetActive(true);
         Time.timeScale = 0f;

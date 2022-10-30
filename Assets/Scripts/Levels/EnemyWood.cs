@@ -31,7 +31,7 @@ public class EnemyWood : MonoBehaviour
 
     private void health_OnDead(object sender, System.EventArgs e)
     {
-        GlobalAnalysis.is_boss_killed = true;
+        // GlobalAnalysis.is_boss_killed = true;
         Invoke("LoadNextLevel", 1f);
     }
 

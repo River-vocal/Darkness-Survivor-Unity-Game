@@ -18,9 +18,9 @@ public class LostMenu : MonoBehaviour
 
     private void energy_OnEmpty(object sender, System.EventArgs e)
     {
-        GlobalAnalysis.state = "lose";
-        AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-        GlobalAnalysis.cleanData();
+        // GlobalAnalysis.state = "lose";
+        // AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
+        // GlobalAnalysis.cleanData();
         lostMenu.SetActive(true);
         Time.timeScale = 0f;
     }
