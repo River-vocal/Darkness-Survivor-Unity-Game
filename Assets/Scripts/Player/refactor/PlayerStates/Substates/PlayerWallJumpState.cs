@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerWallJumpState : PlayerUseAbilityState
 {
+    private int wallJumpDirection;
+    private bool isGrounded;
     public PlayerWallJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter) : base(player, stateMachine, playerData, animationTriggerParameter)
     {
     }
@@ -11,10 +13,37 @@ public class PlayerWallJumpState : PlayerUseAbilityState
     public override void Enter()
     {
         base.Enter();
+        
+        Player.JumpState.ResetJumpTimesLeft();
+        Player.JumpState.DecreaseJumpTimesLeft();
+        Player.CheckIfShouldFlip(wallJumpDirection);
+        Player.SetVelocity(PlayerData.wallJumpVelocity, new Vector2(PlayerData.wallJumpAngle.x * wallJumpDirection, PlayerData.wallJumpAngle.y));
+        Player.InputHandler.ConsumeJumpInput();
+        Player.InAirState.SetIsRising();
     }
 
     public override void Update()
     {
         base.Update();
+
+        if (StateMachine.CurState == this)
+        {
+            if (Time.time >= StateStartTime + PlayerData.wallJumpTime)
+            {
+                isAbilityDone = true;
+            }
+        }
     }
+
+    public override void Check()
+    {
+        base.Check();
+        isGrounded = Player.CheckIfGrounded();
+    }
+
+    public void SetWallJumpDirection(bool isTouchingWall)
+    {
+        wallJumpDirection = (isTouchingWall ? -Player.FacingDirection : Player.FacingDirection);
+    }
+    
 }

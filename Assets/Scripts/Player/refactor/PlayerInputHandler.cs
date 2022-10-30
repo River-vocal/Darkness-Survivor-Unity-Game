@@ -15,7 +15,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void Update()
     {
-        if (Time.time > jumpBufferStartTime + jumpBufferTime)
+        if (JumpPressed && Time.time > jumpBufferStartTime + jumpBufferTime)
         {
             JumpPressed = false;
         }

@@ -23,11 +23,11 @@ public class PlayerData : ScriptableObject
    [Header("Wall Jump State")] 
    public float wallJumpVelocity = 20f;
    public float wallJumpTime = 0.4f;
-   public Vector2 wallJumpDirection = new Vector2(1, 2);
+   public Vector2 wallJumpAngle = new Vector2(1, 2);
 
    [Header("Check Variables")] 
    public float groundCheckDistance = 0.15f;
-   public float wallCheckDistance = 0.15f;
+   public float wallCheckDistance = 0.3f;
    public LayerMask groundLayer;
    public LayerMask wallLayer;
 }

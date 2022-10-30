@@ -14,8 +14,16 @@ public class PlayerWallSlideState : PlayerTouchingWallState
 
         if (StateMachine.CurState == this)
         {
-            Player.SetXVelocity(0f);
-            Player.SetYVelocity(-PlayerData.wallSlideVelocity);
+            if (Player.InputHandler.JumpPressed)
+            {
+                Player.WallJumpState.SetWallJumpDirection(IsTouchingWall);
+                StateMachine.ChangeState(Player.WallJumpState);
+            }
+            else
+            {
+                Player.SetXVelocity(0f);
+                Player.SetYVelocity(-PlayerData.wallSlideVelocity);
+            }
         }
     }
 }

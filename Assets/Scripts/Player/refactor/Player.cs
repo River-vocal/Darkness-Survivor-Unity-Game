@@ -130,6 +130,11 @@ public class Player : MonoBehaviour
     {
         return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.wallLayer);
     }
+
+    public bool CheckIfBackTouchingWall()
+    {
+        return Physics2D.Raycast(wallCheck.position, Vector2.left * FacingDirection, playerData.wallCheckDistance, playerData.wallLayer);
+    }
     #endregion
 
     #region Gizmos

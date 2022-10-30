@@ -7,6 +7,7 @@ public class PlayerInAirState : PlayerState
 {
     private bool isGrounded;
     private bool isTouchingWall;
+    private bool isBackTouchingWall;
     private float xInput;
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
     private static readonly int InAir = Animator.StringToHash("inAir");
@@ -38,8 +39,9 @@ public class PlayerInAirState : PlayerState
         {
             StateMachine.ChangeState(Player.LandState);
         }
-        else if (isTouchingWall && Player.InputHandler.JumpPressed)
+        else if ((isTouchingWall || isBackTouchingWall) && Player.InputHandler.JumpPressed)
         {
+            Player.WallJumpState.SetWallJumpDirection(isTouchingWall);
             StateMachine.ChangeState(Player.WallJumpState);
         }
         else if (Player.InputHandler.JumpPressed && Player.JumpState.CanJump())
@@ -68,6 +70,7 @@ public class PlayerInAirState : PlayerState
         base.Check();
         isGrounded = Player.CheckIfGrounded();
         isTouchingWall = Player.CheckIfTouchingWall();
+        isBackTouchingWall = Player.CheckIfBackTouchingWall();
     }
 
     public void StartCoyoteTime()
