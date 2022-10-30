@@ -64,3 +64,5 @@ crashlytics-build.properties
 .idea/
 **/.DS_Store
 WebGL Builds/
+UserSettings/EditorUserSettings.asset
+UserSettings/Layouts/CurrentMaximizeLayout.dwlt
