@@ -24,13 +24,13 @@ public class FloorDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if  (collision.gameObject.GetComponent<Energy>().CurEnergy < damageValue) {
-                GlobalAnalysis.player_status = "trap_dead";
-                Debug.Log("lose by: trap");
-            }
+            // if  (collision.gameObject.GetComponent<Energy>().CurEnergy < damageValue) {
+            //     GlobalAnalysis.player_status = "trap_dead";
+            //     Debug.Log("lose by: trap");
+            // }
 
             
-            GlobalAnalysis.trap_damage += damageValue;
+            // GlobalAnalysis.trap_damage += damageValue;
             collision.gameObject.GetComponent<Energy>().CurEnergy -= damageValue;
         }
     }

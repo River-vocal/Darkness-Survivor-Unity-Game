@@ -64,7 +64,7 @@ public class Health : MonoBehaviour
         int healthDelta = newHealth - curHealth;
 
         // Show Popup
-        if (popupEnable) showPopup(healthDelta);
+        if (popupEnable) ShowPopup(healthDelta);
 
         curHealth = newHealth;
 
@@ -84,7 +84,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void showPopup(int healthDelta)
+    private void ShowPopup(int healthDelta)
     {
         if (healthDelta < 0)
         {
@@ -94,23 +94,17 @@ public class Health : MonoBehaviour
             int fontSize = isCritical ? criticalFontSize : normalFontSize;
             Color color = isCritical ? criticalDamageColor : normalDamageColor;
 
-            DamagePopup damagePopup = createPopup(popupPosition);
-            damagePopup.Setup(damage, color, fontSize);
+            DamagePopup damagePopup = DamagePopup.CreatePopup(popupPosition);
+            damagePopup.Setup(damage.ToString(), color, fontSize);
         }
         else
         {
             // Heal
             int healing = healthDelta;
 
-            DamagePopup damagePopup = createPopup(popupPosition);
-            damagePopup.Setup(healing, healingColor, healingFontSize);
+            DamagePopup damagePopup = DamagePopup.CreatePopup(popupPosition);
+            damagePopup.Setup(healing.ToString(), healingColor, healingFontSize);
         }
     }
-
-    private static DamagePopup createPopup(Vector3 position)
-    {
-        Transform damagePopupTransform = Instantiate(GameAssets.i.pfDamagePopup, position, Quaternion.identity);
-        DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-        return damagePopup;
-    }
+    
 }

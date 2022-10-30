@@ -10,7 +10,7 @@ public class EnergyPickup : MonoBehaviour
         if(other.gameObject.tag == "Player"){
             Energy energy = other.gameObject.GetComponent<Energy>();
             energy.CurEnergy += boostValue;
-            GlobalAnalysis.healing_energy += boostValue;
+            // GlobalAnalysis.healing_energy += boostValue;
             Destroy(transform.parent.gameObject);
         }
     }

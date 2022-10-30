@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,8 @@ public class DamagePopup : MonoBehaviour
         textMesh = GetComponent<TextMeshPro>();
     }
 
-    public void Setup(int damageAmount, Color color, int fontSize){
-        textMesh.SetText(damageAmount.ToString());
+    public void Setup(String text, Color color, int fontSize){
+        textMesh.SetText(text);
         textMesh.fontSize = fontSize;
         textColor = color;
         disapperTimer = disappearDelay;
@@ -36,6 +37,13 @@ public class DamagePopup : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }   
+    
+    public static DamagePopup CreatePopup(Vector3 position)
+    {
+        Transform damagePopupTransform = Instantiate(GameAssets.i.pfDamagePopup, position, Quaternion.identity);
+        DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
+        return damagePopup;
     }
 
 }
