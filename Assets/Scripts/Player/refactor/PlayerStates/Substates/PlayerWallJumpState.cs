@@ -6,6 +6,8 @@ public class PlayerWallJumpState : PlayerUseAbilityState
 {
     private int wallJumpDirection;
     private bool isGrounded;
+    private bool isTouchingWall;
+    
     public PlayerWallJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter) : base(player, stateMachine, playerData, animationTriggerParameter)
     {
     }
@@ -28,11 +30,16 @@ public class PlayerWallJumpState : PlayerUseAbilityState
 
         if (StateMachine.CurState == this)
         {
-            if (Time.time >= StateStartTime + PlayerData.wallJumpTime)
+            // if (Time.time >= StateStartTime + PlayerData.wallJumpTime)
+            // {
+            //     isAbilityDone = true;
+            // }
+            // //todo: what if player touches ground or wall before isAbilityDone is set to true?
+
+            if (animationFinished || isGrounded || Player.CheckIfTouchingWall())
             {
                 isAbilityDone = true;
             }
-            //todo: what if player touches ground or wall before isAbilityDone is set to true?
         }
     }
 
@@ -40,6 +47,7 @@ public class PlayerWallJumpState : PlayerUseAbilityState
     {
         base.Check();
         isGrounded = Player.CheckIfGrounded();
+        isTouchingWall = Player.CheckIfTouchingWall();
     }
 
     public void SetWallJumpDirection(bool isTouchingWall)

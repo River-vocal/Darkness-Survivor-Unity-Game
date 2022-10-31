@@ -21,8 +21,13 @@ MonoBehaviour:
   wallJumpVelocity: 20
   wallJumpTime: 0.4
   wallJumpAngle: {x: 1, y: 2}
+  dashCoolDown: 0.25
+  dashVelocity: 30
+  dashDrag: 3
+  dashYVelocityMultiplier: 0.2
   groundCheckDistance: 0.15
   wallCheckDistance: 0.3
+  backWallCheckDistance: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
