@@ -28,7 +28,14 @@ public class PlayerUseAbilityState : PlayerState
         {
             if (isGrounded && Player.CurVelocity.y <= 0)
             {
-                StateMachine.ChangeState(Player.IdleState);
+                if ((int)Player.InputHandler.MovementInput.x == 0)
+                {
+                    StateMachine.ChangeState(Player.IdleState);
+                }
+                else
+                {
+                    StateMachine.ChangeState(Player.MoveState);
+                }
             }
             else
             {
@@ -46,10 +53,5 @@ public class PlayerUseAbilityState : PlayerState
     {
         base.Check();
         isGrounded = Player.CheckIfGrounded();
-    }
-
-    public void SetAbilityDone()
-    {
-        isAbilityDone = true;
     }
 }

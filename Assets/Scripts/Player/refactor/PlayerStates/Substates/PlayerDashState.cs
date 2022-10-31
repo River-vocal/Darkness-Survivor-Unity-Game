@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerDashState : PlayerUseAbilityState
 {
     public bool CanDash { get; private set; }
-    private float lastDashTime;
+    private float lastDashTime = 0f;
+    private bool isTouchingWall;
     public PlayerDashState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter) : base(player, stateMachine, playerData, animationTriggerParameter)
     {
     }
@@ -33,6 +34,7 @@ public class PlayerDashState : PlayerUseAbilityState
     {
         base.Exit();
         lastDashTime = Time.time;
+        Player.RigidBody.drag = 0f;
     }
 
     public override void Update()
@@ -41,7 +43,21 @@ public class PlayerDashState : PlayerUseAbilityState
         
         if (StateMachine.CurState == this)
         {
-            //early quit
+            if (animationFinished || isTouchingWall)
+            {
+                isAbilityDone = true;
+            }
+            else
+            {
+                Player.SetYVelocity(Player.CurVelocity.y * PlayerData.dashYVelocityMultiplier);
+            }
         }
+    }
+
+    public override void Check()
+    {
+        base.Check();
+
+        isTouchingWall = Player.CheckIfTouchingWall();
     }
 }

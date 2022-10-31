@@ -29,6 +29,7 @@ public class PlayerData : ScriptableObject
    public float dashCoolDown = 0.5f;
    public float dashVelocity = 30f;
    public float dashDrag = 10f;
+   public float dashYVelocityMultiplier = 0.2f;
    
    [Header("Check Variables")] 
    public float groundCheckDistance = 0.15f;
