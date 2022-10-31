@@ -83483,6 +83483,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5152439876230736664, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: spotLight
+      value: 
+      objectReference: {fileID: 1150683512}
     - target: {fileID: 8778075333850035410, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -83533,6 +83537,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+--- !u!114 &1150683512 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2457723144534913920, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+  m_PrefabInstance: {fileID: 1150683511}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1164692500
 GameObject:
   m_ObjectHideFlags: 0
