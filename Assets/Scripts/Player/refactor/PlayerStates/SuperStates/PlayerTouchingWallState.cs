@@ -13,6 +13,7 @@ public class PlayerTouchingWallState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        Player.DashState.ResetCanDash();
     }
 
     public override void Exit()
@@ -29,7 +30,7 @@ public class PlayerTouchingWallState : PlayerState
         }
         else if (!IsTouchingWall || (int)Player.InputHandler.MovementInput.x == -Player.FacingDirection)
         {
-            Player.CheckIfShouldFlip((int)Player.InputHandler.MovementInput.x);
+            Player.CheckIfShouldFlip(-Player.FacingDirection);
             StateMachine.ChangeState(Player.InAirState);
         }
     }

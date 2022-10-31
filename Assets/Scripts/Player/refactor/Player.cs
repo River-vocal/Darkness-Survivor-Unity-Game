@@ -16,10 +16,13 @@ public class Player : MonoBehaviour
     public PlayerLandState LandState { get; private set; }
     public PlayerWallSlideState WallSlideState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
+    public PlayerLedgeClimbState LedgeClimbState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
+    
     #endregion
 
     #region Components
-    private Rigidbody2D rb;
+    public Rigidbody2D RigidBody;
     public Animator Animator { get; private set; }
 
     public PlayerInputHandler InputHandler { get; private set; }
@@ -52,20 +55,22 @@ public class Player : MonoBehaviour
         LandState = new PlayerLandState(this, StateMachine, playerData, "land");
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "wallJump");
+        LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimb");
+        DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
     }
 
     private void Start()
     {
         Animator = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
-        rb = GetComponent<Rigidbody2D>();
+        RigidBody = GetComponent<Rigidbody2D>();
         FacingDirection = 1;
         StateMachine.Init(IdleState);
     }
 
     private void Update()
     {
-        CurVelocity = rb.velocity;
+        CurVelocity = RigidBody.velocity;
         StateMachine.CurState.Update();
     }
 
@@ -81,14 +86,14 @@ public class Player : MonoBehaviour
     public void SetXVelocity(float v)
     {
         velocityHolder.Set(v, CurVelocity.y);
-        rb.velocity = velocityHolder;
+        RigidBody.velocity = velocityHolder;
         CurVelocity = velocityHolder;
     }
     
     public void SetYVelocity(float v)
     {
         velocityHolder.Set(CurVelocity.x, v);
-        rb.velocity = velocityHolder;
+        RigidBody.velocity = velocityHolder;
         CurVelocity = velocityHolder;
     }
 
@@ -96,7 +101,7 @@ public class Player : MonoBehaviour
     {
         direction.Normalize();
         velocityHolder.Set(v * direction.x, v * direction.y);
-        rb.velocity = velocityHolder;
+        RigidBody.velocity = velocityHolder;
         CurVelocity = velocityHolder;
     }
     private void Flip()

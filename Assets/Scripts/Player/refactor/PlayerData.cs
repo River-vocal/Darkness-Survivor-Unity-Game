@@ -25,6 +25,11 @@ public class PlayerData : ScriptableObject
    public float wallJumpTime = 0.4f;
    public Vector2 wallJumpAngle = new Vector2(1, 2);
 
+   [Header("Dash State")] 
+   public float dashCoolDown = 0.5f;
+   public float dashVelocity = 30f;
+   public float dashDrag = 10f;
+   
    [Header("Check Variables")] 
    public float groundCheckDistance = 0.15f;
    public float wallCheckDistance = 0.3f;

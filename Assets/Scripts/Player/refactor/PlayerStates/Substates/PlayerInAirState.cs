@@ -26,6 +26,7 @@ public class PlayerInAirState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        coyoteTime = false;
     }
 
     public override void Update()
@@ -50,7 +51,12 @@ public class PlayerInAirState : PlayerState
         }
         else if (isTouchingWall && Player.CurVelocity.y <= 0)
         {
+            //to discuss: do I need to enable auto wall slide? Currently it's enabled, i.e. when player is close to the wall, then they don't need to manually input x movement input to control character into wall slide state
             StateMachine.ChangeState(Player.WallSlideState);
+        }
+        else if (Player.InputHandler.DashPressed && Player.DashState.CheckIfCanDash())
+        {
+            StateMachine.ChangeState(Player.DashState);
         }
         else
         {

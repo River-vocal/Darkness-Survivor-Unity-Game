@@ -47,4 +47,9 @@ public class PlayerUseAbilityState : PlayerState
         base.Check();
         isGrounded = Player.CheckIfGrounded();
     }
+
+    public void SetAbilityDone()
+    {
+        isAbilityDone = true;
+    }
 }

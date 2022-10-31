@@ -32,6 +32,7 @@ public class PlayerWallJumpState : PlayerUseAbilityState
             {
                 isAbilityDone = true;
             }
+            //todo: what if player touches ground or wall before isAbilityDone is set to true?
         }
     }
 

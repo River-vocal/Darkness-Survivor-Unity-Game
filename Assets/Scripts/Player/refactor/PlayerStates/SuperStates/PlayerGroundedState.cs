@@ -17,6 +17,7 @@ public class PlayerGroundedState : PlayerState
     {
         base.Enter();
         Player.JumpState.ResetJumpTimesLeft();
+        Player.DashState.ResetCanDash();
     }
 
     public override void Exit()
@@ -38,6 +39,10 @@ public class PlayerGroundedState : PlayerState
         {
             Player.InAirState.StartCoyoteTime();
             StateMachine.ChangeState(Player.InAirState);
+        }
+        else if (Player.InputHandler.DashPressed && Player.DashState.CheckIfCanDash())
+        {
+            StateMachine.ChangeState(Player.DashState);
         }
     }
 
