@@ -8,22 +8,38 @@ public class CrowAttack : MonoBehaviour
     [SerializeField] public int damage;
 	[SerializeField] private float leftBoundary;
 	[SerializeField] private float rightBoundary;
-	// private GameObject player;
 	private bool movingLeft;
-	// private bool isTrigger = false;
 	private float originY;
+    private Health health;
+
+    private void Awake() {
+        health = GetComponent<Health>();
+        health.OnDamaged += health_OnDamaged;
+        health.OnDead += health_OnDead;
+    }
+
+    private void health_OnDamaged(object sender, System.EventArgs e)
+    {
+        int damage = ((IntegerEventArg) e).Value;
+
+    }
+    private void health_OnDead(object sender, System.EventArgs e)
+    {
+        //Analysis Data
+        // GlobalAnalysis.is_boss_killed = true;
+        Invoke("beatBoss", 0.5f);
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-    	// player = GameObject.Find("PlayerNew");
         originY = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-    	// Debug.Log("bird position  " + transform.position.x);
 		if (movingLeft)
         {
             if (transform.position.x > leftBoundary)
@@ -87,5 +103,10 @@ public class CrowAttack : MonoBehaviour
             GlobalAnalysis.trap_damage += damage;
             energy.CurEnergy -= damage;
         }
+    }
+
+    void beatBoss()
+    {
+        gameObject.SetActive(false);
     }
 }
