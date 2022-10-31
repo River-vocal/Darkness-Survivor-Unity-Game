@@ -10,15 +10,15 @@ public class PlayerData : ScriptableObject
    public float movementVelocity = 10f;
 
    [Header("Jump State")]
-   public float jumpVelocity = 15f;
-   public int jumpTimes = 1;
+   public float jumpVelocity = 20f;
+   public int jumpTimes = 2;
 
    [Header("In Air State")] 
    public float coyoteTime = 0.2f;
    public float variableJumpHeightMultiplier = 0.6f;
 
    [Header("Wall Slide State")] 
-   public float wallSlideVelocity = 2f;
+   public float wallSlideVelocity = 3f;
 
    [Header("Wall Jump State")] 
    public float wallJumpVelocity = 20f;
@@ -26,9 +26,9 @@ public class PlayerData : ScriptableObject
    public Vector2 wallJumpAngle = new Vector2(1, 2);
 
    [Header("Dash State")] 
-   public float dashCoolDown = 0.5f;
+   public float dashCoolDown = 0.25f;
    public float dashVelocity = 30f;
-   public float dashDrag = 10f;
+   public float dashDrag = 3f;
    public float dashYVelocityMultiplier = 0.2f;
    
    [Header("Check Variables")] 
