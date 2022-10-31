@@ -42,7 +42,7 @@ public class PlayerAttackNew : MonoBehaviour
         {
             if (colInfo.tag == "Drop")
             {
-                colInfo.GetComponent<EnemyDrops>().dropDeath();
+                colInfo.GetComponent<EnemyDrops>().DropDeath();
             }
             else
             {
