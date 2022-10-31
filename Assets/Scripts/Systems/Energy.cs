@@ -80,20 +80,20 @@ public class Energy : MonoBehaviour
             energyDiff = ConsumeSpeed * SlowDownFactor * Time.deltaTime;
         }
 
-        if (energyDiff < 0)
-        {
-            GlobalAnalysis.healing_energy -= energyDiff;
-        }
-        else if (speedDiff > 0)
-        {
-            GlobalAnalysis.light_damage += energyDiff;
-            //predict the dead cause before CurEnergy changed
-            if (CurEnergy - energyDiff <= 0.0001f)
-            {
-                GlobalAnalysis.player_status = "red_light_dead";
-                Debug.Log("lose by: red light");
-            }
-        }
+        // if (energyDiff < 0)
+        // {
+        //     GlobalAnalysis.healing_energy -= energyDiff;
+        // }
+        // else if (speedDiff > 0)
+        // {
+        //     GlobalAnalysis.light_damage += energyDiff;
+        //     //predict the dead cause before CurEnergy changed
+        //     if (CurEnergy - energyDiff <= 0.0001f)
+        //     {
+        //         GlobalAnalysis.player_status = "red_light_dead";
+        //         Debug.Log("lose by: red light");
+        //     }
+        // }
 
         CurEnergy -= energyDiff;
     }

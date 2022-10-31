@@ -1,0 +1,39 @@
+	
+--------------Crow 2D----------------------------
+
+2D Animation Spritesheet's of a Crow
+
+Technical Details:-
+		
+		- Total Spritesheets : 10
+		- Character Variations : 2
+		- Animations for each characters : 5(Fly_02, Fly_02, Attack, Death, Low_health)
+		- Character : Crow, Wizard Crow
+		- Sheet Resolution and Frames count: 
+			Fly_01 - 2788 x 2400 (12)
+			Fly_02 - 697 x 1600  (2)
+			Attack - 3485 x 1600 (10)
+			Death - 697 x 1600 (2)
+			Low_health - 3485 x 1600 (10)
+			
+Features:-
+	- Two character variations
+	- Smooth animations
+	- Prefabs included
+	- Unique Animations
+	- High quality images
+	- Mobile supported
+	- Demo scenes included
+	
+How to use:-
+	
+	Simply drag and drop any Spritesheet animation from the Prefab (Crow_2D > Prefabs) folder
+	to you scene.
+
+..................................................................................
+
+About Me : "SR Studios Kerala", Indie Game developer & 3D Artist from Alappuzha, Kerala, India
+
+Contact : srstudioskerala@gmail.com
+
+................Thank you for downloading this package................................

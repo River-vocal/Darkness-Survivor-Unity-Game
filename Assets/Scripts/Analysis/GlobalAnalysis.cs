@@ -10,6 +10,7 @@ public static class GlobalAnalysis {
     public static string player_status;
     public static double healing_energy;
     public static double trap_damage;
+    public static double smallenemy_damage;
     public static double boss_damage;
     public static double light_damage;
     public static int energy_extender;
@@ -25,6 +26,7 @@ public static class GlobalAnalysis {
             player_status,
             healing_energy,
             trap_damage,
+            smallenemy_damage,
             boss_damage,
             light_damage,
             energy_extender,
@@ -41,6 +43,7 @@ public static class GlobalAnalysis {
         timestamp = "N/A";
         healing_energy = 0;
         trap_damage = 0;
+        smallenemy_damage = 0;
         boss_damage = 0;
         light_damage = 0;
         energy_extender = 0;

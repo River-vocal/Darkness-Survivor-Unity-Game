@@ -64,3 +64,8 @@ crashlytics-build.properties
 .idea/
 **/.DS_Store
 WebGL Builds/
+UserSettings/*
+*.zip
+*.blob
+unity_b/*
+webgl_sharing
