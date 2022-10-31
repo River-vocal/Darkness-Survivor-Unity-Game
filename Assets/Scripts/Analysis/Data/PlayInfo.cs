@@ -21,7 +21,6 @@ public class PlayInfo {
     public PlayInfo(string level, string state, string player_status, double heal, double trap_dmg, double smallenemy_dmg, double boss_dmg, double light_dmg, int energy_extender, bool boss_killed, string timestamp, string time_diff) {
         this.level = level;
         this.state = state;
-        this.state = state;
         this.player_status = player_status;
         this.healing_energy = heal;
         this.trap_damage = trap_dmg;
