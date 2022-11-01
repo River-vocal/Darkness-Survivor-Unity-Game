@@ -141,6 +141,7 @@ public class EnemyDrops : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x * 0.7f, transform.localScale.y * 0.7f,
                 transform.localScale.z * 0.7f);
             transform.position += new Vector3(0, -height * 0.4f, 0);
+            speed *= 1.5f;
 
             anim.SetTrigger("Hurt");
         }
