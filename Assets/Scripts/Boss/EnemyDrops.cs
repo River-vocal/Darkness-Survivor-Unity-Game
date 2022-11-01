@@ -152,6 +152,11 @@ public class EnemyDrops : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            if (col.GetComponent<Energy>().CurEnergy < damage) {
+                GlobalAnalysis.player_status = "smallenemy_dead";
+                Debug.Log("lose by: small enemy");
+            }
+            GlobalAnalysis.smallenemy_damage += damage;
             col.GetComponent<Energy>().CurEnergy -= damage;
         }
     }
