@@ -60,6 +60,6 @@ public class PlayerState
     public virtual void AnimationFinished()
     {
         animationFinished = true;
-        Debug.Log("animation finished!");
+        // Debug.Log("animation finished!");
     }
 }

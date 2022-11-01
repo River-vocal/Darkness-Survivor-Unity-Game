@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +10,16 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpPressed { get; private set; }
     public bool JumpReleased { get; private set; }
     public bool DashPressed { get; private set; }
-    public bool DashReleased { get; private set; }
+
+    public int AttackComboIndex { get; private set; } = 0;
     
-    [SerializeField] private float jumpBufferTime = 0.1f;
+    [SerializeField] private float jumpBufferTime = 0.2f;
     [SerializeField] private float dashBufferTime = 0.2f;
 
     private float jumpBufferStartTime;
     private float dashBufferStartTime;
+    private bool comboDetectionOn = true;
+    private int numberOfAttackAnimations = 4;
     
     public void Update()
     {
@@ -54,13 +58,22 @@ public class PlayerInputHandler : MonoBehaviour
         if (ctx.started)
         {
             DashPressed = true;
-            DashReleased = false;
             dashBufferStartTime = Time.time;
         }
+    }
 
-        if (ctx.canceled)
+    public void OnAttackInput(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && AttackComboIndex <= 0)
         {
-            DashReleased = true;
+            if (AttackComboIndex < 0 && comboDetectionOn)
+            {
+                AttackComboIndex = (-AttackComboIndex) % numberOfAttackAnimations + 1;
+            }
+            else
+            {
+                AttackComboIndex = 1;
+            }
         }
     }
 
@@ -72,5 +85,19 @@ public class PlayerInputHandler : MonoBehaviour
     public void ConsumeDashInput()
     {
         DashPressed = false;
+    }
+
+    public void ConsumeAttackInput()
+    {
+        AttackComboIndex = -AttackComboIndex;
+    }
+
+    public void ResetComboDetection()
+    {
+        comboDetectionOn = true;
+    }
+    public void StopComboDetection()
+    {
+        comboDetectionOn = false;
     }
 }

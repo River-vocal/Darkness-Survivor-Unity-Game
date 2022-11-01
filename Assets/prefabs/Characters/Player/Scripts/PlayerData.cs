@@ -22,7 +22,6 @@ public class PlayerData : ScriptableObject
 
    [Header("Wall Jump State")] 
    public float wallJumpVelocity = 20f;
-   public float wallJumpTime = 0.4f;
    public Vector2 wallJumpAngle = new Vector2(1, 2);
 
    [Header("Dash State")] 
@@ -30,11 +29,19 @@ public class PlayerData : ScriptableObject
    public float dashVelocity = 30f;
    public float dashDrag = 3f;
    public float dashYVelocityMultiplier = 0.2f;
+
+   [Header("Attack State")] 
+   public float attackMovementDrag = 3f;
+   public float attackGravityScale = 3f;
+   public int attackDamage = 10;
    
+
    [Header("Check Variables")] 
    public float groundCheckDistance = 0.15f;
    public float wallCheckDistance = 0.3f;
    public float backWallCheckDistance = 1f;
+   public float attackCheckDistance = 0.6f;
    public LayerMask groundLayer;
    public LayerMask wallLayer;
+   public LayerMask enemyLayer;
 }

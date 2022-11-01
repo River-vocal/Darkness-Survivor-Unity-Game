@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
+    public PlayerAttackState AttackState { get; private set; }
     
     #endregion
 
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
     private Vector2 velocityHolder;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
+    [SerializeField] public Transform attackCheck;
 
     #endregion
 
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "wallJump");
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimb");
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
+        AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
     }
 
     private void Start()
@@ -104,6 +107,14 @@ public class Player : MonoBehaviour
         RigidBody.velocity = velocityHolder;
         CurVelocity = velocityHolder;
     }
+
+    public void SetVelocity(Vector2 v)
+    {
+        velocityHolder.Set(v.x, v.y);
+        RigidBody.velocity = velocityHolder;
+        CurVelocity = velocityHolder;
+    }
+    
     private void Flip()
     {
         FacingDirection *= -1;
@@ -148,6 +159,7 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawWireSphere(groundCheck.position, playerData.groundCheckDistance);
         Gizmos.DrawWireSphere(wallCheck.position, playerData.wallCheckDistance);
+        Gizmos.DrawWireSphere(attackCheck.position, playerData.attackCheckDistance);
     }
     #endregion
 }
