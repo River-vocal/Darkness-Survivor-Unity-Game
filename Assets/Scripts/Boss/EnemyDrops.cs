@@ -8,7 +8,7 @@ public class EnemyDrops : MonoBehaviour
     [SerializeField] private float movementDistance;
     [SerializeField] private float speed;
     [SerializeField] public int damage;
-    [SerializeField] public string color;
+    [SerializeField] public Boolean hasTwoLives;
     [SerializeField] public bool isRoundWalk;
     [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask groundLayer;
@@ -21,8 +21,8 @@ public class EnemyDrops : MonoBehaviour
     public Transform groundCheck;
     private float width;
     private float height;
-    
-    
+    private SpriteRenderer sp;
+
 
     private void Awake()
     {
@@ -31,14 +31,18 @@ public class EnemyDrops : MonoBehaviour
         anim = GetComponent<Animator>();
         width = GetComponent<Collider2D>().bounds.size.x;
         height = GetComponent<Collider2D>().bounds.size.y;
-
+        sp = GetComponent<SpriteRenderer>();
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
+        Gizmos.DrawLine(transform.position,
+            new Vector3(transform.position.x + movementDistance, transform.position.y, transform.position.z));
+        Gizmos.DrawLine(transform.position,
+            new Vector3(transform.position.x - movementDistance, transform.position.y, transform.position.z));
     }
-    
+
     private void Update()
     {
         if (isRoundWalk)
@@ -51,27 +55,27 @@ public class EnemyDrops : MonoBehaviour
                     // current moving right 
                     case "right":
                         transform.Rotate(0, 0, -90);
-                        transform.position += new Vector3(0,  - width, 0);
+                        transform.position += new Vector3(height / 2, -width, 0);
                         direction = "down";
                         break;
                     case "down":
 
                         transform.Rotate(0, 0, -90);
-                        transform.position += new Vector3(- width, 0, 0);
+                        transform.position += new Vector3(-width, -height / 2, 0);
                         direction = "left";
                         break;
                     case "left":
                         transform.Rotate(0, 0, -90);
-                        transform.position += new Vector3(0,  width/2, 0);
+                        transform.position += new Vector3(-height / 2, width, 0);
                         direction = "up";
                         break;
                     case "up":
 
                         transform.Rotate(0, 0, -90);
-                        transform.position += new Vector3(width, 0, 0);
+                        transform.position += new Vector3(width, height / 2, 0);
                         direction = "right";
                         break;
-                 }
+                }
             }
             else
             {
@@ -82,13 +86,13 @@ public class EnemyDrops : MonoBehaviour
                         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
                         break;
                     case "down":
-                        transform.position += new Vector3(0, - speed * Time.deltaTime,0);
+                        transform.position += new Vector3(0, -speed * Time.deltaTime, 0);
                         break;
                     case "left":
                         transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
                         break;
                     case "up":
-                        transform.position += new Vector3(0,  speed * Time.deltaTime, 0);
+                        transform.position += new Vector3(0, speed * Time.deltaTime, 0);
                         break;
                 }
             }
@@ -99,11 +103,12 @@ public class EnemyDrops : MonoBehaviour
             {
                 if (transform.position.x > leftEdge)
                 {
-                    transform.position += new Vector3(- speed * Time.deltaTime, 0, 0);
+                    transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
                 }
                 else
                 {
                     movingLeft = false;
+                    sp.flipX = false;
                 }
             }
             else
@@ -115,6 +120,7 @@ public class EnemyDrops : MonoBehaviour
                 else
                 {
                     movingLeft = true;
+                    sp.flipX = true;
                 }
             }
         }
@@ -123,46 +129,30 @@ public class EnemyDrops : MonoBehaviour
 
     public void DropDeath()
     {
-        if (color != "blue" || beAttacked)
+        if (!hasTwoLives || beAttacked)
         {
             speed = 0;
-            anim.SetTrigger("dropDeath");
+            anim.SetTrigger("Death");
         }
         else
         {
             beAttacked = true;
 
-            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            transform.localScale = new Vector3(transform.localScale.x * 0.7f, transform.localScale.y * 0.7f,
+                transform.localScale.z * 0.7f);
+            transform.position += new Vector3(0, -height * 0.4f, 0);
 
-            anim.SetTrigger("dropHurt");
+            anim.SetTrigger("Hurt");
         }
     }
 
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        
         if (col.gameObject.CompareTag("Player"))
         {
-            switch (color)
-            {
-                case "red":
-                    // if  (col.GetComponent<Energy>().CurEnergy < damage) {
-                    //     GlobalAnalysis.player_status = "trap_dead";
-                    //     Debug.Log("lose by: trap");
-                    // }
-                    // GlobalAnalysis.trap_damage += damage;
-                    col.GetComponent<Energy>().CurEnergy -= damage;
-                    break;
-
-                case "green":
-                    // GlobalAnalysis.healing_energy += damage;
-                    col.GetComponent<Energy>().CurEnergy += damage;
-                    break;
-
-            }
+            col.GetComponent<Energy>().CurEnergy -= damage;
         }
-        
     }
 
     private void Deactivate()
