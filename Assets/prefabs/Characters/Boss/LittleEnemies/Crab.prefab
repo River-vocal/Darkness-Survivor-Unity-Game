@@ -123,8 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDistance: 0
   speed: 2
-  damage: 5
-  color: red
+  damage: 10
+  hasTwoLives: 0
   isRoundWalk: 1
   groundCheckDistance: 0.2
   groundLayer:
