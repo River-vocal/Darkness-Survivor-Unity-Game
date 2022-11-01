@@ -44,6 +44,10 @@ public class PlayerGroundedState : PlayerState
         {
             StateMachine.ChangeState(Player.DashState);
         }
+        else if (Player.InputHandler.AttackComboIndex > 0)
+        {
+            StateMachine.ChangeState(Player.AttackState);
+        }
     }
 
     public override void FixedUpdate()

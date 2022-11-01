@@ -201,7 +201,19 @@ MonoBehaviour:
     m_ActionId: 1b5169a5-5129-4620-a8bc-f12753fa1928
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8778075333850035413}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAttackInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 923d84ac-2fe2-4f83-ac0c-5f4b1ed3369b
     m_ActionName: Player/Fire[/Mouse/leftButton,/Keyboard/space]
   - m_PersistentCalls:
@@ -432,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6197cd1d3cb85243acd6c34e88890f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spotLight: {fileID: 0}
+  spotLight: {fileID: 2457723144534913920}
 --- !u!114 &3584505650206035563
 MonoBehaviour:
   m_ObjectHideFlags: 0

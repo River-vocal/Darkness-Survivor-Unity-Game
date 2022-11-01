@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
+    public PlayerAttackState AttackState { get; private set; }
     
     #endregion
 
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "wallJump");
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimb");
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
+        AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
     }
 
     private void Start()

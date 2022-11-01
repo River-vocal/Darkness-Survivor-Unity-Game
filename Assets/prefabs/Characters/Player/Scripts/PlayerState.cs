@@ -27,7 +27,7 @@ public class PlayerState
         Player.Animator.SetBool(animationTriggerParameter, true);
         StateStartTime = Time.time;
         animationFinished = false;
-        Debug.Log("entering " + animationTriggerParameter);
+        // Debug.Log("entering " + animationTriggerParameter);
     }
 
     public virtual void Exit()
@@ -60,6 +60,6 @@ public class PlayerState
     public virtual void AnimationFinished()
     {
         animationFinished = true;
-        Debug.Log("animation finished!");
+        // Debug.Log("animation finished!");
     }
 }
