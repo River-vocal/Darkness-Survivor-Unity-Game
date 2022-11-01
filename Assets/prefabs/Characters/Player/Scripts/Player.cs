@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     #region Components
     public Rigidbody2D RigidBody;
     public Animator Animator { get; private set; }
+    public CinemachineImpulseSource cinemachineImpulseSource;
 
     public PlayerInputHandler InputHandler { get; private set; }
 
@@ -67,6 +69,7 @@ public class Player : MonoBehaviour
         Animator = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
         RigidBody = GetComponent<Rigidbody2D>();
+        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
         FacingDirection = 1;
         StateMachine.Init(IdleState);
     }

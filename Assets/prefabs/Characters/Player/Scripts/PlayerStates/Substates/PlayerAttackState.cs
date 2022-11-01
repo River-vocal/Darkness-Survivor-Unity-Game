@@ -29,6 +29,7 @@ public class PlayerAttackState : PlayerUseAbilityState
             }
             else
             {
+                Player.cinemachineImpulseSource.GenerateImpulse();
                 collision.GetComponent<Health>().CurHealth -= PlayerData.attackDamage;
             }
         }
