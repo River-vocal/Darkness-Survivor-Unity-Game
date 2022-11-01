@@ -27,7 +27,7 @@ public class BossAttack : MonoBehaviour
             //     Debug.Log("lose by: boss");
             // }
             colInfo.GetComponent<Energy>().CurEnergy -= attackDamage;
-            colInfo.GetComponent<KnockBack>().Trigger(gameObject);
+            // colInfo.GetComponent<KnockBack>().Trigger(gameObject);
             Debug.Log("Boss Attack");
         }
     }

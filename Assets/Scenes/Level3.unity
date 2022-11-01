@@ -111181,7 +111181,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   bossIsFlipped: 0
   attackDamage: 10
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 2055584228}
 --- !u!70 &1299654547
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

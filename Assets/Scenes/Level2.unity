@@ -60498,7 +60498,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   bossIsFlipped: 0
   attackDamage: 16
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 2015001809}
 --- !u!114 &1835547116
 MonoBehaviour:
   m_ObjectHideFlags: 0
