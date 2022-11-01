@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
-    
+    public PlayerOutOfControlState OutOfControlState { get; private set; }
     #endregion
 
     #region Components
@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimb");
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
         AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        OutOfControlState = new PlayerOutOfControlState(this, StateMachine, playerData, "outOfControl");
     }
 
     private void Start()
@@ -163,6 +164,19 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, playerData.groundCheckDistance);
         Gizmos.DrawWireSphere(wallCheck.position, playerData.wallCheckDistance);
         Gizmos.DrawWireSphere(attackCheck.position, playerData.attackCheckDistance);
+    }
+    #endregion
+
+    #region Other
+
+    public void ChangeToOutOfControlState()
+    {
+        StateMachine.ChangeState(OutOfControlState);
+    }
+
+    public void endOutOfControl()
+    {
+        OutOfControlState.SetAbilityDone();
     }
     #endregion
 }
