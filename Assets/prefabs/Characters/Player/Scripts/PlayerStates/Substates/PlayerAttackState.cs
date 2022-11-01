@@ -25,7 +25,7 @@ public class PlayerAttackState : PlayerUseAbilityState
         {
             if (collision.tag == "Drop")
             {
-                collision.GetComponent<EnemyDrops>().dropDeath();
+                collision.GetComponent<EnemyDrops>().DropDeath();
             }
             else
             {
