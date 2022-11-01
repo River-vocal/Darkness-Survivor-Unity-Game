@@ -33,12 +33,15 @@ public class PlayerData : ScriptableObject
    [Header("Attack State")] 
    public float attackMovementDrag = 3f;
    public float attackGravityScale = 3f;
+   public int attackDamage = 10;
    
 
    [Header("Check Variables")] 
    public float groundCheckDistance = 0.15f;
    public float wallCheckDistance = 0.3f;
    public float backWallCheckDistance = 1f;
+   public float attackCheckDistance = 0.6f;
    public LayerMask groundLayer;
    public LayerMask wallLayer;
+   public LayerMask enemyLayer;
 }

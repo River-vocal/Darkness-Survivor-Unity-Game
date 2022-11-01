@@ -20,6 +20,18 @@ public class PlayerAttackState : PlayerUseAbilityState
         Player.RigidBody.gravityScale = PlayerData.attackGravityScale;
         Player.InputHandler.ConsumeAttackInput();
         Player.InputHandler.ResetComboDetection();
+        Collider2D collision = Physics2D.OverlapCircle(Player.attackCheck.position, PlayerData.attackCheckDistance, PlayerData.enemyLayer);
+        if (collision != null)
+        {
+            if (collision.tag == "Drop")
+            {
+                collision.GetComponent<EnemyDrops>().dropDeath();
+            }
+            else
+            {
+                collision.GetComponent<Health>().CurHealth -= PlayerData.attackDamage;
+            }
+        }
     }
 
     public override void Exit()
@@ -39,9 +51,6 @@ public class PlayerAttackState : PlayerUseAbilityState
             {
                 isAbilityDone = true;
                 Player.InputHandler.StopComboDetection();
-            }
-            else
-            {
             }
         }
     }

@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     private Vector2 velocityHolder;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
+    [SerializeField] public Transform attackCheck;
 
     #endregion
 
@@ -158,6 +159,7 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawWireSphere(groundCheck.position, playerData.groundCheckDistance);
         Gizmos.DrawWireSphere(wallCheck.position, playerData.wallCheckDistance);
+        Gizmos.DrawWireSphere(attackCheck.position, playerData.attackCheckDistance);
     }
     #endregion
 }
