@@ -106,6 +106,14 @@ public class Player : MonoBehaviour
         RigidBody.velocity = velocityHolder;
         CurVelocity = velocityHolder;
     }
+
+    public void SetVelocity(Vector2 v)
+    {
+        velocityHolder.Set(v.x, v.y);
+        RigidBody.velocity = velocityHolder;
+        CurVelocity = velocityHolder;
+    }
+    
     private void Flip()
     {
         FacingDirection *= -1;

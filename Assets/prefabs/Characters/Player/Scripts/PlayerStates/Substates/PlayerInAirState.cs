@@ -58,6 +58,10 @@ public class PlayerInAirState : PlayerState
         {
             StateMachine.ChangeState(Player.DashState);
         }
+        else if (Player.InputHandler.AttackComboIndex > 0)
+        {
+            StateMachine.ChangeState(Player.AttackState);
+        }
         else
         {
             Player.CheckIfShouldFlip((int)xInput);
