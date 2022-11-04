@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MessageZone : MonoBehaviour
 {
+	[TextArea]
     [SerializeField] public String message = "Empty Message";
     [SerializeField] public float displayMinimumTime = 3f;
 
