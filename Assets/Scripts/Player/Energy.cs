@@ -1,27 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
+using MyEventArgs;
 using System;
 using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
-    [Header("Energy Settings")]
+    [Header("Energy Settings")] [SerializeField]
+    public float MaxEnergy = 100f;
 
-    [SerializeField] public float MaxEnergy = 100f;
     [SerializeField] public float ConsumeSpeed = 1f;
     [SerializeField] public float SlowDownFactor = 0.5f;
     [SerializeField] public float SlowDownThreshold = 0.2f;
     [SerializeField] private float originalConsumeSpeed;
-    
-    [Header("Popup Settings")]
 
-    [SerializeField] public float popupThreshold = 10f;
-    [SerializeField] public Color energyPopupColor = new Color(0.2f, 0.3f, 0.3f);
+    [Header("Popup Settings")] [SerializeField]
+    public float popupThreshold = 10f;
+
+    [SerializeField] public Color damagePopupColor = new Color(0.2f, 0.3f, 0.3f);
+    [SerializeField] public Color buffPopupColor = new Color(0, 0.4f, 0.2f);
     [SerializeField] public int energyPopupSize = 10;
     [SerializeField] private Vector3 PopupOffset = new Vector3(0, 2, 0);
 
+    private bool damageable = true;
+
+    public bool Damageable
+    {
+        set
+        {
+            damageable = value;
+            if(!damageable) curEnergy = MaxEnergy;
+            OnDamageableChanged?.Invoke(this, new BooleanEventArg(value));
+        }
+        get => damageable;
+    }
 
     public event EventHandler OnEmpty;
+    public event EventHandler OnDamageableChanged;
 
     private float curEnergy;
 
@@ -32,15 +45,23 @@ public class Energy : MonoBehaviour
 
     public float CurEnergy
     {
-        get { return curEnergy; }
+        get => curEnergy;
         set
         {
+            if (!damageable)
+            {
+                DamagePopup damagePopup = global::DamagePopup.CreatePopup(PopupPosition);
+                damagePopup.Setup("Miss", buffPopupColor, energyPopupSize);
+                return;
+            }
+            
             value = Math.Min(value, MaxEnergy);
             value = Math.Max(value, 0f);
             if (curEnergy - value >= popupThreshold)
             {
                 DamagePopup(curEnergy - value);
             }
+
             curEnergy = value;
             if (curEnergy <= 0.0001f)
             {
@@ -68,17 +89,12 @@ public class Energy : MonoBehaviour
 
     private void Update()
     {
+        if (!damageable) return;
         if (CurEnergy == 0) return;
-        float speedDiff = ConsumeSpeed - originalConsumeSpeed;
-        float energyDiff = 0;
-        if (CurEnergyNormalized > SlowDownThreshold)
-        {
-            energyDiff = ConsumeSpeed * Time.deltaTime;
-        }
-        else
-        {
-            energyDiff = ConsumeSpeed * SlowDownFactor * Time.deltaTime;
-        }
+
+        float energyDiff = (CurEnergyNormalized > SlowDownThreshold)
+            ? ConsumeSpeed * Time.deltaTime
+            : ConsumeSpeed * SlowDownFactor * Time.deltaTime;
 
         // if (energyDiff < 0)
         // {
@@ -97,7 +113,7 @@ public class Energy : MonoBehaviour
 
         CurEnergy -= energyDiff;
     }
-    
+
     public float GetOriginalConsumeSpeed()
     {
         return originalConsumeSpeed;
@@ -110,6 +126,6 @@ public class Energy : MonoBehaviour
         int percentage = (int)(energyDamage / MaxEnergy * 100);
 
         DamagePopup damagePopup = global::DamagePopup.CreatePopup(PopupPosition);
-        damagePopup.Setup($"{percentage}%", energyPopupColor, energyPopupSize);
+        damagePopup.Setup($"{percentage}%", damagePopupColor, energyPopupSize);
     }
 }

@@ -1,17 +1,4 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System.Collections;
-using System.Collections.Generic;
+﻿using MyEventArgs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,14 +12,18 @@ public class EnergyBar : MonoBehaviour
     private RectTransform rectTransform;
     private RectTransform barMaskRectTransform;
     private RectTransform edgeRectTransform;
+
+    private float originAnimationSpeed;
     
     private void Awake()
     {
         energy = GameObject.FindWithTag("Player").GetComponent<Energy>();
+        energy.OnDamageableChanged += Energy_OnDamageableChanged;
         rectTransform = (RectTransform) transform;
         barMaskRectTransform = transform.Find("barMask").GetComponent<RectTransform>();
         barRawImage = transform.Find("barMask").Find("bar").GetComponent<RawImage>();
         edgeRectTransform = transform.Find("edge").GetComponent<RectTransform>();
+        originAnimationSpeed = AnimationSpeed;
     }
 
     private void Update()
@@ -52,6 +43,12 @@ public class EnergyBar : MonoBehaviour
             // Edge position
             edgeRectTransform.anchoredPosition = new Vector2(energy.CurEnergyNormalized * barMaskWidth, 0);
         }
+    }
+
+    private void Energy_OnDamageableChanged(object sender, System.EventArgs e)
+    {
+        bool damageable = ((BooleanEventArg)e).Value;
+        AnimationSpeed = damageable ? originAnimationSpeed : -originAnimationSpeed;
     }
 
 }

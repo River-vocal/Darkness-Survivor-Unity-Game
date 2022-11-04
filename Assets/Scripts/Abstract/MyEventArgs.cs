@@ -1,17 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
-using UnityEngine;
 
-public class IntegerEventArg : EventArgs
+namespace MyEventArgs
 {
-    private int value;
-    public int Value{
-        get {
-            return value;
+    public class IntegerEventArg : EventArgs
+    {
+        public int Value { get; }
+
+        public IntegerEventArg(int value){
+            Value = value;
         }
     }
-    public IntegerEventArg(int value){
-        this.value = value;
+
+    public class BooleanEventArg : EventArgs
+    {
+        public bool Value { get; }
+
+        public BooleanEventArg(bool value)
+        {
+            Value = value;
+        }
     }
 }
