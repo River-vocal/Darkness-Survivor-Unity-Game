@@ -664,7 +664,7 @@ PrefabInstance:
       propertyPath: message
       value: 'Check Point
 
-        You will respown here if you die later'
+        You will respawn here if you die later'
       objectReference: {fileID: 0}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
@@ -1723,8 +1723,8 @@ Transform:
   - {fileID: 1774836098}
   - {fileID: 894445603}
   - {fileID: 116675201}
-  - {fileID: 1950589578}
   - {fileID: 587012525}
+  - {fileID: 1950589578}
   m_Father: {fileID: 1726426394}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
