@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
-    public event EventHandler OnPlayerReachExit;
-    
+    [SerializeField] private VoidEventChannel playerReachExitEventChannel;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Play reach finish point");
-        if(OnPlayerReachExit!=null) OnPlayerReachExit(this, EventArgs.Empty);
+        playerReachExitEventChannel.Broadcast();
     }
 }

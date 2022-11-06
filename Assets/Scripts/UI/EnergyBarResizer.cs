@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class EnergyBarResizer : MonoBehaviour
 {
+    [SerializeField] public FloatEventChannel energyExtendEventChannel;
+    
     [SerializeField] public float ResizeSmoothTime = 1.0f;
     [SerializeField] public float ResizeStressScale = 1.1f;
     [SerializeField] public float ResizeThreshold = 2f;
-
-    EnergyBar energyBar;
+    
     RectTransform rectTransform;
     float widthTarget;
     float resizeVelocity = 0.0f;
@@ -18,8 +19,8 @@ public class EnergyBarResizer : MonoBehaviour
     private void Awake()
     {
         rectTransform = (RectTransform)transform;
-        energyBar = GetComponent<EnergyBar>();
         widthTarget = width;
+        energyExtendEventChannel.AddListener(Enlarge);
     }
 
     public void Enlarge(float enlargeWidth)

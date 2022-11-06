@@ -1,25 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WonMenu : MonoBehaviour
 {
-    private Exit exit;
-    private GameObject wonMenu;
-    private void Awake() {
-        exit = GameObject.Find("Exit").GetComponent<Exit>();
-        wonMenu = transform.Find("wonMenu").gameObject;
-        exit.OnPlayerReachExit += exit_OnPlayerReachExit;
+    [SerializeField] private VoidEventChannel levelClearedEventChannel;
+    [SerializeField] private StringEventChannel clearTimeTextEventChannel;
+    [SerializeField] private TMP_Text timeText;
+
+    private void OnEnable()
+    {
+        levelClearedEventChannel.AddListener(Win);
+        clearTimeTextEventChannel.AddListener(SetTimeText);
     }
 
-    private void exit_OnPlayerReachExit(object sender, System.EventArgs e){
-        // GlobalAnalysis.state = "win";
-        // AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-        // GlobalAnalysis.cleanData();
-        
-        wonMenu.SetActive(true);
-        Time.timeScale = 0f;
+    private void OnDisable()
+    {
+        levelClearedEventChannel.RemoveListener(Win);
+        clearTimeTextEventChannel.RemoveListener(SetTimeText);
+    }
+
+    private void SetTimeText(string obj)
+    {
+        timeText.text = obj;
+    }
+
+    private void Win()
+    {
+        if (SceneManager.GetActiveScene().buildIndex >= SceneManager.sceneCountInBuildSettings - 1) return;
+        GetComponent<Canvas>().enabled = true;
+        GetComponent<Animator>().enabled = true;
+
+        Time.timeScale = 0;
     }
 
     public void GoNextLevel()
@@ -34,11 +47,4 @@ public class WonMenu : MonoBehaviour
 
         SceneManager.LoadScene(nextLevelIndex);
     }
-
-    public void Replay()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
 }

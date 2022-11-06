@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
+    public VoidEventChannel playerDieEventChannel;
+
     [Header("Energy Settings")] [SerializeField]
     public float MaxEnergy = 100f;
 
@@ -33,7 +35,6 @@ public class Energy : MonoBehaviour
         get => damageable;
     }
 
-    public event EventHandler OnEmpty;
     public event EventHandler OnDamageableChanged;
 
     private float curEnergy;
@@ -65,7 +66,7 @@ public class Energy : MonoBehaviour
             curEnergy = value;
             if (curEnergy <= 0.0001f)
             {
-                OnEmpty?.Invoke(this, EventArgs.Empty);
+                playerDieEventChannel.Broadcast();
             }
         }
     }

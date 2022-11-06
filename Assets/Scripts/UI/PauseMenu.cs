@@ -5,56 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    private GameObject pauseMenu;
-    public static bool GameIsPaused = false;
-
-    private void Awake() {
-        pauseMenu = transform.Find("pauseMenu").gameObject;
-    }
-
-    void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-        */
-    }
+    [SerializeField] private VoidEventChannel gamePauseEventChannel;
+    [SerializeField] private VoidEventChannel gameResumeEventChannel;
 
     // [SerializeField] protected AudioInfoBroadcaster audioInfoBroadcaster;
     public void Pause()
     {
-        pauseMenu.SetActive(true);
+        GetComponent<Canvas>().enabled = true;
+        GetComponent<Animator>().enabled = true;
+        
         Time.timeScale = 0f;
-        GameIsPaused = true;
-        // audioInfoBroadcaster.PauseMusic();
+        gamePauseEventChannel.Broadcast();
     }
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+        GetComponent<Canvas>().enabled = false;
+        GetComponent<Animator>().enabled = false;
+        
         Time.timeScale = 1f;
-        GameIsPaused = false;
-        // audioInfoBroadcaster.ResumeMusic();
+        gameResumeEventChannel.Broadcast();
     }
 
-    public void Replay()
+    public void GoLevelSelection()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void GoLevelSelectionLevel()
-    {
-        Time.timeScale = 1f;
+        Resume();
         SceneManager.LoadScene(0);
     }
 
