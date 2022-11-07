@@ -6,8 +6,9 @@ public class PlayerAttackState : PlayerUseAbilityState
 {
     private static readonly int AttackComboIndex = Animator.StringToHash("attackComboIndex");
     private float originalGravityScale;
-    
-    public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter) : base(player, stateMachine, playerData, animationTriggerParameter)
+
+    public PlayerAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData,
+        string animationTriggerParameter) : base(player, stateMachine, playerData, animationTriggerParameter)
     {
     }
 
@@ -20,7 +21,8 @@ public class PlayerAttackState : PlayerUseAbilityState
         Player.RigidBody.gravityScale = PlayerData.attackGravityScale;
         Player.InputHandler.ConsumeAttackInput();
         Player.InputHandler.ResetComboDetection();
-        Collider2D collision = Physics2D.OverlapCircle(Player.attackCheck.position, PlayerData.attackCheckDistance, PlayerData.enemyLayer);
+        Collider2D collision = Physics2D.OverlapCircle(Player.attackCheck.position, PlayerData.attackCheckDistance,
+            PlayerData.enemyLayer);
         if (collision != null)
         {
             if (collision.tag == "Drop")
@@ -30,7 +32,8 @@ public class PlayerAttackState : PlayerUseAbilityState
             else
             {
                 Player.cinemachineImpulseSource.GenerateImpulse();
-                collision.GetComponent<Health>().CurHealth -= PlayerData.attackDamage;
+                Health health = collision.GetComponent<Health>();
+                if (health) health.CurHealth -= PlayerData.attackDamage;
             }
         }
     }
