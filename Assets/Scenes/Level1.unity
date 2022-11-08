@@ -90699,6 +90699,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8158893961585819686, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
+      propertyPath: m_DeadZoneHeight
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8158893962399850520, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_RootOrder
       value: 1
