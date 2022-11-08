@@ -52,7 +52,8 @@ public class ElfBlessing : MonoBehaviour
         if (!collided || !target) return;
         angle += Time.deltaTime * rotationSpeed;
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position + TargetOffset, smoothTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.position + TargetOffset,
+            smoothTime * Time.deltaTime);
     }
 
     private IEnumerator EndBlessing()
