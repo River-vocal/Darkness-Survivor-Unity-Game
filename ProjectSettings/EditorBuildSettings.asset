@@ -24,24 +24,21 @@ EditorBuildSettings:
     path: Assets/Scenes/DarkLevel1.unity
     guid: 049b7f55c9dff5642b2056c236bf6f72
   - enabled: 0
-    path: Assets/Scenes/TestScene.unity
-    guid: d570bac4e3b84b04dae0b6718303a48c
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/SampleSceneTutorial.unity
-    guid: ebbc3718c97ab45e68934ec5077bf9dd
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/NewBossScene.unity
-    guid: 7c25e58cde2284fbe9cd91b33e25ddf1
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/SampleSceneTutorial_2.unity
-    guid: 5db89f0c23bdca34799c5a11ac137f27
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/SampleSceneBoss2.unity
-    guid: 595ce58f9d77748e9abe8fd89491f64a
-  - enabled: 1
-    path: Assets/Scenes/SampleSceneBoss3.unity
-    guid: a8afa2074693e4c27982d9b0fdc32e08
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
