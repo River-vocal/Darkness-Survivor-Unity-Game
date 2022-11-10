@@ -139,5 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24f3d3c9db453b489ba31c9c5794b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyEnlargeEventChannel: {fileID: 11400000, guid: 5a7d182531583514caba04e69f99c550, type: 2}
+  id: NOT SET
+  loadEventChannel: {fileID: 11400000, guid: 0eb4e11daef015647bdbd14c01efabc3, type: 2}
+  enlargeEnergyBarEventChannel: {fileID: 11400000, guid: 5a7d182531583514caba04e69f99c550, type: 2}
+  saveEventChannel: {fileID: 11400000, guid: 279634f0c95f3eb4f9c7764f02361280, type: 2}
   boostValue: 30

@@ -1037,6 +1037,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1726426394}
     m_Modifications:
+    - target: {fileID: 2181637385914751317, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+      propertyPath: id
+      value: 1_1
+      objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209781, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_Name
       value: ExtraEnergyPickup (1)
@@ -1384,6 +1388,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1726426394}
     m_Modifications:
+    - target: {fileID: 2181637385914751317, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+      propertyPath: id
+      value: 1_2
+      objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209781, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_Name
       value: ExtraEnergyPickup (2)
@@ -90634,6 +90642,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1726426394}
     m_Modifications:
+    - target: {fileID: 2181637385914751317, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+      propertyPath: id
+      value: 1_0
+      objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209781, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_Name
       value: ExtraEnergyPickup

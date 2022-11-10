@@ -22,6 +22,13 @@ public class EnergyBarResizer : MonoBehaviour
         widthTarget = width;
     }
 
+    private void Start()
+    {
+        EnergyData data = LevelLoader.current.EnergyData;
+        widthTarget = data.EnergyBarLength;
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, widthTarget);
+    }
+
     private void OnEnable()
     {
         energyExtendEventChannel.AddListener(Enlarge);
@@ -30,6 +37,7 @@ public class EnergyBarResizer : MonoBehaviour
     private void OnDisable()
     {
         energyExtendEventChannel.RemoveListener(Enlarge);
+        LevelLoader.current.EnergyData.EnergyBarLength = widthTarget;
     }
 
     public void Enlarge(float enlargeWidth)

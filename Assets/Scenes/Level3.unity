@@ -1804,6 +1804,7 @@ Transform:
   - {fileID: 116675201}
   - {fileID: 587012525}
   - {fileID: 1950589578}
+  - {fileID: 1455612694}
   m_Father: {fileID: 1726426394}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2250,6 +2251,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 284986004}
     m_Modifications:
+    - target: {fileID: 2181637385914751317, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+      propertyPath: id
+      value: 3_2
+      objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209781, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_Name
       value: ExtraEnergyPickup
@@ -4137,6 +4142,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 284986004}
     m_Modifications:
+    - target: {fileID: 2181637385914751317, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+      propertyPath: id
+      value: 3_0
+      objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209781, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_Name
       value: ExtraEnergyPickup
@@ -112264,8 +112273,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 284986004}
     m_Modifications:
+    - target: {fileID: 2181637385914751317, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+      propertyPath: id
+      value: 3_3
+      objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209781, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_Name
       value: ExtraEnergyPickup
@@ -112276,19 +112289,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209782, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788445450367209782, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788445450367209782, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209782, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.382582
+      value: -69.419716
       objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209782, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.100484
+      value: -26.54605
       objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209782, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.022096846
+      value: 0.37925836
       objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209782, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -112320,6 +112341,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+--- !u!4 &1455612694 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2788445450367209782, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+  m_PrefabInstance: {fileID: 1455612693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1456250248
 GameObject:
   m_ObjectHideFlags: 0
@@ -118245,7 +118271,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8158893962399850520, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8158893962399850520, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -120725,6 +120751,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 284986004}
     m_Modifications:
+    - target: {fileID: 2181637385914751317, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
+      propertyPath: id
+      value: 3_1
+      objectReference: {fileID: 0}
     - target: {fileID: 2788445450367209781, guid: 5cc357a4c755f3b47a7ccd14b01fd42f, type: 3}
       propertyPath: m_Name
       value: ExtraEnergyPickup

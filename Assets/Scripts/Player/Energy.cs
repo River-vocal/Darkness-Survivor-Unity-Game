@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
+    public const float InitialMaxEnergy = 100f;
     public VoidEventChannel playerDieEventChannel;
 
     [Header("Energy Settings")] [SerializeField]
@@ -42,6 +43,12 @@ public class Energy : MonoBehaviour
     private void Start()
     {
         originalConsumeSpeed = ConsumeSpeed;
+        MaxEnergy = LevelLoader.current.EnergyData.MaxEnergy;
+    }
+
+    private void OnDisable()
+    {
+        LevelLoader.current.EnergyData.MaxEnergy = MaxEnergy;
     }
 
     public float CurEnergy
