@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    [SerializeField] public VoidEventChannel useEventChannel;
     public Vector2 MovementInput { get; private set; }
     public bool JumpPressed { get; private set; }
     public bool JumpReleased { get; private set; }
@@ -31,6 +32,14 @@ public class PlayerInputHandler : MonoBehaviour
         if (DashPressed && Time.time > dashBufferStartTime + dashBufferTime)
         {
             DashPressed = false;
+        }
+    }
+
+    public void OnUseInput(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            useEventChannel.Broadcast();
         }
     }
     public void OnMoveInput(InputAction.CallbackContext ctx)

@@ -322,6 +322,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 91fc5369-f312-447b-ba5c-bedf2cbf9404
     m_ActionName: Player/Dash[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8778075333850035413}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnDashInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 91fc5369-f312-447b-ba5c-bedf2cbf9404
+    m_ActionName: Player/Dash[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8778075333850035413}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnUseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3a74b025-7d11-4a55-a36f-3e0365490cb7
+    m_ActionName: Player/Use[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -339,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95e6a42f66a2c54ba4da65ac68f9c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useEventChannel: {fileID: 11400000, guid: efeb149348bcf9c4ea85a68d0cb98c17, type: 2}
   jumpBufferTime: 0.2
   dashBufferTime: 0.2
 --- !u!114 &8778075333850035419
