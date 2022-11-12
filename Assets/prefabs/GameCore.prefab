@@ -569,10 +569,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 8158893962399850520}
     m_Modifications:
     - target: {fileID: 8778075333850035408, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 8778075333850035408, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_ActionId
       value: 4bb09153-d55e-474b-811f-1cb00a568a63
       objectReference: {fileID: 0}
