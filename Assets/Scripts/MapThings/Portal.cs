@@ -66,8 +66,6 @@ public class Portal : MonoBehaviour
             return;
         }
 
-        Debug.Log(status);
-
         switch (status)
         {
             case 0:
