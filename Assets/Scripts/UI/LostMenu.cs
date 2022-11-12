@@ -6,37 +6,45 @@ using UnityEngine.SceneManagement;
 
 public class LostMenu : MonoBehaviour
 {
-    private Energy energy;
-    private GameObject lostMenu;
+    [SerializeField] VoidEventChannel playerDefeatedEventChannel;
 
-    private void Awake() {
-        energy = GameObject.FindWithTag("Player").GetComponent<Energy>();
-        energy.OnEmpty += energy_OnEmpty;
-        lostMenu = transform.Find("lostMenu").gameObject;
-        Time.timeScale = 1f;
+    private void OnEnable()
+    {
+        playerDefeatedEventChannel.AddListener(Defeat);
     }
 
-    private void energy_OnEmpty(object sender, System.EventArgs e)
+    private void OnDisable()
     {
-        // GlobalAnalysis.state = "lose";
-        // AnalysisSender.Instance.postRequest("play_info", GlobalAnalysis.buildPlayInfoData());
-        // GlobalAnalysis.cleanData();
-        lostMenu.SetActive(true);
+        playerDefeatedEventChannel.RemoveListener(Defeat);
+    }
+
+    private void Defeat()
+    {
+        GetComponent<Canvas>().enabled = true;
+        GetComponent<Animator>().enabled = true;
+        
         Time.timeScale = 0f;
     }
+    
 
-    public void GoLevelSelectionLevel()
+    public void GoLevelSelection()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
-    public void Replay()
+    public void Respawn()
     {
         Time.timeScale = 1f;
         Respawn respawn = GameObject.FindGameObjectWithTag("Player").GetComponent<Respawn>();
         respawn.Remake();
-        
-        lostMenu.SetActive(false);
+
+        HideUI();
+    }
+
+    private void HideUI()
+    {
+        GetComponent<Canvas>().enabled = false;
+        GetComponent<Animator>().enabled = false;
     }
 }

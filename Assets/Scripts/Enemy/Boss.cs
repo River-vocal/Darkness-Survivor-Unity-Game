@@ -6,16 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
-    // [SerializeField] private GameObject allPassMenu;
-    // [SerializeField] private GameObject wonMenu;
-
     [SerializeField] private GameObject bossTreasure;
     [SerializeField] private GameObject obstacle;
-    // [SerializeField] private Transform bossFinalTransform;
-    
-    [SerializeField] private int maxHealth = 200;
+
     private int curHealth;
-    [SerializeField] private HealthBar healthBar;
     public bool bossIsFlipped;
     public int attackDamage = 10;
     // Start is called before the first frame update

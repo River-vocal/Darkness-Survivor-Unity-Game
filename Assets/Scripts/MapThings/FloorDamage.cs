@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +7,8 @@ public class FloorDamage : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name.Equals("DarkLevel1"))
+        if (SceneManager.GetActiveScene().name.Equals("DarkLevel1") || 
+            SceneManager.GetActiveScene().name.Equals("Level4"))
         {
             damageValue = 30f;
         }

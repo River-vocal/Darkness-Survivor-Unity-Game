@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
+    public const float InitialMaxEnergy = 100f;
+    public VoidEventChannel playerDieEventChannel;
+
     [Header("Energy Settings")] [SerializeField]
     public float MaxEnergy = 100f;
 
@@ -33,7 +36,6 @@ public class Energy : MonoBehaviour
         get => damageable;
     }
 
-    public event EventHandler OnEmpty;
     public event EventHandler OnDamageableChanged;
 
     private float curEnergy;
@@ -41,6 +43,12 @@ public class Energy : MonoBehaviour
     private void Start()
     {
         originalConsumeSpeed = ConsumeSpeed;
+        MaxEnergy = LevelLoader.current.EnergyData.MaxEnergy;
+    }
+
+    private void OnDisable()
+    {
+        LevelLoader.current.EnergyData.MaxEnergy = MaxEnergy;
     }
 
     public float CurEnergy
@@ -65,7 +73,7 @@ public class Energy : MonoBehaviour
             curEnergy = value;
             if (curEnergy <= 0.0001f)
             {
-                OnEmpty?.Invoke(this, EventArgs.Empty);
+                playerDieEventChannel.Broadcast();
             }
         }
     }

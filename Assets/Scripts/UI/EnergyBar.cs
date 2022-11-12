@@ -1,9 +1,11 @@
-﻿using MyEventArgs;
+﻿using System;
+using MyEventArgs;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnergyBar : MonoBehaviour
 {
+    public const float InitialBarLength = 300f;
     private Energy energy;
     [SerializeField] public float AnimationSpeed = 0.2f;
 

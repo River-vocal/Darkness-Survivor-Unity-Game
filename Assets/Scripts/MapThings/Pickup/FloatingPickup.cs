@@ -8,7 +8,8 @@ public class FloatingPickup : MonoBehaviour
     [SerializeField] float rotatingSpeed = 60f;
     private Vector3 initPosition;
 
-    private void Start() {
+    private void Start()
+    {
         initPosition = transform.position;
     }
 
@@ -16,6 +17,6 @@ public class FloatingPickup : MonoBehaviour
     void Update()
     {
         transform.Rotate(new Vector3(0, rotatingSpeed * Time.deltaTime, 0));
-        transform.position = initPosition + new Vector3(0, Mathf.PingPong(Time.time, floatingHieght), 0) ;
+        transform.position = initPosition + new Vector3(0, floatingHieght * Mathf.Sin(Time.time), 0);
     }
 }

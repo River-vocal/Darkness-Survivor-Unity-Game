@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class EnergyBarResizer : MonoBehaviour
 {
+    [SerializeField] public FloatEventChannel energyExtendEventChannel;
+
     [SerializeField] public float ResizeSmoothTime = 1.0f;
     [SerializeField] public float ResizeStressScale = 1.1f;
     [SerializeField] public float ResizeThreshold = 2f;
 
-    EnergyBar energyBar;
     RectTransform rectTransform;
     float widthTarget;
     float resizeVelocity = 0.0f;
@@ -18,8 +19,25 @@ public class EnergyBarResizer : MonoBehaviour
     private void Awake()
     {
         rectTransform = (RectTransform)transform;
-        energyBar = GetComponent<EnergyBar>();
         widthTarget = width;
+    }
+
+    private void Start()
+    {
+        EnergyData data = LevelLoader.current.EnergyData;
+        widthTarget = data.EnergyBarLength;
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, widthTarget);
+    }
+
+    private void OnEnable()
+    {
+        energyExtendEventChannel.AddListener(Enlarge);
+    }
+
+    private void OnDisable()
+    {
+        energyExtendEventChannel.RemoveListener(Enlarge);
+        LevelLoader.current.EnergyData.EnergyBarLength = widthTarget;
     }
 
     public void Enlarge(float enlargeWidth)
@@ -44,11 +62,11 @@ public class EnergyBarResizer : MonoBehaviour
         }
         else
         {
-            if(width != widthTarget){
+            if (width != widthTarget)
+            {
                 rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, widthTarget);
                 rectTransform.localScale = new Vector3(1, 1, 1);
             }
         }
     }
-
 }

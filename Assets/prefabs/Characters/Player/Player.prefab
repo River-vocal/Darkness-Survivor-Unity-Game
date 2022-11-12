@@ -506,13 +506,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e02e4bc148616784990051e0f79205bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDieEventChannel: {fileID: 11400000, guid: 0ddaf40140c6c234195734621f22f0d4, type: 2}
   MaxEnergy: 100
   ConsumeSpeed: 5
   SlowDownFactor: 0.5
   SlowDownThreshold: 0.2
   originalConsumeSpeed: 0
   popupThreshold: 10
-  energyPopupColor: {r: 0.2, g: 0.3, b: 0.3, a: 1}
+  damagePopupColor: {r: 0.2, g: 0.3, b: 0.3, a: 1}
+  buffPopupColor: {r: 0, g: 0.4, b: 0.2, a: 1}
   energyPopupSize: 10
   PopupOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &2015001822

@@ -9,7 +9,7 @@ public class ElfBlessing : MonoBehaviour
     public float rotationRadius = 1f;
     public float elevationOffset;
     public float rotationSpeed = 2f;
-    public float smoothTime = 0.1f;
+    public float elfSpeed = 10f;
 
     private Energy energy;
     private bool collided;
@@ -52,7 +52,8 @@ public class ElfBlessing : MonoBehaviour
         if (!collided || !target) return;
         angle += Time.deltaTime * rotationSpeed;
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position + TargetOffset, smoothTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.position + TargetOffset,
+            elfSpeed * Time.deltaTime);
     }
 
     private IEnumerator EndBlessing()
