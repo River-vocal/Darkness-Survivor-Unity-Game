@@ -12,6 +12,7 @@ public class CrowAttack : MonoBehaviour
 	private bool movingLeft;
 	private float originY;
     private Health health;
+    private float countDown = 0;
 
     private void Awake() {
         health = GetComponent<Health>();
@@ -45,8 +46,26 @@ public class CrowAttack : MonoBehaviour
         {
             if (transform.position.x > leftBoundary)
             {
-                transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, originY,
-                    transform.position.z);
+                if (countDown > 0) {
+                    countDown -= Time.deltaTime;
+                    float newY;
+                    if (countDown > 0.5) {
+                        newY = transform.position.y - 5 * speed * Time.deltaTime;
+                        if (newY < originY - 2) {
+                            newY = originY - 2;
+                        }
+                    }
+                    else {
+                        newY = transform.position.y + 8 * speed * Time.deltaTime;
+                        if (newY > originY) {
+                            newY = originY;
+                        }
+                    }
+                    transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, newY, transform.position.z);
+                }
+                else {
+                    transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, originY, transform.position.z);
+                }
             }
             else
             {
@@ -58,8 +77,26 @@ public class CrowAttack : MonoBehaviour
         {
             if (transform.position.x < rightBoundary)
             {
-                transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, originY,
-                    transform.position.z);
+                if (countDown > 0) {
+                    countDown -= Time.deltaTime;
+                    float newY;
+                    if (countDown > 0.5) {
+                        newY = transform.position.y - 5 * Time.deltaTime;
+                        if (newY < originY - 2) {
+                            newY = originY - 2;
+                        }
+                    }
+                    else {
+                        newY = transform.position.y + 8 * Time.deltaTime;
+                        if (newY > originY) {
+                            newY = originY;
+                        }
+                    }
+                    transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, newY, transform.position.z);
+                }
+                else {
+                    transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, originY, transform.position.z);
+                }     
             }
             else
             {
@@ -80,6 +117,7 @@ public class CrowAttack : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
         	// isTrigger = true;
+            countDown = 1.5f;
         	GetComponent<Animator>().Play("attack");
 
         	GameObject player = col.gameObject;
