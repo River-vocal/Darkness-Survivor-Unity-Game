@@ -7231,11 +7231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 895787818269426433, guid: 1f1508494a9e6a64da35383882f5f0dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4424
+      value: -5033
       objectReference: {fileID: 0}
     - target: {fileID: 895787818269426433, guid: 1f1508494a9e6a64da35383882f5f0dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -849
+      value: -213
       objectReference: {fileID: 0}
     - target: {fileID: 895787818269426433, guid: 1f1508494a9e6a64da35383882f5f0dd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7320,8 +7320,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   damage: 10
-  leftBoundary: 16
-  rightBoundary: 22
+  leftBoundary: 10
+  rightBoundary: 16
+  leftBoundary2: 18
+  rightBoundary2: 23
+  originY2: 21.5
 --- !u!61 &1045655563
 BoxCollider2D:
   m_ObjectHideFlags: 0

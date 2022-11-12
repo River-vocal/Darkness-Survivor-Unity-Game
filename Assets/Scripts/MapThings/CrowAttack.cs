@@ -14,6 +14,11 @@ public class CrowAttack : MonoBehaviour
     private Health health;
     private float countDown = 0;
 
+    [SerializeField] private float leftBoundary2;
+    [SerializeField] private float rightBoundary2;
+    [SerializeField] private float originY2;
+    private float multiple;
+
     private void Awake() {
         health = GetComponent<Health>();
         health.OnDamaged += health_OnDamaged;
@@ -37,6 +42,7 @@ public class CrowAttack : MonoBehaviour
     void Start()
     {
         originY = transform.position.y;
+        multiple = (originY2 - originY) / (leftBoundary2 - rightBoundary);
     }
 
     // Update is called once per frame
@@ -44,71 +50,110 @@ public class CrowAttack : MonoBehaviour
     {
 		if (movingLeft)
         {
-            if (transform.position.x > leftBoundary)
-            {
-                if (countDown > 0) {
-                    countDown -= Time.deltaTime;
-                    float newY;
-                    if (countDown > 0.5) {
-                        newY = transform.position.y - 5 * speed * Time.deltaTime;
-                        if (newY < originY - 2) {
-                            newY = originY - 2;
-                        }
+            if (transform.position.x < rightBoundary) {
+                if (transform.position.x > leftBoundary)
+                {
+                    if (countDown > 0) {
+                        countDown -= Time.deltaTime;
+                        diveAtPlayer(originY);
                     }
                     else {
-                        newY = transform.position.y + 8 * speed * Time.deltaTime;
-                        if (newY > originY) {
-                            newY = originY;
-                        }
+                        transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, originY, transform.position.z);
                     }
-                    transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, newY, transform.position.z);
+                }
+                else
+                {
+                    movingLeft = false;
+                    flip();
+                }
+            }
+            else if (transform.position.x < leftBoundary2) {
+                float newX = transform.position.x - speed * Time.deltaTime;
+                float newY = transform.position.y - multiple * speed * Time.deltaTime;
+                transform.position = new Vector3(newX, newY, transform.position.z);
+            }
+            else {
+                float newX = transform.position.x - speed * Time.deltaTime;
+                if (newX < leftBoundary2) {
+                    transform.position = new Vector3(newX, originY2, transform.position.z);
                 }
                 else {
-                    transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, originY, transform.position.z);
+                    if (countDown > 0) {
+                        countDown -= Time.deltaTime;
+                        diveAtPlayer(originY2);
+                    }
+                    else {
+                        transform.position = new Vector3(newX, originY2, transform.position.z);
+                    }
                 }
-            }
-            else
-            {
-                movingLeft = false;
-                flip();
-            }
+            }  
         }
+
+
         else
         {
-            if (transform.position.x < rightBoundary)
-            {
-                if (countDown > 0) {
-                    countDown -= Time.deltaTime;
-                    float newY;
-                    if (countDown > 0.5) {
-                        newY = transform.position.y - 5 * Time.deltaTime;
-                        if (newY < originY - 2) {
-                            newY = originY - 2;
-                        }
+            if (transform.position.x >= leftBoundary2) {
+                if (transform.position.x < rightBoundary2)
+                {
+                    if (countDown > 0) {
+                        countDown -= Time.deltaTime;
+                        diveAtPlayer(originY2);
                     }
                     else {
-                        newY = transform.position.y + 8 * Time.deltaTime;
-                        if (newY > originY) {
-                            newY = originY;
-                        }
-                    }
-                    transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, newY, transform.position.z);
+                        transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, originY2, transform.position.z);
+                    }     
+                }
+                else
+                {
+                    movingLeft = true;
+                    flip();
+                }
+            }
+            else if (transform.position.x >= rightBoundary) {
+                float newX = transform.position.x + speed * Time.deltaTime;
+                float newY = transform.position.y + multiple * speed * Time.deltaTime;
+                transform.position = new Vector3(newX, newY, transform.position.z);
+            }
+            else {
+                float newX = transform.position.x + speed * Time.deltaTime;
+                if (newX >= rightBoundary) {
+                    transform.position = new Vector3(newX, originY, transform.position.z);
                 }
                 else {
-                    transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, originY, transform.position.z);
-                }     
-            }
-            else
-            {
-                movingLeft = true;
-                flip();
+                    if (countDown > 0) {
+                        countDown -= Time.deltaTime;
+                        diveAtPlayer(originY);
+                    }
+                    else {
+                        transform.position = new Vector3(newX, originY, transform.position.z);
+                    }
+                }
             }
         }
     }
 
-    void flip()
+    private void flip()
     {
     	transform.Rotate(0, 180, 0);
+    }
+
+    private void diveAtPlayer(float origin_y) {
+        float newY;
+        if (countDown > 0.5) {
+            newY = transform.position.y - 5 * Time.deltaTime;
+            if (newY < origin_y - 2) {
+                newY = origin_y - 2;
+            }
+        }
+        else {
+            newY = transform.position.y + 8 * Time.deltaTime;
+            if (newY > origin_y) {
+                newY = origin_y;
+            }
+        }
+        int m = movingLeft ? -1 : 1;
+        transform.position = new Vector3(transform.position.x + m * speed * Time.deltaTime, newY,
+        transform.position.z);
     }
 
 

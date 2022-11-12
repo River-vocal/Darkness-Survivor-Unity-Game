@@ -59861,6 +59861,9 @@ MonoBehaviour:
   damage: 10
   leftBoundary: 76
   rightBoundary: 80
+  leftBoundary2: 82
+  rightBoundary2: 86
+  originY2: 8
 --- !u!61 &1814304251
 BoxCollider2D:
   m_ObjectHideFlags: 0
