@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 48444595}
   - component: {fileID: 48444594}
   m_Layer: 5
-  m_Name: Dynamic Light End
+  m_Name: Dynamic Light Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55390,15 +55390,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 642831493973716392, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.68
+      value: 90.73
       objectReference: {fileID: 0}
     - target: {fileID: 8158893962097666025, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6689644
+      value: 82.71896
       objectReference: {fileID: 0}
     - target: {fileID: 8158893962220248641, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6689644
+      value: 82.71896
       objectReference: {fileID: 0}
     - target: {fileID: 8158893962399850520, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_RootOrder
