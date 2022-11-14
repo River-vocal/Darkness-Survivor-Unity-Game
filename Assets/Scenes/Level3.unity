@@ -112784,6 +112784,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 441818718249180794, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1228970797771189439, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -112851,6 +112855,10 @@ PrefabInstance:
     - target: {fileID: 9056118684756571298, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056118684756571298, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 334921955201647242, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
