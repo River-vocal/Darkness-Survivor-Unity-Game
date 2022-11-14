@@ -69,3 +69,4 @@ UserSettings/*
 *.blob
 unity_b/*
 webgl_sharing
+ProjectSettings/ProjectVersion.txt

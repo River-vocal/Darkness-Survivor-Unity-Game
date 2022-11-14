@@ -15,7 +15,7 @@ public class PlayerData : ScriptableObject
 
    [Header("In Air State")] 
    public float coyoteTime = 0.2f;
-   public float variableJumpHeightMultiplier = 0.6f;
+   public float variableJumpHeightMultiplier = 0.99f;
 
    [Header("Wall Slide State")] 
    public float wallSlideVelocity = 3f;
@@ -25,14 +25,14 @@ public class PlayerData : ScriptableObject
    public Vector2 wallJumpAngle = new Vector2(1, 2);
 
    [Header("Dash State")] 
-   public float dashCoolDown = 0.25f;
+   public float dashCoolDown = 0.1f;
    public float dashVelocity = 30f;
    public float dashDrag = 3f;
-   public float dashYVelocityMultiplier = 0.2f;
+   public float dashYVelocityMultiplier = 0.15f;
 
    [Header("Attack State")] 
    public float attackMovementDrag = 3f;
-   public float attackGravityScale = 3f;
+   public float attackGravityScale = 2f;
    public int attackDamage = 10;
    
 
