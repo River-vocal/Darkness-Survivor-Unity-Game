@@ -6,7 +6,11 @@ using UnityEngine;
 public class Golem : MonoBehaviour
 {
     [SerializeField] public int damage;
-    [SerializeField] public int lives_num;
+    [SerializeField] public float speed;
+    private float distance = 2f;
+    // [SerializeField] public int lives_num;
+    private bool movingRight = true;
+    public Transform groundDetection;
     // [SerializeField] GameObject projectile;
     private Animator golem_animation;
     private float width;
@@ -33,6 +37,28 @@ public class Golem : MonoBehaviour
     void Update()
     {
         // CheckIfTimeToFire();
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        int layer_mask = LayerMask.GetMask ("Ground");
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance, layer_mask);
+        // bool groundInfo = Physics2D.OverlapCircle(groundDetection.position, distance, layer_mask);
+        if(groundInfo.collider == false)
+        {
+            if(movingRight == true)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                Debug.Log("Turn Left!!!!!!!!!!!!!!");
+                movingRight = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                Debug.Log("Turn right!!!!!!!!!!!!!!");
+                movingRight = true;
+                
+            }
+        }
+
+
         
         
     }
@@ -80,7 +106,6 @@ public class Golem : MonoBehaviour
     {
         golem_animation.SetBool("Attack 0", false);
         golem_animation.SetBool("GolemDeath", true);
-        Debug.Log("Dead!!!!!!!!!!!!!!!!!!!!!!");
     }
 
     private void Deactivate()

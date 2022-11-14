@@ -120671,7 +120671,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1862891441685768138, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
       propertyPath: damage
-      value: 20
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862891441685768138, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
+      propertyPath: distance
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1862891441685768138, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
       propertyPath: lives_num
@@ -120723,11 +120727,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4540694537996369158, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6826
+      value: -6822
       objectReference: {fileID: 0}
     - target: {fileID: 4540694537996369158, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2173
+      value: -1759
       objectReference: {fileID: 0}
     - target: {fileID: 4540694537996369158, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
       propertyPath: m_LocalPosition.z
