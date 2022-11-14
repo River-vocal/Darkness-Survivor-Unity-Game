@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 48444596}
   - component: {fileID: 48444595}
   - component: {fileID: 48444594}
+  - component: {fileID: 48444597}
   m_Layer: 5
   m_Name: Dynamic Light Boss
   m_TagString: Untagged
@@ -278,7 +279,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48444592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c173cdbd143c434386b2345849031ff, type: 3}
   m_Name: 
@@ -499,6 +500,22 @@ MonoBehaviour:
   - {x: 313.75803, y: -438.20395, z: 0}
   - {x: 286.10114, y: -476.52362, z: 0}
   - {x: -1309.227, y: -965.1187, z: 0}
+--- !u!114 &48444597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48444592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 268ac5cb0e8a1cf40ab6081adc20b1af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfLight: 0
+  lightSwitchIntervalTime: 10
+  initialType: 0
+  pdc: {fileID: 0}
 --- !u!1 &67063790
 GameObject:
   m_ObjectHideFlags: 0
