@@ -19,6 +19,8 @@ public class MapLightController : MonoBehaviour
     protected PlayerLightController playerLightController;
     protected float tmpSpeed;
     
+    protected Animator bossAnimator;
+
     protected virtual void Start()
     {
         curLight = GetComponent<Light2D>();
@@ -33,6 +35,9 @@ public class MapLightController : MonoBehaviour
             playerLightController = col.gameObject.GetComponent<PlayerLightController>();
             originalConsumeSpeed = playerEnergy.GetOriginalConsumeSpeed();
             OnTriggerEnterHelper(playerEnergy, playerLightController);
+        } else if (col.gameObject.CompareTag("Boss"))
+        {
+            bossAnimator = col.gameObject.GetComponent<Animator>();
         }
     }
 

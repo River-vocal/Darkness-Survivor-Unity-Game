@@ -45,6 +45,8 @@ public class BossLimitedMove : StateMachineBehaviour
         rightEdge = GameObject.Find("RightEdge").transform;
         rb2 = animator.GetComponent<Rigidbody2D>();
         boss = animator.GetComponent<Boss>();
+        
+        movingLeft = !boss.bossIsFlipped;
     }
 
 
