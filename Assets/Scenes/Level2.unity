@@ -55390,15 +55390,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 642831493973716392, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 90.73
+      value: 7.39
       objectReference: {fileID: 0}
     - target: {fileID: 8158893962097666025, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.71896
+      value: -0.6210365
       objectReference: {fileID: 0}
     - target: {fileID: 8158893962220248641, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.71896
+      value: -0.6210365
       objectReference: {fileID: 0}
     - target: {fileID: 8158893962399850520, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
       propertyPath: m_RootOrder
