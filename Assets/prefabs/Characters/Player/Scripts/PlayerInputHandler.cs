@@ -45,6 +45,10 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMoveInput(InputAction.CallbackContext ctx)
     {
         MovementInput = ctx.ReadValue<Vector2>();
+        if (ctx.started)
+        {
+            InterruptAttack();
+        }
     }
 
     public void OnJumpInput(InputAction.CallbackContext ctx)
@@ -54,6 +58,7 @@ public class PlayerInputHandler : MonoBehaviour
             JumpPressed = true;
             JumpReleased = false;
             jumpBufferStartTime = Time.time;
+            InterruptAttack();
         }
 
         if (ctx.canceled)
@@ -68,6 +73,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             DashPressed = true;
             dashBufferStartTime = Time.time;
+            InterruptAttack();
         }
     }
 
@@ -98,7 +104,10 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void ConsumeAttackInput()
     {
-        AttackComboIndex = -AttackComboIndex;
+        if (AttackComboIndex > 0)
+        {
+            AttackComboIndex = -AttackComboIndex;
+        }
     }
 
     public void ResetComboDetection()
@@ -108,5 +117,11 @@ public class PlayerInputHandler : MonoBehaviour
     public void StopComboDetection()
     {
         comboDetectionOn = false;
+    }
+
+    private void InterruptAttack()
+    {
+        ConsumeAttackInput();
+        StopComboDetection();
     }
 }

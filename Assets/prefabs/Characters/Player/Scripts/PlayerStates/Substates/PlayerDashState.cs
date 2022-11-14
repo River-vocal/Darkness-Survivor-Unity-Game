@@ -27,6 +27,8 @@ public class PlayerDashState : PlayerUseAbilityState
         CanDash = false;
         Player.InputHandler.ConsumeDashInput();
         Player.RigidBody.drag = PlayerData.dashDrag;
+        //change facing direction if necessary
+        Player.CheckIfShouldFlip((int)Player.InputHandler.MovementInput.x);
         Player.SetXVelocity(PlayerData.dashVelocity * Player.FacingDirection);
     }
 
