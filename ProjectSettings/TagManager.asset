@@ -9,6 +9,7 @@ TagManager:
   - Boost
   - Missile
   - Drop
+  - Golem
   layers:
   - Default
   - TransparentFX
