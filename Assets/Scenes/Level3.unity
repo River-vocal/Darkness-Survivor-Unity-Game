@@ -120553,6 +120553,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1862891441685768138, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862891441685768138, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
@@ -120610,11 +120614,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4540694537996369158, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6822
+      value: -6760
       objectReference: {fileID: 0}
     - target: {fileID: 4540694537996369158, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1759
+      value: -1767
       objectReference: {fileID: 0}
     - target: {fileID: 4540694537996369158, guid: 6856e5a45160c4703ae338edd9f91b5c, type: 3}
       propertyPath: m_LocalPosition.z
