@@ -33,11 +33,30 @@ public class BossPatrol : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        
+        if (boss.underLightColor == -1)
+        {
+            attackRange = 10f;
+        }
+        else
+        {
+            attackRange = 2f;
+        }
+
         if (Math.Abs(playerTransform.position.y - rb2.position.y) <= 3 && Math.Abs(playerTransform.position.x - rb2.position.x) <= attackRange)
         {
             boss.lookAtPlayer();
             movingLeft = !boss.bossIsFlipped;
-            animator.SetTrigger("FireballAttack");
+            
+            if (boss.underLightColor == 0)
+            {
+                animator.SetTrigger("RegularAttack");
+            }
+            else
+            {
+                animator.SetTrigger("FireballAttack");
+            }
+            
             return;
         }
 

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -18,7 +19,8 @@ public class MapLightController : MonoBehaviour
     protected Energy playerEnergy;
     protected PlayerLightController playerLightController;
     protected float tmpSpeed;
-    
+
+    protected Boss bossObject;
     protected Animator bossAnimator;
 
     protected virtual void Start()
@@ -38,6 +40,7 @@ public class MapLightController : MonoBehaviour
         } else if (col.gameObject.CompareTag("Boss"))
         {
             bossAnimator = col.gameObject.GetComponent<Animator>();
+            bossObject = col.GetComponent<Boss>();
         }
     }
 

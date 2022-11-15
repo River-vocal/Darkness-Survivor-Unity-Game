@@ -15,6 +15,8 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     public Transform playerTransform;
 
+    public int underLightColor = 0;
+
     private Health health;
 
     private void Awake() {

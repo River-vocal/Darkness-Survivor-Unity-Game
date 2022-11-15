@@ -73,6 +73,9 @@ public class BossDynamicLightController : MapLightController
                 {
                     bossAnimator.SetBool("IsEnraged", false);
                 }
+            } else if (SceneManager.GetActiveScene().buildIndex == 4)
+            {
+                bossObject.underLightColor = typeOfLight;
             }
 
             SetLightColor();
