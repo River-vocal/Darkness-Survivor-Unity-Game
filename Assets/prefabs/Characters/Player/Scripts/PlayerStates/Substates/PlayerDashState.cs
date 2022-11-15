@@ -21,7 +21,7 @@ public class PlayerDashState : PlayerUseAbilityState
         CanDash = true;
     }
 
-    public override void Enter()
+    public override void Enter(params Object[] args)
     {
         base.Enter();
         CanDash = false;

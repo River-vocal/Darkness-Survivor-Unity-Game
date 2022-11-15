@@ -13,7 +13,7 @@ public class PlayerGroundedState : PlayerState
     {
     }
 
-    public override void Enter()
+    public override void Enter(params Object[] args)
     {
         base.Enter();
         Player.JumpState.ResetJumpTimesLeft();

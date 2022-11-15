@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class Player : MonoBehaviour
 {
@@ -20,14 +16,14 @@ public class Player : MonoBehaviour
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
-    public PlayerOutOfControlState OutOfControlState { get; private set; }
+    public PlayerKouchokuState KouchokuState { get; private set; }
     #endregion
 
     #region Components
     public Rigidbody2D RigidBody;
     public Animator Animator { get; private set; }
     public CinemachineImpulseSource cinemachineImpulseSource;
-
+    private Renderer renderer;
     public PlayerInputHandler InputHandler { get; private set; }
 
     [SerializeField] private PlayerData playerData;
@@ -38,6 +34,8 @@ public class Player : MonoBehaviour
 
     public Vector2 CurVelocity { get; private set; }
     public int FacingDirection { get; private set; }
+
+    private bool invulnerable;
     
     private Vector2 velocityHolder;
     [SerializeField] private Transform groundCheck;
@@ -62,7 +60,7 @@ public class Player : MonoBehaviour
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimb");
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
         AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
-        OutOfControlState = new PlayerOutOfControlState(this, StateMachine, playerData, "outOfControl");
+        KouchokuState = new PlayerKouchokuState(this, StateMachine, playerData, "kouchoku");
     }
 
     private void Start()
@@ -71,7 +69,9 @@ public class Player : MonoBehaviour
         InputHandler = GetComponent<PlayerInputHandler>();
         RigidBody = GetComponent<Rigidbody2D>();
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+        renderer = GetComponent<Renderer>();
         FacingDirection = 1;
+        invulnerable = false;
         StateMachine.Init(IdleState);
     }
 
@@ -124,11 +124,9 @@ public class Player : MonoBehaviour
         FacingDirection *= -1;
         transform.Rotate(0, 180, 0);
     }
-
-    private void StartAnimation() => StateMachine.CurState.StartAnimation();
-
-    private void AnimationFinished() => StateMachine.CurState.AnimationFinished();
     
+    public void AnimationFinished() => StateMachine.CurState.AnimationFinished();
+
     #endregion
 
     #region Checkers
@@ -169,14 +167,36 @@ public class Player : MonoBehaviour
 
     #region Other
 
-    public void ChangeToOutOfControlState()
+    public void TakeDamage(params Object[] args)
     {
-        StateMachine.ChangeState(OutOfControlState);
+        if (!invulnerable)
+        {
+            StartCoroutine(Blink());
+            StateMachine.ChangeState(KouchokuState, args);
+        }
     }
-
-    public void endOutOfControl()
+    
+    private IEnumerator Blink()
     {
-        OutOfControlState.SetAbilityDone();
+        float timeElapsed = 0;
+        invulnerable = true; 
+        
+        while (timeElapsed < playerData.invulnerableTime)
+        {
+            if (renderer.enabled)
+            {
+                renderer.enabled = false;
+            }
+            else
+            {
+                renderer.enabled = true;
+            }
+
+            timeElapsed += playerData.blinkInterval;
+            yield return new WaitForSeconds(playerData.blinkInterval);
+        }
+        renderer.enabled = true;
+        invulnerable = false;
     }
     #endregion
 }

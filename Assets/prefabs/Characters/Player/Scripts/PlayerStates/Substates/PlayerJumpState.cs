@@ -10,7 +10,7 @@ public class PlayerJumpState : PlayerUseAbilityState
         jumpTimesLeft = playerData.jumpTimes;
     }
 
-    public override void Enter()
+    public override void Enter(params Object[] args)
     {
         base.Enter();
         Player.SetYVelocity(PlayerData.jumpVelocity);

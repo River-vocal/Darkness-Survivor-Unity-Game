@@ -34,6 +34,10 @@ public class PlayerData : ScriptableObject
    public float attackMovementDrag = 3f;
    public float attackGravityScale = 2f;
    public int attackDamage = 10;
+
+   [Header("TakeDamage State")] 
+   public float invulnerableTime = 1f;
+   public float blinkInterval = 0.1f;
    
 
    [Header("Check Variables")] 

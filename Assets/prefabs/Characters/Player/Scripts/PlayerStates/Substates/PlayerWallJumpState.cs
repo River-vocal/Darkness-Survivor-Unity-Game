@@ -12,7 +12,7 @@ public class PlayerWallJumpState : PlayerUseAbilityState
     {
     }
 
-    public override void Enter()
+    public override void Enter(params Object[] args)
     {
         base.Enter();
         

@@ -27,6 +27,8 @@ MonoBehaviour:
   attackMovementDrag: 3
   attackGravityScale: 2
   attackDamage: 10
+  invulnerableTime: 1
+  blinkInterval: 0.1
   groundCheckDistance: 0.15
   wallCheckDistance: 0.3
   backWallCheckDistance: 1

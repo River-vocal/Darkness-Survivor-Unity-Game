@@ -30,6 +30,7 @@ public class FloorDamage : MonoBehaviour
             
             // GlobalAnalysis.trap_damage += damageValue;
             collision.gameObject.GetComponent<Energy>().CurEnergy -= damageValue;
+            collision.gameObject.GetComponent<Player>().TakeDamage();
         }
     }
 }

@@ -8,7 +8,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
     }
 
-    public override void Enter()
+    public override void Enter(params Object[] args)
     {
         base.Enter();
         Player.SetXVelocity(0);

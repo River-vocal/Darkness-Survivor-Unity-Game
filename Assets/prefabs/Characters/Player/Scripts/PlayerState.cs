@@ -21,7 +21,7 @@ public class PlayerState
         this.animationTriggerParameter = animationTriggerParameter;
     }
 
-    public virtual void Enter()
+    public virtual void Enter(params Object[] args)
     {
         Check();
         Player.Animator.SetBool(animationTriggerParameter, true);

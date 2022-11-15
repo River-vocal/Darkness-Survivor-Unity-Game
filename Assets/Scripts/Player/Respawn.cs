@@ -20,6 +20,8 @@ public class Respawn : MonoBehaviour
     private void resetPlayer()
     {
         Energy energy = gameObject.GetComponent<Energy>();
+        Player player = GetComponent<Player>();
+        player.StateMachine.ChangeState(player.IdleState);
         energy.CurEnergy = energy.MaxEnergy;
         
         // reset more variables here

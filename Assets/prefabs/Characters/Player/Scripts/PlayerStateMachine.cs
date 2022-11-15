@@ -12,10 +12,10 @@ public class PlayerStateMachine
         CurState.Enter();
     }
 
-    public void ChangeState(PlayerState state)
+    public void ChangeState(PlayerState state, params Object[] args)
     {
         CurState.Exit();
         CurState = state;
-        CurState.Enter();
+        CurState.Enter(args);
     }
 }
