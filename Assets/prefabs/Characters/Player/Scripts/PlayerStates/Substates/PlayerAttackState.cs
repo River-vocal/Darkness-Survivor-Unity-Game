@@ -23,9 +23,9 @@ public class PlayerAttackState : PlayerUseAbilityState
         Player.InputHandler.ResetComboDetection();
         Collider2D collision = Physics2D.OverlapCircle(Player.attackCheck.position, PlayerData.attackCheckDistance,
             PlayerData.enemyLayer);
+        //trash code below
         if (collision != null)
         {
-            Player.ParticleSystemManager.GenerateBleedParticleEffect(collision.transform);
 
             if (collision.tag == "Drop")
             {
@@ -39,7 +39,12 @@ public class PlayerAttackState : PlayerUseAbilityState
             {
                 //screen shake
                 Player.cinemachineImpulseSource.GenerateImpulse();
+
                 //particle effects
+                if (collision.GetComponent<Boss>() != null)
+                {
+                    Player.ParticleSystemManager.GenerateBleedParticleEffect(collision.GetComponent<Boss>().transform);
+                }
                 Health health = collision.GetComponent<Health>();
                 if (health) health.CurHealth -= PlayerData.attackDamage;
             }
