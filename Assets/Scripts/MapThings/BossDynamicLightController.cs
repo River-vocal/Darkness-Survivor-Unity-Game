@@ -64,12 +64,15 @@ public class BossDynamicLightController : MapLightController
                 OnTriggerEnterHelper(playerEnergy, playerLightController);
             }
 
-            if (typeOfLight == DAMAGING_LIGHT)
+            if (SceneManager.GetActiveScene().buildIndex == 3)
             {
-                bossAnimator.SetBool("IsEnraged", true);
-            } else if (typeOfLight == NEUTRAL_LIGHT || typeOfLight == HEALING_LIGHT)
-            {
-                bossAnimator.SetBool("IsEnraged", false);
+                if (typeOfLight == DAMAGING_LIGHT)
+                {
+                    bossAnimator.SetBool("IsEnraged", true);
+                } else if (typeOfLight == NEUTRAL_LIGHT || typeOfLight == HEALING_LIGHT)
+                {
+                    bossAnimator.SetBool("IsEnraged", false);
+                }
             }
 
             SetLightColor();
