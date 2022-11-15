@@ -53,7 +53,7 @@ public class EnemyProjectile : MonoBehaviour
             //     Debug.Log("lose by: boss");
             // }
             hit = true;
-            collision.GetComponent<Energy>().CurEnergy -= damage;
+            collision.GetComponent<Player>().TakeDamage(damage, new Object[]{gameObject});
             anim.SetTrigger("explode");
             coll.enabled = false;
         }

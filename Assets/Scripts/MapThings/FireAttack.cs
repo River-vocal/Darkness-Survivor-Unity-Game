@@ -56,7 +56,7 @@ public class FireAttack : MonoBehaviour
             //     Debug.Log("lose by: trap");
             // }
             // GlobalAnalysis.trap_damage += damage;
-            energy.CurEnergy -= damage;
+            col.GetComponent<Player>().TakeDamage(damage);
         }
     }
 }

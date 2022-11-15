@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
 
     public Vector2 CurVelocity { get; private set; }
     public int FacingDirection { get; private set; }
-
-    private bool invulnerable;
+    public bool Invulnerable { get; private set; }
+    private Energy energy;
     
     private Vector2 velocityHolder;
     [SerializeField] private Transform groundCheck;
@@ -70,8 +70,9 @@ public class Player : MonoBehaviour
         RigidBody = GetComponent<Rigidbody2D>();
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
         renderer = GetComponent<Renderer>();
+        energy = GetComponent<Energy>();
         FacingDirection = 1;
-        invulnerable = false;
+        Invulnerable = false;
         StateMachine.Init(IdleState);
     }
 
@@ -167,10 +168,11 @@ public class Player : MonoBehaviour
 
     #region Other
 
-    public void TakeDamage(params Object[] args)
+    public void TakeDamage(float damage, params Object[] args)
     {
-        if (!invulnerable)
+        if (!Invulnerable)
         {
+            energy.CurEnergy -= damage;
             StartCoroutine(Blink());
             StateMachine.ChangeState(KouchokuState, args);
         }
@@ -179,7 +181,7 @@ public class Player : MonoBehaviour
     private IEnumerator Blink()
     {
         float timeElapsed = 0;
-        invulnerable = true; 
+        Invulnerable = true; 
         
         while (timeElapsed < playerData.invulnerableTime)
         {
@@ -196,7 +198,7 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(playerData.blinkInterval);
         }
         renderer.enabled = true;
-        invulnerable = false;
+        Invulnerable = false;
     }
     #endregion
 }

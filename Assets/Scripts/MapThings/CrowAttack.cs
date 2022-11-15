@@ -185,7 +185,7 @@ public class CrowAttack : MonoBehaviour
                 Debug.Log("lose by: small enemy");
             }
             GlobalAnalysis.smallenemy_damage += damage;
-            energy.CurEnergy -= damage;
+            col.GetComponent<Player>().TakeDamage(damage, new Object[]{gameObject});
         }
     }
 

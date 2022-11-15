@@ -26,8 +26,7 @@ public class BossAttack : MonoBehaviour
             //     GlobalAnalysis.player_status = "boss_attack_dead";
             //     Debug.Log("lose by: boss");
             // }
-            colInfo.GetComponent<Energy>().CurEnergy -= attackDamage;
-            colInfo.GetComponent<Player>().TakeDamage(new Object[]{gameObject});
+            colInfo.GetComponent<Player>().TakeDamage(attackDamage, new Object[]{gameObject});
             Debug.Log("Boss Attack");
         }
     }

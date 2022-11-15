@@ -8,7 +8,7 @@ public class Fire : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Player"){
             Energy energy = other.gameObject.GetComponent<Energy>();
-            energy.CurEnergy -= fireDamageToEnergy;
+            other.gameObject.GetComponent<Player>().TakeDamage(fireDamageToEnergy);
         }
     }
 }

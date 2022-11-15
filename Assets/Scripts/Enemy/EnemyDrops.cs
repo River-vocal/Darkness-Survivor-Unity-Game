@@ -157,7 +157,7 @@ public class EnemyDrops : MonoBehaviour
                 Debug.Log("lose by: small enemy");
             }
             GlobalAnalysis.smallenemy_damage += damage;
-            col.GetComponent<Energy>().CurEnergy -= damage;
+            col.GetComponent<Player>().TakeDamage(damage);
         }
     }
 
