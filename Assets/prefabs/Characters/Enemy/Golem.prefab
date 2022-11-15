@@ -253,7 +253,6 @@ MonoBehaviour:
   groundDetection: {fileID: 8729757853430658619}
   projectile: {fileID: 9056118684756571298, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
   startTimeBtwShots: 2
-  totalShootingTime: 7
 --- !u!1 &7629953868945171788
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +277,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7629953868945171788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.156, y: -0.147, z: 0}
+  m_LocalPosition: {x: 0.1177, y: -0.147, z: 0}
   m_LocalScale: {x: 0.22066355, y: 0.21902966, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

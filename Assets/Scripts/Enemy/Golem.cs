@@ -7,9 +7,11 @@ public class Golem : MonoBehaviour
 {
     [SerializeField] public int damage;
     [SerializeField] public float speed;
-    private float distance = 2f;
+    private float ground_distance = 2f;
+    private float wall_distance = 1f;
     private bool movingRight = true;
     public Transform groundDetection;
+    // public Transform wallDetection;
     public GameObject projectile;
     private float timeBtwShots;
     public float startTimeBtwShots;
@@ -26,21 +28,22 @@ public class Golem : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
-        int layer_mask = LayerMask.GetMask ("Ground");
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance, layer_mask);
+        int layer_mask_ground = LayerMask.GetMask("Ground");
+        int layer_mask_wall = LayerMask.GetMask("Wall");
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, ground_distance, layer_mask_ground);
+        RaycastHit2D wallInfo_right = Physics2D.Raycast(groundDetection.position, Vector2.right, wall_distance, layer_mask_wall);
+        RaycastHit2D wallInfo_left = Physics2D.Raycast(groundDetection.position, Vector2.left, wall_distance, layer_mask_wall);
         if(groundInfo.collider == false)
         {
-            if(movingRight == true)
-            {
-                transform.eulerAngles = new Vector3(0, -180, 0);
-                movingRight = false;
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                movingRight = true;
-                
-            }
+            switchDirection();
+        }
+        else if(groundInfo.collider == true && wallInfo_right.collider == true)
+        {
+            switchDirection();
+        }
+        else if(groundInfo.collider == true && wallInfo_left.collider == true)
+        {
+            switchDirection();
         }
         if(timeBtwShots <= 0)
         {
@@ -88,5 +91,20 @@ public class Golem : MonoBehaviour
     private void Deactivate()
     {
         gameObject.SetActive(false);
+    }
+
+    void switchDirection()
+    {
+        if(movingRight == true)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                movingRight = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                movingRight = true;
+                
+            }
     }    
 }
