@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1798229833373580017
 Transform:
   m_ObjectHideFlags: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3172200021633217117}
-  m_LocalRotation: {x: -0, y: -0, z: -0.010760816, w: 0.9999421}
+  m_LocalRotation: {x: -0, y: -0, z: -0.042927366, w: 0.9990782}
   m_LocalPosition: {x: 0, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.06983044
-  m_PointLightOuterRadius: 0.7044574
+  m_PointLightOuterRadius: 0.28519538
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 1131437594105843348}
   - component: {fileID: 5883809575900220121}
   - component: {fileID: 6196694832409193946}
-  - component: {fileID: 8008410208895516979}
   m_Layer: 11
   m_Name: Projectile
   m_TagString: Untagged
@@ -140,8 +139,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9056118684756571298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.928, y: 9.141, z: 1}
+  m_LocalPosition: {x: 0.4625, y: -0.2618, z: 0}
+  m_LocalScale: {x: 2.974414, y: 2.709034, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1798229833373580017}
@@ -190,11 +189,11 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 4829263394173993237, guid: 17d4906971d6bda4e933ec3e391815ea, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.72, y: 0.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -233,8 +232,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01066717, y: -0.042019907}
-  m_Size: {x: 0.24994117, y: 0.3444636}
+  m_Offset: {x: -0.0021141267, y: 0.006629065}
+  m_Size: {x: 0.28816807, y: 0.116190895}
   m_Direction: 1
 --- !u!114 &6196694832409193946
 MonoBehaviour:
@@ -248,25 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67df41d5e856048f3a7ba8eec8b28abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
---- !u!50 &8008410208895516979
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9056118684756571298}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  moveSpeed: 5
+  damage: 10
+  shootingDistance: 30

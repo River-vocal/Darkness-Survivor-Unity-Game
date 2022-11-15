@@ -251,6 +251,9 @@ MonoBehaviour:
   damage: 10
   speed: 2
   groundDetection: {fileID: 8729757853430658619}
+  projectile: {fileID: 9056118684756571298, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
+  startTimeBtwShots: 2
+  totalShootingTime: 7
 --- !u!1 &7629953868945171788
 GameObject:
   m_ObjectHideFlags: 0
