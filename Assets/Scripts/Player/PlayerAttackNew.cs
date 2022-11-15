@@ -44,6 +44,10 @@ public class PlayerAttackNew : MonoBehaviour
             {
                 colInfo.GetComponent<EnemyDrops>().DropDeath();
             }
+            if (colInfo.tag == "Golem")
+            {
+                colInfo.GetComponent<Golem>().GolemDeath();
+            }
             else
             {
                 TriggerScreenShake();

@@ -29,6 +29,10 @@ public class PlayerAttackState : PlayerUseAbilityState
             {
                 collision.GetComponent<EnemyDrops>().DropDeath();
             }
+            if (collision.tag == "Golem")
+            {
+                collision.GetComponent<Golem>().GolemDeath();
+            }
             else
             {
                 Player.cinemachineImpulseSource.GenerateImpulse();
