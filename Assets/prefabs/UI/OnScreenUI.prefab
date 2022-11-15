@@ -4302,7 +4302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f02dedac8b5d44abd243cdabfca656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyExtendEventChannel: {fileID: 11400000, guid: 5a7d182531583514caba04e69f99c550, type: 2}
+  extraPickupEventChannel: {fileID: 11400000, guid: 5a7d182531583514caba04e69f99c550, type: 2}
   ResizeSmoothTime: 1.5
   ResizeStressScale: 2.5
   ResizeThreshold: 2

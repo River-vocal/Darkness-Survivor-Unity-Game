@@ -30,7 +30,7 @@ public class Energy : MonoBehaviour
         set
         {
             damageable = value;
-            if(!damageable) curEnergy = MaxEnergy;
+            if (!damageable) curEnergy = MaxEnergy;
             OnDamageableChanged?.Invoke(this, new BooleanEventArg(value));
         }
         get => damageable;
@@ -44,6 +44,7 @@ public class Energy : MonoBehaviour
     {
         originalConsumeSpeed = ConsumeSpeed;
         MaxEnergy = LevelLoader.current.EnergyData.MaxEnergy;
+        curEnergy = MaxEnergy;
     }
 
     private void OnDisable()
@@ -62,7 +63,7 @@ public class Energy : MonoBehaviour
                 damagePopup.Setup("Miss", buffPopupColor, energyPopupSize);
                 return;
             }
-            
+
             value = Math.Min(value, MaxEnergy);
             value = Math.Max(value, 0f);
             if (curEnergy - value >= popupThreshold)

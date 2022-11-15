@@ -8,25 +8,16 @@ public class ExtraEnergyPickup : MonoBehaviour
     // ID is needed in level loader(save and load)
     // Set ID in unity editor to let player collect only once
     [SerializeField] public string id = DefaultID;
-    [SerializeField] private StringEventChannel loadEventChannel;
     [SerializeField] private FloatEventChannel enlargeEnergyBarEventChannel;
-    [SerializeField] private StringEventChannel saveEventChannel;
     [SerializeField] private float boostValue = 30f;
 
-    private void OnEnable()
+    private void Start()
     {
-        loadEventChannel.AddListener(Collected);
-    }
-
-    private void OnDisable()
-    {
-        loadEventChannel.RemoveListener(Collected);
-    }
-
-    private void Collected(string pickupId)
-    {
-        if (pickupId != id) return;
-        Destroy(gameObject);
+        // Load from record
+        if (LevelLoader.current.LevelData.ExtraEnergyPickupsCollected.Contains(id))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,7 +28,8 @@ public class ExtraEnergyPickup : MonoBehaviour
             energy.MaxEnergy += boostValue;
             energy.CurEnergy += boostValue;
             enlargeEnergyBarEventChannel.Broadcast(boostValue);
-            saveEventChannel.Broadcast(id);
+            // Save to record
+            LevelLoader.current.LevelData.ExtraEnergyPickupsCollected.Add(id);
             Destroy(gameObject);
         }
     }

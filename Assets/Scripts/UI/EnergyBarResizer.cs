@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class EnergyBarResizer : MonoBehaviour
 {
-    [SerializeField] public FloatEventChannel energyExtendEventChannel;
-
+    [SerializeField] public FloatEventChannel extraPickupEventChannel;
     [SerializeField] public float ResizeSmoothTime = 1.0f;
     [SerializeField] public float ResizeStressScale = 1.1f;
     [SerializeField] public float ResizeThreshold = 2f;
@@ -24,19 +23,18 @@ public class EnergyBarResizer : MonoBehaviour
 
     private void Start()
     {
-        EnergyData data = LevelLoader.current.EnergyData;
-        widthTarget = data.EnergyBarLength;
+        widthTarget = LevelLoader.current.EnergyData.EnergyBarLength;
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, widthTarget);
     }
 
     private void OnEnable()
     {
-        energyExtendEventChannel.AddListener(Enlarge);
+        extraPickupEventChannel.AddListener(Enlarge);
     }
 
     private void OnDisable()
     {
-        energyExtendEventChannel.RemoveListener(Enlarge);
+        extraPickupEventChannel.RemoveListener(Enlarge);
         LevelLoader.current.EnergyData.EnergyBarLength = widthTarget;
     }
 
