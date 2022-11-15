@@ -32,7 +32,7 @@ MonoBehaviour:
   groundCheckDistance: 0.15
   wallCheckDistance: 0.3
   backWallCheckDistance: 1
-  attackCheckDistance: 0.6
+  attackCheckDistance: 0.8
   groundLayer:
     serializedVersion: 2
     m_Bits: 18496

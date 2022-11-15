@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public Animator Animator { get; private set; }
     public CinemachineImpulseSource cinemachineImpulseSource;
     private Renderer renderer;
+    public ParticleSystemManager ParticleSystemManager;
     public PlayerInputHandler InputHandler { get; private set; }
 
     [SerializeField] private PlayerData playerData;

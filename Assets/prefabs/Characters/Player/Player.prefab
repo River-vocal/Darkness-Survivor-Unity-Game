@@ -135,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5201424005170637724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 0.58, z: 0}
+  m_LocalPosition: {x: 1, y: 0.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -353,6 +353,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3a74b025-7d11-4a55-a36f-3e0365490cb7
     m_ActionName: Player/Use[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4bb09153-d55e-474b-811f-1cb00a568a63
+    m_ActionName: System/Pause[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -386,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RigidBody: {fileID: 8778075333850035414}
-  cinemachineImpulseSource: {fileID: 0}
+  cinemachineImpulseSource: {fileID: 2015001822}
   playerData: {fileID: 11400000, guid: c059ef8ced873a74abf7ac88e5138d8f, type: 2}
   groundCheck: {fileID: 8778075335623821928}
   wallCheck: {fileID: 8778075334942670853}

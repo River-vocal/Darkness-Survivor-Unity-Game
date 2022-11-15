@@ -25,6 +25,8 @@ public class PlayerAttackState : PlayerUseAbilityState
             PlayerData.enemyLayer);
         if (collision != null)
         {
+            Player.ParticleSystemManager.GenerateBleedParticleEffect(collision.transform);
+
             if (collision.tag == "Drop")
             {
                 collision.GetComponent<EnemyDrops>().DropDeath();
@@ -35,7 +37,9 @@ public class PlayerAttackState : PlayerUseAbilityState
             }
             else
             {
+                //screen shake
                 Player.cinemachineImpulseSource.GenerateImpulse();
+                //particle effects
                 Health health = collision.GetComponent<Health>();
                 if (health) health.CurHealth -= PlayerData.attackDamage;
             }

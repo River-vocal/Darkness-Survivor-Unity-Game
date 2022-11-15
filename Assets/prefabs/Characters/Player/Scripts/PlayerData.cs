@@ -35,7 +35,7 @@ public class PlayerData : ScriptableObject
    public float attackGravityScale = 2f;
    public int attackDamage = 10;
 
-   [Header("TakeDamage State")] 
+   [Header("Kouchoku State")] 
    public float invulnerableTime = 1f;
    public float blinkInterval = 0.1f;
    
@@ -44,7 +44,7 @@ public class PlayerData : ScriptableObject
    public float groundCheckDistance = 0.15f;
    public float wallCheckDistance = 0.3f;
    public float backWallCheckDistance = 1f;
-   public float attackCheckDistance = 0.6f;
+   public float attackCheckDistance = 0.8f;
    public LayerMask groundLayer;
    public LayerMask wallLayer;
    public LayerMask enemyLayer;
