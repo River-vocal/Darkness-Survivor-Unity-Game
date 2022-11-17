@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f02dedac8b5d44abd243cdabfca656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extraPickupEventChannel: {fileID: 0}
   ResizeSmoothTime: 1.5
   ResizeStressScale: 2.5
   ResizeThreshold: 2

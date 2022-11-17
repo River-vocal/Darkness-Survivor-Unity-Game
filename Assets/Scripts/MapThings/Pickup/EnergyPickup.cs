@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnergyPickup : MonoBehaviour
 {
-    private float boostValue = 10f;
+    [SerializeField] private float boostValue = 50f;
     
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Player"){
             Energy energy = other.gameObject.GetComponent<Energy>();
             energy.CurEnergy += boostValue;
             // GlobalAnalysis.healing_energy += boostValue;
-            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
         }
     }
 }

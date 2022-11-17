@@ -489,6 +489,7 @@ MonoBehaviour:
   bossIsFlipped: 0
   attackDamage: 16
   playerTransform: {fileID: 0}
+  underLightColor: 0
 --- !u!114 &7928414494894045599
 MonoBehaviour:
   m_ObjectHideFlags: 0
