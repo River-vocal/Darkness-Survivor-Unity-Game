@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class Checkpoint : MonoBehaviour
 {
-    [SerializeField] public Sprite checkedSprite;
     private bool reached = false;
+    [SerializeField] public GameObject preCheckParticleEffect;
+    [SerializeField] public GameObject postCheckParticleEffect;
+    private static Checkpoint _curCheckpoint;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
@@ -16,8 +19,14 @@ public class Checkpoint : MonoBehaviour
             Respawn respawn = col.GetComponent<Respawn>();
             respawn.respawnLocation = transform.position;
 
-            Image image = gameObject.GetComponentInChildren<Image>();
-            image.sprite = checkedSprite;
+            if (_curCheckpoint)
+            {
+                _curCheckpoint.preCheckParticleEffect.SetActive(true);
+                _curCheckpoint.postCheckParticleEffect.SetActive(false);
+            }
+
+            preCheckParticleEffect.SetActive(false);
+            postCheckParticleEffect.SetActive(true);
 
             reached = true;
         }
