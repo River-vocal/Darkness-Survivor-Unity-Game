@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class BossPatrol : StateMachineBehaviour
+public class BossEnragedPatrol : StateMachineBehaviour
 {
     Transform playerTransform;
     Transform bossTransform;
     Rigidbody2D rb2;
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float attackRange = 2f;
+    [SerializeField] private float attackRange = 10f;
 
 
     Transform leftEdge;
@@ -41,8 +41,8 @@ public class BossPatrol : StateMachineBehaviour
             boss.lookAtPlayer();
             movingLeft = !boss.bossIsFlipped;
             
-            animator.SetTrigger("RegularAttack");
-            
+            animator.SetTrigger("FireballAttack");
+
             return;
         }
 

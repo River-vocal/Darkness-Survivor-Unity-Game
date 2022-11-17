@@ -64,7 +64,7 @@ public class BossDynamicLightController : MapLightController
                 OnTriggerEnterHelper(playerEnergy, playerLightController);
             }
 
-            if (SceneManager.GetActiveScene().buildIndex == 3)
+            if (SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 4)
             {
                 if (typeOfLight == DAMAGING_LIGHT)
                 {
@@ -73,9 +73,6 @@ public class BossDynamicLightController : MapLightController
                 {
                     bossAnimator.SetBool("IsEnraged", false);
                 }
-            } else if (SceneManager.GetActiveScene().buildIndex == 4)
-            {
-                bossObject.underLightColor = typeOfLight;
             }
 
             SetLightColor();
