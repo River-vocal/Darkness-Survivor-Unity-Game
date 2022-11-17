@@ -163,7 +163,7 @@ public class CrowAttack : MonoBehaviour
         {
         	// isTrigger = true;
             countDown = 1.5f;
-        	GetComponent<Animator>().Play("attack");
+        	GetComponent<Animator>().Play("Enemy Attack 1");
 
         	GameObject player = col.gameObject;
         	if (player.transform.position.x <= transform.position.x) {
