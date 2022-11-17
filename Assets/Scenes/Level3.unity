@@ -1034,10 +1034,6 @@ PrefabInstance:
       propertyPath: smoothTime
       value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 3090595929456971978, guid: 32e2ff131b74757448ad2a311c107642, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3090595929456971979, guid: 32e2ff131b74757448ad2a311c107642, type: 3}
       propertyPath: m_RootOrder
       value: 16

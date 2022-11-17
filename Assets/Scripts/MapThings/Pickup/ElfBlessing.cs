@@ -16,13 +16,10 @@ public class ElfBlessing : MonoBehaviour
 
     private Transform target;
     private float angle;
-
-    private Light2D light2D;
     private GameObject icon;
 
     private void Awake()
     {
-        light2D = GetComponent<Light2D>();
         icon = transform.GetChild(0).gameObject;
     }
 
@@ -41,8 +38,7 @@ public class ElfBlessing : MonoBehaviour
         energy = col.gameObject.GetComponent<Energy>();
         energy.Damageable = false;
         collided = true;
-
-        light2D.enabled = true;
+        
         icon.SetActive(false);
         StartCoroutine("EndBlessing");
     }
