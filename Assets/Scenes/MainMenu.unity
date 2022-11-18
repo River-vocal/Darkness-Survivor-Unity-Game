@@ -615,7 +615,7 @@ PrefabInstance:
     - target: {fileID: 4710393898784530394, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: menuButtonController
       value: 
-      objectReference: {fileID: 1275162794}
+      objectReference: {fileID: 0}
     - target: {fileID: 5524704033084343288, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: m_Text
       value: Q U I T
@@ -1121,7 +1121,7 @@ PrefabInstance:
     - target: {fileID: 4710393898784530394, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: menuButtonController
       value: 
-      objectReference: {fileID: 1275162794}
+      objectReference: {fileID: 0}
     - target: {fileID: 5524704033084343288, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: m_Text
       value: P L A Y
@@ -2439,7 +2439,6 @@ GameObject:
   - component: {fileID: 1275162792}
   - component: {fileID: 1275162791}
   - component: {fileID: 1275162790}
-  - component: {fileID: 1275162794}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -2530,22 +2529,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1275162794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275162789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c14e39d41d94fbdaa38cdc16e7a9df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  keyDown: 0
-  maxIndex: 2
-  audioSource: {fileID: 0}
 --- !u!224 &1376405598 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6564216994454116880, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
@@ -2999,7 +2982,7 @@ PrefabInstance:
     - target: {fileID: 4710393898784530394, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: menuButtonController
       value: 
-      objectReference: {fileID: 1275162794}
+      objectReference: {fileID: 0}
     - target: {fileID: 5524704033084343288, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: m_Text
       value: L E V E L S
