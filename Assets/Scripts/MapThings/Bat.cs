@@ -71,8 +71,6 @@ public class Bat : MonoBehaviour
     			flip();
     		}
 
-    		// Debug.Log(bat.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0));
-    		// Debug.Log(bat.GetComponent<BatAttack>().getAttackingFlag());
     		bool isAttacking = bat.GetComponent<BatAttack>().getAttackingFlag();
     		if (!isAttacking) {
     			Vector3 newPos = new Vector3(playerPos.x, newY, bat.transform.position.z);
@@ -96,26 +94,18 @@ public class Bat : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
     	if (col.gameObject.CompareTag("Player")) {
-    		// Debug.Log("enter trigger");
     		playerPos = col.gameObject.transform.position;
-    		// Debug.Log(pos1.position.x + " " + pos2.position.x + " " + pos3.position.x + " " + pos4.position.x);
-    		// Debug.Log(playerPos.x);
     		if (playerPos.x <= pos2.position.x) {
-    			// Debug.Log("zone 1");
     			nextPos = movingLeft ? pos1.position : pos2.position;
-    			newY = (pos1.position.y + pos2.position.y) / 2;
+    			// newY = (pos1.position.y + pos2.position.y) / 2;
     		} else if (playerPos.x >= pos3.position.x) {
-    			// Debug.Log("zone 3");
     			nextPos = movingLeft ? pos3.position : pos4.position;
-    			newY = (pos3.position.y + pos4.position.y) / 2;
+    			// newY = (pos3.position.y + pos4.position.y) / 2;
     		} else {
-    			// Debug.Log("zone 2");
     			nextPos = movingLeft ? pos2.position : pos3.position;
-    			newY = (pos2.position.y + pos3.position.y) / 2;
+    			// newY = (pos2.position.y + pos3.position.y) / 2;
     		}
-
-    		// bat.GetComponent<Animator>().Play("Enemy Attack 1");
-    		// diveAtPlayer();
+            newY = playerPos.y + 2.2f;
     	}
     }
 
