@@ -14,7 +14,6 @@ public class Bat : MonoBehaviour
 	private bool movingLeft;
 	private bool inAttackArea = false;
 	private Vector3 playerPos;
-	private float newY;
 
     // Start is called before the first frame update
     void Start()
@@ -71,23 +70,14 @@ public class Bat : MonoBehaviour
     			flip();
     		}
 
-    		bool isAttacking = bat.GetComponent<BatAttack>().getAttackingFlag();
-    		if (!isAttacking) {
-    			Vector3 newPos = new Vector3(playerPos.x, newY, bat.transform.position.z);
-    			bat.transform.position = Vector3.MoveTowards(bat.transform.position, newPos, 2 * moveSpeed * Time.deltaTime);
-    		} else {
-    			// attack
-    			Vector3 newPos = new Vector3(playerPos.x, playerPos.y + 2.2f, bat.transform.position.z);
-    			bat.transform.position = Vector3.MoveTowards(bat.transform.position, newPos, 2 * moveSpeed * Time.deltaTime);
-    		}
-    		
+			Vector3 newPos = new Vector3(playerPos.x, playerPos.y + 2.2f, bat.transform.position.z);
+			bat.transform.position = Vector3.MoveTowards(bat.transform.position, newPos, 2 * moveSpeed * Time.deltaTime);    		
     	}
         
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-    	Debug.Log("enter trigger");
     	inAttackArea = true;
     }
 
@@ -97,33 +87,18 @@ public class Bat : MonoBehaviour
     		playerPos = col.gameObject.transform.position;
     		if (playerPos.x <= pos2.position.x) {
     			nextPos = movingLeft ? pos1.position : pos2.position;
-    			// newY = (pos1.position.y + pos2.position.y) / 2;
     		} else if (playerPos.x >= pos3.position.x) {
     			nextPos = movingLeft ? pos3.position : pos4.position;
-    			// newY = (pos3.position.y + pos4.position.y) / 2;
     		} else {
     			nextPos = movingLeft ? pos2.position : pos3.position;
-    			// newY = (pos2.position.y + pos3.position.y) / 2;
     		}
-            newY = playerPos.y + 2.2f;
     	}
     }
 
     private void OnTriggerExit2D(Collider2D col)
  	{
  		inAttackArea = false;
- 		Debug.Log("exit trigger");
  	}
-
-
-    private void diveAtPlayer()
-    {
-    	Debug.Log("dive at player");
-    	float newY;
-    	newY = bat.transform.position.y - 5 * Time.deltaTime;
-    	bat.transform.position = new Vector3(bat.transform.position.x, newY, bat.transform.position.z);
-    }
-
 
     private void flip()
     {
