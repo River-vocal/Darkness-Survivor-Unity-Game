@@ -48,6 +48,10 @@ public class PlayerAttackNew : MonoBehaviour
             {
                 colInfo.GetComponent<Golem>().GolemDeath();
             }
+            if (colInfo.tag == "Projectile")
+            {
+                colInfo.GetComponent<GolemProjectile>().ProjectileDestroy();
+            }
             else
             {
                 TriggerScreenShake();

@@ -86,6 +86,7 @@ public class Golem : MonoBehaviour
     {
         golem_animation.SetBool("Attack 0", false);
         golem_animation.SetBool("GolemDeath", true);
+        speed = 0;
     }
 
     private void Deactivate()

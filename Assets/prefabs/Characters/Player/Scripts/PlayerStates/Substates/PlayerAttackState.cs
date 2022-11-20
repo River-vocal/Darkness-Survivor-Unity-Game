@@ -34,6 +34,10 @@ public class PlayerAttackState : PlayerUseAbilityState
             {
                 collision.GetComponent<Golem>().GolemDeath();
             }
+            if (collision.tag == "Projectile")
+            {
+                collision.GetComponent<GolemProjectile>().ProjectileDestroy();
+            }
             else
             {
                 //screen shake

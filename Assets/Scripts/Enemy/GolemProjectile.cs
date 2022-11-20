@@ -55,9 +55,13 @@ public class GolemProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player") || other.gameObject.name == "Map")
         {
             Destroy(gameObject);
+        }
+        if(other.gameObject.CompareTag("Player"))
+        {
+            // Destroy(gameObject);
             if (other.GetComponent<Energy>().CurEnergy < damage) {
                 GlobalAnalysis.player_status = "smallenemy_dead";
                 Debug.Log("lose by: small enemy");
@@ -65,11 +69,27 @@ public class GolemProjectile : MonoBehaviour
             GlobalAnalysis.smallenemy_damage += damage;
             other.GetComponent<Energy>().CurEnergy -= damage;
         }
+        // if(other.gameObject.name == "Map")
+        // {
+        //     Destroy(gameObject);
+        // }
+        
         // if(other.gameObject.layer == LayerMask.GetMask("Ground") | other.gameObject.layer == LayerMask.GetMask("Wall"))
         // {
         //     Debug.Log("Wall!!!!!!!!!!!!!!!!!!!!!!!!");
         //     Destroy(gameObject);
         // }
+    }
+
+    // void OnCollisionEnter2D(Collision2D collisionInfo)
+    // {
+    //     Destroy(gameObject);
+    // }
+
+    public void ProjectileDestroy()
+    {
+        Destroy(gameObject);
+        Debug.Log("Hit the bullets!!!!");
     }
 
     void FlipProjectile()
