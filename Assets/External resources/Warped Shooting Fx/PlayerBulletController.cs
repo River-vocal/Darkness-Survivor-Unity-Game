@@ -9,7 +9,7 @@ public class PlayerBulletController : MonoBehaviour
     public int DamagePopup = 20;
     public Rigidbody2D rb;
     public GameObject impactEffect;
-    [SerializeField] protected LongRangeAttack longRangeAttack;
+    // [SerializeField] protected LongRangeAttack longRangeAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class PlayerBulletController : MonoBehaviour
 
             if (hitInfo.gameObject.layer == 11 && !hitInfo.CompareTag("Boss"))
             {
-                longRangeAttack.playerBulletCount += 1;
+                // longRangeAttack.playerBulletCount += 1;
                 Destroy(hitInfo.gameObject);
             }
 

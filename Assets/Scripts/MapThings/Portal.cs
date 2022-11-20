@@ -56,7 +56,7 @@ public class Portal : MonoBehaviour
 
     [SerializeField] public float preTeleportWaitTime = 0.6f;
     [SerializeField] public float postTeleportWaitTime = 0.4f;
-    [SerializeField] public float teleportSpeed = 10f;
+    [SerializeField] public float teleportSpeed = 20f;
 
     private void Update()
     {

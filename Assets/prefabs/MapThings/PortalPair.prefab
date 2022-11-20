@@ -363,7 +363,7 @@ MonoBehaviour:
   ps: {fileID: 1652113457209975002}
   preTeleportWaitTime: 0.6
   postTeleportWaitTime: 0.4
-  teleportSpeed: 10
+  teleportSpeed: 20
 --- !u!1 &1454308962862160001
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +494,7 @@ MonoBehaviour:
   ps: {fileID: 1652113458073293037}
   preTeleportWaitTime: 0.6
   postTeleportWaitTime: 0.4
-  teleportSpeed: 10
+  teleportSpeed: 20
 --- !u!1001 &1453822000893890071
 PrefabInstance:
   m_ObjectHideFlags: 0
