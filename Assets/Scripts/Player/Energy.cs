@@ -99,7 +99,7 @@ public class Energy : MonoBehaviour
             {
                 healing.HealOnce();
             }
-            else
+            else if(value < curEnergy)
             {
                 Debug.Log("Show popup!");
                 DamagePopup(curEnergy - value);
