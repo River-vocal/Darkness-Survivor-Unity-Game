@@ -28,10 +28,25 @@ Material:
         m_Texture: {fileID: 2800000, guid: 68d05d7ca7c08bd44b7445d7d76c4a2f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - Vector1_CA637FD8: 4
+    - Vector1_D23434D2: 3
     - _InvFade: 3
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _RimGlow: 6.79
     - _RimPower: 3.14
     - _RimWidth: 2.6
@@ -39,6 +54,8 @@ Material:
     m_Colors:
     - Color_1A0BCCE7: {r: 1.0204521, g: 3.4329343, b: 4.237095, a: 0}
     - Color_8EE4FC62: {r: 0.11265949, g: 0.19117974, b: 0.34822023, a: 1}
+    - Color_AD8B744C: {r: 0, g: 0.6396674, b: 0.9369776, a: 0}
+    - Color_B70EC491: {r: 0.4941176, g: 1.498039, b: 1.427451, a: 0}
     - _InnerColor: {r: 0.035142735, g: 0.085386604, b: 0.18382353, a: 1}
     - _RimColor: {r: 0.2794118, g: 0.6720082, b: 1, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

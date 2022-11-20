@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,24 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private VoidEventChannel gamePauseEventChannel;
     [SerializeField] private VoidEventChannel gameResumeEventChannel;
 
-    // [SerializeField] protected AudioInfoBroadcaster audioInfoBroadcaster;
+    private void OnEnable()
+    {
+        gamePauseEventChannel.AddListener(Pause);
+        gameResumeEventChannel.AddListener(Resume);
+    }
+
+    private void OnDisable()
+    {
+        gamePauseEventChannel.RemoveListener(Pause);
+        gameResumeEventChannel.RemoveListener(Resume);
+    }
+
     public void Pause()
     {
         GetComponent<Canvas>().enabled = true;
         GetComponent<Animator>().enabled = true;
         
         Time.timeScale = 0f;
-        gamePauseEventChannel.Broadcast();
     }
 
     public void Resume()
@@ -24,7 +35,6 @@ public class PauseMenu : MonoBehaviour
         GetComponent<Animator>().enabled = false;
         
         Time.timeScale = 1f;
-        gameResumeEventChannel.Broadcast();
     }
 
     public void GoLevelSelection()

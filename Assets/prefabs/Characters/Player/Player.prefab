@@ -328,19 +328,7 @@ MonoBehaviour:
     m_ActionId: 91fc5369-f312-447b-ba5c-bedf2cbf9404
     m_ActionName: Player/Dash[/Keyboard/shift]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8778075333850035413}
-        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnDashInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 91fc5369-f312-447b-ba5c-bedf2cbf9404
     m_ActionName: Player/Dash[/Keyboard/shift]
   - m_PersistentCalls:
@@ -360,7 +348,19 @@ MonoBehaviour:
     m_ActionId: 3a74b025-7d11-4a55-a36f-3e0365490cb7
     m_ActionName: Player/Use[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8778075333850035413}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnPauseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4bb09153-d55e-474b-811f-1cb00a568a63
     m_ActionName: System/Pause[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
@@ -383,6 +383,8 @@ MonoBehaviour:
   useEventChannel: {fileID: 11400000, guid: efeb149348bcf9c4ea85a68d0cb98c17, type: 2}
   jumpBufferTime: 0.2
   dashBufferTime: 0.2
+  pauseEventChannel: {fileID: 11400000, guid: c39ce826e1eb26548856744dc20bd3a2, type: 2}
+  resumeEventChannel: {fileID: 11400000, guid: 5749992d06201e5488fd08581be6f020, type: 2}
 --- !u!114 &8778075333850035419
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class Energy : MonoBehaviour
     public float MaxEnergy = 100f;
 
     private EffectManager healing;
-    private float consumeSpeed;
+    private float consumeSpeed = 5f;
 
     public float ConsumeSpeed
     {

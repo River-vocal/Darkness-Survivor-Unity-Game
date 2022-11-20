@@ -13,7 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashPressed { get; private set; }
 
     public int AttackComboIndex { get; private set; } = 0;
-    
+
     [SerializeField] private float jumpBufferTime = 0.2f;
     [SerializeField] private float dashBufferTime = 0.2f;
 
@@ -21,7 +21,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float dashBufferStartTime;
     private bool comboDetectionOn = true;
     private int numberOfAttackAnimations = 4;
-    
+
     public void Update()
     {
         if (JumpPressed && Time.time > jumpBufferStartTime + jumpBufferTime)
@@ -42,6 +42,7 @@ public class PlayerInputHandler : MonoBehaviour
             useEventChannel.Broadcast();
         }
     }
+
     public void OnMoveInput(InputAction.CallbackContext ctx)
     {
         MovementInput = ctx.ReadValue<Vector2>();
@@ -92,6 +93,27 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    private bool gamePaused;
+    public VoidEventChannel pauseEventChannel;
+    public VoidEventChannel resumeEventChannel;
+
+    public void OnPauseInput(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            Debug.Log("Pause Input");
+            gamePaused = !gamePaused;
+            if (gamePaused)
+            {
+                pauseEventChannel.Broadcast();
+            }
+            else
+            {
+                resumeEventChannel.Broadcast();
+            }
+        }
+    }
+
     public void ConsumeJumpInput()
     {
         JumpPressed = false;
@@ -114,6 +136,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         comboDetectionOn = true;
     }
+
     public void StopComboDetection()
     {
         comboDetectionOn = false;
