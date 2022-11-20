@@ -35,7 +35,7 @@ public class MapLightController : MonoBehaviour
         {
             playerEnergy = col.gameObject.GetComponent<Energy>();
             playerLightController = col.gameObject.GetComponent<PlayerLightController>();
-            originalConsumeSpeed = playerEnergy.GetOriginalConsumeSpeed();
+            originalConsumeSpeed = playerEnergy.OriginalConsumeSpeed;
             OnTriggerEnterHelper(playerEnergy, playerLightController);
         } else if (col.gameObject.CompareTag("Boss"))
         {

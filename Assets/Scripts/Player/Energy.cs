@@ -10,7 +10,20 @@ public class Energy : MonoBehaviour
     [Header("Energy Settings")] [SerializeField]
     public float MaxEnergy = 100f;
 
-    [SerializeField] public float ConsumeSpeed = 1f;
+    private EffectManager healing;
+    private float consumeSpeed;
+
+    public float ConsumeSpeed
+    {
+        set
+        {
+            if (value < 0) healing.StartHealing();
+            else healing.StopHealing();
+            consumeSpeed = value;
+        }
+        get => consumeSpeed;
+    }
+
     [SerializeField] public float SlowDownFactor = 0.5f;
     [SerializeField] public float SlowDownThreshold = 0.2f;
     [SerializeField] private float originalConsumeSpeed;
@@ -30,7 +43,16 @@ public class Energy : MonoBehaviour
         set
         {
             damageable = value;
-            if (!damageable) curEnergy = MaxEnergy;
+            if (!damageable)
+            {
+                curEnergy = MaxEnergy;
+                healing.StartShield();
+            }
+            else
+            {
+                healing.StopShield();
+            }
+
             OnDamageableChanged?.Invoke(this, new BooleanEventArg(value));
         }
         get => damageable;
@@ -40,9 +62,15 @@ public class Energy : MonoBehaviour
 
     private float curEnergy;
 
+    private void Awake()
+    {
+        healing = GetComponent<EffectManager>();
+        originalConsumeSpeed = ConsumeSpeed;
+    }
+
+
     private void Start()
     {
-        originalConsumeSpeed = ConsumeSpeed;
         MaxEnergy = LevelLoader.current.EnergyData.MaxEnergy;
         curEnergy = MaxEnergy;
     }
@@ -66,34 +94,25 @@ public class Energy : MonoBehaviour
 
             value = Math.Min(value, MaxEnergy);
             value = Math.Max(value, 0f);
-            if (curEnergy - value >= popupThreshold)
+
+            if (value > curEnergy)
+            {
+                healing.HealOnce();
+            }
+            else if (curEnergy - value >= popupThreshold)
             {
                 DamagePopup(curEnergy - value);
             }
 
             curEnergy = value;
-            if (curEnergy <= 0.0001f)
-            {
-                playerDieEventChannel.Broadcast();
-            }
+            if (curEnergy == 0) playerDieEventChannel.Broadcast();
         }
-    }
-
-
-    public void TakeDamage(float damage)
-    {
-        CurEnergy -= damage;
     }
 
 
     public float CurEnergyNormalized
     {
         get { return curEnergy / MaxEnergy; }
-    }
-
-    private void Awake()
-    {
-        curEnergy = MaxEnergy;
     }
 
     private void Update()
@@ -121,13 +140,12 @@ public class Energy : MonoBehaviour
         // }
 
         curEnergy -= energyDiff;
+        curEnergy = Math.Min(curEnergy, MaxEnergy);
+        curEnergy = Math.Max(curEnergy, 0f);
         if (curEnergy <= 0) playerDieEventChannel.Broadcast();
     }
 
-    public float GetOriginalConsumeSpeed()
-    {
-        return originalConsumeSpeed;
-    }
+    public float OriginalConsumeSpeed => originalConsumeSpeed;
 
     private Vector3 PopupPosition => transform.position + PopupOffset;
 
