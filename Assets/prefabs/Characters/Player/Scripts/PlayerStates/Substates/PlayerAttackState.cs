@@ -42,7 +42,7 @@ public class PlayerAttackState : PlayerUseAbilityState
                 //particle effects
                 if (collision.GetComponent<Boss>() != null)
                 {
-                    Player.ParticleSystemManager.GenerateBleedParticleEffect(collision.GetComponent<Boss>().transform);
+                    Player.VisualEffectSystemManager.GenerateBleedParticleEffect(collision.GetComponent<Boss>().transform);
                 }
                 Health health = collision.GetComponent<Health>();
                 if (health) health.CurHealth -= PlayerData.attackDamage;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 428454304893291751}
   - component: {fileID: 428454304893291750}
   m_Layer: 0
-  m_Name: ParticleSystem
+  m_Name: VisualEffectSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BleedParticleEffect: {fileID: 7118597914696342707, guid: a54815f327869484593ae5a956bbba7e, type: 3}
+  playerBulletPrefab: {fileID: 8230107391242326506, guid: 2e12b76ad0eaf184fb6af8896df94540, type: 3}

@@ -19,7 +19,7 @@ public class PlayerRangeAttackState : PlayerUseAbilityState
         
         //instantiate here
         
-        Player.Instantiate(Player.ParticleSystemManager.playerBulletPrefab, Player.attackCheck.position, Player.attackCheck.rotation);
+        Player.Instantiate(Player.VisualEffectSystemManager.playerBulletPrefab, Player.attackCheck.position, Player.attackCheck.rotation);
         Player.playerBulletCount--;
         Debug.Log("Player.playerBulletCount: " + Player.playerBulletCount);
     }

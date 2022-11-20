@@ -439,7 +439,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 428454304893291748, guid: b45547e9cc346a14b905324ae452aa03, type: 3}
       propertyPath: m_Name
-      value: ParticleSystem
+      value: VisualEffectSystem
       objectReference: {fileID: 0}
     - target: {fileID: 428454304893291751, guid: b45547e9cc346a14b905324ae452aa03, type: 3}
       propertyPath: m_RootOrder
@@ -686,6 +686,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778075333850035419, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
       propertyPath: ParticleSystemManager
+      value: 
+      objectReference: {fileID: 933942205}
+    - target: {fileID: 8778075333850035419, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: VisualEffectSystemManager
       value: 
       objectReference: {fileID: 933942205}
     m_RemovedComponents: []

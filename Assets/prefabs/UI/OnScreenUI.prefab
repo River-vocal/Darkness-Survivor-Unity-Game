@@ -4090,7 +4090,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 30}
+  m_SizeDelta: {x: 800, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6833878249870561023
 CanvasRenderer:
@@ -4197,7 +4197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extraPickupEventChannel: {fileID: 11400000, guid: 5a7d182531583514caba04e69f99c550, type: 2}
   ResizeSmoothTime: 1.5
-  ResizeStressScale: 2.5
+  ResizeStressScale: 1
   ResizeThreshold: 2
 --- !u!1 &6833878250213656173
 GameObject:
