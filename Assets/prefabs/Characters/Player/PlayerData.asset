@@ -15,6 +15,7 @@ MonoBehaviour:
   movementVelocity: 10
   jumpVelocity: 23
   jumpTimes: 2
+  inAirJumpMultiplier: 0.9
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.99
   wallSlideVelocity: 3
@@ -24,6 +25,7 @@ MonoBehaviour:
   dashVelocity: 30
   dashDrag: 3
   dashYVelocityMultiplier: 0.15
+  dashMinimumTime: 0.15
   attackMovementDrag: 3
   attackGravityScale: 2
   attackDamage: 10

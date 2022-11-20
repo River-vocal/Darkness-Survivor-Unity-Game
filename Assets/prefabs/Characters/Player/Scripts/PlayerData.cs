@@ -12,6 +12,7 @@ public class PlayerData : ScriptableObject
    [Header("Jump State")]
    public float jumpVelocity = 20f;
    public int jumpTimes = 2;
+   public float inAirJumpMultiplier = 0.8f;
 
    [Header("In Air State")] 
    public float coyoteTime = 0.2f;

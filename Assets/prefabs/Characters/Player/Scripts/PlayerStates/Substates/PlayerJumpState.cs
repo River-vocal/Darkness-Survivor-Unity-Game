@@ -13,11 +13,17 @@ public class PlayerJumpState : PlayerUseAbilityState
     public override void Enter(params Object[] args)
     {
         base.Enter();
-        Player.SetYVelocity(PlayerData.jumpVelocity);
+        if (jumpTimesLeft-- != PlayerData.jumpTimes)
+        {
+            Player.SetYVelocity(PlayerData.jumpVelocity * PlayerData.inAirJumpMultiplier);
+        }
+        else
+        {
+            Player.SetYVelocity(PlayerData.jumpVelocity);
+        }
         isAbilityDone = true;
         Player.InputHandler.ConsumeJumpInput();
         Player.InAirState.SetIsRising();
-        --jumpTimesLeft;
     }
 
     public bool CanJump()
