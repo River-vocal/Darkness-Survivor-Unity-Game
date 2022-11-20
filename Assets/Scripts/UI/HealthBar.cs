@@ -43,7 +43,6 @@ public class HealthBar : MonoBehaviour
     }
 
     private void health_OnDamaged(object sender, System.EventArgs e){
-        Debug.Log("Damaged111");
         shrinkTimer = SHRINK_TIMER_MAX;
         setValue(health.CurHealthNormalized);
     }
