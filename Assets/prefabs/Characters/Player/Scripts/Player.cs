@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public PlayerDashState DashState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
     public PlayerKouchokuState KouchokuState { get; private set; }
+    public PlayerRangeAttackState RangeAttackState { get; private set; }
     #endregion
 
     #region Components
@@ -37,6 +38,8 @@ public class Player : MonoBehaviour
     public int FacingDirection { get; private set; }
     public bool Invulnerable { get; private set; }
     private Energy energy;
+    private float dragHolder;
+    private float gravityScaleHolder;
     
     private Vector2 velocityHolder;
     [SerializeField] private Transform groundCheck;
@@ -62,6 +65,7 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
         AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
         KouchokuState = new PlayerKouchokuState(this, StateMachine, playerData, "kouchoku");
+        RangeAttackState = new PlayerRangeAttackState(this, StateMachine, playerData, "rangeAttack");
     }
 
     private void Start()
@@ -119,6 +123,28 @@ public class Player : MonoBehaviour
         velocityHolder.Set(v.x, v.y);
         RigidBody.velocity = velocityHolder;
         CurVelocity = velocityHolder;
+    }
+
+    public void SetDrag(float drag)
+    {
+        dragHolder = RigidBody.drag;
+        RigidBody.drag = drag;
+    }
+
+    public void SetGravityScale(float gravityScale)
+    {
+        gravityScaleHolder = RigidBody.gravityScale;
+        RigidBody.gravityScale = gravityScale;
+    }
+
+    public void ResetDrag()
+    {
+        RigidBody.drag = dragHolder;
+    }
+
+    public void ResetGravityScale()
+    {
+        RigidBody.gravityScale = gravityScaleHolder;
     }
     
     private void Flip()

@@ -48,6 +48,10 @@ public class PlayerGroundedState : PlayerState
         {
             StateMachine.ChangeState(Player.AttackState);
         }
+        else if (Player.InputHandler.RangeAttackPressed)
+        {
+            StateMachine.ChangeState(Player.RangeAttackState);
+        }
     }
 
     public override void FixedUpdate()

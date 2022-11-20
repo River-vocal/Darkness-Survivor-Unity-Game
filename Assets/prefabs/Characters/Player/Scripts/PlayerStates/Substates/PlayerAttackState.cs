@@ -16,9 +16,8 @@ public class PlayerAttackState : PlayerUseAbilityState
     {
         base.Enter();
         Player.Animator.SetInteger(AttackComboIndex, Player.InputHandler.AttackComboIndex);
-        Player.RigidBody.drag = PlayerData.attackMovementDrag;
-        originalGravityScale = Player.RigidBody.gravityScale;
-        Player.RigidBody.gravityScale = PlayerData.attackGravityScale;
+        Player.SetDrag(PlayerData.attackMovementDrag);
+        Player.SetGravityScale(PlayerData.attackGravityScale);
         Player.InputHandler.ConsumeAttackInput();
         Player.InputHandler.ResetComboDetection();
         Collider2D collision = Physics2D.OverlapCircle(Player.attackCheck.position, PlayerData.attackCheckDistance,
@@ -54,8 +53,8 @@ public class PlayerAttackState : PlayerUseAbilityState
     public override void Exit()
     {
         base.Exit();
-        Player.RigidBody.drag = 0f;
-        Player.RigidBody.gravityScale = originalGravityScale;
+        Player.ResetDrag();
+        Player.ResetGravityScale();
     }
 
     public override void Update()

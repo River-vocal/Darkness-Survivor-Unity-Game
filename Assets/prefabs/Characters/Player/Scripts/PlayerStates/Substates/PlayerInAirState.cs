@@ -62,6 +62,10 @@ public class PlayerInAirState : PlayerState
         {
             StateMachine.ChangeState(Player.AttackState);
         }
+        else if (Player.InputHandler.RangeAttackPressed)
+        {
+            StateMachine.ChangeState(Player.RangeAttackState);
+        }
         else
         {
             Player.CheckIfShouldFlip((int)xInput);
