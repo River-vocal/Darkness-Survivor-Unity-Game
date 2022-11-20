@@ -7,8 +7,8 @@ public class Golem : MonoBehaviour
 {
     [SerializeField] public int damage;
     [SerializeField] public float speed;
-    private float ground_distance = 2f;
-    private float wall_distance = 1f;
+    private float ground_distance = 1f;
+    private float wall_distance = 0.2f;
     private bool movingRight = true;
     public Transform groundDetection;
     // public Transform wallDetection;
@@ -16,12 +16,11 @@ public class Golem : MonoBehaviour
     private float timeBtwShots;
     public float startTimeBtwShots;
     private Animator golem_animation;
+    private bool Golem_status = true;
 
     private void Awake()
     {
         golem_animation = GetComponent<Animator>();
-
-        
     }
 
     // Update is called once per frame
@@ -30,22 +29,32 @@ public class Golem : MonoBehaviour
         transform.Translate(Vector2.right * speed * Time.deltaTime);
         int layer_mask_ground = LayerMask.GetMask("Ground");
         int layer_mask_wall = LayerMask.GetMask("Wall");
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, ground_distance, layer_mask_ground);
+        RaycastHit2D groundInfo_down = Physics2D.Raycast(groundDetection.position, Vector2.down, ground_distance, layer_mask_ground);
+        RaycastHit2D groundInfo_right = Physics2D.Raycast(groundDetection.position, Vector2.right, wall_distance, layer_mask_ground);
+        RaycastHit2D groundInfo_left = Physics2D.Raycast(groundDetection.position, Vector2.left, wall_distance, layer_mask_ground);
         RaycastHit2D wallInfo_right = Physics2D.Raycast(groundDetection.position, Vector2.right, wall_distance, layer_mask_wall);
         RaycastHit2D wallInfo_left = Physics2D.Raycast(groundDetection.position, Vector2.left, wall_distance, layer_mask_wall);
-        if(groundInfo.collider == false)
+        if(groundInfo_down.collider == false)
         {
             switchDirection();
         }
-        else if(groundInfo.collider == true && wallInfo_right.collider == true)
+        else if(groundInfo_down.collider == true && wallInfo_right.collider == true)
         {
             switchDirection();
         }
-        else if(groundInfo.collider == true && wallInfo_left.collider == true)
+        else if(groundInfo_down.collider == true && wallInfo_left.collider == true)
         {
             switchDirection();
         }
-        if(timeBtwShots <= 0)
+        else if(groundInfo_down.collider == true && groundInfo_right.collider == true)
+        {
+            switchDirection();
+        }
+        else if(groundInfo_down.collider == true && groundInfo_left.collider == true)
+        {
+            switchDirection();
+        }
+        if(timeBtwShots <= 0 && Golem_status == true)
         {
         Instantiate(projectile, transform.position, Quaternion.identity);
         timeBtwShots = startTimeBtwShots;
@@ -86,6 +95,8 @@ public class Golem : MonoBehaviour
     {
         golem_animation.SetBool("Attack 0", false);
         golem_animation.SetBool("GolemDeath", true);
+        speed = 0;
+        Golem_status = false;
     }
 
     private void Deactivate()
@@ -104,7 +115,6 @@ public class Golem : MonoBehaviour
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 movingRight = true;
-                
             }
     }    
 }

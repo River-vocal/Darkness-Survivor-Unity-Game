@@ -11,9 +11,9 @@ public class GolemProjectile : MonoBehaviour
     private Vector2 target;
     private Vector2 originalPosition;
     public float shootingDistance;
-    // public Transform detection;
-    private float ground_distance = 0.8f;
-    private float wall_distance = 0.8f;
+    public Transform detection;
+    private float ground_distance = 0.2f;
+    private float wall_distance = 0.2f;
     
     // Start is called before the first frame update
     void Start()
@@ -41,23 +41,27 @@ public class GolemProjectile : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // int layer_mask_ground = LayerMask.GetMask("Ground");
-        // int layer_mask_wall = LayerMask.GetMask("Wall");
-        // RaycastHit2D groundInfo_down = Physics2D.Raycast(detection.position, Vector2.down, ground_distance, layer_mask_ground);
-        // RaycastHit2D groundInfo_up = Physics2D.Raycast(detection.position, Vector2.up, ground_distance, layer_mask_ground);
-        // RaycastHit2D wallInfo_right = Physics2D.Raycast(detection.position, Vector2.right, wall_distance, layer_mask_wall);
-        // RaycastHit2D wallInfo_left = Physics2D.Raycast(detection.position, Vector2.left, wall_distance, layer_mask_wall);
-        // if(groundInfo_down.collider == false | groundInfo_up.collider == false | wallInfo_left.collider == false | wallInfo_right.collider == false)
-        // {
-        //     Destroy(gameObject);
-        // }
+        int layer_mask_ground = LayerMask.GetMask("Ground");
+        int layer_mask_wall = LayerMask.GetMask("Wall");
+        RaycastHit2D groundInfo_right = Physics2D.Raycast(detection.position, Vector2.right, ground_distance, layer_mask_ground);
+        RaycastHit2D groundInfo_left = Physics2D.Raycast(detection.position, Vector2.left, ground_distance, layer_mask_ground);
+        RaycastHit2D wallInfo_right = Physics2D.Raycast(detection.position, Vector2.right, wall_distance, layer_mask_wall);
+        RaycastHit2D wallInfo_left = Physics2D.Raycast(detection.position, Vector2.left, wall_distance, layer_mask_wall);
+        if(groundInfo_right.collider == true || groundInfo_left.collider == true || wallInfo_right == true || wallInfo_left == true)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player") || other.gameObject.name == "Map")
         {
             Destroy(gameObject);
+        }
+        if(other.gameObject.CompareTag("Player"))
+        {
+            // Destroy(gameObject);
             if (other.GetComponent<Energy>().CurEnergy < damage) {
                 GlobalAnalysis.player_status = "smallenemy_dead";
                 Debug.Log("lose by: small enemy");
@@ -65,11 +69,12 @@ public class GolemProjectile : MonoBehaviour
             GlobalAnalysis.smallenemy_damage += damage;
             other.GetComponent<Energy>().CurEnergy -= damage;
         }
-        // if(other.gameObject.layer == LayerMask.GetMask("Ground") | other.gameObject.layer == LayerMask.GetMask("Wall"))
-        // {
-        //     Debug.Log("Wall!!!!!!!!!!!!!!!!!!!!!!!!");
-        //     Destroy(gameObject);
-        // }
+    }
+
+    public void ProjectileDestroy()
+    {
+        Destroy(gameObject);
+        Debug.Log("Hit the bullets!!!!");
     }
 
     void FlipProjectile()

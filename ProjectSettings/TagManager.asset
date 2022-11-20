@@ -10,6 +10,8 @@ TagManager:
   - Missile
   - Drop
   - Golem
+  - ground
+  - Projectile
   layers:
   - Default
   - TransparentFX

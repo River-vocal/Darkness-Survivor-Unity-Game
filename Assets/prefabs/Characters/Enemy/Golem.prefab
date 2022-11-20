@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0ce769bc04c429994c6cbc0fdb8a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  speed: 2
+  damage: 7
+  speed: 1
   groundDetection: {fileID: 8729757853430658619}
   projectile: {fileID: 9056118684756571298, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
   startTimeBtwShots: 2
