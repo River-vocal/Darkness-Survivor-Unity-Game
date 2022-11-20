@@ -31,6 +31,7 @@ public class WonMenu : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex >= SceneManager.sceneCountInBuildSettings - 1) return;
         GetComponent<Canvas>().enabled = true;
         GetComponent<Animator>().enabled = true;
+        GetComponent<Animator>().Play("ClearState", -1, 0);
 
         Time.timeScale = 0;
     }

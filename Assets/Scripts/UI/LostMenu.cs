@@ -22,10 +22,11 @@ public class LostMenu : MonoBehaviour
     {
         GetComponent<Canvas>().enabled = true;
         GetComponent<Animator>().enabled = true;
-        
+        GetComponent<Animator>().Play("Defeat", -1, 0);
+
         Time.timeScale = 0f;
     }
-    
+
 
     public void GoLevelSelection()
     {
