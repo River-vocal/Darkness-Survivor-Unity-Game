@@ -57,7 +57,7 @@ public class Energy : MonoBehaviour
         get => curEnergy;
         set
         {
-            if (!damageable)
+            if (!damageable && value < curEnergy)
             {
                 DamagePopup damagePopup = global::DamagePopup.CreatePopup(PopupPosition);
                 damagePopup.Setup("Miss", buffPopupColor, energyPopupSize);
@@ -99,7 +99,7 @@ public class Energy : MonoBehaviour
     private void Update()
     {
         if (!damageable) return;
-        if (CurEnergy == 0) return;
+        if (curEnergy <= 0) return;
 
         float energyDiff = (CurEnergyNormalized > SlowDownThreshold)
             ? ConsumeSpeed * Time.deltaTime
@@ -120,7 +120,8 @@ public class Energy : MonoBehaviour
         //     }
         // }
 
-        CurEnergy -= energyDiff;
+        curEnergy -= energyDiff;
+        if (curEnergy <= 0) playerDieEventChannel.Broadcast();
     }
 
     public float GetOriginalConsumeSpeed()
