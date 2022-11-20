@@ -7,6 +7,7 @@ public class PlayerDashState : PlayerUseAbilityState
     public bool CanDash { get; private set; }
     private float lastDashTime = 0f;
     private bool isTouchingWall;
+    private float dashStartTime;
     public PlayerDashState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationTriggerParameter) : base(player, stateMachine, playerData, animationTriggerParameter)
     {
     }
@@ -26,17 +27,18 @@ public class PlayerDashState : PlayerUseAbilityState
         base.Enter();
         CanDash = false;
         Player.InputHandler.ConsumeDashInput();
-        Player.RigidBody.drag = PlayerData.dashDrag;
+        Player.SetDrag(PlayerData.dashDrag);
         //change facing direction if necessary
         Player.CheckIfShouldFlip((int)Player.InputHandler.MovementInput.x);
         Player.SetXVelocity(PlayerData.dashVelocity * Player.FacingDirection);
+        dashStartTime = Time.time;
     }
 
     public override void Exit()
     {
         base.Exit();
         lastDashTime = Time.time;
-        Player.RigidBody.drag = 0f;
+        Player.ResetDrag();
     }
 
     public override void Update()
@@ -45,7 +47,7 @@ public class PlayerDashState : PlayerUseAbilityState
         
         if (StateMachine.CurState == this)
         {
-            if (animationFinished || isTouchingWall)
+            if (animationFinished || isTouchingWall || (Time.time > dashStartTime + PlayerData.dashMinimumTime && (Player.InputHandler.JumpPressed || Player.InputHandler.RangeAttackPressed || Player.InputHandler.AttackComboIndex > 0)))
             {
                 isAbilityDone = true;
             }

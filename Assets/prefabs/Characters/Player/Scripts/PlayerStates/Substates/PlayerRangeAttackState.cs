@@ -18,6 +18,10 @@ public class PlayerRangeAttackState : PlayerUseAbilityState
         Player.InputHandler.ConsumeRangeAttackInput();
         
         //instantiate here
+        
+        Player.Instantiate(Player.ParticleSystemManager.playerBulletPrefab, Player.attackCheck.position, Player.attackCheck.rotation);
+        Player.playerBulletCount--;
+        Debug.Log("Player.playerBulletCount: " + Player.playerBulletCount);
     }
 
     public override void Exit()

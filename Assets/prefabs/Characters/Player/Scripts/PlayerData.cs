@@ -29,6 +29,7 @@ public class PlayerData : ScriptableObject
    public float dashVelocity = 30f;
    public float dashDrag = 3f;
    public float dashYVelocityMultiplier = 0.15f;
+   public float dashMinimumTime = 0.15f;
 
    [Header("Attack State")] 
    public float attackMovementDrag = 3f;
@@ -48,4 +49,7 @@ public class PlayerData : ScriptableObject
    public LayerMask groundLayer;
    public LayerMask wallLayer;
    public LayerMask enemyLayer;
+   
+   [Header("range Attack")]
+   public int playerInitialBulletCount = 70;
 }
