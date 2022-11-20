@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParticleSystemManager : MonoBehaviour
 {
     public GameObject BleedParticleEffect;
+    public GameObject playerBulletPrefab;
     
     // Start is called before the first frame update
     void Start()

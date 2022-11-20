@@ -48,7 +48,7 @@ public class PlayerGroundedState : PlayerState
         {
             StateMachine.ChangeState(Player.AttackState);
         }
-        else if (Player.InputHandler.RangeAttackPressed)
+        else if (Player.InputHandler.RangeAttackPressed && Player.playerBulletCount > 0)
         {
             StateMachine.ChangeState(Player.RangeAttackState);
         }

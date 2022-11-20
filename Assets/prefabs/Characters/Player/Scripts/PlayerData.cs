@@ -48,4 +48,7 @@ public class PlayerData : ScriptableObject
    public LayerMask groundLayer;
    public LayerMask wallLayer;
    public LayerMask enemyLayer;
+   
+   [Header("range Attack")]
+   public int playerInitialBulletCount = 70;
 }

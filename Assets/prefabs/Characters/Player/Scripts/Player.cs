@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region State Variables
+
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -18,9 +19,11 @@ public class Player : MonoBehaviour
     public PlayerAttackState AttackState { get; private set; }
     public PlayerKouchokuState KouchokuState { get; private set; }
     public PlayerRangeAttackState RangeAttackState { get; private set; }
+
     #endregion
 
     #region Components
+
     public Rigidbody2D RigidBody;
     public Animator Animator { get; private set; }
     public CinemachineImpulseSource cinemachineImpulseSource;
@@ -40,11 +43,12 @@ public class Player : MonoBehaviour
     private Energy energy;
     private float dragHolder;
     private float gravityScaleHolder;
-    
+
     private Vector2 velocityHolder;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
     [SerializeField] public Transform attackCheck;
+    [SerializeField] public int playerBulletCount;
 
     #endregion
 
@@ -79,6 +83,7 @@ public class Player : MonoBehaviour
         FacingDirection = 1;
         Invulnerable = false;
         StateMachine.Init(IdleState);
+        playerBulletCount = playerData.playerInitialBulletCount;
     }
 
     private void Update()
@@ -93,7 +98,7 @@ public class Player : MonoBehaviour
     }
 
     #endregion
-    
+
     #region Setters
 
     public void SetXVelocity(float v)
@@ -102,7 +107,7 @@ public class Player : MonoBehaviour
         RigidBody.velocity = velocityHolder;
         CurVelocity = velocityHolder;
     }
-    
+
     public void SetYVelocity(float v)
     {
         velocityHolder.Set(CurVelocity.x, v);
