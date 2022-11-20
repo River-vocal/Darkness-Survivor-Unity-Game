@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private VoidEventChannel gamePauseEventChannel;
     [SerializeField] private VoidEventChannel gameResumeEventChannel;
 
+    public static bool GamePaused;
+
     private void OnEnable()
     {
         gamePauseEventChannel.AddListener(Pause);
@@ -25,15 +27,17 @@ public class PauseMenu : MonoBehaviour
     {
         GetComponent<Canvas>().enabled = true;
         GetComponent<Animator>().enabled = true;
-        
+
         Time.timeScale = 0f;
     }
 
     public void Resume()
     {
+        GamePaused = false;
+        
         GetComponent<Canvas>().enabled = false;
         GetComponent<Animator>().enabled = false;
-        
+
         Time.timeScale = 1f;
     }
 
@@ -42,5 +46,4 @@ public class PauseMenu : MonoBehaviour
         Resume();
         SceneManager.LoadScene(0);
     }
-
 }

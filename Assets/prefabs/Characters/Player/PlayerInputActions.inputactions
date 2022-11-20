@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "24fda525-68a9-4fe2-8ac4-5600f5886694",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -353,6 +362,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "RangeAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "264f8072-ae43-457c-86df-7904efd47fe0",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -869,34 +889,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "System",
-            "id": "9f4b82d1-76ff-4f95-b372-574e00d2e5d7",
-            "actions": [
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "4bb09153-d55e-474b-811f-1cb00a568a63",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "2b543641-32e4-4ff3-ae42-f493872fc97f",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

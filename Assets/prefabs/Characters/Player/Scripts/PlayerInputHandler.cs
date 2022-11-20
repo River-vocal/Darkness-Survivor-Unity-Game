@@ -93,7 +93,6 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    private bool gamePaused;
     public VoidEventChannel pauseEventChannel;
     public VoidEventChannel resumeEventChannel;
 
@@ -102,8 +101,8 @@ public class PlayerInputHandler : MonoBehaviour
         if (ctx.started)
         {
             Debug.Log("Pause Input");
-            gamePaused = !gamePaused;
-            if (gamePaused)
+            PauseMenu.GamePaused = !PauseMenu.GamePaused;
+            if (PauseMenu.GamePaused)
             {
                 pauseEventChannel.Broadcast();
             }

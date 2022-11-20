@@ -351,22 +351,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8778075333850035413}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnPauseInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4bb09153-d55e-474b-811f-1cb00a568a63
-    m_ActionName: System/Pause[/Keyboard/p]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8778075333850035413}
-        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
         m_MethodName: OnRangeAttackInput
         m_Mode: 0
         m_Arguments:
@@ -379,6 +363,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9d7e87c7-03ed-41cf-b6cd-c8feb727e837
     m_ActionName: Player/RangeAttack[/Keyboard/h]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8778075333850035413}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnPauseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 24fda525-68a9-4fe2-8ac4-5600f5886694
+    m_ActionName: Player/Pause[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
