@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BleedParticleEffect: {fileID: 7118597914696342707, guid: a54815f327869484593ae5a956bbba7e, type: 3}
+  playerBulletPrefab: {fileID: 8230107391242326506, guid: 2e12b76ad0eaf184fb6af8896df94540, type: 3}
