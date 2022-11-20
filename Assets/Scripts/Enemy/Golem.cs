@@ -16,12 +16,11 @@ public class Golem : MonoBehaviour
     private float timeBtwShots;
     public float startTimeBtwShots;
     private Animator golem_animation;
+    private bool Golem_status = true;
 
     private void Awake()
     {
         golem_animation = GetComponent<Animator>();
-
-        
     }
 
     // Update is called once per frame
@@ -55,7 +54,7 @@ public class Golem : MonoBehaviour
         {
             switchDirection();
         }
-        if(timeBtwShots <= 0)
+        if(timeBtwShots <= 0 && Golem_status == true)
         {
         Instantiate(projectile, transform.position, Quaternion.identity);
         timeBtwShots = startTimeBtwShots;
@@ -97,6 +96,7 @@ public class Golem : MonoBehaviour
         golem_animation.SetBool("Attack 0", false);
         golem_animation.SetBool("GolemDeath", true);
         speed = 0;
+        Golem_status = false;
     }
 
     private void Deactivate()
@@ -115,7 +115,6 @@ public class Golem : MonoBehaviour
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 movingRight = true;
-                
             }
     }    
 }
