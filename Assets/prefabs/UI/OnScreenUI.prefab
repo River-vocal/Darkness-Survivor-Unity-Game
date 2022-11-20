@@ -4197,7 +4197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extraPickupEventChannel: {fileID: 11400000, guid: 5a7d182531583514caba04e69f99c550, type: 2}
   ResizeSmoothTime: 1.5
-  ResizeStressScale: 2.5
+  ResizeStressScale: 1
   ResizeThreshold: 2
 --- !u!1 &6833878250213656173
 GameObject:
