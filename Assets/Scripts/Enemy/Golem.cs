@@ -7,6 +7,7 @@ public class Golem : MonoBehaviour
 {
     [SerializeField] public int damage;
     [SerializeField] public float speed;
+    public float StartShootingDistance;
     private float ground_distance = 1f;
     private float wall_distance = 0.2f;
     private bool movingRight = true;
@@ -17,10 +18,12 @@ public class Golem : MonoBehaviour
     public float startTimeBtwShots;
     private Animator golem_animation;
     private bool Golem_status = true;
+    private Transform player_transform;
 
     private void Awake()
     {
         golem_animation = GetComponent<Animator>();
+        player_transform = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -54,7 +57,7 @@ public class Golem : MonoBehaviour
         {
             switchDirection();
         }
-        if(timeBtwShots <= 0 && Golem_status == true)
+        if(timeBtwShots <= 0 && Golem_status == true && Vector2.Distance(transform.position, player_transform.position) < StartShootingDistance)
         {
         Instantiate(projectile, transform.position, Quaternion.identity);
         timeBtwShots = startTimeBtwShots;
