@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerBulletController : MonoBehaviour
 {
     public float speed = 15f;
+    public int playerBulletDamage = 15;
     public int DamagePopup = 20;
     public Rigidbody2D rb;
     public GameObject impactEffect;
@@ -34,7 +35,17 @@ public class PlayerBulletController : MonoBehaviour
             
             Destroy(gameObject);
 
-            if (hitInfo.gameObject.layer == 11 && !hitInfo.CompareTag("Boss"))
+            if (hitInfo.CompareTag("Boss"))
+            {
+                //particle effects
+                // if (hitInfo.GetComponent<Boss>() != null)
+                // {
+                    // Player.VisualEffectSystemManager.GenerateBleedParticleEffect(hitInfo.GetComponent<Boss>().transform);
+                // }
+                Health health = hitInfo.GetComponent<Health>();
+                if (health) health.CurHealth -= playerBulletDamage;
+
+            } else if (hitInfo.gameObject.layer == 11)
             {
                 // longRangeAttack.playerBulletCount += 1;
                 Destroy(hitInfo.gameObject);
