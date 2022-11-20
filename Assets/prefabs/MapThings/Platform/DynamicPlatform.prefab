@@ -181,7 +181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9054223886048043555
 Transform:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9054223886497551438}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9054223886048043557
 SpriteRenderer:
@@ -295,6 +295,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9054223885418278839}
+  - {fileID: 5209355018797383927}
   - {fileID: 9054223886048043555}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -312,6 +313,90 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 0
-  platform: {fileID: 9054223886048043552}
+  platform: {fileID: 4409387199017816430}
   dc: {fileID: 9054223885418278838}
   initialActive: 0
+  warningTime: 1
+--- !u!1001 &4868613919656699159
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 9054223886497551438}
+    m_Modifications:
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124715999041713273, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+      propertyPath: m_Name
+      value: walls_side_top_for_platform_sprite_151
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+--- !u!1 &4409387199017816430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9124715999041713273, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+  m_PrefabInstance: {fileID: 4868613919656699159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &7364287390052718243
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409387199017816430}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000009662294, y: 0.04353355}
+  m_Size: {x: 0.48000017, y: 0.07508604}
+  m_Direction: 1
+--- !u!4 &5209355018797383927 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 854437472010626528, guid: 3f1b42ef655367243927b94d37e5c741, type: 3}
+  m_PrefabInstance: {fileID: 4868613919656699159}
+  m_PrefabAsset: {fileID: 0}
