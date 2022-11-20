@@ -11,6 +11,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpPressed { get; private set; }
     public bool JumpReleased { get; private set; }
     public bool DashPressed { get; private set; }
+    public bool RangeAttackPressed { get; private set; }
 
     public int AttackComboIndex { get; private set; } = 0;
     
@@ -92,6 +93,14 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnRangeAttackInput(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            RangeAttackPressed = true;
+        }
+    }
+
     public void ConsumeJumpInput()
     {
         JumpPressed = false;
@@ -110,6 +119,11 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void ConsumeRangeAttackInput()
+    {
+        RangeAttackPressed = false;
+    }
+
     public void ResetComboDetection()
     {
         comboDetectionOn = true;
@@ -123,5 +137,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         ConsumeAttackInput();
         StopComboDetection();
+        
+        ConsumeRangeAttackInput();
     }
 }
