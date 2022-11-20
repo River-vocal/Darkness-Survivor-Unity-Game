@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5590026640140987998}
   - component: {fileID: 5511480327148436881}
   - component: {fileID: 8743103576736136057}
+  - component: {fileID: 2885999322745962441}
   m_Layer: 0
   m_Name: pfDamagePopup
   m_TagString: Untagged
@@ -188,3 +189,23 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 5511480327148436881}
   m_maskType: 0
+--- !u!95 &2885999322745962441
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191621295279792230}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6a5b03fe9c079634b9508a7d82317b51, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
