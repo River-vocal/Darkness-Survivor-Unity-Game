@@ -25,6 +25,7 @@ public class PlayerAttackState : PlayerUseAbilityState
         //trash code below
         if (collision != null)
         {
+            Player.VisualEffectSystemManager.GenerateHitSparklingEffect(collision.transform);
 
             if (collision.tag == "Drop")
             {
@@ -47,7 +48,6 @@ public class PlayerAttackState : PlayerUseAbilityState
                 if (collision.GetComponent<Boss>() != null)
                 {
                     // Player.VisualEffectSystemManager.GenerateBleedParticleEffect(collision.GetComponent<Boss>().transform);
-                    Player.VisualEffectSystemManager.GenerateHitSparklingEffect(collision.GetComponent<Boss>().transform);
                 }
                 Health health = collision.GetComponent<Health>();
                 if (health) health.CurHealth -= PlayerData.attackDamage;
