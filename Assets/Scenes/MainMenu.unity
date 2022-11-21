@@ -2416,7 +2416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524704033084343288, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: m_Text
-      value: TUTORAL
+      value: TUTORIAL
       objectReference: {fileID: 0}
     - target: {fileID: 5524704033084343289, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2528,7 +2528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6950127059266538552, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 674.2177
+      value: 744
       objectReference: {fileID: 0}
     - target: {fileID: 6950127059266538552, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: m_SizeDelta.y
