@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 854437472010626528}
   - component: {fileID: 7146095901959733244}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: walls_side_top_for_platform_sprite_151
   m_TagString: Untagged
   m_Icon: {fileID: 0}
