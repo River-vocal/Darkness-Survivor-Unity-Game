@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   damage: 3
-  shootingDistance: 20
+  shootingDistance: 13
   detection: {fileID: 3931625335361085484}
 --- !u!50 &921670502627175786
 Rigidbody2D:
