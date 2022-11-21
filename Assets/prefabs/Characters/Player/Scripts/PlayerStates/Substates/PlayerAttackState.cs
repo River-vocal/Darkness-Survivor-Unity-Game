@@ -26,6 +26,7 @@ public class PlayerAttackState : PlayerUseAbilityState
         if (collision != null)
         {
             Player.VisualEffectSystemManager.GenerateHitSparklingEffect(collision.transform);
+            Player.cinemachineImpulseSource.GenerateImpulse();
 
             if (collision.tag == "Drop")
             {
@@ -41,14 +42,6 @@ public class PlayerAttackState : PlayerUseAbilityState
             }
             else
             {
-                //screen shake
-                Player.cinemachineImpulseSource.GenerateImpulse();
-
-                //particle effects
-                if (collision.GetComponent<Boss>() != null)
-                {
-                    // Player.VisualEffectSystemManager.GenerateBleedParticleEffect(collision.GetComponent<Boss>().transform);
-                }
                 Health health = collision.GetComponent<Health>();
                 if (health) health.CurHealth -= PlayerData.attackDamage;
             }
