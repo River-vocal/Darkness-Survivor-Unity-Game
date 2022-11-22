@@ -52,5 +52,5 @@ public class PlayerData : ScriptableObject
    public LayerMask enemyLayer;
    
    [Header("range Attack")]
-   public int playerInitialBulletCount = 70;
+   public int playerInitialBulletCount = 5;
 }
