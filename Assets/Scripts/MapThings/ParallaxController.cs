@@ -55,7 +55,7 @@ public class ParallaxController : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         distance = cam.position.x - camStartPos.x;
         transform.position = new Vector3(cam.position.x + 10, transform.position.y, 0);
@@ -64,11 +64,5 @@ public class ParallaxController : MonoBehaviour
             float speed = backSpeed[i] * parallaxSpeed;
             mat[i].SetTextureOffset("_MainTex", new Vector2(distance, 0) * speed);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
