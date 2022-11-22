@@ -12,6 +12,8 @@ public class EnemyDrops : MonoBehaviour
     [SerializeField] public bool isRoundWalk;
     [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask groundLayer;
+
+    public VisualEffectSystemManager visualEffectSystemManager;
     private bool movingLeft;
     private float leftEdge;
     private float rightEdge;
@@ -22,6 +24,8 @@ public class EnemyDrops : MonoBehaviour
     private float width;
     private float height;
     private SpriteRenderer sp;
+    private float originalSpeed;
+    private Collider2D collider;
 
 
     private void Awake()
@@ -32,6 +36,8 @@ public class EnemyDrops : MonoBehaviour
         width = GetComponent<Collider2D>().bounds.size.x;
         height = GetComponent<Collider2D>().bounds.size.y;
         sp = GetComponent<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
+        originalSpeed = speed;
     }
 
     void OnDrawGizmosSelected()
@@ -132,17 +138,19 @@ public class EnemyDrops : MonoBehaviour
         if (!hasTwoLives || beAttacked)
         {
             speed = 0;
+            collider.enabled = false;
             anim.SetTrigger("Death");
+            visualEffectSystemManager.GenerateEvilPurpleExplode(transform);
         }
         else
         {
             beAttacked = true;
 
-            transform.localScale = new Vector3(transform.localScale.x * 0.7f, transform.localScale.y * 0.7f,
-                transform.localScale.z * 0.7f);
-            transform.position += new Vector3(0, -height * 0.4f, 0);
-            speed *= 1.5f;
-
+            transform.localScale = new Vector3(transform.localScale.x * 0.5f, transform.localScale.y * 0.5f,
+                transform.localScale.z * 0.5f);
+            transform.position += new Vector3(0, -height, 0);
+            originalSpeed *= 2f;
+            visualEffectSystemManager.GenerateBleedParticleEffect(transform);
             anim.SetTrigger("Hurt");
         }
     }
@@ -161,8 +169,20 @@ public class EnemyDrops : MonoBehaviour
         }
     }
 
+    private void Freeze()
+    {
+        Debug.Log("Freeze position");
+        speed = 0f;
+    }
+
+    private void Unfreeze()
+    {
+        speed = originalSpeed;
+    }
+
     private void Deactivate()
     {
+        
         gameObject.SetActive(false);
     }
 }
