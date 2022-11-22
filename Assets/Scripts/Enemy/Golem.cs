@@ -19,6 +19,7 @@ public class Golem : MonoBehaviour
     private Animator golem_animation;
     private bool Golem_status = true;
     private Transform player_transform;
+    public VisualEffectSystemManager VisualEffect;
 
     private void Awake()
     {
@@ -100,6 +101,7 @@ public class Golem : MonoBehaviour
         golem_animation.SetBool("GolemDeath", true);
         speed = 0;
         Golem_status = false;
+        VisualEffect.GenerateEvilPurpleExplode(transform);
     }
 
     private void Deactivate()
