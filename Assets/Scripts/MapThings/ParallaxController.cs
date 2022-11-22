@@ -19,6 +19,8 @@ public class ParallaxController : MonoBehaviour
 
     private float farthestBack;
 
+    private bool stopFollowing = false;
+    
     [Range(0.01f, 0.05f)] public float parallaxSpeed;
     // Start is called before the first frame update
     void Start()
@@ -57,12 +59,25 @@ public class ParallaxController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        distance = cam.position.x - camStartPos.x;
-        transform.position = new Vector3(cam.position.x + 10, cam.position.y - 5, 100);
-        for (int i = 0; i < backgrounds.Length; i++)
+        if (!stopFollowing)
         {
-            float speed = backSpeed[i] * parallaxSpeed;
-            mat[i].SetTextureOffset("_MainTex", new Vector2(distance, 0) * speed);
+            distance = cam.position.x - camStartPos.x;
+            transform.position = new Vector3(cam.position.x + 10, cam.position.y - 5, 100);
+            for (int i = 0; i < backgrounds.Length; i++)
+            {
+                float speed = backSpeed[i] * parallaxSpeed;
+                mat[i].SetTextureOffset("_MainTex", new Vector2(distance, 0) * speed);
+            }
         }
+    }
+
+    public void StopFollowing()
+    {
+        stopFollowing = true;
+    }
+
+    public void ResetFollowing()
+    {
+        stopFollowing = false;
     }
 }
