@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 204036596148820781}
   - component: {fileID: 380412383449351905}
   - component: {fileID: 3659178419812851237}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: Bat1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 6085337278921305935}
   m_Layer: 11
   m_Name: BatObj
-  m_TagString: Untagged
+  m_TagString: BatTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -870,7 +870,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.011949666, y: -0.20747319}
+  m_Offset: {x: -0.011949666, y: -0.04703477}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -881,7 +881,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1947097, y: 0.6518764}
+  m_Size: {x: 0.1947097, y: 0.33099952}
   m_EdgeRadius: 0
 --- !u!114 &6684799746542600595
 MonoBehaviour:
@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d2c3a6c45ea49428156d3f0f100eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 30
+  MaxHealth: 10
   popupEnable: 0
   PopupOffset: {x: 0, y: 2, z: 0}
   normalDamageColor: {r: 0.4, g: 0.3, b: 0.1, a: 1}
