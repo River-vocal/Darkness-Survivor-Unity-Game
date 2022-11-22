@@ -1,5 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,6 +41,17 @@ public class LevelChanger : MonoBehaviour
         gbToLoad.SetActive(true);
         animator.SetTrigger("FadeIn");
         
+    }
+
+    public void ResetSave()
+    {
+        foreach (var scene in EditorBuildSettings.scenes)
+        {
+            var scenePath = scene.path;
+            var sceneName = Path.GetFileNameWithoutExtension(scenePath);
+            SaveSystem.DeleteSaveFile($"{sceneName}.sav");
+        }
+        SaveSystem.DeleteSaveFile("Energy.sav");
     }
     
     public void LevelOnFadeComplete()
