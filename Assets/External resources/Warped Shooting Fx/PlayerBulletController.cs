@@ -49,20 +49,25 @@ public class PlayerBulletController : MonoBehaviour
 
             } else if (hitInfo.gameObject.layer == 11)
             {
-                if (hitInfo.tag == "Drop")
+                if (hitInfo.CompareTag("Drop"))
                 {
                     Instantiate(BulletPickupPrefab, hitInfo.transform.position, hitInfo.transform.rotation);
                     hitInfo.GetComponent<EnemyDrops>().DropDeath();
                 }
-                else if (hitInfo.tag == "Golem")
+                else if (hitInfo.CompareTag("Golem"))
                 {
                     Instantiate(BulletPickupPrefab, hitInfo.transform.position, hitInfo.transform.rotation);
                     hitInfo.GetComponent<Golem>().GolemDeath();
                 }
-                else if (hitInfo.tag == "Projectile")
+                else if (hitInfo.CompareTag("Projectile"))
                 {
                     Instantiate(BulletPickupPrefab, hitInfo.transform.position, hitInfo.transform.rotation);
                     hitInfo.GetComponent<GolemProjectile>().ProjectileDestroy();
+                } else if (hitInfo.CompareTag("BatTag"))
+                {
+                    Instantiate(BulletPickupPrefab, hitInfo.transform.position, hitInfo.transform.rotation);
+                    Health health = hitInfo.GetComponent<Health>();
+                    health.CurHealth -= 20;
                 }
 
                 // longRangeAttack.playerBulletCount += 1;
