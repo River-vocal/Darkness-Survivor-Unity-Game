@@ -66,7 +66,7 @@ public class PlayerBulletController : MonoBehaviour
                 }
 
                 // longRangeAttack.playerBulletCount += 1;
-                Destroy(hitInfo.gameObject);
+                // Destroy(hitInfo.gameObject);
             }
 
 
