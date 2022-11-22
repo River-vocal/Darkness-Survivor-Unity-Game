@@ -30,7 +30,9 @@ public class Player : MonoBehaviour
     private Renderer renderer;
     public VisualEffectSystemManager VisualEffectSystemManager;
     public PlayerInputHandler InputHandler { get; private set; }
-
+    
+    public GameObject BulletPickupPrefab;
+    
     [SerializeField] private PlayerData playerData;
 
     #endregion

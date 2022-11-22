@@ -31,14 +31,17 @@ public class PlayerAttackState : PlayerUseAbilityState
 
             if (collision.tag == "Drop")
             {
+                Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
                 collision.GetComponent<EnemyDrops>().DropDeath();
             }
             if (collision.tag == "Golem")
             {
+                Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
                 collision.GetComponent<Golem>().GolemDeath();
             }
             if (collision.tag == "Projectile")
             {
+                Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
                 collision.GetComponent<GolemProjectile>().ProjectileDestroy();
             }
             else
