@@ -44,4 +44,4 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2048
-  playerInitialBulletCount: 70
+  playerInitialBulletCount: 5
