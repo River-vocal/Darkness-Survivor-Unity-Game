@@ -58,7 +58,7 @@ public class ParallaxController : MonoBehaviour
     private void FixedUpdate()
     {
         distance = cam.position.x - camStartPos.x;
-        transform.position = new Vector3(cam.position.x + 10, transform.position.y, 0);
+        transform.position = new Vector3(cam.position.x + 10, cam.position.y - 5, 100);
         for (int i = 0; i < backgrounds.Length; i++)
         {
             float speed = backSpeed[i] * parallaxSpeed;
