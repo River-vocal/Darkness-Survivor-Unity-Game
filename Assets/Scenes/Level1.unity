@@ -1724,6 +1724,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e3e3de9dac52240aaa02758e5c9542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &613934535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 933942205, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
+  m_PrefabInstance: {fileID: 613934533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08603243f2909c1489553b7a5883beb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &619385052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1735,6 +1746,10 @@ PrefabInstance:
       propertyPath: movementDistance
       value: 2.33
       objectReference: {fileID: 0}
+    - target: {fileID: 3698082479749045353, guid: f9365b01a3d6a41b08c40f3e83688f59, type: 3}
+      propertyPath: visualEffectSystemManager
+      value: 
+      objectReference: {fileID: 613934535}
     - target: {fileID: 7513365663880208454, guid: f9365b01a3d6a41b08c40f3e83688f59, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2220,6 +2235,10 @@ PrefabInstance:
       propertyPath: movementDistance
       value: 2.33
       objectReference: {fileID: 0}
+    - target: {fileID: 3698082479749045353, guid: f9365b01a3d6a41b08c40f3e83688f59, type: 3}
+      propertyPath: visualEffectSystemManager
+      value: 
+      objectReference: {fileID: 613934535}
     - target: {fileID: 7513365663880208454, guid: f9365b01a3d6a41b08c40f3e83688f59, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
