@@ -61,7 +61,7 @@ public class PlayerBulletController : MonoBehaviour
                 }
                 else if (hitInfo.CompareTag("Projectile"))
                 {
-                    Instantiate(BulletPickupPrefab, hitInfo.transform.position, hitInfo.transform.rotation);
+                    // Instantiate(BulletPickupPrefab, hitInfo.transform.position, hitInfo.transform.rotation);
                     hitInfo.GetComponent<GolemProjectile>().ProjectileDestroy();
                 } else if (hitInfo.CompareTag("BatTag"))
                 {
