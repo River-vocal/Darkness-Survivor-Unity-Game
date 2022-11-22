@@ -12,6 +12,7 @@ TagManager:
   - Golem
   - ground
   - Projectile
+  - BatTag
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - PauseMenu
   - FatalSurrounding
   - DamageSurrounding
-  - 
+  - BatPatrol
   - 
   - 
   - 
