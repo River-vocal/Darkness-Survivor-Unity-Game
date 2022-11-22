@@ -32,6 +32,7 @@ public class PlayerDashState : PlayerUseAbilityState
         Player.CheckIfShouldFlip((int)Player.InputHandler.MovementInput.x);
         Player.SetXVelocity(PlayerData.dashVelocity * Player.FacingDirection);
         dashStartTime = Time.time;
+        Player.DashBlue.SetActive(true);
     }
 
     public override void Exit()
@@ -39,6 +40,7 @@ public class PlayerDashState : PlayerUseAbilityState
         base.Exit();
         lastDashTime = Time.time;
         Player.ResetDrag();
+        Player.DashBlue.SetActive(false);
     }
 
     public override void Update()

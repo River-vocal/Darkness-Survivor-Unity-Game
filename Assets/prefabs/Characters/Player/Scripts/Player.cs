@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     public GameObject BulletPickupPrefab;
     
     [SerializeField] private PlayerData playerData;
+    public GameObject DashBlue;
 
     #endregion
 
