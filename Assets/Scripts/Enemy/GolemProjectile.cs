@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GolemProjectile : MonoBehaviour
 {
+    [SerializeField] private LittleEnemy littleEnemy;
     public float moveSpeed;
     public int damage;
     private Transform player;
@@ -27,6 +28,11 @@ public class GolemProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (littleEnemy.GetDeathStatus())
+        {
+            ProjectileDestroy();
+            return;
+        }
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
         
         FlipProjectile();

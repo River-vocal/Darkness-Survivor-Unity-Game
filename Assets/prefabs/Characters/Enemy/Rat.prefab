@@ -43,10 +43,11 @@ GameObject:
   - component: {fileID: 7513365663880208454}
   - component: {fileID: 7513365663880208455}
   - component: {fileID: 3270064085340614499}
+  - component: {fileID: 7404793690245767124}
   - component: {fileID: 3698082479749045353}
   m_Layer: 11
   m_Name: Rat
-  m_TagString: Drop
+  m_TagString: LittleEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 7513365663880208473}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 158143613578350818}
@@ -155,6 +156,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.012127017, y: -0.12452964}
   m_Size: {x: 0.15237187, y: 0.09535934}
   m_Direction: 1
+--- !u!114 &7404793690245767124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513365663880208473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3698082479749045353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0fe4d4c5adff4c21aec14cc883eba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementDistance: 0
+  littleEnemy: {fileID: 7404793690245767124}
+  movementDistance: 3.05
   speed: 2
   damage: 10
   hasTwoLives: 1
@@ -176,4 +190,5 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  visualEffectSystemManager: {fileID: 0}
   groundCheck: {fileID: 158143613578350818}

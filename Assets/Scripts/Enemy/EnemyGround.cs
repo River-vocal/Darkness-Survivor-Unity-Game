@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDrops : MonoBehaviour
+public class EnemyGround : MonoBehaviour
 {
+    [SerializeField] private LittleEnemy littleEnemy;
     [SerializeField] private float movementDistance;
     [SerializeField] private float speed;
     [SerializeField] public int damage;
@@ -12,7 +13,7 @@ public class EnemyDrops : MonoBehaviour
     [SerializeField] public bool isRoundWalk;
     [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask groundLayer;
-
+    
     public VisualEffectSystemManager visualEffectSystemManager;
     private bool movingLeft;
     private float leftEdge;
@@ -51,6 +52,11 @@ public class EnemyDrops : MonoBehaviour
 
     private void Update()
     {
+        if (littleEnemy.GetDeathStatus())
+        {
+            LittleEnemyDeath();
+            return;
+        }
         if (isRoundWalk)
         {
             bool isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckDistance, groundLayer);
@@ -133,7 +139,7 @@ public class EnemyDrops : MonoBehaviour
     }
 
 
-    public void DropDeath()
+    public void LittleEnemyDeath()
     {
         if (!hasTwoLives || beAttacked)
         {
@@ -144,8 +150,8 @@ public class EnemyDrops : MonoBehaviour
         }
         else
         {
+            littleEnemy.SetDeathStatus(false);
             beAttacked = true;
-
             transform.localScale = new Vector3(transform.localScale.x * 0.5f, transform.localScale.y * 0.5f,
                 transform.localScale.z * 0.5f);
             transform.position += new Vector3(0, -height, 0);
@@ -171,7 +177,7 @@ public class EnemyDrops : MonoBehaviour
 
     private void Freeze()
     {
-        Debug.Log("Freeze position");
+        // Debug.Log("Freeze position");
         speed = 0f;
     }
 

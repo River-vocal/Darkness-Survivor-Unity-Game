@@ -29,20 +29,25 @@ public class PlayerAttackState : PlayerUseAbilityState
             Player.cinemachineImpulseSource.GenerateImpulse();
             Player.VisualEffectSystemManager.GenerateExplosionNovaFire(collision.transform);
 
-            if (collision.tag == "Drop")
+            // if (collision.tag == "Drop")
+            // {
+            //     Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
+            //     collision.GetComponent<EnemyDrops>().DropDeath();
+            // }
+            // if (collision.tag == "Golem")
+            // {
+            //     Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
+            //     collision.GetComponent<Golem>().GolemDeath();
+            // }
+            // if (collision.tag == "Projectile")
+            // {
+            //     Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
+            //     collision.GetComponent<GolemProjectile>().ProjectileDestroy();
+            // }
+            if (collision.CompareTag("LittleEnemy"))
             {
                 Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
-                collision.GetComponent<EnemyDrops>().DropDeath();
-            }
-            if (collision.tag == "Golem")
-            {
-                Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
-                collision.GetComponent<Golem>().GolemDeath();
-            }
-            if (collision.tag == "Projectile")
-            {
-                Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
-                collision.GetComponent<GolemProjectile>().ProjectileDestroy();
+                collision.GetComponent<LittleEnemy>().LittleEnemyDeath();
             }
             else
             {

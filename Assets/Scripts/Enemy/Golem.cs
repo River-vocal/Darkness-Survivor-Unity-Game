@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Golem : MonoBehaviour
 {
+    [SerializeField] private LittleEnemy littleEnemy;
     [SerializeField] public int damage;
     [SerializeField] public float speed;
     public float StartShootingDistance;
@@ -32,6 +33,12 @@ public class Golem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (littleEnemy.GetDeathStatus())
+        {
+            GolemDeath();
+            return;
+        }
+        
         transform.Translate(Vector2.right * speed * Time.deltaTime);
         int layer_mask_ground = LayerMask.GetMask("Ground");
         int layer_mask_wall = LayerMask.GetMask("Wall");
