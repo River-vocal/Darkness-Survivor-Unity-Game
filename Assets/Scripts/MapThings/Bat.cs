@@ -14,6 +14,7 @@ public class Bat : MonoBehaviour
 	private bool movingLeft;
 	private bool inAttackArea = false;
 	private Vector3 playerPos;
+    public VisualEffectSystemManager VisualEffectSystemManager;
 
     // Start is called before the first frame update
     void Start()
@@ -107,6 +108,7 @@ public class Bat : MonoBehaviour
 
     private void deactivate()
     {
+        VisualEffectSystemManager.GenerateEvilPurpleExplode(bat.transform);
     	gameObject.SetActive(false);
     }
 

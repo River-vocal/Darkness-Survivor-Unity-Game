@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     
     [SerializeField] private PlayerData playerData;
     public GameObject DashBlue;
+    public ParallaxController ParallaxController;
 
     #endregion
 

@@ -526,6 +526,7 @@ MonoBehaviour:
   pos3: {fileID: 7760470704307225535}
   pos4: {fileID: 3187779758481766863}
   bat: {fileID: 8885472851159788388}
+  VisualEffectSystemManager: {fileID: 428454304893291750, guid: b45547e9cc346a14b905324ae452aa03, type: 3}
 --- !u!60 &3659178419812851237
 PolygonCollider2D:
   m_ObjectHideFlags: 0
