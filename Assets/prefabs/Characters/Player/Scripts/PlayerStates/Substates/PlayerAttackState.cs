@@ -27,7 +27,6 @@ public class PlayerAttackState : PlayerUseAbilityState
         {
             // Player.VisualEffectSystemManager.GenerateHitSparklingEffect(collision.transform);
             Player.cinemachineImpulseSource.GenerateImpulse();
-            Player.ParallaxController.StopFollowing();
             Player.VisualEffectSystemManager.GenerateExplosionNovaFire(collision.transform);
 
             if (collision.tag == "Drop")
@@ -58,7 +57,6 @@ public class PlayerAttackState : PlayerUseAbilityState
         base.Exit();
         Player.ResetDrag();
         Player.ResetGravityScale();
-        Player.ParallaxController.ResetFollowing();
     }
 
     public override void Update()
