@@ -20,11 +20,13 @@ public class Golem : MonoBehaviour
     private bool Golem_status = true;
     private Transform player_transform;
     public VisualEffectSystemManager VisualEffect;
+    private Collider2D Collider2D;
 
     private void Awake()
     {
         golem_animation = GetComponent<Animator>();
         player_transform = GameObject.FindWithTag("Player").transform;
+        Collider2D = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -102,6 +104,7 @@ public class Golem : MonoBehaviour
         speed = 0;
         Golem_status = false;
         VisualEffect.GenerateEvilPurpleExplode(transform);
+        Collider2D.enabled = false;
     }
 
     private void Deactivate()
