@@ -25,8 +25,9 @@ public class PlayerAttackState : PlayerUseAbilityState
         //trash code below
         if (collision != null)
         {
-            Player.VisualEffectSystemManager.GenerateHitSparklingEffect(collision.transform);
+            // Player.VisualEffectSystemManager.GenerateHitSparklingEffect(collision.transform);
             Player.cinemachineImpulseSource.GenerateImpulse();
+            Player.VisualEffectSystemManager.GenerateExplosionNovaFire(collision.transform);
 
             if (collision.tag == "Drop")
             {
