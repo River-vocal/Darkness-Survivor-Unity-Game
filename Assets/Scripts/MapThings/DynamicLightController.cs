@@ -21,7 +21,8 @@ public class DynamicLightController : MapLightController
         typeOfLight = initialType;
         curTypeIdx = initialType + 1;
         base.Start();
-        if (SceneManager.GetActiveScene().name.Equals("DarkLevel1"))
+        if (SceneManager.GetActiveScene().name.Equals("DarkLevel1") || 
+            SceneManager.GetActiveScene().name.Equals("Level4"))
         {
             curLight.intensity = 1.0f;
         }
