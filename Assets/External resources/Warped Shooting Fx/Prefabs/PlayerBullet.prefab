@@ -168,7 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  playerBulletDamage: 15
   DamagePopup: 20
   rb: {fileID: -5815182078178317006}
   impactEffect: {fileID: 3354802103894051357, guid: 45752b9507583554ebb83a66e316add5, type: 3}
-  longRangeAttack: {fileID: 605941989503798926, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+  BulletPickupPrefab: {fileID: 2899760469883220862, guid: d6d12449c16885d4989084ebabd16d48, type: 3}
