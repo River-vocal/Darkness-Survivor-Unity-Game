@@ -9,6 +9,7 @@ public class LittleEnemy : MonoBehaviour
     private bool isLittleEnemyDeath = false;
     private bool isLittleEnemyBeAttcked = false;
     
+    
 
     // Update is called once per frame
 

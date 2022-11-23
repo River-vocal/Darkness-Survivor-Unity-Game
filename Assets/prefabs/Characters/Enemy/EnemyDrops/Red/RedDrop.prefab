@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 4275260439964926029}
   - component: {fileID: 4275260439964926028}
   - component: {fileID: 4275260439964926019}
+  - component: {fileID: 2964328721732615244}
   m_Layer: 11
   m_Name: RedDrop
   m_TagString: Drop
@@ -160,15 +161,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0fe4d4c5adff4c21aec14cc883eba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  littleEnemy: {fileID: 2964328721732615244}
   movementDistance: 5
   speed: 5
   damage: 10
-  color: red
+  hasTwoLives: 0
   isRoundWalk: 0
   groundCheckDistance: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  visualEffectSystemManager: {fileID: 0}
   groundCheck: {fileID: 8142969622615318722}
 --- !u!95 &4275260439964926029
 Animator:
@@ -258,6 +261,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.010725602, y: -0.1424916}
   m_Size: {x: 1.0992106, y: 0.56097674}
   m_Direction: 1
+--- !u!114 &2964328721732615244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275260439964926018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5321327713464832757
 GameObject:
   m_ObjectHideFlags: 0
