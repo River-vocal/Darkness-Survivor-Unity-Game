@@ -45,6 +45,7 @@ public class LevelChanger : MonoBehaviour
 
     public void ResetSave()
     {
+        /*
         foreach (var scene in EditorBuildSettings.scenes)
         {
             var scenePath = scene.path;
@@ -52,6 +53,7 @@ public class LevelChanger : MonoBehaviour
             SaveSystem.DeleteSaveFile($"{sceneName}.sav");
         }
         SaveSystem.DeleteSaveFile("Energy.sav");
+        */
     }
     
     public void LevelOnFadeComplete()
