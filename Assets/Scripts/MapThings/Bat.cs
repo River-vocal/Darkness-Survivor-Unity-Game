@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bat : MonoBehaviour
 {
+	[SerializeField] private LittleEnemy littleEnemy;
 	[SerializeField] public float moveSpeed = 1f;
 	[SerializeField] public Transform pos1;
 	[SerializeField] public Transform pos2;
@@ -33,9 +34,15 @@ public class Bat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    	if (bat.GetComponent<BatAttack>().getDeadFlag()) {
-    		deactivate();
-    	}
+		if (littleEnemy.GetBeAttackedStatus()) {
+			bat.GetComponent<Animator>().SetTrigger("Death");
+			littleEnemy.SetBeAttackedStatus(false);
+			littleEnemy.SetDeathStatus(true);
+			Invoke("deactivate", 0.8f);
+		}
+    	// if (bat.GetComponent<BatAttack>().getDeadFlag()) {
+    	// 	deactivate();
+    	// }
 
     	if (!inAttackArea) {
     		if (bat.transform.position == pos1.position) {

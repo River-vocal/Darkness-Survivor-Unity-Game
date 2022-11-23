@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BatAttack : MonoBehaviour
 {
+    [SerializeField] private LittleEnemy littleEnemy;
 	[SerializeField] public int damage;
 	private bool isAttacking;
 	private bool isDead;
@@ -25,8 +26,10 @@ public class BatAttack : MonoBehaviour
     {
         //Analysis Data
         // GlobalAnalysis.is_boss_killed = true;
-        GetComponent<Animator>().SetTrigger("Death");
-        Invoke("beatBoss", 0.8f);
+        // GetComponent<Animator>().SetTrigger("Death");
+        // littleEnemy.SetBeAttackedStatus(false);
+        // littleEnemy.SetDeathStatus(true);
+        // Invoke("beatBoss", 0.8f);
     }
 
 

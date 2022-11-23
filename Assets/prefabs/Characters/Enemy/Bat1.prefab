@@ -520,6 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bafdccb700d848f685b6daf0d37a832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  littleEnemy: {fileID: 7978555780168873771}
   moveSpeed: 1
   pos1: {fileID: 2725858677392476655}
   pos2: {fileID: 7698281134702595875}
@@ -762,9 +763,10 @@ GameObject:
   - component: {fileID: 3767790334811260909}
   - component: {fileID: 6684799746542600595}
   - component: {fileID: 6085337278921305935}
+  - component: {fileID: 7978555780168873771}
   m_Layer: 11
   m_Name: BatObj
-  m_TagString: BatTag
+  m_TagString: LittleEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -917,4 +919,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9e8de686040414ea031dc13e2fa0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  littleEnemy: {fileID: 7978555780168873771}
   damage: 5
+--- !u!114 &7978555780168873771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885472851159788388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
