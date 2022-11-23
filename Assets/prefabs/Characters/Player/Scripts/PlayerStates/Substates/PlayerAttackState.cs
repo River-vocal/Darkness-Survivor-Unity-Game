@@ -47,7 +47,7 @@ public class PlayerAttackState : PlayerUseAbilityState
             if (collision.CompareTag("LittleEnemy"))
             {
                 Player.Instantiate(Player.BulletPickupPrefab, collision.transform.position, collision.transform.rotation);
-                collision.GetComponent<LittleEnemy>().LittleEnemyDeath();
+                collision.GetComponent<LittleEnemy>().LittleEnemyBeAttacked();
             }
             else
             {

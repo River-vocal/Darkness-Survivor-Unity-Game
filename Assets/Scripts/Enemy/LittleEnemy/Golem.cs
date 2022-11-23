@@ -33,9 +33,11 @@ public class Golem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (littleEnemy.GetDeathStatus())
+        if (littleEnemy.GetBeAttackedStatus())
         {
             GolemDeath();
+            littleEnemy.SetBeAttackedStatus(false);
+            littleEnemy.SetDeathStatus(true);
             return;
         }
         

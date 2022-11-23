@@ -7,13 +7,14 @@ public class LittleEnemy : MonoBehaviour
 {
     
     private bool isLittleEnemyDeath = false;
+    private bool isLittleEnemyBeAttcked = false;
     
 
     // Update is called once per frame
 
-    public void LittleEnemyDeath()
+    public void LittleEnemyBeAttacked()
     {
-        isLittleEnemyDeath = true;
+        isLittleEnemyBeAttcked = true;
     }
 
     public bool GetDeathStatus()
@@ -21,8 +22,18 @@ public class LittleEnemy : MonoBehaviour
         return isLittleEnemyDeath;
     }
     
+    public bool GetBeAttackedStatus()
+    {
+        return isLittleEnemyBeAttcked;
+    }
+    
     public void SetDeathStatus(bool status)
     {
         isLittleEnemyDeath = status;
+    }
+    
+    public void SetBeAttackedStatus(bool status)
+    {
+        isLittleEnemyBeAttcked = status;
     }
 }

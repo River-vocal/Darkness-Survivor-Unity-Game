@@ -52,7 +52,7 @@ public class EnemyGround : MonoBehaviour
 
     private void Update()
     {
-        if (littleEnemy.GetDeathStatus())
+        if (littleEnemy.GetBeAttackedStatus())
         {
             LittleEnemyDeath();
             return;
@@ -141,8 +141,10 @@ public class EnemyGround : MonoBehaviour
 
     public void LittleEnemyDeath()
     {
+        littleEnemy.SetBeAttackedStatus(false);
         if (!hasTwoLives || beAttacked)
         {
+            littleEnemy.SetDeathStatus(true);
             speed = 0;
             collider.enabled = false;
             anim.SetTrigger("Death");

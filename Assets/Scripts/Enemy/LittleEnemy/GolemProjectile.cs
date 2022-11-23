@@ -28,7 +28,7 @@ public class GolemProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (littleEnemy.GetDeathStatus())
+        if (littleEnemy.GetBeAttackedStatus())
         {
             ProjectileDestroy();
             return;

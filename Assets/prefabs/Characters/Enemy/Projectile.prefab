@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 5883809575900220121}
   - component: {fileID: 6196694832409193946}
   - component: {fileID: 921670502627175786}
+  - component: {fileID: 5530495379786084848}
   m_Layer: 11
   m_Name: Projectile
   m_TagString: Projectile
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67df41d5e856048f3a7ba8eec8b28abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  littleEnemy: {fileID: 5530495379786084848}
   moveSpeed: 5
   damage: 3
   shootingDistance: 13
@@ -305,3 +307,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &5530495379786084848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9056118684756571298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

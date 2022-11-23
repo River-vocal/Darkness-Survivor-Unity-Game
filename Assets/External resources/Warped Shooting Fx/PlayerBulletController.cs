@@ -52,7 +52,7 @@ public class PlayerBulletController : MonoBehaviour
                 if (hitInfo.CompareTag("LittleEnemy"))
                 {
                     Instantiate(BulletPickupPrefab, hitInfo.transform.position, hitInfo.transform.rotation);
-                    hitInfo.GetComponent<LittleEnemy>().LittleEnemyDeath();
+                    hitInfo.GetComponent<LittleEnemy>().LittleEnemyBeAttacked();
                 
                 
                 } else if (hitInfo.CompareTag("BatTag"))
