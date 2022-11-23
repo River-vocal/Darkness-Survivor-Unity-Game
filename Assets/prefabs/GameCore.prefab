@@ -971,14 +971,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2138716614756968948, guid: 4c113624b7ab3574694f310f243bd739, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 115.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2138716614756968948, guid: 4c113624b7ab3574694f310f243bd739, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -146.7
-      objectReference: {fileID: 0}
     - target: {fileID: 3064565730439997375, guid: 4c113624b7ab3574694f310f243bd739, type: 3}
       propertyPath: m_SortingOrder
       value: 10
