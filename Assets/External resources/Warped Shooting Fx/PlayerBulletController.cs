@@ -55,12 +55,13 @@ public class PlayerBulletController : MonoBehaviour
                     hitInfo.GetComponent<LittleEnemy>().LittleEnemyBeAttacked();
                 
                 
-                } else if (hitInfo.CompareTag("BatTag"))
-                {
-                    Instantiate(BulletPickupPrefab, hitInfo.transform.position, hitInfo.transform.rotation);
-                    Health health = hitInfo.GetComponent<Health>();
-                    health.CurHealth -= 20;
-                }
+                } 
+                // else if (hitInfo.CompareTag("BatTag"))
+                // {
+                //     Instantiate(BulletPickupPrefab, hitInfo.transform.position, hitInfo.transform.rotation);
+                //     Health health = hitInfo.GetComponent<Health>();
+                //     health.CurHealth -= 20;
+                // }
 
                 // longRangeAttack.playerBulletCount += 1;
                 // Destroy(hitInfo.gameObject);

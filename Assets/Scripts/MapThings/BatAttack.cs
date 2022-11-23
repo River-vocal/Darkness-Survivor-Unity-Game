@@ -9,29 +9,6 @@ public class BatAttack : MonoBehaviour
 	[SerializeField] public int damage;
 	private bool isAttacking;
 	private bool isDead;
-	private Health health;
-
-	private void Awake() {
-        health = GetComponent<Health>();
-        health.OnDamaged += health_OnDamaged;
-        health.OnDead += health_OnDead;
-    }
-
-    private void health_OnDamaged(object sender, System.EventArgs e)
-    {
-        int damage = ((IntegerEventArg) e).Value;
-
-    }
-    private void health_OnDead(object sender, System.EventArgs e)
-    {
-        //Analysis Data
-        // GlobalAnalysis.is_boss_killed = true;
-        // GetComponent<Animator>().SetTrigger("Death");
-        // littleEnemy.SetBeAttackedStatus(false);
-        // littleEnemy.SetDeathStatus(true);
-        // Invoke("beatBoss", 0.8f);
-    }
-
 
 
     // Start is called before the first frame update
@@ -84,9 +61,4 @@ public class BatAttack : MonoBehaviour
     	isAttacking = false;
     }
 
-    private void beatBoss()
-    {
-    	isDead = true;
-        // gameObject.SetActive(false);
-    }
 }
