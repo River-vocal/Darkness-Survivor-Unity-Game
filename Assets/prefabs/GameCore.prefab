@@ -49,12 +49,14 @@ MonoBehaviour:
   land: {fileID: 8300000, guid: 023ea3ddeaa8dd146b7633a0800e5a0e, type: 3}
   dash: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
   attack: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  rangeAttack: {fileID: 8300000, guid: 64fb9477894fa2e4a997518fbb1c2f15, type: 3}
   injured: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
   boss: {fileID: 0}
   jumpVolume: 1.5
   landVolume: 1.5
   dashVolume: 1.5
   attackVolume: 0.3
+  rangeAttackVolume: 0.4
   injuredVolume: 0.15
   bossVolume: 0
 --- !u!82 &2292149215647345848
