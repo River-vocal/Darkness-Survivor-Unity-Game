@@ -22,6 +22,7 @@ public class PlayerWallJumpState : PlayerUseAbilityState
         Player.SetVelocity(PlayerData.wallJumpVelocity, new Vector2(PlayerData.wallJumpAngle.x * wallJumpDirection, PlayerData.wallJumpAngle.y));
         Player.InputHandler.ConsumeJumpInput();
         Player.InAirState.SetIsRising();
+        Player.SoundManager.PlaySound("jump");
     }
 
     public override void Update()
