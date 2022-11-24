@@ -6,6 +6,7 @@ public class Portal : MonoBehaviour
     [SerializeField] public VoidEventChannel useInputEventChannel;
     [SerializeField] public Portal pair;
     [SerializeField] public ParticleSystem ps;
+    [SerializeField] public SoundManager SoundManager;
 
     private GameObject player;
     private PlayerInputHandler inputHandler;
@@ -81,6 +82,7 @@ public class Portal : MonoBehaviour
                 timer = preTeleportWaitTime;
                 effectManager.Teleport();
                 status = 4;
+                SoundManager.PlaySound("teleport");
                 break;
             case 4:
                 SetSimulationSpeed(1f);
@@ -97,6 +99,7 @@ public class Portal : MonoBehaviour
                 status = 6;
                 break;
             case 6:
+                SoundManager.PlaySound("teleport");
                 pair.SetSimulationSpeed(1f);
                 player.SetActive(true);
                 inputHandler.enabled = true;

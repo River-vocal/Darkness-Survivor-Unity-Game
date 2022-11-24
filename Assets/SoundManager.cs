@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioClip jump, land, dash, attack, rangeAttack, injured, boss;
+    public AudioClip jump, land, dash, attack, rangeAttack, injured, teleport;
     [Range(0f, 2f)]
-    public float jumpVolume, landVolume, dashVolume, attackVolume, rangeAttackVolume, injuredVolume, bossVolume;
+    public float jumpVolume, landVolume, dashVolume, attackVolume, rangeAttackVolume, injuredVolume, teleportVolume;
 
     private AudioSource audioSource;
     // Start is called before the first frame update
@@ -50,10 +50,10 @@ public class SoundManager : MonoBehaviour
                 audioSource.PlayOneShot(injured);
                 break;
             }
-            case "boss":
+            case "teleport":
             {
-                audioSource.volume = bossVolume;
-                audioSource.PlayOneShot(boss);
+                audioSource.volume = teleportVolume;
+                audioSource.PlayOneShot(teleport);
                 break;
             }
             case "rangeAttack":
