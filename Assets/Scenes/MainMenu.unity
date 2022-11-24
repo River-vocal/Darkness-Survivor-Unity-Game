@@ -5766,7 +5766,7 @@ GameObject:
   - component: {fileID: 1030313263}
   - component: {fileID: 1030313265}
   - component: {fileID: 1030313264}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: BG Reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7320,8 +7320,8 @@ Canvas:
   m_GameObject: {fileID: 1275162789}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 193825377}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -7350,7 +7350,7 @@ RectTransform:
   - {fileID: 188240319}
   - {fileID: 1984732392}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10902,7 +10902,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9070983100603792225, guid: 4da720849a27544368b17cd0d5851ebd, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9070983100603792225, guid: 4da720849a27544368b17cd0d5851ebd, type: 3}
       propertyPath: m_LocalPosition.x
