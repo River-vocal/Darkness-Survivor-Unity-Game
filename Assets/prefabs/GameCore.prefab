@@ -45,13 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2316ddda2671548ac80f5ced1c523d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: {fileID: 0}
   jump: {fileID: 8300000, guid: e1e2d06fe0d78194b9c7c8cc88414d0d, type: 3}
   land: {fileID: 8300000, guid: 023ea3ddeaa8dd146b7633a0800e5a0e, type: 3}
   dash: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
   attack: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
-  injured: {fileID: 0}
+  injured: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
   boss: {fileID: 0}
+  jumpVolume: 1.5
+  landVolume: 1.5
+  dashVolume: 1.5
+  attackVolume: 0.3
+  injuredVolume: 0.15
+  bossVolume: 0
 --- !u!82 &2292149215647345848
 AudioSource:
   m_ObjectHideFlags: 0
@@ -64,7 +69,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 26364aaf1f64b40c1a047b0bacfbd10e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.245
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
