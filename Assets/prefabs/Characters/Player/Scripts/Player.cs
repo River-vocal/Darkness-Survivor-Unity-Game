@@ -218,7 +218,9 @@ public class Player : MonoBehaviour
     private IEnumerator Blink()
     {
         float timeElapsed = 0;
-        Invulnerable = true; 
+        Invulnerable = true;
+        var holder = renderer.material.color;
+        renderer.material.color = Color.red;
         
         while (timeElapsed < playerData.invulnerableTime)
         {
@@ -236,6 +238,7 @@ public class Player : MonoBehaviour
         }
         renderer.enabled = true;
         Invulnerable = false;
+        renderer.material.color = holder;
     }
 
     public void PlayAttackSound()
