@@ -246,5 +246,10 @@ public class Player : MonoBehaviour
     {
         SoundManager.PlaySound("attack");
     }
+
+    public void PlayRangeAttackSound()
+    {
+        SoundManager.PlaySound("rangeAttack");
+    }
     #endregion
 }
