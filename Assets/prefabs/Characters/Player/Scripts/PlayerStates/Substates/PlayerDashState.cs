@@ -33,6 +33,7 @@ public class PlayerDashState : PlayerUseAbilityState
         Player.SetXVelocity(PlayerData.dashVelocity * Player.FacingDirection);
         dashStartTime = Time.time;
         Player.DashBlue.SetActive(true);
+        Player.SoundManager.PlaySound("dash");
     }
 
     public override void Exit()

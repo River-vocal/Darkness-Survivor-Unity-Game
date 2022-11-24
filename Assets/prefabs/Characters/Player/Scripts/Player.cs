@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerData playerData;
     public GameObject DashBlue;
     public ParallaxController ParallaxController;
+    public SoundManager SoundManager;
 
     #endregion
 
@@ -209,6 +210,7 @@ public class Player : MonoBehaviour
         if (!Invulnerable)
         {
             energy.CurEnergy -= damage;
+            SoundManager.PlaySound("injured");
             StartCoroutine(Blink());
             StateMachine.ChangeState(KouchokuState, args);
         }
@@ -217,7 +219,9 @@ public class Player : MonoBehaviour
     private IEnumerator Blink()
     {
         float timeElapsed = 0;
-        Invulnerable = true; 
+        Invulnerable = true;
+        var holder = renderer.material.color;
+        renderer.material.color = Color.red;
         
         while (timeElapsed < playerData.invulnerableTime)
         {
@@ -235,6 +239,17 @@ public class Player : MonoBehaviour
         }
         renderer.enabled = true;
         Invulnerable = false;
+        renderer.material.color = holder;
+    }
+
+    public void PlayAttackSound()
+    {
+        SoundManager.PlaySound("attack");
+    }
+
+    public void PlayRangeAttackSound()
+    {
+        SoundManager.PlaySound("rangeAttack");
     }
     #endregion
 }

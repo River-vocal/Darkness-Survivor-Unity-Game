@@ -57,7 +57,7 @@ public class ParallaxController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!stopFollowing)
         {

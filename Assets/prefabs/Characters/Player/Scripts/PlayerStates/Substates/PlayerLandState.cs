@@ -8,6 +8,13 @@ public class PlayerLandState : PlayerGroundedState
     {
     }
 
+    public override void Enter(params Object[] args)
+    {
+        base.Enter(args);
+        
+        Player.SoundManager.PlaySound("land");
+    }
+
     public override void Update()
     {
         base.Update();
