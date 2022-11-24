@@ -676,6 +676,22 @@ PrefabInstance:
       propertyPath: message
       value: W or Space when wall sliding
       objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_cn
+      value: "\u5F53\u5728\u5899\u58C1\u4E0A\u6ED1\u52A8\u65F6\uFF0C\u6309\u4E0BW/\u7A7A\u683C\u952E\u8DF3\u8DC3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_en
+      value: W or Space when wall sliding
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_jp
+      value: "\u58C1\u30B9\u30E9\u30A4\u30C9\u6642\u306EW\u307E\u305F\u306F\u30B9\u30DA\u30FC\u30B9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
       value: MessageZone (4)
@@ -1350,6 +1366,22 @@ PrefabInstance:
       propertyPath: message
       value: Avoid traps
       objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_cn
+      value: "\u907F\u5F00\u9677\u9631"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_en
+      value: Avoid traps
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_jp
+      value: "\u30C8\u30E9\u30C3\u30D7\u3092\u907F\u3051\u308B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
       value: MessageZone (1)
@@ -2019,6 +2051,22 @@ PrefabInstance:
       value: Press J for sword attack, H for range attack
       objectReference: {fileID: 0}
     - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_cn
+      value: "\u6309\u4E0BJ\u952E\u8FD1\u6218\u653B\u51FB\uFF0C\u6309\u4E0BH\u952E\u8FDC\u7A0B\u653B\u51FB"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_en
+      value: Press J for sword attack, H for range attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_jp
+      value: "J\u3067\u5263\u653B\u6483\u3001H\u3067\u7BC4\u56F2\u653B\u6483"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: displayMinimumTime
       value: 5
       objectReference: {fileID: 0}
@@ -2141,6 +2189,22 @@ PrefabInstance:
       propertyPath: message
       value: W or Space when wall sliding
       objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_cn
+      value: "\u5F53\u5728\u5899\u58C1\u4E0A\u6ED1\u52A8\u65F6\uFF0C\u6309\u4E0BW/\u7A7A\u683C\u952E\u8DF3\u8DC3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_en
+      value: W or Space when wall sliding
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_jp
+      value: "\u58C1\u30B9\u30E9\u30A4\u30C9\u6642\u306EW\u307E\u305F\u306F\u30B9\u30DA\u30FC\u30B9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
       value: MessageZone (5)
@@ -117091,6 +117155,22 @@ PrefabInstance:
       propertyPath: message
       value: '*Pay attention to your energy as your run under the lights'
       objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_cn
+      value: "*\u5F53\u4F60\u8D70\u5230\u706F\u5149\u8303\u56F4\u5185\u65F6\uFF0C\u8BF7\u7559\u610F\u81EA\u8EAB\u80FD\u91CF\u503C\u53D8\u5316"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_en
+      value: '*Pay attention to your energy as your run under the lights'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_jp
+      value: "*\u30E9\u30A4\u30C8\u306E\u4E0B\u3092\u8D70\u308B\u3068\u304D\u306E\u30A8\u30CD\u30EB\u30AE\u30FC\u306B\u6CE8\u610F\u3057\u3066\u304F\u3060\u3055\u3044"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
       value: MessageZone
@@ -122140,6 +122220,24 @@ PrefabInstance:
 
         You will respawn here if you die later'
       objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_cn
+      value: "\u4F20\u9001\u70B9\n\u5F53\u4F60\u6B7B\u4EA1\u540E\uFF0C\u4F1A\u5728\u8FD9\u91CC\u590D\u6D3B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_en
+      value: 'Check Point
+
+        You will respawn here if you die later'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_jp
+      value: "\u30C1\u30A7\u30C3\u30AF\u30DD\u30A4\u30F3\u30C8\r\n\u5F8C\u3067\u6B7B\u306C\u3068\u3053\u3053\u3067\u30EA\u30B9\u30DD\u30FC\u30F3\u3057\u307E\u3059"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
       value: MessageZone (3)
@@ -122608,6 +122706,22 @@ PrefabInstance:
       propertyPath: message
       value: Press W or Space to wall slide
       objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_cn
+      value: "\u5F53\u5728\u5899\u58C1\u4E0A\u6ED1\u52A8\u65F6\uFF0C\u6309\u4E0BW/\u7A7A\u683C\u952E\u8DF3\u8DC3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_en
+      value: Press W or Space to wall slide
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_jp
+      value: "W\u307E\u305F\u306F\u30B9\u30DA\u30FC\u30B9\u30AD\u30FC\u3092\u62BC\u3057\u3066\u30A6\u30A9\u30FC\u30EB\u30B9\u30E9\u30A4\u30C9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
       value: MessageZone (7)
@@ -122992,6 +123106,22 @@ PrefabInstance:
       propertyPath: message
       value: W or Space when wall sliding
       objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_cn
+      value: "\u5F53\u5728\u5899\u58C1\u4E0A\u6ED1\u52A8\u65F6\uFF0C\u6309\u4E0BW/\u7A7A\u683C\u952E\u8DF3\u8DC3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_en
+      value: W or Space when wall sliding
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_jp
+      value: "\u58C1\u30B9\u30E9\u30A4\u30C9\u6642\u306EW\u307E\u305F\u306F\u30B9\u30DA\u30FC\u30B9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
       value: MessageZone (6)
@@ -124061,6 +124191,22 @@ PrefabInstance:
       propertyPath: message
       value: Collect powerups
       objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_cn
+      value: "\u6536\u96C6\u589E\u76CA\u9053\u5177"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_en
+      value: Collect powerups
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: Message_jp
+      value: "\u30D1\u30EF\u30FC\u30A2\u30C3\u30D7\u3092\u96C6\u3081\u308B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
       value: MessageZone (2)

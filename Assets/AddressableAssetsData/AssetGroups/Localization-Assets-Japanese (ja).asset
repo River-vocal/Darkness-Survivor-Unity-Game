@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Japanese (ja)
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Japanese (ja)
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 95218c28ff4ab454b9f2a6185caf3db9
+  m_SerializeEntries:
+  - m_GUID: a5da83acdab363a4baf67eb4fcf317d0
+    m_Address: HOW TO PLAY_JP
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: b15468917a3c07b40a5f950188141afb
+    m_Address: logo 2_JP
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 0eba1c81c2531324f83dfea1c5a63bcb
+    m_Address: logo 1_JP
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: ddd8666355e5ae2489263b18b4c09817
+    m_Address: LEVELS_JP
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: fbcf18ca05ff28646b7ae2f2492e1bf0, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5bc0a5e9052e93f4a93398cfdb925892, type: 2}
+    - {fileID: 11400000, guid: 698f0b2f4c349414abb057b15c4aab51, type: 2}
