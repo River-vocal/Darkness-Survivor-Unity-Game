@@ -6,7 +6,9 @@ public class EffectManager : MonoBehaviour
     [SerializeField] public GameObject healingOnce;
     [SerializeField] public GameObject healing;
     [SerializeField] public GameObject shield;
+    [SerializeField] public GameObject teleport;
     [SerializeField] public float healOnceAnimationTime = 0.6f;
+    [SerializeField] public float teleportAnimationTime = 1f;
 
     private float timer;
 
@@ -33,13 +35,23 @@ public class EffectManager : MonoBehaviour
     public void HealOnce()
     {
         healingOnce.SetActive(true);
-        timer += healOnceAnimationTime;
+        timer = healOnceAnimationTime;
+    }
+
+    public void Teleport()
+    {
+        teleport.SetActive(true);
+        timer = teleportAnimationTime;
     }
 
     private void Update()
     {
         if (timer <= 0) return;
         timer -= Time.deltaTime;
-        if (timer <= 0) healingOnce.SetActive(false);
+        if (timer <= 0)
+        {
+            healingOnce.SetActive(false);
+            teleport.SetActive(false);
+        }
     }
 }

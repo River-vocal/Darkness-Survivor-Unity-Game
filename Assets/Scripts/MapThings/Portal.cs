@@ -10,13 +10,15 @@ public class Portal : MonoBehaviour
     private GameObject player;
     private PlayerInputHandler inputHandler;
     private Transform teleportTarget;
-    private int status; // 0: idle, 1: wait player input, 2: pre-teleport, 3: in-teleport, 4: post-teleport
+    private EffectManager effectManager;
+    private int status; // 0: idle, 1: wait player input, 2: pre-teleport, 3: animation(deleted), 4: in-teleport, 5: post-teleport
     private float timer;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         inputHandler = player.GetComponent<PlayerInputHandler>();
+        effectManager = player.GetComponent<EffectManager>();
         ps.Stop();
     }
 
@@ -77,23 +79,24 @@ public class Portal : MonoBehaviour
                 SetSimulationSpeed(5f);
                 inputHandler.enabled = false;
                 timer = preTeleportWaitTime;
-                status = 3;
+                effectManager.Teleport();
+                status = 4;
                 break;
-            case 3:
+            case 4:
                 SetSimulationSpeed(1f);
                 pair.SetSimulationSpeed(5f);
                 player.SetActive(false);
                 player.transform.position =
                     Vector3.MoveTowards(player.transform.position, teleportTarget.position,
                         teleportSpeed * Time.deltaTime);
-                if (player.transform.position == teleportTarget.position) status = 4;
-                break;
-            case 4:
-                teleportTarget = null;
-                timer = postTeleportWaitTime;
-                status = 5;
+                if (player.transform.position == teleportTarget.position) status = 5;
                 break;
             case 5:
+                teleportTarget = null;
+                timer = postTeleportWaitTime;
+                status = 6;
+                break;
+            case 6:
                 pair.SetSimulationSpeed(1f);
                 player.SetActive(true);
                 inputHandler.enabled = true;
