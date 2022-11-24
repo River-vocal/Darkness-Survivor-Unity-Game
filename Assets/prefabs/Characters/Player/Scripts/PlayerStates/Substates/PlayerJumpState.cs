@@ -13,6 +13,7 @@ public class PlayerJumpState : PlayerUseAbilityState
     public override void Enter(params Object[] args)
     {
         base.Enter();
+        Player.SoundManager.PlaySound("jump");
         if (jumpTimesLeft-- != PlayerData.jumpTimes)
         {
             Player.SetYVelocity(PlayerData.jumpVelocity * PlayerData.inAirJumpMultiplier);

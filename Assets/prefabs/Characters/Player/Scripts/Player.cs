@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerData playerData;
     public GameObject DashBlue;
     public ParallaxController ParallaxController;
+    public SoundManager SoundManager;
 
     #endregion
 
@@ -235,6 +236,11 @@ public class Player : MonoBehaviour
         }
         renderer.enabled = true;
         Invulnerable = false;
+    }
+
+    public void PlayAttackSound()
+    {
+        SoundManager.PlaySound("attack");
     }
     #endregion
 }
