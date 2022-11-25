@@ -7,14 +7,16 @@ public class EnemyGround : MonoBehaviour
 {
     [SerializeField] private LittleEnemy littleEnemy;
     [SerializeField] private float movementDistance;
-    [SerializeField] private float speed;
-    [SerializeField] public int damage;
+    
     [SerializeField] public Boolean hasTwoLives;
     [SerializeField] public bool isRoundWalk;
     [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask groundLayer;
     
     public VisualEffectSystemManager visualEffectSystemManager;
+    
+    private float speed;
+    private int damage;
     private bool movingLeft;
     private float leftEdge;
     private float rightEdge;
@@ -31,6 +33,8 @@ public class EnemyGround : MonoBehaviour
 
     private void Awake()
     {
+        speed = littleEnemy.speed;
+        damage = littleEnemy.damage;
         leftEdge = transform.position.x - movementDistance;
         rightEdge = transform.position.x + movementDistance;
         anim = GetComponent<Animator>();

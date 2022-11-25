@@ -8,9 +8,9 @@ public class LittleEnemy : MonoBehaviour
     
     private bool isLittleEnemyDeath = false;
     private bool isLittleEnemyBeAttcked = false;
+    [SerializeField] public int damage = 5;
+    [SerializeField] public float speed = 5f;
     
-    
-
     // Update is called once per frame
 
     public void LittleEnemyBeAttacked()
@@ -36,5 +36,24 @@ public class LittleEnemy : MonoBehaviour
     public void SetBeAttackedStatus(bool status)
     {
         isLittleEnemyBeAttcked = status;
+    }
+    
+    private void Deactivate()
+    {
+        
+        gameObject.SetActive(false);
+    }
+    
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            if (col.GetComponent<Energy>().CurEnergy < damage) {
+                GlobalAnalysis.player_status = "smallenemy_dead";
+                Debug.Log("lose by: small enemy");
+            }
+            GlobalAnalysis.smallenemy_damage += damage;
+            col.GetComponent<Player>().TakeDamage(damage);
+        }
     }
 }

@@ -6,10 +6,15 @@ using UnityEngine;
 public class BatAttack : MonoBehaviour
 {
     [SerializeField] private LittleEnemy littleEnemy;
-	[SerializeField] public int damage;
+	public int damage;
 	private bool isAttacking;
 	private bool isDead;
 
+	
+	private void Awake()
+	{
+		damage = littleEnemy.damage;
+	}
 
     // Start is called before the first frame update
     void Start()

@@ -6,28 +6,33 @@ using UnityEngine;
 public class Golem : MonoBehaviour
 {
     [SerializeField] private LittleEnemy littleEnemy;
-    [SerializeField] public int damage;
-    [SerializeField] public float speed;
+    
+    public Transform groundDetection;
+    public GameObject projectile;
+    public VisualEffectSystemManager VisualEffect;
+    
+    private int damage;
+    private float speed;
+    
+    public float startTimeBtwShots;
+    private Animator golem_animation;
+    private Transform player_transform;
+    private Collider2D Collider2D;
+
+    private bool Golem_status = true;
     public float StartShootingDistance;
     private float ground_distance = 1f;
     private float wall_distance = 0.2f;
     private bool movingRight = true;
-    public Transform groundDetection;
-    // public Transform wallDetection;
-    public GameObject projectile;
     private float timeBtwShots;
-    public float startTimeBtwShots;
-    private Animator golem_animation;
-    private bool Golem_status = true;
-    private Transform player_transform;
-    public VisualEffectSystemManager VisualEffect;
-    private Collider2D Collider2D;
-
+    
     private void Awake()
     {
         golem_animation = GetComponent<Animator>();
         player_transform = GameObject.FindWithTag("Player").transform;
         Collider2D = GetComponent<Collider2D>();
+        damage = littleEnemy.damage;
+        speed = littleEnemy.speed;
     }
 
     // Update is called once per frame

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,14 @@ using UnityEngine;
 public class Bat : MonoBehaviour
 {
 	[SerializeField] private LittleEnemy littleEnemy;
-	[SerializeField] public float moveSpeed = 1f;
+	
 	[SerializeField] public Transform pos1;
 	[SerializeField] public Transform pos2;
 	[SerializeField] public Transform pos3;
 	[SerializeField] public Transform pos4;
 	[SerializeField] public GameObject bat;
+	
+	public float moveSpeed;
 	private Vector3 nextPos;
 	private bool movingLeft;
 	private bool inAttackArea = false;
@@ -18,6 +21,12 @@ public class Bat : MonoBehaviour
     public VisualEffectSystemManager VisualEffectSystemManager;
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+	    moveSpeed = littleEnemy.speed;
+    }
+
     void Start()
     {
     	if (bat.transform.position.x < pos1.position.x) {
