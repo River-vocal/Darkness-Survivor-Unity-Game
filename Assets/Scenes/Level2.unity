@@ -229,21 +229,6 @@ PrefabInstance:
         Attack with J or Left
         Click to see what they''re hiding'
       objectReference: {fileID: 0}
-    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
-      propertyPath: Message_cn
-      value: "\u5929\u5450...\u4E00\u4E2ABOSS\u6B63\u5728\u5FEB\u901F\u671D\u4F60\u8D70\u6765\n\u7528J\u952E/\u9F20\u6807\u5DE6\u952E\u8FDB\u884C\u653B\u51FB\uFF0C\u51FB\u8D25\u540E\u770B\u770B\u5B83\u8EAB\u4E0A\u85CF\u4E86\u4EC0\u4E48\u5956\u52B1\u5427\n"
-      objectReference: {fileID: 0}
-    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
-      propertyPath: Message_en
-      value: 'Uh oh... a boss is approaching FAST
-
-        Attack with J or Left
-        Click to see what they''re hiding'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
-      propertyPath: Message_jp
-      value: "\u3048\u3063\u3068\u2026\u30DC\u30B9\u304C\u6025\u63A5\u8FD1\u4E2D\r\nJ\u307E\u305F\u306F\u5DE6\u30AF\u30EA\u30C3\u30AF\u3067\u653B\u6483\u3057\u3066\u3001\u5F7C\u3089\u304C\u96A0\u3057\u3066\u3044\u308B\u3082\u306E\u3092\u78BA\u8A8D\u3057\u307E\u3059"
-      objectReference: {fileID: 0}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name
       value: MessageZone1
@@ -111004,18 +110989,6 @@ PrefabInstance:
     - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: message
       value: Defeat the boss to unlock the gate!
-      objectReference: {fileID: 0}
-    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
-      propertyPath: Message_cn
-      value: "\u51FB\u8D25BOSS\u540E\u89E3\u9664\u969C\u788D\u7269"
-      objectReference: {fileID: 0}
-    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
-      propertyPath: Message_en
-      value: Defeat the boss to unlock the gate!
-      objectReference: {fileID: 0}
-    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
-      propertyPath: Message_jp
-      value: "\u30DC\u30B9\u3092\u5012\u3057\u3066\u30B2\u30FC\u30C8\u3092\u30A2\u30F3\u30ED\u30C3\u30AF\uFF01"
       objectReference: {fileID: 0}
     - target: {fileID: 1527517246480674047, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: m_Name

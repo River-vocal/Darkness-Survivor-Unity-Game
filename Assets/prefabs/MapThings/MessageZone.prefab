@@ -45,11 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1da846e0e91b7d45aa9ed52639a93e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Message_en: Empty Message
-  Message_cn: Empty Message
-  Message_jp: Empty Message
+  message: Test
   displayMinimumTime: 3
-  m_fontAsset: {fileID: 11400000, guid: da7e02f8895d53d44a43ec1acab0ab61, type: 2}
 --- !u!60 &1527517246480674043
 PolygonCollider2D:
   m_ObjectHideFlags: 0

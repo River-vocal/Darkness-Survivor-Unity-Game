@@ -42,10 +42,9 @@ public class HintArea : MonoBehaviour
         }
     }
 
-    public static void Hint(String text, float minTime, TMP_FontAsset m_fontAsset)
+    public static void Hint(String text, float minTime)
     {
         tmpText.SetText(text);
-        tmpText.font = m_fontAsset;
         timer = minTime;
     }
 }
