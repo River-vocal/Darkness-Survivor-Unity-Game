@@ -32,11 +32,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-zh-Hans
-  - m_GUID: 6f8e5a68678d2804c84937ce292dc66f
-    m_Address: logo 2_CN
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-zh-Hans
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: fbcf18ca05ff28646b7ae2f2492e1bf0, type: 2}
   m_SchemaSet:
