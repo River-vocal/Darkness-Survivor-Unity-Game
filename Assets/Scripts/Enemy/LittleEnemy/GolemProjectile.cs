@@ -33,11 +33,11 @@ public class GolemProjectile : MonoBehaviour
             ProjectileDestroy();
             return;
         }
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
         
         FlipProjectile();
 
-        if(transform.position.x == player.position.x && transform.position.y == player.position.y)
+        if(transform.position.x == target.x && transform.position.y == target.y)
         {
             Destroy(gameObject);
         }
@@ -85,11 +85,11 @@ public class GolemProjectile : MonoBehaviour
 
     void FlipProjectile()
     {
-        if(player.position.x > gameObject.transform.position.x)
+        if(target.x > gameObject.transform.position.x)
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
-        if(player.position.x < gameObject.transform.position.x)
+        if(target.x < gameObject.transform.position.x)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
