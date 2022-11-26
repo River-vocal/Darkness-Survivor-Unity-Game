@@ -25,6 +25,7 @@ public class Golem : MonoBehaviour
     private float wall_distance = 0.2f;
     private bool movingRight = true;
     private float timeBtwShots;
+    private float Distance2Player;
     
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class Golem : MonoBehaviour
         Collider2D = GetComponent<Collider2D>();
         damage = littleEnemy.damage;
         speed = littleEnemy.speed;
+        timeBtwShots = startTimeBtwShots;
     }
 
     // Update is called once per frame
@@ -74,17 +76,22 @@ public class Golem : MonoBehaviour
         {
             switchDirection();
         }
-        if(timeBtwShots <= 0 && Golem_status == true && Vector2.Distance(transform.position, player_transform.position) < StartShootingDistance)
+        Distance2Player = Vector2.Distance(transform.position, player_transform.position);
+        timeBtwShots = CreateProjectiles(timeBtwShots, Golem_status, Distance2Player, StartShootingDistance, startTimeBtwShots);               
+    }
+    
+    public float CreateProjectiles(float timeBtwShots, bool Golem_status, float Distance2Player, float StartShootingDistance, float startTimeBtwShots)
+    {
+        if(timeBtwShots <= 0 && Golem_status == true && Distance2Player < StartShootingDistance)
         {
         Instantiate(projectile, transform.position, Quaternion.identity);
-        timeBtwShots = startTimeBtwShots;
+        return timeBtwShots = startTimeBtwShots;
         }
         else
         {
-        timeBtwShots -= Time.deltaTime;
-        }               
+        return timeBtwShots -= Time.deltaTime;
+        }
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
