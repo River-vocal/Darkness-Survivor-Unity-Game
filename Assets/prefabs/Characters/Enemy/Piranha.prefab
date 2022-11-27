@@ -129,7 +129,7 @@ MonoBehaviour:
   groundDetectionDown: {fileID: 3341973228430478514}
   groundDetectionUp: {fileID: 5963806690820076549}
   Light2D: {fileID: 6251739785224002380}
-  appearDistance: 20
+  appearDistance: 10
   godownDistance: 2
 --- !u!114 &6325123252491060207
 MonoBehaviour:
