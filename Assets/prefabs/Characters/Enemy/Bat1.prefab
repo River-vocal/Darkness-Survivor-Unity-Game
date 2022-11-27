@@ -277,12 +277,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   littleEnemy: {fileID: 7978555780168873771}
-  moveSpeed: 1
   pos1: {fileID: 2725858677392476655}
   pos2: {fileID: 7698281134702595875}
   pos3: {fileID: 7760470704307225535}
   pos4: {fileID: 3187779758481766863}
   bat: {fileID: 8885472851159788388}
+  moveSpeed: 1
   VisualEffectSystemManager: {fileID: 428454304893291750, guid: b45547e9cc346a14b905324ae452aa03, type: 3}
 --- !u!60 &3659178419812851237
 PolygonCollider2D:
@@ -512,3 +512,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  speed: 2
