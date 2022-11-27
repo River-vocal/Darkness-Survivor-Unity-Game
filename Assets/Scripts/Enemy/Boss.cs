@@ -11,7 +11,7 @@ public class Boss : MonoBehaviour
 
     private int curHealth;
     public bool bossIsFlipped;
-    public int attackDamage = 10;
+    public int attackDamage = 20;
     // Start is called before the first frame update
     public Transform playerTransform;
 
