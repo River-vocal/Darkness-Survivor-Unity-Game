@@ -35,8 +35,10 @@ public class Player : MonoBehaviour
     
     [SerializeField] private PlayerData playerData;
     public GameObject DashBlue;
+    public GameObject SwordAttackVFX;
     public ParallaxController ParallaxController;
     public SoundManager SoundManager;
+    public psAttackManager attackManager;
 
     #endregion
 
@@ -250,6 +252,39 @@ public class Player : MonoBehaviour
     public void PlayRangeAttackSound()
     {
         SoundManager.PlaySound("rangeAttack");
+    }
+
+    public void EnableSwordAttackVFX()
+    {
+        SwordAttackVFX.SetActive(true);
+    }
+
+    public void DealDamageTo(Collider2D collider)
+    {
+        cinemachineImpulseSource.GenerateImpulse();
+        VisualEffectSystemManager.GenerateExplosionNovaFire(collider.transform);
+        ParallaxController.StopFollowing();
+
+        if (collider.tag == "Drop")
+        {
+            Instantiate(BulletPickupPrefab, collider.transform.position, collider.transform.rotation);
+            collider.GetComponent<EnemyDrops>().DropDeath();
+        }
+        if (collider.tag == "Golem")
+        {
+            Instantiate(BulletPickupPrefab, collider.transform.position, collider.transform.rotation);
+            collider.GetComponent<Golem>().GolemDeath();
+        }
+        if (collider.tag == "Projectile")
+        {
+            Instantiate(BulletPickupPrefab, collider.transform.position, collider.transform.rotation);
+            collider.GetComponent<GolemProjectile>().ProjectileDestroy();
+        }
+        else
+        {
+            Health health = collider.GetComponent<Health>();
+            if (health) health.CurHealth -= playerData.attackDamage;
+        }
     }
     #endregion
 }
