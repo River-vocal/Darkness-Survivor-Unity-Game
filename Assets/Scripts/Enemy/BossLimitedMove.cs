@@ -67,8 +67,13 @@ public class BossLimitedMove : StateMachineBehaviour
             // rb2.MovePosition(newPosition);
 
             return;
+        } else if (Math.Abs(playerTransform.position.y - rb2.position.y) <= 3 && playerTransform.position.x > leftEdge.position.x 
+                                                                              && playerTransform.position.x < rightEdge.position.x)
+        {
+            boss.lookAtPlayer();
+            movingLeft = !boss.bossIsFlipped;
         }
-        
+
         /*
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.right, wallCheckDistance, whatIsGround);

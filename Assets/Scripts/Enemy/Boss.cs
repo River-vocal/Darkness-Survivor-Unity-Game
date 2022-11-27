@@ -11,7 +11,7 @@ public class Boss : MonoBehaviour
 
     private int curHealth;
     public bool bossIsFlipped;
-    public int attackDamage = 10;
+    public int attackDamage = 20;
     // Start is called before the first frame update
     public Transform playerTransform;
 
@@ -101,10 +101,10 @@ public class Boss : MonoBehaviour
         gameObject.SetActive(false);
         bossTreasure.SetActive(true);
         // GameObject obstacle = GameObject.Find("Obstacle");
-        if (obstacle != null)
-        {
-            obstacle.SetActive(false);
-        }
+        // if (obstacle != null)
+        // {
+            // obstacle.SetActive(false);
+        // }
 
         // wonMenu.SetActive(true);
         // Time.timeScale = 0f;
