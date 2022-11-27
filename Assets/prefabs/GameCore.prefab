@@ -51,14 +51,14 @@ MonoBehaviour:
   attack: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   rangeAttack: {fileID: 8300000, guid: 64fb9477894fa2e4a997518fbb1c2f15, type: 3}
   injured: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
-  boss: {fileID: 0}
+  teleport: {fileID: 8300000, guid: 8ff2a2d7e79f81c40ac447512f879374, type: 3}
   jumpVolume: 1.5
   landVolume: 1.5
   dashVolume: 1.5
   attackVolume: 0.3
   rangeAttackVolume: 0.4
   injuredVolume: 0.15
-  bossVolume: 0
+  teleportVolume: 0.55
 --- !u!82 &2292149215647345848
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1322,10 +1322,28 @@ PrefabInstance:
       propertyPath: VisualEffectSystemManager
       value: 
       objectReference: {fileID: 933942205}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4626568375828437876, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
 --- !u!4 &642831493973716392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8778075333850035411, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
   m_PrefabInstance: {fileID: 8158893961327630715}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4374077601843848313 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5587259269203787010, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+  m_PrefabInstance: {fileID: 8158893961327630715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1998992730745315821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374077601843848313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574d06f7d5492c6459ece3f801e0af32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
