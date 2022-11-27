@@ -101,10 +101,10 @@ public class Boss : MonoBehaviour
         gameObject.SetActive(false);
         bossTreasure.SetActive(true);
         // GameObject obstacle = GameObject.Find("Obstacle");
-        if (obstacle != null)
-        {
-            obstacle.SetActive(false);
-        }
+        // if (obstacle != null)
+        // {
+            // obstacle.SetActive(false);
+        // }
 
         // wonMenu.SetActive(true);
         // Time.timeScale = 0f;
