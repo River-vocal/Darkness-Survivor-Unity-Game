@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1790243367455167880}
   m_Layer: 11
   m_Name: Piranha
-  m_TagString: Untagged
+  m_TagString: LittleEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,6 +34,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7360112668310912479}
+  - {fileID: 3341973228430478514}
+  - {fileID: 5963806690820076549}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121,9 +123,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b28ca26a6318486283dc17c77f20c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  littleEnemy: {fileID: 0}
   PiranhaBullet: {fileID: 5071444815934382872, guid: 29cc272ae1c754cca9cf29937f7c7489, type: 3}
-  startTimeBtwShots: 100
-  StartShootingDistance: 20
+  moveSpeed: 3
+  groundDetectionDown: {fileID: 3341973228430478514}
+  groundDetectionUp: {fileID: 5963806690820076549}
+  Light2D: {fileID: 6251739785224002380}
+  appearDistance: 20
+  godownDistance: 2
 --- !u!114 &6325123252491060207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,12 +155,43 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0071177483, y: -0.056942105}
-  m_Size: {x: 0.28258312, y: 0.40358508}
+  m_Offset: {x: 0.008203158, y: -0.05639989}
+  m_Size: {x: 0.40141693, y: 0.35911298}
   m_Direction: 1
+--- !u!1 &1841961613483360289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3341973228430478514}
+  m_Layer: 11
+  m_Name: Ground Detection Down
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3341973228430478514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841961613483360289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.006, y: -0.219, z: 0}
+  m_LocalScale: {x: 0.22066355, y: 0.21902966, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3188035420933506001}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3180363368281992001
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,3 +303,34 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &4795872630654437013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5963806690820076549}
+  m_Layer: 11
+  m_Name: Ground Detection Up
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5963806690820076549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795872630654437013}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.011, y: 0.147, z: 0}
+  m_LocalScale: {x: 0.22066355, y: 0.21902966, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3188035420933506001}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

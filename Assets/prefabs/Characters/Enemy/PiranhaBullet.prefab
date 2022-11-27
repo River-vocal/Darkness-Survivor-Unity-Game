@@ -42,10 +42,12 @@ GameObject:
   - component: {fileID: 7353689343533760014}
   - component: {fileID: 775440976921018347}
   - component: {fileID: 576143565358309908}
+  - component: {fileID: 5330437422311202582}
   - component: {fileID: 2480180872666174708}
+  - component: {fileID: 9201331161646911437}
   m_Layer: 11
   m_Name: PiranhaBullet
-  m_TagString: Untagged
+  m_TagString: LittleEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,10 +133,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764dfc74cfbcf46cb9267fc2317fcdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  littleEnemy: {fileID: 5330437422311202582}
   moveSpeed: 4
   damage: 2
   shootingDistance: 20
   detection: {fileID: 4435543082872116302}
+--- !u!114 &5330437422311202582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5071444815934382872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  speed: 5
 --- !u!70 &2480180872666174708
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -151,6 +168,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0050568967, y: -0.007891692}
   m_Size: {x: 0.14988649, y: 0.12234779}
   m_Direction: 1
+--- !u!50 &9201331161646911437
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5071444815934382872}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0.03
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5539205294713200153
 GameObject:
   m_ObjectHideFlags: 0

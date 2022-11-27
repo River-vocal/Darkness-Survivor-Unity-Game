@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PiranhaBullet : MonoBehaviour
 {
-    private LittleEnemy littleEnemy;
+    [SerializeField] private LittleEnemy littleEnemy;
     public float moveSpeed;
     public int damage;
     private Transform player;
@@ -27,11 +27,13 @@ public class PiranhaBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (littleEnemy.GetBeAttackedStatus())
-        // {
-        //     Destroy(gameObject);
-        //     return;
-        // }
+        if (littleEnemy.GetBeAttackedStatus())
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+
         if(transform.position.x == target.x && transform.position.y == target.y)
         {
             Destroy(gameObject);
