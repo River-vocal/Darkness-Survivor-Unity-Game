@@ -3,18 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class FloorDamage : MonoBehaviour
 {
-    private float damageValue;
+    private float damageMultiplier;
 
     private void Start()
     {
         if (SceneManager.GetActiveScene().name.Equals("DarkLevel1") || 
             SceneManager.GetActiveScene().name.Equals("Level4"))
         {
-            damageValue = 30f;
+            damageMultiplier = 0.4f;
         }
         else
         {
-            damageValue = 10f;
+            damageMultiplier = 0.2f;
         }
     }
 
@@ -29,7 +29,8 @@ public class FloorDamage : MonoBehaviour
 
             
             // GlobalAnalysis.trap_damage += damageValue;
-            collision.gameObject.GetComponent<Player>().TakeDamage(damageValue);
+            float maxEner = collision.gameObject.GetComponent<Energy>().MaxEnergy;
+            collision.gameObject.GetComponent<Player>().TakeDamage(damageMultiplier * maxEner);
         }
     }
 }
