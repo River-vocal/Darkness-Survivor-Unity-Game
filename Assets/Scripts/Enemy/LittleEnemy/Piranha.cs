@@ -22,6 +22,8 @@ public class Piranha : MonoBehaviour
     public float appearDistance;
     public float godownDistance;
     private Animator animator;
+    private float LastAttackTime = 0;
+    private float AttackInterval = 2;
     // private Golem golem;
 
 
@@ -95,9 +97,14 @@ public class Piranha : MonoBehaviour
 
     private void CreateBullets()
     {
-        if(player_transform.position.x < gameObject.transform.position.x)
+        if (player_transform.position.x < gameObject.transform.position.x)
         {
-            Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
+            if (Time.time > LastAttackTime + AttackInterval)
+            {
+                Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
+                LastAttackTime = Time.time;
+            }
+            
         }
         
     }
