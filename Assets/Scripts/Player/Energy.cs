@@ -80,6 +80,12 @@ public class Energy : MonoBehaviour
         LevelLoader.current.EnergyData.MaxEnergy = MaxEnergy;
     }
 
+    public void Kill()
+    {
+        curEnergy = 0;
+        playerDieEventChannel.Broadcast();
+    }
+
     public float CurEnergy
     {
         get => curEnergy;

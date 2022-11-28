@@ -16,8 +16,14 @@ public class ExtraEnergyPickup : MonoBehaviour
         // Load from record
         if (LevelLoader.current.LevelData.ExtraEnergyPickupsCollected.Contains(id))
         {
-            Destroy(gameObject);
+            DowngradeToEnergyPickup();
         }
+    }
+
+    private void DowngradeToEnergyPickup()
+    {
+        Instantiate(GameAssets.i.pfEnergyPickup, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
