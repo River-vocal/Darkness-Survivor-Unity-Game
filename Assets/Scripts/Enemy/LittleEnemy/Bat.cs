@@ -96,7 +96,9 @@ public class Bat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-    	inAttackArea = true;
+		if (col.gameObject.CompareTag("Player")) {
+			inAttackArea = true;
+		}
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -115,7 +117,9 @@ public class Bat : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
  	{
- 		inAttackArea = false;
+		if (col.gameObject.CompareTag("Player")) {
+			inAttackArea = false;
+		}
  	}
 
     private void flip()

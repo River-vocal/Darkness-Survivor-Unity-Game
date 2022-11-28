@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlantTentacle : MonoBehaviour
 {
     [SerializeField] private LittleEnemy littleEnemy;
-    public int damage;
+    private int damage;
 
     private void Awake()
 	{
