@@ -47,6 +47,7 @@ public class Bat : MonoBehaviour
 			bat.GetComponent<Animator>().SetTrigger("Death");
 			littleEnemy.SetBeAttackedStatus(false);
 			littleEnemy.SetDeathStatus(true);
+			bat.GetComponent<Collider2D>().enabled = false;
 			Invoke("deactivate", 0.8f);
 		}
     	// if (bat.GetComponent<BatAttack>().getDeadFlag()) {
