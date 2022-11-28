@@ -1399,6 +1399,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8158893962399850520}
     m_Modifications:
+    - target: {fileID: 5587259269203424696, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587259269203424696, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5587259269218657664, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
       propertyPath: TriggerModule.enter
       value: 2
