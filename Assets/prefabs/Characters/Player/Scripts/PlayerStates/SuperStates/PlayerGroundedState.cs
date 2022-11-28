@@ -48,9 +48,16 @@ public class PlayerGroundedState : PlayerState
         {
             StateMachine.ChangeState(Player.AttackState);
         }
-        else if (Player.InputHandler.RangeAttackPressed && Player.playerBulletCount > 0)
+        else if (Player.InputHandler.RangeAttackPressed)
         {
-            StateMachine.ChangeState(Player.RangeAttackState);
+            if (Player.playerBulletCount > 0)
+            {
+                StateMachine.ChangeState(Player.RangeAttackState);
+            }
+            else
+            {
+                TopHintArea.Hint("No bullets!", 1);
+            }
         }
     }
 
