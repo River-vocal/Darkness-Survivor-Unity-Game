@@ -24,6 +24,10 @@ public class Piranha : MonoBehaviour
     private Animator animator;
     private float LastAttackTime = 0;
     private float AttackInterval = 2;
+    public VisualEffectSystemManager VisualEffect;
+    private Collider2D Collider2d;
+
+    private bool piranhaStatus = true;
     // private Golem golem;
 
 
@@ -36,7 +40,7 @@ public class Piranha : MonoBehaviour
         // timeBtwShots = startTimeBtwShots;
         OriginalPosition = new Vector2(transform.position.x, transform.position.y);
         height = GetComponent<SpriteRenderer>().bounds.size.y;
-        
+        Collider2d = GetComponent<Collider2D>();
         // Collider2D = GetComponent<Collider2D>();
         // damage = littleEnemy.damage;
     }
@@ -44,6 +48,14 @@ public class Piranha : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (littleEnemy.GetBeAttackedStatus())
+        {
+            PiranhaDeath();
+            littleEnemy.SetBeAttackedStatus(false);
+            littleEnemy.SetDeathStatus(true);
+            return;
+        }
+
         Distance2Player = Vector2.Distance(transform.position, player_transform.position);
         // timeBtwShots = golem.CreateProjectiles(timeBtwShots, Piranha_status, Distance2Player, StartShootingDistance, startTimeBtwShots);
         // if(timeBtwShots <= 0 && Piranha_status == true && Distance2Player < StartShootingDistance)
@@ -73,6 +85,14 @@ public class Piranha : MonoBehaviour
          
     }
 
+    private void PiranhaDeath()
+    {
+        piranhaStatus = false;
+        Collider2d.enabled = false;
+        VisualEffect.GenerateEvilPurpleExplode(transform);
+        Destroy(gameObject);
+    }
+
     private void Appear()
     {
         int layer_mask_ground = LayerMask.GetMask("Ground");
@@ -99,11 +119,12 @@ public class Piranha : MonoBehaviour
     {
         if (player_transform.position.x < gameObject.transform.position.x)
         {
-            if (Time.time > LastAttackTime + AttackInterval)
-            {
-                Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
-                LastAttackTime = Time.time;
-            }
+            // if (Time.time > LastAttackTime + AttackInterval)
+            // {
+            //     Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
+            //     LastAttackTime = Time.time;
+            // }
+            Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
             
         }
         

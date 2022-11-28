@@ -13,6 +13,8 @@ TagManager:
   - ground
   - Projectile
   - BatTag
+  - LittleEnemy
+  - LittleBullet
   layers:
   - Default
   - TransparentFX

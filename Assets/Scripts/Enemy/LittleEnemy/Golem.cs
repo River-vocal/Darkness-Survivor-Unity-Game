@@ -17,7 +17,7 @@ public class Golem : MonoBehaviour
     public float startTimeBtwShots;
     private Animator golem_animation;
     private Transform player_transform;
-    private Collider2D Collider2D;
+    private Collider2D Collider2d;
 
     private bool Golem_status = true;
     public float StartShootingDistance;
@@ -31,7 +31,7 @@ public class Golem : MonoBehaviour
     {
         golem_animation = GetComponent<Animator>();
         player_transform = GameObject.FindWithTag("Player").transform;
-        Collider2D = GetComponent<Collider2D>();
+        Collider2d = GetComponent<Collider2D>();
         damage = littleEnemy.damage;
         speed = littleEnemy.speed;
         timeBtwShots = startTimeBtwShots;
@@ -125,7 +125,7 @@ public class Golem : MonoBehaviour
         speed = 0;
         Golem_status = false;
         VisualEffect.GenerateEvilPurpleExplode(transform);
-        Collider2D.enabled = false;
+        Collider2d.enabled = false;
     }
 
     private void Deactivate()

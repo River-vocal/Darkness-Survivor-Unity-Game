@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 5530495379786084848}
   m_Layer: 11
   m_Name: Projectile
-  m_TagString: Projectile
+  m_TagString: LittleBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   littleEnemy: {fileID: 5530495379786084848}
   moveSpeed: 5
   damage: 3
-  shootingDistance: 13
+  shootingDistance: 20
   detection: {fileID: 3931625335361085484}
 --- !u!50 &921670502627175786
 Rigidbody2D:

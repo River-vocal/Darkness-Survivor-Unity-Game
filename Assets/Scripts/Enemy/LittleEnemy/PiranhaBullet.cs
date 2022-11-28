@@ -27,11 +27,11 @@ public class PiranhaBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (littleEnemy.GetBeAttackedStatus())
-        {
-            Destroy(gameObject);
-            return;
-        }
+        // if (littleEnemy.GetBeAttackedStatus())
+        // {
+        //     Destroy(gameObject);
+        //     return;
+        // }
 
 
         if(transform.position.x == target.x && transform.position.y == target.y)

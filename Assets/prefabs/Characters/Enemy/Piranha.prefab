@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 40e49b5bf7e3f4323a17125dc89d091e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -123,14 +123,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b28ca26a6318486283dc17c77f20c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  littleEnemy: {fileID: 0}
+  littleEnemy: {fileID: 6325123252491060207}
   PiranhaBullet: {fileID: 5071444815934382872, guid: 29cc272ae1c754cca9cf29937f7c7489, type: 3}
   moveSpeed: 3
   groundDetectionDown: {fileID: 3341973228430478514}
   groundDetectionUp: {fileID: 5963806690820076549}
   Light2D: {fileID: 6251739785224002380}
   appearDistance: 10
-  godownDistance: 2
+  godownDistance: 6
+  VisualEffect: {fileID: 428454304893291750, guid: b45547e9cc346a14b905324ae452aa03, type: 3}
 --- !u!114 &6325123252491060207
 MonoBehaviour:
   m_ObjectHideFlags: 0
