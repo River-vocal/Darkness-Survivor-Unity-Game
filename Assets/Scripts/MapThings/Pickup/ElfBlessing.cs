@@ -67,7 +67,7 @@ public class ElfBlessing : MonoBehaviour
             {
                 if (!hinted)
                 {
-                    TopHintArea.Hint("Elf Bless would disappear in 5 seconds", 2);
+                    TopHintArea.Hint("Elf Bless would disappear", 2);
                     hinted = true;
                 }
                 if (renderer.enabled)

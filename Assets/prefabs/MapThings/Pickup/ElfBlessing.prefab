@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12c00c271694e298d79a1b9fd2e6a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectTime: 10
+  effectTime: 30
   rotationRadius: 0.5
   elevationOffset: 0.5
   rotationSpeed: 3
