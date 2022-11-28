@@ -9,7 +9,7 @@ public class FatalFloorKill : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Energy>().CurEnergy -= 9999f;
+            collision.gameObject.GetComponent<Energy>().Kill();
         }
     }
 }
