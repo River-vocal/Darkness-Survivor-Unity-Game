@@ -168,7 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasTwoLives: 1
+  damage: 20
+  speed: 5
 --- !u!114 &3698082479749045353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,8 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   littleEnemy: {fileID: 7404793690245767124}
   movementDistance: 3.05
-  speed: 2
-  damage: 10
   hasTwoLives: 1
   isRoundWalk: 0
   groundCheckDistance: 0.2

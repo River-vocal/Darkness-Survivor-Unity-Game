@@ -250,13 +250,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   littleEnemy: {fileID: 2706590181166374130}
-  damage: 7
-  speed: 1
-  StartShootingDistance: 15
   groundDetection: {fileID: 8729757853430658619}
   projectile: {fileID: 9056118684756571298, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
-  startTimeBtwShots: 2
   VisualEffect: {fileID: 428454304893291750, guid: b45547e9cc346a14b905324ae452aa03, type: 3}
+  startTimeBtwShots: 2
+  StartShootingDistance: 15
 --- !u!114 &2706590181166374130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
+  speed: 5
 --- !u!1 &7629953868945171788
 GameObject:
   m_ObjectHideFlags: 0
