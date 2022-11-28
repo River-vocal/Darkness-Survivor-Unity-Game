@@ -11,7 +11,10 @@ public class BulletPickup : MonoBehaviour
 
             Player player = other.gameObject.GetComponent<Player>();
             player.playerBulletCount += 1;
-            
+            if (TopHintArea.getCurrentString() == "No bullets!")
+            {
+                TopHintArea.reset();
+            }
             // GlobalAnalysis.healing_energy += boostValue;
             Destroy(gameObject);
         }

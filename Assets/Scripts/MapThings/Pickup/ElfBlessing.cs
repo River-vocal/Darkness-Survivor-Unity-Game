@@ -10,6 +10,7 @@ public class ElfBlessing : MonoBehaviour
     public float elevationOffset;
     public float rotationSpeed = 2f;
     public float elfSpeed = 10f;
+    public float blinkTime = 5f;
 
     private Energy energy;
     private bool collided;
@@ -17,7 +18,10 @@ public class ElfBlessing : MonoBehaviour
     private Transform target;
     private float angle;
     private GameObject icon;
-
+    public Renderer renderer;
+    private float blinkInterval = 0.1f;
+    private bool hinted = false;
+    
     private void Awake()
     {
         icon = transform.GetChild(0).gameObject;
@@ -41,6 +45,7 @@ public class ElfBlessing : MonoBehaviour
         
         icon.SetActive(false);
         StartCoroutine("EndBlessing");
+        TopHintArea.Hint("invulnerable", 3);
     }
 
     private void LateUpdate()
@@ -54,7 +59,29 @@ public class ElfBlessing : MonoBehaviour
 
     private IEnumerator EndBlessing()
     {
-        yield return new WaitForSeconds(effectTime);
+        float timeElapsed = 0;
+        
+        while (timeElapsed < effectTime)
+        {
+            if (timeElapsed > effectTime - blinkTime)
+            {
+                if (!hinted)
+                {
+                    TopHintArea.Hint("Elf Bless would disappear in 5 seconds", 2);
+                    hinted = true;
+                }
+                if (renderer.enabled)
+                {
+                    renderer.enabled = false;
+                }
+                else
+                {
+                    renderer.enabled = true;
+                }
+            }
+            timeElapsed += blinkInterval;
+            yield return new WaitForSeconds(blinkInterval);
+        }
         target = null;
         energy.Damageable = true;
         Destroy(gameObject);

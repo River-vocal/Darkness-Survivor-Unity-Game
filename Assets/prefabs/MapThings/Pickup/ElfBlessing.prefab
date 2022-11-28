@@ -52,6 +52,8 @@ MonoBehaviour:
   elevationOffset: 0.5
   rotationSpeed: 3
   elfSpeed: 10
+  blinkTime: 3
+  renderer: {fileID: 0}
 --- !u!61 &1337614619600286809
 BoxCollider2D:
   m_ObjectHideFlags: 0
