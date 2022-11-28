@@ -44,8 +44,15 @@ public class TopHintArea : MonoBehaviour
 
     public static void Hint(String text, float minTime)
     {
-        tmpText.SetText(text);
         timer = minTime;
+        if (text == "No bullets!")
+        {
+            tmpText.SetText(text);
+        }
+        else if (text == "invulnerable")
+        {
+            tmpText.SetText("Blessed by elf, you are invulnerable for some time");
+        }
     }
 
     public static void reset()

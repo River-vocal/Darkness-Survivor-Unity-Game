@@ -41,6 +41,7 @@ public class ElfBlessing : MonoBehaviour
         
         icon.SetActive(false);
         StartCoroutine("EndBlessing");
+        TopHintArea.Hint("invulnerable", 3);
     }
 
     private void LateUpdate()
