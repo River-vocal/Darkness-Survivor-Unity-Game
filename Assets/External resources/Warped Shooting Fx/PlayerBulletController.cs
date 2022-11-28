@@ -29,7 +29,7 @@ public class PlayerBulletController : MonoBehaviour
     {
         // Enemy layer == 11
         
-        if (hitInfo.name == "Wall" || hitInfo.name == "Ground" || hitInfo.name == "Obstacle" || hitInfo.gameObject.layer == 11)
+        if (hitInfo.name == "Wall" || hitInfo.name == "Ground" || hitInfo.name == "Obstacle" || (hitInfo.gameObject.layer == 11 && !hitInfo.CompareTag("LittleBullet")))
         {
             Debug.Log("hitInfo.name: " + hitInfo.name);
             Instantiate(impactEffect, transform.position, transform.rotation);
