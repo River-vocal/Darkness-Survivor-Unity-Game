@@ -124,8 +124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   littleEnemy: {fileID: 370668715647280534}
   movementDistance: 0
-  speed: 2
-  damage: 10
   hasTwoLives: 0
   isRoundWalk: 1
   groundCheckDistance: 0.2
@@ -162,6 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
+  speed: 5
 --- !u!1 &1340439141733093752
 GameObject:
   m_ObjectHideFlags: 0

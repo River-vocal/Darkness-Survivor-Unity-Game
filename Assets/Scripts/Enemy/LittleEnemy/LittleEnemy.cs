@@ -8,7 +8,7 @@ public class LittleEnemy : MonoBehaviour
     
     private bool isLittleEnemyDeath = false;
     private bool isLittleEnemyBeAttcked = false;
-    [SerializeField] public int damage = 5;
+    [SerializeField] public int damage = 20;
     [SerializeField] public float speed = 5f;
     
     // Update is called once per frame
