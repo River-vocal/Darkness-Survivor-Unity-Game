@@ -124,9 +124,10 @@ GameObject:
   - component: {fileID: 1862891441685768137}
   - component: {fileID: 1862891441685768134}
   - component: {fileID: 1862891441685768138}
+  - component: {fileID: 2706590181166374130}
   m_Layer: 11
   m_Name: Golem
-  m_TagString: Golem
+  m_TagString: LittleEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0ce769bc04c429994c6cbc0fdb8a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  littleEnemy: {fileID: 2706590181166374130}
   damage: 7
   speed: 1
   StartShootingDistance: 15
@@ -255,6 +257,18 @@ MonoBehaviour:
   projectile: {fileID: 9056118684756571298, guid: 6c29a1f2f2c90497d9034cf4ab1a604c, type: 3}
   startTimeBtwShots: 2
   VisualEffect: {fileID: 428454304893291750, guid: b45547e9cc346a14b905324ae452aa03, type: 3}
+--- !u!114 &2706590181166374130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293773487030375808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7629953868945171788
 GameObject:
   m_ObjectHideFlags: 0

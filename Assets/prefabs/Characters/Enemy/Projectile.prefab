@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1798229833373580017
 Transform:
   m_ObjectHideFlags: 0
@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3172200021633217117}
-  m_LocalRotation: {x: -0, y: -0, z: -0.042927366, w: 0.9990782}
-  m_LocalPosition: {x: 0, y: -0.09, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.012929131, w: 0.99991643}
+  m_LocalPosition: {x: 0.009, y: 0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.9433962, g: 0.6562028, b: 0.6007476, a: 1}
+  m_Color: {r: 0.9339623, g: 0.39208794, b: 0.40281817, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.06983044
-  m_PointLightOuterRadius: 0.28519538
+  m_PointLightOuterRadius: 0.4919532
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 5883809575900220121}
   - component: {fileID: 6196694832409193946}
   - component: {fileID: 921670502627175786}
+  - component: {fileID: 5530495379786084848}
   m_Layer: 11
   m_Name: Projectile
   m_TagString: Projectile
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67df41d5e856048f3a7ba8eec8b28abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  littleEnemy: {fileID: 5530495379786084848}
   moveSpeed: 5
   damage: 3
   shootingDistance: 13
@@ -305,3 +307,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &5530495379786084848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9056118684756571298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  speed: 5

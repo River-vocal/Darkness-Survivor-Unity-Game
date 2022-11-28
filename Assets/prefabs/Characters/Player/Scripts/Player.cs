@@ -268,20 +268,10 @@ public class Player : MonoBehaviour
         VisualEffectSystemManager.GenerateExplosionNovaFire(collider.transform);
         ParallaxController.StopFollowing();
 
-        if (collider.tag == "Drop")
+        if (collider.CompareTag("LittleEnemy"))
         {
-            Instantiate(BulletPickupPrefab, collider.transform.position, collider.transform.rotation);
-            collider.GetComponent<EnemyDrops>().DropDeath();
-        }
-        if (collider.tag == "Golem")
-        {
-            Instantiate(BulletPickupPrefab, collider.transform.position, collider.transform.rotation);
-            collider.GetComponent<Golem>().GolemDeath();
-        }
-        if (collider.tag == "Projectile")
-        {
-            Instantiate(BulletPickupPrefab, collider.transform.position, collider.transform.rotation);
-            collider.GetComponent<GolemProjectile>().ProjectileDestroy();
+            Player.Instantiate(BulletPickupPrefab, collider.transform.position, collider.transform.rotation);
+            collider.GetComponent<LittleEnemy>().LittleEnemyBeAttacked();
         }
         else
         {
