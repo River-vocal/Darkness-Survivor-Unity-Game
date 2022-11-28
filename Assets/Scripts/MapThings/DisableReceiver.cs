@@ -4,19 +4,20 @@ using UnityEngine;
 public class DisableReceiver : MonoBehaviour
 {
     public VoidEventChannel disableChannel;
+    public bool setActive;
 
     private void OnEnable()
     {
-        disableChannel.AddListener(DisableSelf);
+        disableChannel.AddListener(SetActiveSelf);
     }
 
     private void OnDisable()
     {
-        disableChannel.RemoveListener(DisableSelf);
+        disableChannel.RemoveListener(SetActiveSelf);
     }
 
-    private void DisableSelf()
+    private void SetActiveSelf()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(setActive);
     }
 }

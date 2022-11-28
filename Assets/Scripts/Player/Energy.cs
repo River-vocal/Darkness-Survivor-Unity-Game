@@ -11,7 +11,7 @@ public class Energy : MonoBehaviour
     public float MaxEnergy = 100f;
 
     private EffectManager healing;
-    private float consumeSpeed = 5f;
+    [SerializeField] private float consumeSpeed = 5f;
 
     public float ConsumeSpeed
     {
@@ -107,7 +107,6 @@ public class Energy : MonoBehaviour
             }
             else if(value < curEnergy)
             {
-                Debug.Log("Show popup!");
                 DamagePopup(curEnergy - value);
             }
 
