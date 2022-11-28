@@ -56,7 +56,17 @@ public class PiranhaBullet : MonoBehaviour
         }
 
         // transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
-        transform.position += - transform.right * Time.deltaTime * moveSpeed;
+
+        if(player.position.x < transform.position.x)
+        {
+            transform.position += - transform.right * Time.deltaTime * moveSpeed;
+        }
+
+        if(player.position.x > transform.position.x)
+        {
+            transform.position += transform.right * Time.deltaTime * moveSpeed;
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
