@@ -1751,6 +1751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7335314519232547905, guid: 3b6ac5c1dfcb847bab4346ef9e309580, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7698281134702595875, guid: 3b6ac5c1dfcb847bab4346ef9e309580, type: 3}
       propertyPath: m_LocalPosition.x
       value: -95.3
@@ -110558,6 +110562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat1
       objectReference: {fileID: 0}
+    - target: {fileID: 7335314519232547905, guid: 3b6ac5c1dfcb847bab4346ef9e309580, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7760470704307225535, guid: 3b6ac5c1dfcb847bab4346ef9e309580, type: 3}
       propertyPath: m_LocalPosition.x
       value: -91.81
@@ -115141,7 +115149,7 @@ PrefabInstance:
       objectReference: {fileID: 1711540691}
     - target: {fileID: 5345179134028276714, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: attackDamage
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5345179134028276714, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: bossTreasure
