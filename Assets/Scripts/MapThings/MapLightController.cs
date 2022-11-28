@@ -79,7 +79,7 @@ public class MapLightController : MonoBehaviour
         tmpSpeed = Math.Max(Math.Abs(15f * typeOfLight), Math.Abs(originalConsumeSpeed * 2 * typeOfLight));
         if (typeOfLight == HEALING_LIGHT)
         {
-            tmpSpeed = 0.1f * tmpEnergy.MaxEnergy;
+            tmpSpeed = 0.3f * tmpEnergy.MaxEnergy;
         }
         
         tmpEnergy.ConsumeSpeed -= tmpSpeed * typeOfLight;
