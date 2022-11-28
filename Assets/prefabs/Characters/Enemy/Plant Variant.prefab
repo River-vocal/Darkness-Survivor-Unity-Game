@@ -119,6 +119,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 5912934418089639077}
     m_Modifications:
     - target: {fileID: 3298424114163463163, guid: 800274c54e08aaa40a7b21752cae8a5a, type: 3}
+      propertyPath: m_Color.b
+      value: 0.54537845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3298424114163463163, guid: 800274c54e08aaa40a7b21752cae8a5a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.004831398
+      objectReference: {fileID: 0}
+    - target: {fileID: 3298424114163463163, guid: 800274c54e08aaa40a7b21752cae8a5a, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8962264
+      objectReference: {fileID: 0}
+    - target: {fileID: 3298424114163463163, guid: 800274c54e08aaa40a7b21752cae8a5a, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
@@ -199,6 +211,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 375051845149082064, guid: ff67c14138cdd7147b2917b222977163, type: 3}
+      propertyPath: m_Color.b
+      value: 0.073996834
+      objectReference: {fileID: 0}
+    - target: {fileID: 375051845149082064, guid: ff67c14138cdd7147b2917b222977163, type: 3}
+      propertyPath: m_Color.g
+      value: 0.073996834
+      objectReference: {fileID: 0}
+    - target: {fileID: 375051845149082064, guid: ff67c14138cdd7147b2917b222977163, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9150943
+      objectReference: {fileID: 0}
     - target: {fileID: 375051845149082064, guid: ff67c14138cdd7147b2917b222977163, type: 3}
       propertyPath: m_SortingOrder
       value: 2
@@ -345,7 +369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2859381608585522929, guid: ff67c14138cdd7147b2917b222977163, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5164819158043468907, guid: ff67c14138cdd7147b2917b222977163, type: 3}
       propertyPath: m_Icon
@@ -371,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   littleEnemy: {fileID: 8973328264566467627}
-  attackTime: 3
+  attackTime: 1
   pos1: {fileID: 5917995179760147353}
   tentacle: {fileID: 8086077149965837372}
 --- !u!4 &5912934418089639077 stripped
@@ -446,5 +470,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0d40ae5279b4c23a8e53ab44f4fdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   speed: 5
