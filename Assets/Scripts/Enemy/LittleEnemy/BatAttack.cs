@@ -39,14 +39,13 @@ public class BatAttack : MonoBehaviour
     	return isDead;
     }
 
-    private void OnTrigeerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
     	isAttacking = true;
     }
 
     private void OnTriggerStay2D(Collider2D col)
     {
-    	isAttacking = true;
     	if (col.gameObject.CompareTag("Player"))
     	{
     		GetComponent<Animator>().SetTrigger("Attack");
