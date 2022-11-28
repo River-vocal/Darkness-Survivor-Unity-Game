@@ -53,6 +53,10 @@ public class TopHintArea : MonoBehaviour
         {
             tmpText.SetText("Blessed by elf, you are invulnerable for some time");
         }
+        else
+        {
+            tmpText.SetText(text);
+        }
     }
 
     public static void reset()
