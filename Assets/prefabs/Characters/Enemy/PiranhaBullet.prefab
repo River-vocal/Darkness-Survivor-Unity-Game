@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   littleEnemy: {fileID: 5330437422311202582}
   moveSpeed: 4
-  damage: 2
+  damage: 20
   shootingDistance: 20
   detection: {fileID: 4435543082872116302}
 --- !u!114 &5330437422311202582
