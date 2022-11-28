@@ -126,7 +126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5295807534533352651
 Transform:
   m_ObjectHideFlags: 0
@@ -459,6 +459,7 @@ MonoBehaviour:
   SwordAttackVFX: {fileID: 5587259269203787010}
   ParallaxController: {fileID: 0}
   SoundManager: {fileID: 0}
+  attackManager: {fileID: 0}
   groundCheck: {fileID: 8778075335623821928}
   wallCheck: {fileID: 8778075334942670853}
   attackCheck: {fileID: 5295807534533352651}
@@ -1354,13 +1355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc3ea5c77977994db270602762daaec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 5587259269218657664}
   Player: {fileID: 8778075333850035419}
---- !u!198 &5587259269218657664 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19840850, guid: 9acec412cf3cb0b4ea6bd5b99ee797bc, type: 3}
-  m_PrefabInstance: {fileID: 5587259269203876562}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7145578214633755371
 PrefabInstance:
   m_ObjectHideFlags: 0

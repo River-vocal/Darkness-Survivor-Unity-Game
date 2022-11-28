@@ -1311,6 +1311,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5146160468453146061}
     - target: {fileID: 8778075333850035419, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: attackManager
+      value: 
+      objectReference: {fileID: 1998992730745315821}
+    - target: {fileID: 8778075333850035419, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
       propertyPath: ParallaxController
       value: 
       objectReference: {fileID: 3204360829065109456}
