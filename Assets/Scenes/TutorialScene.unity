@@ -57438,7 +57438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: message
-      value: 'To do wall jump, press W when sliding on the wall.
+      value: 'To do wall jump, press W when touching the wall.
 
         Now jump
         toward wall to start.'

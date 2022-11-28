@@ -70,10 +70,12 @@ public class Piranha : MonoBehaviour
         // }
         if(Vector2.Distance(player_transform.position, transform.position) < appearDistance && Vector2.Distance(player_transform.position, transform.position) > godownDistance)
         {
+            Collider2d.enabled = true;
             Appear();
         }
         if(Vector2.Distance(player_transform.position, transform.position) > appearDistance || Vector2.Distance(player_transform.position, transform.position) < godownDistance)
         {
+            Collider2d.enabled = false;
             Godown();
         }
         // if( player_transform.position.x > transform.position.x )
