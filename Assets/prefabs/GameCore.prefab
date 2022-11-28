@@ -1250,6 +1250,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8158893962399850520}
     m_Modifications:
+    - target: {fileID: 5587259269218657664, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: TriggerModule.enter
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587259269218657664, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: TriggerModule.inside
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587259269218657664, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: TriggerModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587259269218657664, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: TriggerModule.colliderQueryMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587259269218657664, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+      propertyPath: TriggerModule.primitives.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8778075333850035408, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_ActionId
       value: 4bb09153-d55e-474b-811f-1cb00a568a63
@@ -1329,6 +1349,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4626568375828437876, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+--- !u!114 &642831493973716384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8778075333850035419, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
+  m_PrefabInstance: {fileID: 8158893961327630715}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e3e3de9dac52240aaa02758e5c9542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &642831493973716392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8778075333850035411, guid: 1cbe7a59b725bf7488b04dfda579a55d, type: 3}
@@ -1351,3 +1382,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574d06f7d5492c6459ece3f801e0af32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 642831493973716384}
