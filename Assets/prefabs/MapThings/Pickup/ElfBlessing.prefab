@@ -47,11 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12c00c271694e298d79a1b9fd2e6a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectTime: 10
+  effectTime: 30
   rotationRadius: 0.5
   elevationOffset: 0.5
   rotationSpeed: 3
   elfSpeed: 10
+  blinkTime: 3
+  renderer: {fileID: 0}
 --- !u!61 &1337614619600286809
 BoxCollider2D:
   m_ObjectHideFlags: 0
