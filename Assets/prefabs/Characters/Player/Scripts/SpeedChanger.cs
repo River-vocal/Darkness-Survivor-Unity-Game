@@ -21,7 +21,7 @@ public class SpeedChanger : MonoBehaviour
     {
         timer += time;
         playerData.movementVelocity = originMoveSpeed * factor;
-        playerData.dashVelocity = originMoveSpeed * factor;
+        playerData.dashVelocity = originDashSpeed * factor;
         speedEffectParticleSystem.SetActive(true);
     }
 
