@@ -212,9 +212,12 @@ public class Player : MonoBehaviour
         if (!Invulnerable)
         {
             energy.CurEnergy -= damage;
-            SoundManager.PlaySound("injured");
-            StartCoroutine(Blink());
-            StateMachine.ChangeState(KouchokuState, args);
+            if (energy.Damageable)
+            {
+                SoundManager.PlaySound("injured");
+                StartCoroutine(Blink());
+                StateMachine.ChangeState(KouchokuState, args);
+            }
         }
     }
     
