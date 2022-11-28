@@ -28,11 +28,11 @@ public class GolemProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (littleEnemy.GetBeAttackedStatus())
-        {
-            ProjectileDestroy();
-            return;
-        }
+        // if (littleEnemy.GetBeAttackedStatus())
+        // {
+        //     ProjectileDestroy();
+        //     return;
+        // }
         transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
         
         FlipProjectile();
