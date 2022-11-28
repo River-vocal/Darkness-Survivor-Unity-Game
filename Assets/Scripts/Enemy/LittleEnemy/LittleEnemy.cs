@@ -44,16 +44,16 @@ public class LittleEnemy : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            if (col.GetComponent<Energy>().CurEnergy < damage) {
-                GlobalAnalysis.player_status = "smallenemy_dead";
-                Debug.Log("lose by: small enemy");
-            }
-            GlobalAnalysis.smallenemy_damage += damage;
-            col.GetComponent<Player>().TakeDamage(damage);
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D col)
+    // {
+    //     if (col.gameObject.CompareTag("Player"))
+    //     {
+    //         if (col.GetComponent<Energy>().CurEnergy < damage) {
+    //             GlobalAnalysis.player_status = "smallenemy_dead";
+    //             Debug.Log("lose by: small enemy");
+    //         }
+    //         GlobalAnalysis.smallenemy_damage += damage;
+    //         col.GetComponent<Player>().TakeDamage(damage);
+    //     }
+    // }
 }
