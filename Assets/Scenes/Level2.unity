@@ -243,6 +243,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 1835547113}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: message
       value: 'Uh oh... the BOSS is here
 
@@ -111449,6 +111453,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 1835547113}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: message
       value: Defeat the BOSS to unlock the gate!
       objectReference: {fileID: 0}
@@ -111481,6 +111489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableChannel: {fileID: 11400000, guid: bc0764656f0b5944aa40ffb946c06131, type: 2}
+  setActive: 0
 --- !u!4 &1589610082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 642831493973716392, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
