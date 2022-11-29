@@ -115143,13 +115143,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 100228933}
     m_Modifications:
+    - target: {fileID: 373284723909241524, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: MaxHealth
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 5345179134028276714, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: obstacle
       value: 
       objectReference: {fileID: 1711540691}
     - target: {fileID: 5345179134028276714, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: attackDamage
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5345179134028276714, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: bossTreasure

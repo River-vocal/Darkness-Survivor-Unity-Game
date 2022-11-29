@@ -4500,6 +4500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'ResetButton '
       objectReference: {fileID: 0}
+    - target: {fileID: 1411311399016685569, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1776601163283894677, guid: 5d64875ce0bcc4a3da15e1a0ba76364f, type: 3}
       propertyPath: m_Transition
       value: 3
