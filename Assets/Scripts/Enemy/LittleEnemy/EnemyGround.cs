@@ -150,6 +150,7 @@ public class EnemyGround : MonoBehaviour
         {
             littleEnemy.SetDeathStatus(true);
             speed = 0;
+            originalSpeed = 0;
             collider.enabled = false;
             anim.SetTrigger("Death");
             visualEffectSystemManager.GenerateEvilPurpleExplode(transform);
