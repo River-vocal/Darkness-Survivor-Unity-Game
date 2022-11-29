@@ -126,7 +126,6 @@ public class Piranha : MonoBehaviour
         //     LastAttackTime = Time.time;
         // }
         Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
-        Debug.Log("Piranha Bullets!!!!");
         
         
     }
