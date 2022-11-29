@@ -58,6 +58,15 @@ public class PiranhaBullet : MonoBehaviour
             Destroy(gameObject);
         }
         
+        if(direction > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        if(direction < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        
         transform.position += direction * transform.right * Time.deltaTime * moveSpeed;
 
 
