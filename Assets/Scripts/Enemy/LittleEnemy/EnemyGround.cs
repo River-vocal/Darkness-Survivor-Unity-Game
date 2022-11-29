@@ -175,11 +175,11 @@ public class EnemyGround : MonoBehaviour
         {
             if (col.GetComponent<Energy>().CurEnergy < damage)
             {
-                GlobalAnalysis.player_status = "smallenemy_dead";
-                Debug.Log("lose by: small enemy");
+                // GlobalAnalysis.player_status = "smallenemy_dead";
+                // Debug.Log("lose by: small enemy");
             }
 
-            GlobalAnalysis.smallenemy_damage += damage;
+            // GlobalAnalysis.smallenemy_damage += damage;
             col.GetComponent<Player>().TakeDamage(damage);
         }
     }

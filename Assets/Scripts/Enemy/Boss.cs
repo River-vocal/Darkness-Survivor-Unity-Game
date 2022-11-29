@@ -38,7 +38,7 @@ public class Boss : MonoBehaviour
     private void health_OnDead(object sender, System.EventArgs e)
     {
         //Analysis Data
-        GlobalAnalysis.is_boss_killed = true;
+        // GlobalAnalysis.is_boss_killed = true;
 
         int currLevelIndex = SceneManager.GetActiveScene().buildIndex;
         if (currLevelIndex == 6)
