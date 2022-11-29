@@ -47,6 +47,7 @@ public class Bat : MonoBehaviour
 			bat.GetComponent<Animator>().SetTrigger("Death");
 			littleEnemy.SetBeAttackedStatus(false);
 			littleEnemy.SetDeathStatus(true);
+			bat.GetComponent<Collider2D>().enabled = false;
 			Invoke("deactivate", 0.8f);
 		}
     	// if (bat.GetComponent<BatAttack>().getDeadFlag()) {
@@ -95,7 +96,9 @@ public class Bat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-    	inAttackArea = true;
+		if (col.gameObject.CompareTag("Player")) {
+			inAttackArea = true;
+		}
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -114,7 +117,9 @@ public class Bat : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
  	{
- 		inAttackArea = false;
+		if (col.gameObject.CompareTag("Player")) {
+			inAttackArea = false;
+		}
  	}
 
     private void flip()

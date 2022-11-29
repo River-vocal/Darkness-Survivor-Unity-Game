@@ -70,17 +70,19 @@ public class Piranha : MonoBehaviour
         // }
         if(Vector2.Distance(player_transform.position, transform.position) < appearDistance && Vector2.Distance(player_transform.position, transform.position) > godownDistance)
         {
+            Collider2d.enabled = true;
             Appear();
         }
         if(Vector2.Distance(player_transform.position, transform.position) > appearDistance || Vector2.Distance(player_transform.position, transform.position) < godownDistance)
         {
+            Collider2d.enabled = false;
             Godown();
         }
-        if( player_transform.position.x > transform.position.x )
-        {
-            Godown();
-        }
-        
+        // if( player_transform.position.x > transform.position.x )
+        // {
+        //     Godown();
+        // }
+        flipPiranha();
         
          
     }
@@ -117,16 +119,27 @@ public class Piranha : MonoBehaviour
 
     private void CreateBullets()
     {
-        if (player_transform.position.x < gameObject.transform.position.x)
-        {
-            // if (Time.time > LastAttackTime + AttackInterval)
-            // {
-            //     Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
-            //     LastAttackTime = Time.time;
-            // }
-            Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
-            
-        }
         
+        // if (Time.time > LastAttackTime + AttackInterval)
+        // {
+        //     Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
+        //     LastAttackTime = Time.time;
+        // }
+        Instantiate(PiranhaBullet, transform.position, Quaternion.identity);
+        Debug.Log("Piranha Bullets!!!!");
+        
+        
+    }
+
+    void flipPiranha()
+    {
+        if(player_transform.position.x > gameObject.transform.position.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        if(player_transform.position.x < gameObject.transform.position.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 }

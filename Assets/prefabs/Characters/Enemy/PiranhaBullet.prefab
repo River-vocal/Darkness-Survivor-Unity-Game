@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   littleEnemy: {fileID: 5330437422311202582}
   moveSpeed: 4
-  damage: 2
+  damage: 20
   shootingDistance: 20
   detection: {fileID: 4435543082872116302}
 --- !u!114 &5330437422311202582
@@ -213,8 +213,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5539205294713200153}
-  m_LocalRotation: {x: -0, y: -0, z: 0.06656153, w: 0.99778235}
-  m_LocalPosition: {x: -0.025, y: -0.022, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.063461296, w: 0.99798435}
+  m_LocalPosition: {x: -0.0077, y: -0.0213, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -288,8 +288,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.06983044
-  m_PointLightOuterRadius: 0.19288114
+  m_PointLightInnerRadius: 0.07942561
+  m_PointLightOuterRadius: 0.2023133
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

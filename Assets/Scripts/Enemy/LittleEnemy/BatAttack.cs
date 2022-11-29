@@ -7,7 +7,6 @@ public class BatAttack : MonoBehaviour
 {
     [SerializeField] private LittleEnemy littleEnemy;
 	public int damage;
-	private bool isAttacking;
 	private bool isDead;
 
 	
@@ -19,7 +18,6 @@ public class BatAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isAttacking = false;
         isDead = false;
     }
 
@@ -29,40 +27,29 @@ public class BatAttack : MonoBehaviour
         
     }
 
-    public bool getAttackingFlag()
-    {
-    	return isAttacking;
-    }
-
     public bool getDeadFlag()
     {
     	return isDead;
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-    	isAttacking = true;
-    }
 
     private void OnTriggerStay2D(Collider2D col)
     {
     	if (col.gameObject.CompareTag("Player"))
     	{
-    		GetComponent<Animator>().SetTrigger("Attack");
+            if (!GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Enemy Attack 1")) {
+                GetComponent<Animator>().SetTrigger("Attack");
 
-            Energy energy = col.gameObject.GetComponent<Energy>();
-            if  (energy.CurEnergy < damage) {
-                GlobalAnalysis.player_status = "smallenemy_dead";
-                Debug.Log("lose by: small enemy");
+                Energy energy = col.gameObject.GetComponent<Energy>();
+                if  (energy.CurEnergy < damage) {
+                    GlobalAnalysis.player_status = "smallenemy_dead";
+                    Debug.Log("lose by: small enemy");
+                }
+                GlobalAnalysis.smallenemy_damage += damage;
+                col.GetComponent<Player>().TakeDamage(damage, new Object[]{gameObject});
             }
-            GlobalAnalysis.smallenemy_damage += damage;
-    		col.GetComponent<Player>().TakeDamage(damage, new Object[]{gameObject});
+    		
     	}
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-    	isAttacking = false;
     }
 
 }

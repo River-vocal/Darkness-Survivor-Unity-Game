@@ -243,6 +243,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 1835547113}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: message
       value: 'Uh oh... the BOSS is here
 
@@ -1746,6 +1750,10 @@ PrefabInstance:
     - target: {fileID: 7335314519232547905, guid: 3b6ac5c1dfcb847bab4346ef9e309580, type: 3}
       propertyPath: m_Name
       value: Bat1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335314519232547905, guid: 3b6ac5c1dfcb847bab4346ef9e309580, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7698281134702595875, guid: 3b6ac5c1dfcb847bab4346ef9e309580, type: 3}
       propertyPath: m_LocalPosition.x
@@ -110554,6 +110562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat1
       objectReference: {fileID: 0}
+    - target: {fileID: 7335314519232547905, guid: 3b6ac5c1dfcb847bab4346ef9e309580, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7760470704307225535, guid: 3b6ac5c1dfcb847bab4346ef9e309580, type: 3}
       propertyPath: m_LocalPosition.x
       value: -91.81
@@ -111449,6 +111461,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 1835547113}
+    - target: {fileID: 1527517246480674046, guid: fec6235e56cf3624881ab101b6edf3fb, type: 3}
       propertyPath: message
       value: Defeat the BOSS to unlock the gate!
       objectReference: {fileID: 0}
@@ -111481,6 +111497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableChannel: {fileID: 11400000, guid: bc0764656f0b5944aa40ffb946c06131, type: 2}
+  setActive: 0
 --- !u!4 &1589610082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 642831493973716392, guid: d6ea37a4661201a44853d9bfb54dc7fd, type: 3}
@@ -115126,13 +115143,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 100228933}
     m_Modifications:
+    - target: {fileID: 373284723909241524, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
+      propertyPath: MaxHealth
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 5345179134028276714, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: obstacle
       value: 
       objectReference: {fileID: 1711540691}
     - target: {fileID: 5345179134028276714, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: attackDamage
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5345179134028276714, guid: c0e8818ab2e3d404299053dc079ea197, type: 3}
       propertyPath: bossTreasure
