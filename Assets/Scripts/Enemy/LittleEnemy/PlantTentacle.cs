@@ -30,10 +30,10 @@ public class PlantTentacle : MonoBehaviour
     	{
             Energy energy = col.gameObject.GetComponent<Energy>();
             if  (energy.CurEnergy < damage) {
-                GlobalAnalysis.player_status = "smallenemy_dead";
-                Debug.Log("lose by: small enemy");
+                // GlobalAnalysis.player_status = "smallenemy_dead";
+                // Debug.Log("lose by: small enemy");
             }
-            GlobalAnalysis.smallenemy_damage += damage;
+            // GlobalAnalysis.smallenemy_damage += damage;
     		col.GetComponent<Player>().TakeDamage(damage, new Object[]{gameObject});
     	}
     }

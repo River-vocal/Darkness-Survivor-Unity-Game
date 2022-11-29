@@ -102,10 +102,10 @@ public class Golem : MonoBehaviour
 
             GameObject player = other.gameObject;
             if (other.GetComponent<Energy>().CurEnergy < damage) {
-                GlobalAnalysis.player_status = "smallenemy_dead";
-                Debug.Log("lose by: small enemy");
+                // GlobalAnalysis.player_status = "smallenemy_dead";
+                // Debug.Log("lose by: small enemy");
             }
-            GlobalAnalysis.smallenemy_damage += damage;
+            // GlobalAnalysis.smallenemy_damage += damage;
             // other.GetComponent<Energy>().CurEnergy -= damage;
             other.GetComponent<Player>().TakeDamage(damage);
         }

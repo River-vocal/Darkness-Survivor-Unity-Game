@@ -7,14 +7,14 @@ public class EnemyGround : MonoBehaviour
 {
     [SerializeField] private LittleEnemy littleEnemy;
     [SerializeField] private float movementDistance;
-    
+
     [SerializeField] public Boolean hasTwoLives;
     [SerializeField] public bool isRoundWalk;
     [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask groundLayer;
-    
+
     public VisualEffectSystemManager visualEffectSystemManager;
-    
+
     private float speed;
     private int damage;
     private bool movingLeft;
@@ -54,7 +54,7 @@ public class EnemyGround : MonoBehaviour
             new Vector3(transform.position.x - movementDistance, transform.position.y, transform.position.z));
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (littleEnemy.GetBeAttackedStatus())
         {
@@ -99,16 +99,16 @@ public class EnemyGround : MonoBehaviour
                 {
                     // current moving right 
                     case "right":
-                        transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+                        transform.position += new Vector3(speed * 0.02f , 0, 0);
                         break;
                     case "down":
-                        transform.position += new Vector3(0, -speed * Time.deltaTime, 0);
+                        transform.position += new Vector3(0, -speed * 0.02f , 0);
                         break;
                     case "left":
-                        transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
+                        transform.position += new Vector3(-speed * 0.02f , 0, 0);
                         break;
                     case "up":
-                        transform.position += new Vector3(0, speed * Time.deltaTime, 0);
+                        transform.position += new Vector3(0, speed * 0.02f , 0);
                         break;
                 }
             }
@@ -119,7 +119,7 @@ public class EnemyGround : MonoBehaviour
             {
                 if (transform.position.x > leftEdge)
                 {
-                    transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
+                    transform.position += new Vector3(-speed * 0.02f , 0, 0);
                 }
                 else
                 {
@@ -131,7 +131,7 @@ public class EnemyGround : MonoBehaviour
             {
                 if (transform.position.x < rightEdge)
                 {
-                    transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+                    transform.position += new Vector3(speed * 0.02f , 0, 0);
                 }
                 else
                 {
@@ -172,10 +172,12 @@ public class EnemyGround : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            if (col.GetComponent<Energy>().CurEnergy < damage) {
+            if (col.GetComponent<Energy>().CurEnergy < damage)
+            {
                 GlobalAnalysis.player_status = "smallenemy_dead";
                 Debug.Log("lose by: small enemy");
             }
+
             GlobalAnalysis.smallenemy_damage += damage;
             col.GetComponent<Player>().TakeDamage(damage);
         }
