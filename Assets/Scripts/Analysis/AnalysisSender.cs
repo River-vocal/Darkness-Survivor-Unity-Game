@@ -43,6 +43,7 @@ public class AnalysisSender : Singleton<AnalysisSender>
             {
                 Debug.Log("Data Received: " + uwr.downloadHandler.text + " TimeStamp: " + timestamp);
             }
+            uwr.Dispose();
         }
 
 

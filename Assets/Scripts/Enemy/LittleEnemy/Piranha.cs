@@ -23,7 +23,7 @@ public class Piranha : MonoBehaviour
     public float godownDistance;
     private Animator animator;
     private float LastAttackTime = 0;
-    private float AttackInterval = 2;
+    // private float AttackInterval = 2;
     public VisualEffectSystemManager VisualEffect;
     private Collider2D Collider2d;
 
