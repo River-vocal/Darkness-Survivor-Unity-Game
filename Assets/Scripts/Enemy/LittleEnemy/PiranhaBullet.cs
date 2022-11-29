@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PiranhaBullet : MonoBehaviour
@@ -14,14 +15,16 @@ public class PiranhaBullet : MonoBehaviour
     public Transform detection;
     private float ground_distance = 0.2f;
     private float wall_distance = 0.2f;
-    
+
+    private float direction;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         target = new Vector2(player.position.x, player.position.y);
         originalPosition = new Vector2(transform.position.x, transform.position.y);
-        
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        direction = math.sign(target.x - originalPosition.x);
     }
 
     // Update is called once per frame
@@ -54,19 +57,10 @@ public class PiranhaBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        // transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
-
-        if(player.position.x < transform.position.x)
-        {
-            transform.position += - transform.right * Time.deltaTime * moveSpeed;
-        }
-
-        if(player.position.x > transform.position.x)
-        {
-            transform.position += transform.right * Time.deltaTime * moveSpeed;
-        }
         
+        transform.position += direction * transform.right * Time.deltaTime * moveSpeed;
+
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
