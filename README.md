@@ -1,2 +1,2 @@
-# DC-Survivor
-A unity-based game for CSCI526 class
+# Dark-Survivor
+A unity-based game which is a combination of 2d platform jumping & surviving.
