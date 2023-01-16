@@ -1,3 +1,2 @@
 # Dark-Survivor
-A unity-based game.\n
-It is a combination of 2d platform jumping & surviving.
+A unity-based game combining 2d platform jumping & surviving.
