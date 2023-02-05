@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b336e09055ec0e14fa499c119030a579, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  movementVelocity: 10
+  jumpVelocity: 23
+  jumpTimes: 2
+  inAirJumpMultiplier: 0.9
+  coyoteTime: 0.2
+  variableJumpHeightMultiplier: 0.99
+  wallSlideVelocity: 3
+  wallJumpVelocity: 20
+  wallJumpAngle: {x: 1, y: 2}
+  dashCoolDown: 0.1
+  dashVelocity: 30
+  dashDrag: 3
+  dashYVelocityMultiplier: 0.15
+  dashMinimumTime: 0.15
+  attackMovementDrag: 3
+  attackGravityScale: 2
+  attackDamage: 10
+  invulnerableTime: 1
+  blinkInterval: 0.1
+  groundCheckDistance: 0.15
+  wallCheckDistance: 0.3
+  backWallCheckDistance: 1
+  attackCheckDistance: 0.8
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 18496
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  playerInitialBulletCount: 5

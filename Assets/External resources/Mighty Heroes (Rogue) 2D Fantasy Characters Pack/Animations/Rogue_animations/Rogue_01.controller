@@ -154,7 +154,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -3666696334321842217}
   m_StateMachineBehaviours:
-  - {fileID: 8028704093005153311}
+  - {fileID: 5144776545298044865}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f22327216704f2dadb6301ea808a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8028704093005153311
+--- !u!114 &5144776545298044865
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

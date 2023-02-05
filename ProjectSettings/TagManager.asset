@@ -6,11 +6,20 @@ TagManager:
   tags:
   - Enemy
   - Boss
+  - Boost
+  - Missile
+  - Drop
+  - Golem
+  - ground
+  - Projectile
+  - BatTag
+  - LittleEnemy
+  - LittleBullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hint
   - Water
   - UI
   - Ground
@@ -19,10 +28,10 @@ TagManager:
   - Wall
   - Player
   - Enemy
-  - 
-  - 
-  - 
-  - 
+  - PauseMenu
+  - FatalSurrounding
+  - DamageSurrounding
+  - BatPatrol
   - 
   - 
   - 
